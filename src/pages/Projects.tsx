@@ -7,7 +7,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
 import { motion } from "framer-motion";
-import { MapPin, Home, CheckCircle, Calendar, Award, Shield } from "lucide-react";
+import { MapPin, Home, CheckCircle, Calendar, Award, Shield, Building2, Users2 } from "lucide-react";
 import hero1 from "@/assets/hero-1.jpg";
 
 const Projects = () => {
@@ -49,6 +49,13 @@ const Projects = () => {
     "Vastu Compliant Design"
   ];
 
+  const stats = [
+    { value: "40+", label: "Years Experience", icon: Award },
+    { value: "4000+", label: "Happy Families", icon: Users2 },
+    { value: "40+", label: "Completed Projects", icon: Building2 },
+    { value: "6+", label: "Prime Locations", icon: MapPin }
+  ];
+
   return (
     <>
       <Navbar />
@@ -58,32 +65,57 @@ const Projects = () => {
         backgroundImage={hero1}
       />
       <main className="pt-0">
+        {/* Stats Section */}
+        <section className="py-8 sm:py-12 relative -mt-16 z-10">
+          <div className="container mx-auto px-3 sm:px-4 lg:px-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="glass-3d rounded-xl p-4 sm:p-6 text-center hover:shadow-glow-gold transition-all duration-300"
+                  whileHover={{ y: -5, scale: 1.02 }}
+                >
+                  <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary mx-auto mb-2 sm:mb-3" />
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold gradient-gold-text mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Projects with Tabs */}
         <ProjectTabs />
 
         {/* Image Gallery */}
         <ImageGallery />
 
-        {/* Amenities Section */}
-        <section className="py-16 md:py-24 bg-gradient-to-b from-background to-primary/5">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Amenities Section with 3D Cards */}
+        <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-background to-primary/5 section-3d-bg">
+          <div className="container mx-auto px-3 sm:px-4 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12"
+                className="text-center mb-8 sm:mb-12"
               >
-                <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 gradient-gold-text">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-3 sm:mb-4 gradient-gold-text">
                   World-Class Amenities
                 </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
                   Experience luxury living with premium facilities designed for your comfort
                 </p>
               </motion.div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {amenities.map((amenity, index) => (
                   <motion.div
                     key={index}
@@ -91,12 +123,13 @@ const Projects = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: index * 0.05 }}
-                    className="flex items-center gap-3 bg-card rounded-lg p-4 border border-border/50 hover:border-primary/50 transition-all shadow-sm hover:shadow-md"
+                    className="flex items-center gap-3 glass-3d rounded-lg p-3 sm:p-4 hover:shadow-glow-gold transition-all duration-300 group"
+                    whileHover={{ x: 5 }}
                   >
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:shadow-glow-gold transition-all">
                       <CheckCircle className="w-4 h-4 text-primary" />
                     </div>
-                    <span className="text-sm text-foreground/90">{amenity}</span>
+                    <span className="text-xs sm:text-sm text-foreground/90">{amenity}</span>
                   </motion.div>
                 ))}
               </div>
@@ -104,27 +137,29 @@ const Projects = () => {
           </div>
         </section>
 
-        {/* Additional Info Section */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+        {/* Additional Info Section with 3D Cards */}
+        <section className="py-12 sm:py-16 bg-background">
+          <div className="container mx-auto px-3 sm:px-4 lg:px-8">
+            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 sm:gap-8">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-8 border border-primary/20"
+                className="glass-3d rounded-2xl p-6 sm:p-8 hover:shadow-glow-gold transition-all duration-300"
+                whileHover={{ rotateY: 2, rotateX: 2 }}
+                style={{ transformStyle: "preserve-3d" }}
               >
-                <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4 shadow-depth-1">
                   <Award className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-2xl font-heading font-bold mb-4 text-primary">
+                <h3 className="text-xl sm:text-2xl font-heading font-bold mb-3 sm:mb-4 gradient-gold-text">
                   Quality Assurance
                 </h3>
-                <p className="text-foreground/80 leading-relaxed mb-4">
+                <p className="text-sm sm:text-base text-foreground/80 leading-relaxed mb-3 sm:mb-4">
                   Each Lalani Group project is designed with meticulous attention to detail, ensuring that every aspect meets the highest standards of quality and comfort.
                 </p>
-                <p className="text-foreground/80 leading-relaxed">
+                <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">
                   Our developments feature modern architecture, premium finishes, and world-class amenities that set new benchmarks in luxury living.
                 </p>
               </motion.div>
@@ -134,18 +169,20 @@ const Projects = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="bg-gradient-to-br from-gold-light/10 to-gold-light/5 rounded-2xl p-8 border border-gold-light/20"
+                className="glass-3d rounded-2xl p-6 sm:p-8 hover:shadow-glow-gold transition-all duration-300"
+                whileHover={{ rotateY: -2, rotateX: 2 }}
+                style={{ transformStyle: "preserve-3d" }}
               >
-                <div className="w-12 h-12 rounded-lg bg-gold-light/20 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4 shadow-depth-1">
                   <Shield className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-2xl font-heading font-bold mb-4 text-primary">
+                <h3 className="text-xl sm:text-2xl font-heading font-bold mb-3 sm:mb-4 gradient-gold-text">
                   Strategic Locations
                 </h3>
-                <p className="text-foreground/80 leading-relaxed mb-4">
+                <p className="text-sm sm:text-base text-foreground/80 leading-relaxed mb-3 sm:mb-4">
                   All our projects are strategically located in prime areas of Mumbai, offering excellent connectivity to business districts, educational institutions, and healthcare facilities.
                 </p>
-                <p className="text-foreground/80 leading-relaxed">
+                <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">
                   From spacious 1BHK apartments to luxurious 3BHK residences, we offer options to suit every lifestyle and budget.
                 </p>
               </motion.div>

@@ -5,35 +5,43 @@ import { ChevronDown, HelpCircle } from "lucide-react";
 const faqs = [
   {
     question: "What is the process to book a property with Lalani Group?",
-    answer: "The booking process is simple and transparent. First, visit our project site or contact our sales team. Once you select your preferred unit, submit the booking form with required documents and pay the booking amount. Our team will guide you through documentation, loan assistance, and registration process."
+    answer: "The booking process is simple and transparent. First, visit our project site or contact our sales team at 022-6728 0000 or sales@lalanigroup.in. Once you select your preferred unit, submit the booking form with required documents and pay the booking amount. Our team will guide you through documentation, home loan assistance, and registration process from start to finish."
   },
   {
     question: "Are all Lalani Group projects RERA registered?",
-    answer: "Yes, all our ongoing projects are registered with MahaRERA (Maharashtra Real Estate Regulatory Authority). You can verify the registration details on the official MahaRERA website at maharerait.mahaonline.gov.in. We provide complete transparency and comply with all RERA regulations."
+    answer: "Yes, all our ongoing projects are registered with MahaRERA (Maharashtra Real Estate Regulatory Authority). Lalani Goodwill carries RERA numbers P51800079065 and P51800078852, Lalani Business Park is registered under P51800033063, and Velentine Apartment under P51800028866. You can verify all registration details on the official MahaRERA website at maharerait.mahaonline.gov.in. We provide complete transparency and comply with all RERA regulations."
+  },
+  {
+    question: "What types of properties does Lalani Group offer?",
+    answer: "Lalani Group offers a wide range of properties to suit every need. Our residential portfolio includes 1BHK, 2BHK, and 3BHK apartments in prime Mumbai locations like Andheri (E), Malad, Khar, Jogeshwari, and Bandra. For commercial clients, we have premium office spaces in Khar West and the prestigious Bandra-Kurla Complex (BKC). We also offer weekend homes in Karjat for nature-lovers."
   },
   {
     question: "What payment plans are available?",
-    answer: "We offer flexible payment plans tailored to your needs. Options include construction-linked plans, down payment plans, and subvention schemes. We also assist with home loan processing from leading banks and financial institutions. Our team will help you choose the best payment option."
+    answer: "We offer flexible payment plans tailored to your needs and budget. Options include construction-linked payment plans, down payment plans, and subvention schemes. We also provide full assistance with home loan processing from all leading banks and financial institutions including SBI, HDFC, ICICI, and Axis Bank. Our financial advisors will help you choose the most suitable payment option."
   },
   {
     question: "What amenities are provided in Lalani Group projects?",
-    answer: "Our projects feature world-class amenities including 24/7 security, power backup, landscaped gardens, children's play area, gymnasium, clubhouse, parking facilities, and more. Specific amenities vary by project. Contact us for detailed information about your preferred project."
+    answer: "Our projects feature world-class amenities designed for modern living. Standard amenities include 24/7 security with CCTV surveillance, power backup, landscaped gardens, children's play area, gymnasium, swimming pool, clubhouse with indoor games, jogging track, ample covered car parking, high-speed elevators, rainwater harvesting, and fire fighting systems. Specific amenities may vary by project — contact us for details."
   },
   {
     question: "How can I track the construction progress?",
-    answer: "We provide regular updates on construction progress through site visits, email updates, and our customer portal. You can schedule site visits with our team to see the progress firsthand. We maintain complete transparency throughout the construction phase."
+    answer: "We believe in full transparency. We provide regular construction updates through site visits, email updates, and our customer support team. You can schedule a site visit by calling 022-6728 0000 or writing to info@lalanigroup.in. We also comply with all MahaRERA requirements for project updates, which are published on the official RERA website."
   },
   {
     question: "What is the possession timeline for ongoing projects?",
-    answer: "Possession timelines vary by project. Lalani Goodwill is expected by December 2025, and Lalani Business Park by June 2026. We have a proven track record of timely delivery. Exact possession dates are mentioned in the agreement and we keep you updated on progress."
+    answer: "Possession timelines vary by project. Lalani Goodwill (Andheri East) is expected by December 2025, Lalani Business Park (Khar West) by June 2026, Lalani Grandeur (Malad East) by March 2026, Dream Residency (Karjat) by December 2026, and Lalani Corporate Plaza (BKC) by August 2026. Velentine Apartment (Malad East) is already ready with OC received. We have an excellent track record of timely project delivery."
   },
   {
     question: "Do you provide home loan assistance?",
-    answer: "Yes, we have tie-ups with leading banks and financial institutions to provide home loan assistance. Our team helps with documentation, loan application processing, and getting the best interest rates. We make the financing process smooth and hassle-free."
+    answer: "Yes, we have tie-ups with all leading banks and financial institutions to provide hassle-free home loan assistance. Our dedicated team helps with documentation, loan application submission, and securing the best interest rates available. We work with SBI, HDFC, ICICI, Axis, Bank of Baroda, and more. We make the entire financing process smooth and stress-free for our buyers."
+  },
+  {
+    question: "Where is the Lalani Group head office located?",
+    answer: "The Lalani Group head office is located at 7th Floor, Lalani Aura, 34th Road, Khar (W), Mumbai – 400052, Maharashtra, India. You can reach us by phone at 022-6728 0000, by fax at 022-6728 0011, or via email at info@lalanigroup.in. Our office is open Monday to Saturday, 10:00 AM to 6:00 PM."
   },
   {
     question: "What is your after-sales service policy?",
-    answer: "We provide comprehensive after-sales support including property maintenance, defect rectification during the warranty period, and assistance with any issues. Our dedicated customer service team is available 24/7 to address your concerns even after possession."
+    answer: "We provide comprehensive after-sales support throughout your ownership experience. This includes property maintenance assistance, defect rectification during the warranty period, and dedicated support for any issues post-possession. Our customer service team is available 24/7 to address your concerns. The Lalani Group believes in building long-term relationships, and our legacy of happy customers across Bandra, Khar, Andheri, and Malad speaks for itself."
   }
 ];
 

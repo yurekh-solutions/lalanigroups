@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import DiscoverProperties from "@/components/DiscoverProperties";
 import ProjectTabs from "@/components/ProjectTabs";
 import AboutSection from "@/components/AboutSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -15,6 +16,7 @@ import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { ArrowRight, Phone, MapPin, Building2 } from "lucide-react";
 
 const Home = () => {
   return (
@@ -22,6 +24,9 @@ const Home = () => {
       <Navbar />
       <main>
         <HeroSection />
+        
+        {/* Discover Properties Section */}
+        <DiscoverProperties />
         
         {/* Stats Counter */}
         <StatsCounter />
@@ -50,42 +55,74 @@ const Home = () => {
         {/* FAQ Accordion */}
         <FAQAccordion />
 
-        {/* CTA Section */}
-        <section className="py-20 relative overflow-hidden">
+        {/* CTA Section with 3D Effects */}
+        <section className="py-16 sm:py-20 lg:py-28 relative overflow-hidden section-3d-bg">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-gold-light/10 to-primary/20" />
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAtMi4yMSAxLjc5LTQgNC00czQgMS43OSA0IDQtMS43OSA0LTQgNC00LTEuNzktNC00em0wIDI0YzAtMi4yMSAxLjc5LTQgNC00czQgMS43OSA0IDQtMS43OSA0LTQgNC00LTEuNzktNC00ek0xMiAxNmMwLTIuMjEgMS43OS00IDQtNHM0IDEuNzkgNCA0LTEuNzkgNC00IDQtNC0xLjc5LTQtNHptMCAyNGMwLTIuMjEgMS43OS00IDQtNHM0IDEuNzkgNCA0LTEuNzkgNC00IDQtNC0xLjc5LTQtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30" />
+          <div className="absolute inset-0 grid-3d-bg opacity-30" />
           
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Floating 3D Elements */}
+          <motion.div
+            animate={{ y: [-10, 10, -10], rotate: [0, 5, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-20 left-10 w-16 h-16 border border-[#c9a962]/20 rounded-xl hidden lg:block"
+            style={{ transform: "perspective(500px) rotateX(45deg)" }}
+          />
+          <motion.div
+            animate={{ y: [10, -10, 10], rotate: [0, -5, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-20 right-10 w-12 h-12 border border-[#c9a962]/10 rounded-full hidden lg:block"
+          />
+          
+          <div className="container mx-auto px-3 sm:px-4 lg:px-8 relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
               className="max-w-4xl mx-auto text-center"
             >
-              <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6 gradient-gold-text">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4 sm:mb-6 gradient-gold-text">
                 Ready to Find Your Dream Home?
               </h2>
-              <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-10 leading-relaxed px-4">
                 Explore our ongoing projects and discover quality living spaces in prime Mumbai locations. 
                 Our team is ready to help you find the perfect home.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  to="/projects"
-                  className="group px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-gold-light text-primary-foreground font-semibold shadow-lg hover:shadow-2xl transition-all hover:scale-105 flex items-center justify-center gap-2"
-                >
-                  View Our Projects
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-                <Link
-                  to="/contact"
-                  className="px-8 py-4 rounded-xl bg-card border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-primary-foreground transition-all hover:scale-105 shadow-lg"
-                >
-                  Schedule a Visit
-                </Link>
+              
+              {/* Quick Contact Info */}
+              <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8 sm:mb-10">
+                <div className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground">
+                  <MapPin className="w-4 h-4 text-primary" />
+                  <span>Mumbai, Maharashtra</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground">
+                  <Phone className="w-4 h-4 text-primary" />
+                  <span>+91-22-6728-0000</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground">
+                  <Building2 className="w-4 h-4 text-primary" />
+                  <span>40+ Years Experience</span>
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Link
+                    to="/projects"
+                    className="group flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-gradient-to-r from-primary to-gold-light text-primary-foreground font-semibold text-sm sm:text-base shadow-depth-2 hover:shadow-glow-gold transition-all btn-3d"
+                  >
+                    View Our Projects
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Link
+                    to="/contact"
+                    className="flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-xl glass-3d border-2 border-primary text-primary font-semibold text-sm sm:text-base hover:bg-primary/10 transition-all"
+                  >
+                    Schedule a Visit
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
           </div>

@@ -6,22 +6,22 @@ const testimonialsRow1 = [
   {
     name: "Mr. Subhash Tyagi",
     location: "801, Lalani Fairmont, Khar (W)",
-    text: "While retiring from ONGC as a General Manager I was in search of a good residential premises built by the most genuine builder. I am happily living in Lalani Fairmont which I believe has clear distinction with other buildings in the surrounding area.",
+    text: "While retiring from ONGC as a General Manager I was in search of a good residential premises built by the most genuine builder. I discussed the requirements at length with one of my agent colleague dealing with real estate. He promptly and strongly recommended Lalani Builders headed by Mr Shaukat Lalani. I immediately saw the location and the building construction which appealed me both technically as well as commercially. I am happily living in Lalani Fairmont which I believe has clear distinction with other buildings in the surrounding area. I wish the Lalani group to maintain the quality standards and progress in future as well.",
   },
   {
     name: "Sunflower International",
     location: "Commercial Client",
-    text: "When we were looking for office in Pune, right from identification of the exact area, specifications and correct information about every aspect of the place, Lalani group sales team and senior management were transparent and helpful throughout the process.",
+    text: "When we were looking for office in Pune, right from identification of the exact area, specifications and correct information about every aspect of the place, Lalani group sales team and senior management were transparent and helpful. Right from identification of the exact area, specifications and correct information about every aspect of the place, Lalani group sales team and senior management were transparent and helpful.",
   },
   {
     name: "Mr. & Mrs. Smith",
     location: "501, Royal Manor, Bandra (W)",
-    text: "Our experience with the Lalani Group has been extremely professional. The building is a very elegant and tastefully done construction, very well finished. It was truly aesthetically to our liking.",
+    text: "Our experience so far with the Lalani Group, although short (since early 2002), has been extremely professional. From the handling of the purchase of our flat (501 at Royal Manor) right down to the maintenance of the premises, we have had no problems. The building is a very elegant and tastefully done construction, also very well finished. It was truly aesthetically to our liking and the Lalani Group was very keen to satisfy us. We are happy to be residents of Royal Manor, which could be considered a landmark of St. Roque Road, Bandra.",
   },
   {
     name: "Ms. Jayshri Shivraj",
     location: "202, Orchid Enclave, Andheri (E)",
-    text: "The Lalani Group's Construction at Orchid Enclave is effective and detailed, where the residents can get some of the best amenities and also experience quality living standards at competent pricing.",
+    text: "The Lalani Group's Construction at Orchid Enclave is effective and detailed, where the residents can get some of the best amenities and also experience quality living standards at competent pricing. The apartment is very well planned and the floor space is used for the maximum giving on the worth of one's money. The Lalani Group associates are very professional and at the same time are very pleasant to deal with.",
   },
 ];
 

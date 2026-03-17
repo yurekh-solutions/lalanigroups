@@ -10,9 +10,29 @@ import project2 from "@/assets/project-2.jpg";
 
 const newsArticles = [
   {
+    title: "Mumbai Real Estate Market Sees Strong Recovery with Record Registrations in 2024",
+    date: "15-Jan-2025",
+    excerpt: "Mumbai's property market continues its bullish run with record-breaking registrations in 2024. The city recorded over 1.4 lakh property registrations, driven by strong demand for 1BHK and 2BHK apartments in western suburbs like Andheri, Malad, Khar, and Goregaon."
+  },
+  {
+    title: "MahaRERA Strengthens Homebuyer Protection with New Guidelines for 2025",
+    date: "10-Jan-2025",
+    excerpt: "MahaRERA has introduced new guidelines to strengthen homebuyer protection, including mandatory quarterly project updates and stricter penalties for delayed possession. All developers must now provide detailed construction schedules linked to their RERA registrations."
+  },
+  {
+    title: "Mumbai's Western Suburbs Emerge as Top Residential Investment Destinations",
+    date: "02-Dec-2024",
+    excerpt: "Areas like Andheri East, Malad East, Jogeshwari West, and Khar West have emerged as top investment destinations for homebuyers. Proximity to metro corridors, Western Express Highway, and major employment hubs is driving demand for quality projects in these micro-markets."
+  },
+  {
+    title: "Home Loan Rates Stabilize as RBI Holds Repo Rate; Positive for Buyers",
+    date: "08-Nov-2024",
+    excerpt: "The Reserve Bank of India's decision to hold the repo rate steady has brought stability to home loan interest rates. With rates hovering between 8.5-9%, homebuyers are finding EMIs more manageable, boosting demand for under-construction properties in Mumbai."
+  },
+  {
     title: "Residential unit sales up 34% QoQ in July-September",
     date: "02-Jan-2021",
-    excerpt: "The country's residential real estate market has shown initial signs of a pick-up during the July-September quarter, with sales rising 34% compared to the June quarter, although it was still 65% lower than the second quarter of 2019-20"
+    excerpt: "The country's residential real estate market has shown initial signs of a pick-up during the July-September quarter, with sales rising 34% compared to the June quarter, although it was still 65% lower than the second quarter of 2019-20."
   },
   {
     title: "Mumbai property registration bounces back to pre-Covid level on stamp duty cut",
@@ -25,12 +45,7 @@ const newsArticles = [
     excerpt: "Going by past trends and current developments, Mumbai Metropolitan Region (MMR) and Pune are likely to witness the highest housing sales improvement during the ongoing festive quarter - by 36% and 34% respectively."
   },
   {
-    title: "Housing sales festive growth in Mumbai, Pune seen leading key markets tally",
-    date: "23-Oct-2020",
-    excerpt: "Usually, the festive quarter of October-December sees housing sales across cities improve due to the auspiciousness of this period. During the Pitrupaksha period in the previous quarter, many homebuyers abstain from making purchases."
-  },
-  {
-    title: "Realty sentiments turn positive; realtors, stakeholders optimistic over business comeback",
+    title: "Realty sentiments turn positive; realtors and stakeholders optimistic over business comeback",
     date: "23-Oct-2020",
     excerpt: "The recent increase in real estate sales momentum has added to the positive sentiment among real estate stakeholders as the business confidence makes a comeback."
   },
@@ -40,29 +55,9 @@ const newsArticles = [
     excerpt: "Property registrations in the state have gone up after the reduction of stamp duty for a limited period. Last month saw 2,40,333 registrations, up 26% from 1,90,841 in September 2019."
   },
   {
-    title: "Mumbai residential registration bounces back to pre-Covid level on stamp duty cut",
-    date: "01-Oct-2020",
-    excerpt: "Registration of sales agreements stood at 5,597 in September, nearly 95% of pre-Covid level seen in February. The registration numbers rose 110% from July, reflected data from the office of the Inspector General of Registration Maharashtra."
-  },
-  {
-    title: "Residential sales up 34% in top seven markets in Q3 2020: Report",
-    date: "28-Sept-2020",
-    excerpt: "Housing sales in top seven markets including Mumbai, Delhi-NCR, Bengaluru, Hyderabad, Chennai, Pune and Kolkata rose to 14,415 apartments, up 34% from the previous quarter, showed JLL India data."
-  },
-  {
     title: "In bid to boost realty, Maharashtra cuts stamp duty for 7 months",
     date: "27-Aug-2020",
     excerpt: "In a major decision to revive the stagnant property market, the state cabinet decided to reduce stamp duty on flats for seven months, starting September. The duty will be lowered from the existing 5% to 2% starting September 1 till December 31."
-  },
-  {
-    title: "Property registrations up in June after two-month slack in Maharashtra",
-    date: "02-Jul-2020",
-    excerpt: "Property registrations across the state, particularly in Mumbai and Pune regions, increased significantly in June. While the revenue collection in the first quarter of this fiscal was 78% less than the corresponding period last year, in June, it was much better."
-  },
-  {
-    title: "Property registration from builder's office by July-end",
-    date: "01-Jul-2020",
-    excerpt: "Property buyers can register their agreements online sitting in the builder's office by July-end. Builders and developers are being given access to a software to enable such a process."
   },
   {
     title: "Home loan rates of public sector banks turn attractive",
@@ -70,9 +65,9 @@ const newsArticles = [
     excerpt: "Starting 1 July 2020, the State Bank of India is offering home loans starting at 6.95%. This will be the second-lowest rate for home loans after Bank of Baroda, which offers home loans from 6.85% onwards."
   },
   {
-    title: "MHADA cuts premium on redevelopment projects",
-    date: "28-Jun-2020",
-    excerpt: "The Maharashtra Housing and Area Development Authority (MHADA) has announced a series of measures to expedite the process of redevelopment of MHADA colonies across the city, as many of them are in dilapidated condition."
+    title: "Property registrations up in June after two-month slack in Maharashtra",
+    date: "02-Jul-2020",
+    excerpt: "Property registrations across the state, particularly in Mumbai and Pune regions, increased significantly in June. While the revenue collection in the first quarter of this fiscal was 78% less than the corresponding period last year, in June, it was much better."
   }
 ];
 

@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import aboutBg from "@/assets/hero-1.jpg";
+import { CheckCircle2 } from "lucide-react";
 
 const AboutSection = () => {
   return (
     <section id="about" className="relative section-padding overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <img src={aboutBg} alt="Lalani Group developments" className="w-full h-full object-cover opacity-20" loading="lazy" />
+        <img src={aboutBg} alt="Lalani Group developments in Mumbai" className="w-full h-full object-cover opacity-20" loading="lazy" />
         <div className="absolute inset-0 bg-background/80" />
       </div>
 
@@ -23,16 +24,23 @@ const AboutSection = () => {
             </h2>
             <div className="gold-divider !mx-0 mb-8" />
             <p className="font-body text-secondary-foreground leading-relaxed mb-6">
-              Founded in the year 1985, The Lalani Group is one of the leading construction
-              companies based in Mumbai. With over three decades of in-depth customer understanding
-              and experience, The Lalani legacy boasts of homes and commercial spaces that offer
-              unmatched quality and absolute value for money to its clients.
+              Founded in the year 1985 by Mr. Shaukat Lalani, The Lalani Group is one of the leading
+              construction companies based in Mumbai. With over four decades of in-depth customer
+              understanding and experience, The Lalani legacy boasts of homes and commercial spaces
+              that offer unmatched quality and absolute value for money to its clients.
+            </p>
+            <p className="font-body text-muted-foreground leading-relaxed mb-6">
+              Unlike previously where the value for a real estate was solely dependent on its location;
+              the real estate industry today is more about reputation. Be it pioneering concepts,
+              providing good customer support or using some of the most advanced technologies in
+              design and construction, the Lalani Group has always been at the forefront, therefore
+              cementing a strong brand image that speaks of trust and recognition in the real estate
+              industry.
             </p>
             <p className="font-body text-muted-foreground leading-relaxed mb-8">
-              Be it pioneering concepts, providing good customer support or using some of the most
-              advanced technologies in design and construction, the Lalani Group has always been at
-              the forefront, cementing a strong brand image that speaks of trust and recognition
-              in the real estate industry.
+              From premium residential apartments in Andheri, Malad, Khar, Jogeshwari & Bandra to
+              world-class commercial spaces in BKC and Khar, Lalani Group has consistently delivered
+              excellence across every project, earning the trust of over 4,000 happy families.
             </p>
             <a
               href="#contact"
@@ -51,19 +59,21 @@ const AboutSection = () => {
           >
             <div className="glass-card rounded-2xl p-8 lg:p-10">
               <h3 className="font-heading text-2xl font-bold text-foreground mb-6">
-                Our Promise
+                Our Promise to You
               </h3>
               <ul className="space-y-4">
                 {[
                   "Premium quality construction with finest materials",
-                  "Transparent dealings with RERA compliance",
-                  "Timely delivery of all projects",
-                  "World-class amenities & modern design",
-                  "Prime locations across Mumbai",
+                  "Transparent dealings with full MahaRERA compliance",
+                  "Timely delivery of all projects — proven track record",
+                  "World-class amenities & contemporary design",
+                  "Prime locations across Mumbai with excellent connectivity",
+                  "Dedicated after-sales support & property maintenance",
+                  "Home loan assistance with leading banks",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0" />
-                    <span className="font-body text-secondary-foreground">{item}</span>
+                    <CheckCircle2 className="w-4 h-4 text-primary mt-1 shrink-0" />
+                    <span className="font-body text-secondary-foreground text-sm leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>

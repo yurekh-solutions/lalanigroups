@@ -1,0 +1,23 @@
+{
+  "name": "Lalani Group - Premium Real Estate Developers",
+  "short_name": "Lalani Group",
+  "description": "Leading real estate builders in Mumbai since 1985. Explore luxury apartments & commercial properties.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a14",
+  "theme_color": "#c9a962",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "lifestyle", "shopping"]
+}

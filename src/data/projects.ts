@@ -224,8 +224,8 @@ export const projects: Project[] = [
     id: 3,
     slug: "lalani-grandeur",
     name: "Lalani Grandeur",
-    location: "Goregaon (E)",
-    area: "Goregaon East",
+    location: "Malad (E)",
+    area: "Malad East",
     rera: "P51800045678",
     type: "2BHK & 3BHK Residences",
     status: "Ongoing",
@@ -312,13 +312,13 @@ export const projects: Project[] = [
       }
     ],
     nearbyLocations: [
-      { name: "Goregaon Metro Station", distance: "8 min" },
-      { name: "Goregaon Railway Station", distance: "10 min" },
-      { name: "Film City", distance: "15 min" },
-      { name: "Oberoi Mall", distance: "12 min" },
-      { name: "International Airport", distance: "20 min" },
+      { name: "Malad Railway Station", distance: "8 min" },
+      { name: "Mindspace IT Park", distance: "10 min" },
+      { name: "Inorbit Mall", distance: "12 min" },
+      { name: "Infiniti Mall", distance: "15 min" },
+      { name: "International Airport", distance: "25 min" },
       { name: "Western Express Highway", distance: "5 min" },
-      { name: "IT Parks & Business Hubs", distance: "10-15 min" }
+      { name: "Schools & Hospitals", distance: "5-10 min" }
     ]
   },
 
@@ -476,6 +476,94 @@ export const projects: Project[] = [
     ]
   },
 
+  // DREAM RESIDENCY
+  {
+    id: 7,
+    slug: "dream-residency",
+    name: "Dream Residency",
+    location: "Karjat (W)",
+    area: "Karjat",
+    rera: "P51800078901",
+    type: "1BHK & 2BHK Weekend Homes",
+    status: "Ongoing",
+    category: "residential",
+    price: "₹32 Lakhs Onwards",
+    possession: "December 2026",
+    image: project3,
+    images: [project3, hero1, hero2],
+    description: "Dream Residency is an idyllic weekend retreat nestled in the scenic surroundings of Karjat. Offering spacious 1BHK and 2BHK homes amidst lush greenery, this project is perfect for those seeking a peaceful escape from the city while staying connected to Mumbai.",
+    highlights: [
+      "MahaRERA Approved - P51800078901",
+      "Scenic hill and valley views",
+      "Clean & pollution-free environment",
+      "Close to Karjat Railway Station",
+      "2.5 hours from Mumbai by train",
+      "Weekend home & investment opportunity",
+      "Vastu-compliant design",
+      "Green building practices"
+    ],
+    amenities: [
+      "Swimming Pool",
+      "Clubhouse",
+      "Landscaped Gardens",
+      "Children's Play Area",
+      "Jogging Track",
+      "Outdoor Sports Area",
+      "24/7 Security",
+      "Covered Parking",
+      "Power Backup",
+      "Rainwater Harvesting",
+      "Nature Walk Path",
+      "Bonfire Area"
+    ],
+    specifications: [
+      {
+        title: "Living Areas",
+        details: [
+          "Vitrified tile flooring",
+          "Premium quality paint",
+          "Large windows with nature views"
+        ]
+      },
+      {
+        title: "Kitchen",
+        details: [
+          "Granite countertops",
+          "Ceramic wall tiles",
+          "Modular kitchen provision"
+        ]
+      },
+      {
+        title: "Bathrooms",
+        details: [
+          "Designer tiles",
+          "Premium sanitary fittings",
+          "Anti-skid flooring"
+        ]
+      }
+    ],
+    configuration: [
+      {
+        type: "1 BHK",
+        area: "380-450 sq.ft",
+        price: "₹32 Lakhs onwards"
+      },
+      {
+        type: "2 BHK",
+        area: "580-680 sq.ft",
+        price: "₹52 Lakhs onwards"
+      }
+    ],
+    nearbyLocations: [
+      { name: "Karjat Railway Station", distance: "10 min" },
+      { name: "Ulhas River", distance: "5 min" },
+      { name: "Kondana Caves", distance: "15 min" },
+      { name: "Bhivpuri Waterfall", distance: "20 min" },
+      { name: "Mumbai", distance: "2.5 hrs by train" },
+      { name: "Pune", distance: "2 hrs by road" }
+    ]
+  },
+
   // LALANI CORPORATE PLAZA (Commercial)
   {
     id: 6,
@@ -556,6 +644,165 @@ export const projects: Project[] = [
       { name: "Domestic Airport", distance: "20 min" },
       { name: "Western Express Highway", distance: "5 min" },
       { name: "Banks & Financial Institutions", distance: "Walking distance" }
+    ]
+  },
+
+  // ROYAL MANOR (Completed)
+  {
+    id: 8,
+    slug: "royal-manor",
+    name: "Royal Manor",
+    location: "Bandra (W)",
+    area: "Bandra West",
+    rera: "Legacy Project",
+    type: "Luxury Residences",
+    status: "Ready Possession",
+    category: "completed",
+    price: "Sold Out",
+    possession: "Completed",
+    image: hero2,
+    images: [hero2, project2, project1],
+    description: "Royal Manor is a landmark completed residential project in the prestigious St. Roque Road, Bandra (W). An elegant and tastefully done construction with premium finishes, Royal Manor stands as a symbol of Lalani Group's commitment to architectural excellence and quality living.",
+    highlights: [
+      "Prestigious address on St. Roque Road, Bandra",
+      "Elegant & tasteful architectural design",
+      "Premium quality finishes throughout",
+      "Landmark building in Bandra West",
+      "Excellent connectivity to Bandra station",
+      "Close to shopping, restaurants & beaches",
+      "Lalani Group legacy project",
+      "100% sold out"
+    ],
+    amenities: [
+      "24/7 Security",
+      "Covered Parking",
+      "Lift Facility",
+      "Power Backup",
+      "Intercom System",
+      "Landscaped Gardens"
+    ],
+    specifications: [
+      {
+        title: "Construction Quality",
+        details: [
+          "Premium quality materials",
+          "Elegant architectural design",
+          "Superior finish throughout"
+        ]
+      }
+    ],
+    nearbyLocations: [
+      { name: "Bandra Railway Station", distance: "5 min" },
+      { name: "Linking Road", distance: "5 min" },
+      { name: "Bandstand", distance: "10 min" },
+      { name: "International Airport", distance: "20 min" }
+    ]
+  },
+
+  // ORCHID ENCLAVE (Completed)
+  {
+    id: 9,
+    slug: "orchid-enclave",
+    name: "Orchid Enclave",
+    location: "Andheri (E)",
+    area: "Andheri East",
+    rera: "Legacy Project",
+    type: "Residential Apartments",
+    status: "Ready Possession",
+    category: "completed",
+    price: "Sold Out",
+    possession: "Completed",
+    image: project1,
+    images: [project1, hero1, hero2],
+    description: "Orchid Enclave is a successfully completed residential project in Andheri East offering residents the best amenities and quality living standards at competitive pricing. The well-planned apartments maximize floor space, offering true value for money, a hallmark of the Lalani Group.",
+    highlights: [
+      "Strategically located in Andheri East",
+      "Best-in-class amenities provided",
+      "Quality living standards at competitive pricing",
+      "Well-planned apartments - maximum space utilization",
+      "Near Andheri Railway Station & Metro",
+      "Excellent connectivity to airport",
+      "Lalani Group legacy project",
+      "100% sold out"
+    ],
+    amenities: [
+      "24/7 Security",
+      "Covered Parking",
+      "Lift Facility",
+      "Power Backup",
+      "Intercom System",
+      "Children's Play Area",
+      "Landscaped Gardens"
+    ],
+    specifications: [
+      {
+        title: "Construction Quality",
+        details: [
+          "Quality construction with best materials",
+          "Well-planned space utilization",
+          "Competitive pricing with premium quality"
+        ]
+      }
+    ],
+    nearbyLocations: [
+      { name: "Andheri Railway Station", distance: "10 min" },
+      { name: "Andheri Metro Station", distance: "8 min" },
+      { name: "International Airport", distance: "15 min" },
+      { name: "Western Express Highway", distance: "5 min" }
+    ]
+  },
+
+  // LALANI FAIRMONT (Completed)
+  {
+    id: 10,
+    slug: "lalani-fairmont",
+    name: "Lalani Fairmont",
+    location: "Khar (W)",
+    area: "Khar West",
+    rera: "Legacy Project",
+    type: "Premium Residences",
+    status: "Ready Possession",
+    category: "completed",
+    price: "Sold Out",
+    possession: "Completed",
+    image: project2,
+    images: [project2, hero1, hero2],
+    description: "Lalani Fairmont is one of the Group's most celebrated completed projects in the premium Khar (W) locality of Mumbai. With clear architectural distinction from surrounding buildings, Lalani Fairmont has set the benchmark for quality residential construction, as endorsed by its esteemed residents including retired ONGC officials and senior professionals.",
+    highlights: [
+      "Premium location in Khar West",
+      "Clear distinction from surrounding buildings",
+      "Technically & commercially superior design",
+      "Prestigious address in one of Mumbai's best neighborhoods",
+      "High-quality construction materials",
+      "Maintained to the highest standards",
+      "Lalani Group flagship legacy project",
+      "100% sold out"
+    ],
+    amenities: [
+      "24/7 Security",
+      "CCTV Surveillance",
+      "Covered Parking",
+      "Power Backup",
+      "High-Speed Elevators",
+      "Intercom System",
+      "Landscaped Gardens",
+      "Society Management"
+    ],
+    specifications: [
+      {
+        title: "Premium Construction",
+        details: [
+          "Highest quality materials used",
+          "Technically & aesthetically superior",
+          "Well-maintained common areas"
+        ]
+      }
+    ],
+    nearbyLocations: [
+      { name: "Khar Railway Station", distance: "5 min" },
+      { name: "Linking Road", distance: "3 min" },
+      { name: "Bandra-Kurla Complex", distance: "15 min" },
+      { name: "International Airport", distance: "20 min" }
     ]
   }
 ];

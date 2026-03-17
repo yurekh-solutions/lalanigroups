@@ -89,9 +89,13 @@ const ContactSection = () => {
                 className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground font-body text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
               >
                 <option value="">Select Project</option>
-                <option value="Lalani Goodwill">Lalani Goodwill, Andheri (E)</option>
-                <option value="Lalani Business Park">Lalani Business Park, Khar (W)</option>
-                <option value="Velentine Apartment">Velentine Apartment, Malad (E)</option>
+                <option value="Lalani Goodwill, Andheri (E)">Lalani Goodwill, Andheri (E)</option>
+                <option value="Lalani Business Park, Khar (W)">Lalani Business Park, Khar (W)</option>
+                <option value="Velentine Apartment, Malad (E)">Velentine Apartment, Malad (E)</option>
+                <option value="Lalani Grandeur, Malad (E)">Lalani Grandeur, Malad (E)</option>
+                <option value="Lalani Heritage Park, Jogeshwari (W)">Lalani Heritage Park, Jogeshwari (W)</option>
+                <option value="Dream Residency, Karjat (W)">Dream Residency, Karjat (W)</option>
+                <option value="Lalani Corporate Plaza, BKC">Lalani Corporate Plaza, BKC</option>
               </select>
             </div>
             <textarea
@@ -142,8 +146,11 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-body font-semibold text-foreground text-sm">Phone</p>
-                    <a href="tel:+919136242706" className="font-body text-primary text-sm hover:text-gold-light">
-                      +91 91362 42706
+                    <a href="tel:02267280000" className="font-body text-primary text-sm hover:text-gold-light block">
+                      022-6728 0000
+                    </a>
+                    <a href="tel:+919322642370" className="font-body text-primary text-sm hover:text-gold-light block">
+                      +91-93226-42370
                     </a>
                   </div>
                 </div>

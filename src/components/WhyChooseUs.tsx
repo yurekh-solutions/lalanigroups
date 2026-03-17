@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Award, Users, Building, Clock, CheckCircle2 } from "lucide-react";
+import { Shield, Award, Users, Building, Clock, CheckCircle2, MapPin, Star } from "lucide-react";
 import hero1 from "@/assets/hero-1.jpg";
 
 const features = [
@@ -32,6 +32,16 @@ const features = [
     icon: CheckCircle2,
     title: "Quality Assurance",
     description: "Earthquake-resistant structures, premium materials, and meticulous attention to every detail."
+  },
+  {
+    icon: MapPin,
+    title: "Prime Locations",
+    description: "Strategically located properties in Mumbai's most sought-after neighborhoods with excellent connectivity."
+  },
+  {
+    icon: Star,
+    title: "Customer Excellence",
+    description: "Dedicated after-sales support and comprehensive maintenance services for long-term satisfaction."
   }
 ];
 
