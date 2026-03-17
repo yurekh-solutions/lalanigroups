@@ -660,8 +660,12 @@ export const projects: Project[] = [
     category: "completed",
     price: "Sold Out",
     possession: "Completed",
-    image: hero2,
-    images: [hero2, project2, project1],
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&auto=format&fit=crop&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop&q=80"
+    ],
     description: "Royal Manor is a landmark completed residential project in the prestigious St. Roque Road, Bandra (W). An elegant and tastefully done construction with premium finishes, Royal Manor stands as a symbol of Lalani Group's commitment to architectural excellence and quality living.",
     highlights: [
       "Prestigious address on St. Roque Road, Bandra",
@@ -803,6 +807,188 @@ export const projects: Project[] = [
       { name: "Linking Road", distance: "3 min" },
       { name: "Bandra-Kurla Complex", distance: "15 min" },
       { name: "International Airport", distance: "20 min" }
+    ]
+  },
+
+  // LALANI SKYVIEW (Residential)
+  {
+    id: 11,
+    slug: "lalani-skyview",
+    name: "Lalani Skyview",
+    location: "Goregaon (W)",
+    area: "Goregaon West",
+    rera: "P51800089012",
+    type: "2BHK & 3BHK Residences",
+    status: "Ongoing",
+    category: "residential",
+    price: "₹1.25 Cr Onwards",
+    possession: "June 2027",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&auto=format&fit=crop&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&auto=format&fit=crop&q=80"
+    ],
+    description: "Lalani Skyview is a stunning high-rise residential project in Goregaon West offering breathtaking panoramic views of the city skyline. With contemporary architecture and premium amenities, this project is designed for those who aspire to live above the ordinary.",
+    highlights: [
+      "MahaRERA Approved - P51800089012",
+      "High-rise tower with panoramic views",
+      "Near Goregaon Metro & Railway Station",
+      "Close to Oberoi Mall & commercial hubs",
+      "Premium clubhouse with sky lounge",
+      "Smart home ready apartments",
+      "Earthquake resistant structure",
+      "IGBC Green Building certified"
+    ],
+    amenities: [
+      "Sky Lounge & Terrace Garden",
+      "Infinity Swimming Pool",
+      "State-of-the-art Gymnasium",
+      "Indoor Games & Entertainment Zone",
+      "Multipurpose Banquet Hall",
+      "Landscaped Podium Gardens",
+      "Children's Play Area",
+      "Yoga & Meditation Room",
+      "24/7 Security with CCTV",
+      "High-Speed Elevators",
+      "Covered Car Parking",
+      "Power Backup",
+      "Rainwater Harvesting",
+      "EV Charging Points"
+    ],
+    specifications: [
+      {
+        title: "Living & Bedrooms",
+        details: [
+          "Italian marble flooring",
+          "Designer false ceiling with cove lighting",
+          "Floor-to-ceiling windows"
+        ]
+      },
+      {
+        title: "Kitchen",
+        details: [
+          "Modular kitchen with premium fittings",
+          "Quartz countertops",
+          "Built-in chimney and hob",
+          "Water purifier provision"
+        ]
+      },
+      {
+        title: "Bathrooms",
+        details: [
+          "Premium imported tiles",
+          "Designer sanitary ware",
+          "Rain shower with mixer",
+          "Anti-skid flooring"
+        ]
+      }
+    ],
+    configuration: [
+      {
+        type: "2 BHK",
+        area: "800-900 sq.ft",
+        price: "₹1.25 Cr onwards"
+      },
+      {
+        type: "3 BHK",
+        area: "1100-1300 sq.ft",
+        price: "₹1.75 Cr onwards"
+      }
+    ],
+    nearbyLocations: [
+      { name: "Goregaon Railway Station", distance: "10 min" },
+      { name: "Goregaon Metro Station", distance: "8 min" },
+      { name: "Oberoi Mall", distance: "5 min" },
+      { name: "Film City", distance: "15 min" },
+      { name: "International Airport", distance: "25 min" },
+      { name: "Western Express Highway", distance: "5 min" }
+    ]
+  },
+
+  // LALANI TOWERS (Commercial)
+  {
+    id: 12,
+    slug: "lalani-towers",
+    name: "Lalani Towers",
+    location: "Andheri (W)",
+    area: "Andheri West",
+    rera: "P51800090123",
+    type: "Premium Retail & Office Spaces",
+    status: "Ongoing",
+    category: "commercial",
+    price: "₹95 Lakhs Onwards",
+    possession: "December 2026",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&auto=format&fit=crop&q=80"
+    ],
+    description: "Lalani Towers is a modern commercial complex in the bustling Andheri West business corridor. Offering premium retail shops and office spaces, this project provides excellent visibility and footfall for businesses seeking a prime commercial address.",
+    highlights: [
+      "MahaRERA Approved - P51800090123",
+      "Prime location on Linking Road",
+      "High street retail frontage",
+      "Near Andheri Metro Station",
+      "Excellent visibility & footfall",
+      "Modern commercial architecture",
+      "Flexible office configurations",
+      "Ample parking space"
+    ],
+    amenities: [
+      "Grand Entrance Lobby",
+      "High-Speed Elevators",
+      "Central Air Conditioning",
+      "24/7 Security",
+      "CCTV Surveillance",
+      "Multi-Level Parking",
+      "100% Power Backup",
+      "Fire Safety Systems",
+      "Visitor Management System",
+      "High-Speed Internet Ready",
+      "Food Court",
+      "ATM Space"
+    ],
+    specifications: [
+      {
+        title: "Retail Spaces",
+        details: [
+          "Double-height showroom options",
+          "Premium glass frontage",
+          "Flexible layouts",
+          "Excellent street visibility"
+        ]
+      },
+      {
+        title: "Office Spaces",
+        details: [
+          "Open floor plans",
+          "False ceiling with lighting",
+          "Central AC provision",
+          "Premium washrooms"
+        ]
+      }
+    ],
+    configuration: [
+      {
+        type: "Retail Shop",
+        area: "300-1500 sq.ft",
+        price: "₹95 Lakhs onwards"
+      },
+      {
+        type: "Office Space",
+        area: "500-3000 sq.ft",
+        price: "₹1.1 Cr onwards"
+      }
+    ],
+    nearbyLocations: [
+      { name: "Andheri Metro Station", distance: "5 min" },
+      { name: "Andheri Railway Station", distance: "8 min" },
+      { name: "Linking Road", distance: "2 min" },
+      { name: "Versova", distance: "10 min" },
+      { name: "International Airport", distance: "20 min" },
+      { name: "Lokhandwala", distance: "7 min" }
     ]
   }
 ];

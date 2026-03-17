@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
+import SEO from "@/components/SEO";
 import hero2 from "@/assets/hero-2.jpg";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Building2 } from "lucide-react";
@@ -39,6 +40,12 @@ const Contact = () => {
 
   return (
     <>
+      <SEO
+        title="Contact Us | Lalani Group - Real Estate Developers Mumbai"
+        description="Contact Lalani Group for property inquiries. Visit us at Lalani Aura, Khar West, Mumbai. Call 022-6728 0000 or WhatsApp +91-93226-42370. Schedule site visits for our residential & commercial projects."
+        keywords="contact Lalani Group, Lalani Group phone number, Lalani Group address, Mumbai real estate contact, property inquiry Mumbai, site visit booking"
+        canonicalUrl="/contact"
+      />
       <Navbar />
       <PageHero 
         title="Contact Us"

@@ -5,8 +5,9 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
-import { Target, Eye, Heart, Lightbulb, Users2, TrendingUp, Award, Building2, MapPin, CheckCircle2, Star } from "lucide-react";
+import { Target, Eye, Heart, Lightbulb, Users2, TrendingUp, CheckCircle2, Star } from "lucide-react";
 import project3 from "@/assets/project-3.jpg";
 import { Link } from "react-router-dom";
 
@@ -34,12 +35,7 @@ const About = () => {
     }
   ];
 
-  const stats = [
-    { value: "40+", label: "Years Experience", icon: Award },
-    { value: "4000+", label: "Happy Families", icon: Users2 },
-    { value: "40+", label: "Completed Projects", icon: Building2 },
-    { value: "6+", label: "Prime Locations", icon: MapPin }
-  ];
+
 
   const legacyProjects = [
     { name: "Royal Manor", location: "St. Roque Road, Bandra (W)", type: "Luxury Residences" },
@@ -54,6 +50,12 @@ const About = () => {
 
   return (
     <>
+      <SEO
+        title="About Lalani Group | 40+ Years of Real Estate Excellence in Mumbai"
+        description="Learn about Lalani Group - Founded in 1985 by Mr. Shaukat Lalani. 40+ completed projects, 4000+ happy families. Mumbai's trusted real estate developer with presence in Andheri, Malad, Khar, Bandra, Jogeshwari."
+        keywords="Lalani Group history, about Lalani builders, Shaukat Lalani, Mumbai builders, real estate company Mumbai, trusted developers Mumbai, 40 years experience"
+        canonicalUrl="/about"
+      />
       <Navbar />
       <PageHero 
         title="About Lalani Group"
@@ -61,31 +63,6 @@ const About = () => {
         backgroundImage={project3}
       />
       <main className="pt-0">
-        {/* Stats Section with 3D Cards */}
-        <section className="py-8 sm:py-12 relative -mt-16 z-10">
-          <div className="container mx-auto px-3 sm:px-4 lg:px-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="glass-3d rounded-xl p-4 sm:p-6 text-center hover:shadow-glow-gold transition-all duration-300"
-                  whileHover={{ y: -5, scale: 1.02 }}
-                >
-                  <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary mx-auto mb-2 sm:mb-3" />
-                  <div className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold gradient-gold-text mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* About Content with 3D Effects */}
         <section className="py-12 sm:py-16 md:py-24 section-3d-bg">
           <div className="container mx-auto px-3 sm:px-4 lg:px-8">

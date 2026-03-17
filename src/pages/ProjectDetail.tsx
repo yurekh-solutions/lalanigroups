@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
+import SEO from "@/components/SEO";
 import { getProjectBySlug } from "@/data/projects";
 import { useState, useEffect } from "react";
 
@@ -85,6 +86,13 @@ const ProjectDetail = () => {
 
   return (
     <>
+      <SEO
+        title={`${project.name} - ${project.type} in ${project.location} | Lalani Group Mumbai`}
+        description={`${project.name} by Lalani Group - ${project.type} in ${project.location}. ${project.status === 'Ready Possession' ? 'Ready to move!' : `Possession: ${project.possession}`} Price: ${project.price}. MahaRERA: ${project.rera}. Call 022-6728 0000!`}
+        keywords={`${project.name}, ${project.location} property, ${project.area} apartments, ${project.type}, MahaRERA ${project.rera}, Lalani Group projects, flats in ${project.area}`}
+        canonicalUrl={`/projects/${slug}`}
+        ogImage={typeof project.image === 'string' ? project.image : undefined}
+      />
       <Navbar />
       <main className="min-h-screen">
         {/* Hero Section */}

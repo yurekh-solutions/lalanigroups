@@ -5,6 +5,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
 import FAQAccordion from "@/components/FAQAccordion";
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { CheckCircle, FileText, Home, Shield, TrendingUp, Users } from "lucide-react";
 import project1 from "@/assets/project-1.jpg";
@@ -45,6 +46,12 @@ const BuyersGuide = () => {
 
   return (
     <>
+      <SEO
+        title="Buyer's Guide | Home Buying Tips & Process - Lalani Group Mumbai"
+        description="Complete guide to buying property in Mumbai. Learn about legal documentation, RERA verification, home loans, property registration process. Expert tips from Lalani Group with 40+ years experience."
+        keywords="property buying guide Mumbai, home buying process, RERA verification, property documents, home loan tips, real estate investment guide, Mumbai property tips"
+        canonicalUrl="/buyers-guide"
+      />
       <Navbar />
       <PageHero 
         title="Buyer's Guide"

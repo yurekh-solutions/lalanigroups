@@ -14,6 +14,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Phone, MapPin, Building2 } from "lucide-react";
@@ -21,6 +22,12 @@ import { ArrowRight, Phone, MapPin, Building2 } from "lucide-react";
 const Home = () => {
   return (
     <>
+      <SEO
+        title="Lalani Group - Premium Real Estate Developers in Mumbai | 1BHK, 2BHK, 3BHK Apartments"
+        description="Lalani Group - Leading real estate builders in Mumbai since 1985. 40+ completed projects, 4000+ happy families. Explore luxury apartments in Andheri, Malad, Khar, Jogeshwari, BKC. MahaRERA approved. Call 022-6728 0000!"
+        keywords="Lalani Group, Mumbai real estate, property in Mumbai, apartments for sale Mumbai, 1BHK flats, 2BHK apartments, 3BHK homes, Andheri properties, Malad real estate, Khar apartments, MahaRERA approved projects, luxury homes Mumbai"
+        canonicalUrl="/"
+      />
       <Navbar />
       <main>
         <HeroSection />

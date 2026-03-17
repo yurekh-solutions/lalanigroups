@@ -6,8 +6,9 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
-import { MapPin, Home, CheckCircle, Calendar, Award, Shield, Building2, Users2 } from "lucide-react";
+import { MapPin, Home, CheckCircle, Calendar, Shield, Award } from "lucide-react";
 import hero1 from "@/assets/hero-1.jpg";
 
 const Projects = () => {
@@ -49,15 +50,16 @@ const Projects = () => {
     "Vastu Compliant Design"
   ];
 
-  const stats = [
-    { value: "40+", label: "Years Experience", icon: Award },
-    { value: "4000+", label: "Happy Families", icon: Users2 },
-    { value: "40+", label: "Completed Projects", icon: Building2 },
-    { value: "6+", label: "Prime Locations", icon: MapPin }
-  ];
+  
 
   return (
     <>
+      <SEO
+        title="Our Projects | Residential & Commercial Properties in Mumbai - Lalani Group"
+        description="Explore Lalani Group's premium residential & commercial projects in Mumbai. 1BHK, 2BHK, 3BHK apartments in Andheri, Malad, Khar, Jogeshwari. Office spaces in BKC & Khar West. MahaRERA approved. View all projects!"
+        keywords="Lalani Group projects, Mumbai properties, residential projects Mumbai, commercial properties Mumbai, flats in Andheri, apartments Malad, Khar office space, BKC commercial, MahaRERA projects"
+        canonicalUrl="/projects"
+      />
       <Navbar />
       <PageHero 
         title="Our Projects"
@@ -65,31 +67,6 @@ const Projects = () => {
         backgroundImage={hero1}
       />
       <main className="pt-0">
-        {/* Stats Section */}
-        <section className="py-8 sm:py-12 relative -mt-16 z-10">
-          <div className="container mx-auto px-3 sm:px-4 lg:px-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="glass-3d rounded-xl p-4 sm:p-6 text-center hover:shadow-glow-gold transition-all duration-300"
-                  whileHover={{ y: -5, scale: 1.02 }}
-                >
-                  <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary mx-auto mb-2 sm:mb-3" />
-                  <div className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold gradient-gold-text mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Projects with Tabs */}
         <ProjectTabs />
 

@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets/hero-2.jpg";
 
 const projects = [
   {
@@ -27,6 +29,22 @@ const projects = [
     rera: "MahaRERA No. P51800028866",
     type: "1BHK & 2BHK Residences",
     status: "Ready Possession",
+  },
+  {
+    image: hero1,
+    name: "Lalani Grandeur",
+    location: "Malad (E)",
+    rera: "MahaRERA No. P51800045678",
+    type: "2BHK & 3BHK Residences",
+    status: "Ongoing",
+  },
+  {
+    image: hero2,
+    name: "Lalani Heritage Park",
+    location: "Jogeshwari (W)",
+    rera: "MahaRERA No. P51800056789",
+    type: "2BHK & 3BHK Residences",
+    status: "Ongoing",
   },
 ];
 

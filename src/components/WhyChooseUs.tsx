@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Award, Users, Building, Clock, CheckCircle2, MapPin, Star } from "lucide-react";
+import { Shield, Award, Users, Building, Clock, CheckCircle2, MapPin, Star, Gem } from "lucide-react";
 import hero1 from "@/assets/hero-1.jpg";
 
 const features = [
@@ -42,6 +42,11 @@ const features = [
     icon: Star,
     title: "Customer Excellence",
     description: "Dedicated after-sales support and comprehensive maintenance services for long-term satisfaction."
+  },
+  {
+    icon: Gem,
+    title: "Transparent Pricing",
+    description: "No hidden costs or surprises. Clear pricing with complete breakdown of all charges upfront."
   }
 ];
 

@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Calendar, ExternalLink, Newspaper } from "lucide-react";
 import project2 from "@/assets/project-2.jpg";
@@ -74,6 +75,12 @@ const newsArticles = [
 const MediaRoom = () => {
   return (
     <>
+      <SEO
+        title="Media Room | News & Updates - Lalani Group Mumbai"
+        description="Latest news and updates from Lalani Group. Stay informed about Mumbai real estate market trends, MahaRERA updates, home loan rates, property registrations, and Lalani Group announcements."
+        keywords="Lalani Group news, Mumbai real estate news, MahaRERA updates, property market Mumbai, real estate trends, home loan news, property registration Mumbai"
+        canonicalUrl="/media-room"
+      />
       <Navbar />
       <PageHero 
         title="Media Room"
