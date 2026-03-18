@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { Lock, User, Eye, EyeOff } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -37,8 +38,8 @@ const Login: React.FC = () => {
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-3 mb-4">
-            <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center">
-              <span className="text-2xl font-bold text-[#c9a962]">L</span>
+            <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center overflow-hidden">
+              <img src={logo} alt="Lalani Group Logo" className="w-10 h-10 object-contain" />
             </div>
             <div className="text-left">
               <span className="text-2xl font-bold text-[#c9a962] tracking-wider">LALANI</span>
