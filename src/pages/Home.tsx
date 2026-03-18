@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import DiscoverProperties from "@/components/DiscoverProperties";
 import ProjectTabs from "@/components/ProjectTabs";
 import AboutSection from "@/components/AboutSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -31,9 +30,6 @@ const Home = () => {
       <Navbar />
       <main>
         <HeroSection />
-        
-        {/* Discover Properties Section */}
-        <DiscoverProperties />
         
         {/* Stats Counter */}
         <StatsCounter />

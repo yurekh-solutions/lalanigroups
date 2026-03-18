@@ -307,24 +307,6 @@ const HeroSection = () => {
           </AnimatePresence>
         </div>
       </motion.div>
-
-      {/* 3D Dots Navigation */}
-      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2 sm:gap-3 px-4 py-2 rounded-full glass-3d">
-        {slides.map((_, i) => (
-          <motion.button
-            key={i}
-            onClick={() => setCurrent(i)}
-            whileHover={{ scale: 1.3 }}
-            whileTap={{ scale: 0.9 }}
-            className={`h-2 rounded-full transition-all duration-500 ${
-              i === current 
-                ? "bg-[#c9a962] w-6 sm:w-8 shadow-glow-gold" 
-                : "bg-white/40 w-2 hover:bg-white/60"
-            }`}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
-      </div>
     </section>
   );
 };
