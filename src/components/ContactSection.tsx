@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { trackEvent } from "@/lib/tracking";
 
 const WHATSAPP_NUMBER = "919136242706";
 
@@ -15,6 +16,16 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Track form submission
+    trackEvent('form', window.location.pathname, {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      project: formData.project,
+      message: formData.message
+    });
+    
     const text = `Hi, I am interested in Lalani Group Project.%0A%0AName: ${formData.name}%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0AProject: ${formData.project}%0AMessage: ${formData.message}`;
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
   };

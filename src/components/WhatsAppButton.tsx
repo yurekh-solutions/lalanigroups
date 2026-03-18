@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { MessageCircle, Phone, X, ArrowUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackEvent } from "@/lib/tracking";
 
 const WHATSAPP_NUMBER = "919322642370";
 const WHATSAPP_TEXT = "Hi, I am interested in Lalani Group Project. Please contact me.";
@@ -31,11 +32,20 @@ const WhatsAppButton = () => {
     });
   };
 
+  const handlePhoneClick = () => {
+    trackEvent('phone', window.location.pathname);
+  };
+
+  const handleWhatsAppClick = () => {
+    trackEvent('whatsapp', window.location.pathname);
+  };
+
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
       {/* Call Button */}
       <motion.a
         href={PHONE_NUMBER}
+        onClick={handlePhoneClick}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: expanded ? 0 : 0.1 }}
@@ -73,6 +83,7 @@ const WhatsAppButton = () => {
           >
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_TEXT)}`}
+              onClick={handleWhatsAppClick}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#25D366]/10 hover:bg-[#25D366]/20 transition-colors"
