@@ -4,16 +4,8 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Play, Building2, MapPin } from "lucide-react";
 
 const slides = [
-  {
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80",
-    title: "Building Trust Since",
-    titleHighlight: "1985",
-    subtitle: "40+ years of delivering excellence in real estate",
-    location: "Mumbai, India",
-    tag: "Heritage"
-  },
-  {
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80",
+   {
+    image: "/src/assets/hero-2.jpg",
     title: "Luxury Homes in",
     titleHighlight: "Mumbai",
     subtitle: "Premium residences crafted for discerning families",
@@ -21,14 +13,24 @@ const slides = [
     tag: "Residential"
   },
   {
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80",
+
+    image: "/src/assets/hero-1.jpg",
+    title: "Building Trust Since",
+    titleHighlight: "1985",
+    subtitle: "40+ years of delivering excellence in real estate",
+    location: "Mumbai, India",
+       tag: "Commercial"
+
+  },
+ 
+  {
+    image: "/src/assets/project-3.jpg",
     title: "Premium Real Estate",
     titleHighlight: "Developers",
     subtitle: "Creating iconic landmarks across Mumbai's prime locations",
     location: "BKC, Goregaon, Jogeshwari",
-    tag: "Commercial"
+     tag: "Heritage"
   },
- 
 ];
 
 // Animation variants
@@ -196,10 +198,9 @@ const HeroSection = () => {
             </motion.div>
             
             {/* Multi-layer Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/40" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
-            
+                      <div className="absolute inset-0" style={{ background: "var(--gradient-hero-overlay)" }} />
+
             {/* 3D Grid Overlay */}
             <div 
               className="absolute inset-0 opacity-[0.03]"
