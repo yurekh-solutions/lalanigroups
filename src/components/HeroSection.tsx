@@ -2,10 +2,21 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Play, Building2, MapPin } from "lucide-react";
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets/hero-2.jpg";
+import project3 from "@/assets/project-3.jpg";
 
 const slides = [
-   {
-    image: "/src/assets/hero-2.jpg",
+  {
+    image: hero1,
+    title: "Building Trust Since",
+    titleHighlight: "1985",
+    subtitle: "40+ years of delivering excellence in real estate",
+    location: "Mumbai, India",
+    tag: "Heritage"
+  },
+  {
+    image: hero2,
     title: "Luxury Homes in",
     titleHighlight: "Mumbai",
     subtitle: "Premium residences crafted for discerning families",
@@ -13,23 +24,12 @@ const slides = [
     tag: "Residential"
   },
   {
-
-    image: "/src/assets/hero-1.jpg",
-    title: "Building Trust Since",
-    titleHighlight: "1985",
-    subtitle: "40+ years of delivering excellence in real estate",
-    location: "Mumbai, India",
-       tag: "Commercial"
-
-  },
- 
-  {
-    image: "/src/assets/project-3.jpg",
+    image: project3,
     title: "Premium Real Estate",
     titleHighlight: "Developers",
     subtitle: "Creating iconic landmarks across Mumbai's prime locations",
     location: "BKC, Goregaon, Jogeshwari",
-     tag: "Heritage"
+    tag: "Commercial"
   },
 ];
 
