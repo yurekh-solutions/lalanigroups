@@ -87,11 +87,41 @@ const ProjectDetail = () => {
   return (
     <>
       <SEO
-        title={`${project.name} - ${project.type} in ${project.location} | Lalani Group Mumbai`}
-        description={`${project.name} by Lalani Group - ${project.type} in ${project.location}. ${project.status === 'Ready Possession' ? 'Ready to move!' : `Possession: ${project.possession}`} Price: ${project.price}. MahaRERA: ${project.rera}. Call 022-6728 0000!`}
-        keywords={`${project.name}, ${project.location} property, ${project.area} apartments, ${project.type}, MahaRERA ${project.rera}, Lalani Group projects, flats in ${project.area}`}
+        title={`${project.name} | ${project.type} in ${project.area} Mumbai | Lalani Group | ${project.price}`}
+        description={`${project.name} by Lalani Group – ${project.type} in ${project.location}, ${project.area}, Mumbai. ${project.status === 'Ready Possession' ? 'Ready to move in!' : `Possession by ${project.possession}.`} Starting from ${project.price}. MahaRERA Reg: ${project.rera}. Premium amenities. Book site visit: 022-6728 0000.`}
+        keywords={`${project.name}, ${project.name} ${project.area}, flats in ${project.area} Mumbai, ${project.type} ${project.area}, buy flat ${project.area}, property in ${project.area}, ${project.area} apartments, ${project.area} real estate, ${project.area} property price, MahaRERA ${project.rera}, Lalani Group ${project.area}, ${project.status.toLowerCase()} flats Mumbai, ${project.type.toLowerCase()} Mumbai`}
         canonicalUrl={`/projects/${slug}`}
         ogImage={typeof project.image === 'string' ? project.image : undefined}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ApartmentComplex",
+          "name": project.name,
+          "description": project.description,
+          "url": `https://lalanigroup.in/projects/${slug}`,
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": project.location,
+            "addressLocality": project.area,
+            "addressRegion": "Maharashtra",
+            "addressCountry": "IN"
+          },
+          "priceRange": project.price,
+          "numberOfRooms": project.type,
+          "amenityFeature": project.amenities.map((a: string) => ({ "@type": "LocationFeatureSpecification", "name": a })),
+          "additionalProperty": [
+            { "@type": "PropertyValue", "name": "MahaRERA Number", "value": project.rera },
+            { "@type": "PropertyValue", "name": "Project Status", "value": project.status },
+            { "@type": "PropertyValue", "name": "Possession Date", "value": project.possession }
+          ],
+          "offers": {
+            "@type": "Offer",
+            "price": project.price,
+            "priceCurrency": "INR",
+            "availability": project.status === 'Ready Possession' ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
+            "seller": { "@type": "Organization", "name": "Lalani Group", "url": "https://lalanigroup.in/" }
+          },
+          "brand": { "@type": "Brand", "name": "Lalani Group" }
+        }}
       />
       <Navbar />
       <main className="min-h-screen">

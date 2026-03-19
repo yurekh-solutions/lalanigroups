@@ -51,10 +51,26 @@ const About = () => {
   return (
     <>
       <SEO
-        title="About Lalani Group | 40+ Years of Real Estate Excellence in Mumbai"
-        description="Learn about Lalani Group - Founded in 1985 by Mr. Shaukat Lalani. 40+ completed projects, 4000+ happy families. Mumbai's trusted real estate developer with presence in Andheri, Malad, Khar, Bandra, Jogeshwari."
-        keywords="Lalani Group history, about Lalani builders, Shaukat Lalani, Mumbai builders, real estate company Mumbai, trusted developers Mumbai, 40 years experience"
+        title="About Lalani Group | Trusted Real Estate Developers Mumbai Since 1985 | 40+ Years"
+        description="Lalani Group – Founded in 1985 by Mr. Shaukat Lalani, Mumbai's most trusted real estate builders. 40+ completed projects, 4000+ happy families. Delivering premium 1BHK, 2BHK, 3BHK homes in Andheri, Malad, Khar, Jogeshwari, Bandra & BKC with integrity & excellence."
+        keywords="Lalani Group history, about Lalani builders, Shaukat Lalani, best builders in Mumbai, trusted real estate developers Mumbai, leading property developers Mumbai, reputed builders Mumbai, 40 years real estate Mumbai, Mumbai construction company, Lalani Group legacy, founded 1985 Mumbai, top real estate company Mumbai, real estate brand Mumbai, builder reputation Mumbai, RERA compliant builders"
         canonicalUrl="/about"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "name": "About Lalani Group",
+          "description": "Lalani Group is one of Mumbai's most trusted real estate developers, founded in 1985 by Mr. Shaukat Lalani with 40+ years of excellence.",
+          "url": "https://lalanigroup.in/about",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "Lalani Group",
+            "foundingDate": "1985",
+            "founder": { "@type": "Person", "name": "Mr. Shaukat Lalani" },
+            "numberOfEmployees": { "@type": "QuantitativeValue", "value": "200" },
+            "areaServed": "Mumbai, Maharashtra, India",
+            "slogan": "Building Trust, Creating Landmarks Since 1985"
+          }
+        }}
       />
       <Navbar />
       <PageHero 

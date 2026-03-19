@@ -6,19 +6,20 @@
   <!-- Home Page -->
   <url>
     <loc>https://lalanigroup.in/</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://lalanigroup.in/logo.png</image:loc>
       <image:title>Lalani Group - Premium Real Estate Developers Mumbai</image:title>
+      <image:caption>Lalani Group – Buy 1BHK 2BHK 3BHK Flats in Mumbai since 1985</image:caption>
     </image:image>
   </url>
   
   <!-- About Page -->
   <url>
     <loc>https://lalanigroup.in/about</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -26,174 +27,195 @@
   <!-- Projects Page -->
   <url>
     <loc>https://lalanigroup.in/projects</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
   </url>
-  
-  <!-- Individual Project Pages -->
-  <url>
-    <loc>https://lalanigroup.in/projects/lalani-goodwill</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://lalanigroup.in/projects/lalani-goodwill</image:loc>
-      <image:title>Lalani Goodwill - 1BHK 2BHK 3BHK Apartments Andheri East Mumbai</image:title>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://lalanigroup.in/projects/velentine-apartment</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://lalanigroup.in/projects/velentine-apartment</image:loc>
-      <image:title>Velentine Apartment - Ready Possession 1BHK 2BHK Malad East Mumbai</image:title>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://lalanigroup.in/projects/lalani-grandeur</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://lalanigroup.in/projects/lalani-grandeur</image:loc>
-      <image:title>Lalani Grandeur - Premium 2BHK 3BHK Malad East Mumbai</image:title>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://lalanigroup.in/projects/lalani-business-park</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://lalanigroup.in/projects/lalani-business-park</image:loc>
-      <image:title>Lalani Business Park - Commercial Office Space Khar West Mumbai</image:title>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://lalanigroup.in/projects/lalani-heritage-park</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://lalanigroup.in/projects/lalani-heritage-park</image:loc>
-      <image:title>Lalani Heritage Park - 2BHK 3BHK Jogeshwari West Mumbai</image:title>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://lalanigroup.in/projects/dream-residency</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://lalanigroup.in/projects/dream-residency</image:loc>
-      <image:title>Dream Residency - Weekend Homes 1BHK 2BHK Karjat Mumbai</image:title>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://lalanigroup.in/projects/lalani-corporate-plaza</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://lalanigroup.in/projects/lalani-corporate-plaza</image:loc>
-      <image:title>Lalani Corporate Plaza - Premium Office Space BKC Mumbai</image:title>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://lalanigroup.in/projects/royal-manor</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lalanigroup.in/projects/royal-manor</image:loc>
-      <image:title>Royal Manor - Luxury Residences Bandra West Mumbai</image:title>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://lalanigroup.in/projects/orchid-enclave</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lalanigroup.in/projects/orchid-enclave</image:loc>
-      <image:title>Orchid Enclave - Residential Apartments Andheri East Mumbai</image:title>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://lalanigroup.in/projects/lalani-fairmont</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lalanigroup.in/projects/lalani-fairmont</image:loc>
-      <image:title>Lalani Fairmont - Premium Residences Khar West Mumbai</image:title>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://lalanigroup.in/projects/lalani-skyview</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://lalanigroup.in/projects/lalani-skyview</image:loc>
-      <image:title>Lalani Skyview - 2BHK 3BHK High-Rise Goregaon West Mumbai</image:title>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://lalanigroup.in/projects/lalani-towers</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://lalanigroup.in/projects/lalani-towers</image:loc>
-      <image:title>Lalani Towers - Retail & Office Spaces Andheri West Mumbai</image:title>
-    </image:image>
-  </url>
-  
+
   <!-- Buyers Guide -->
   <url>
     <loc>https://lalanigroup.in/buyers-guide</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://lalanigroup.in/contact</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <!-- Media Room -->
   <url>
     <loc>https://lalanigroup.in/media-room</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  
-  <!-- Contact Page -->
+
+  <!-- ONGOING RESIDENTIAL PROJECTS -->
+
+  <!-- Lalani Goodwill - Andheri East -->
   <url>
-    <loc>https://lalanigroup.in/contact</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://lalanigroup.in/projects/lalani-goodwill</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://lalanigroup.in/logo.png</image:loc>
+      <image:title>Lalani Goodwill - 1BHK 2BHK 3BHK Apartments Andheri East Mumbai</image:title>
+      <image:caption>MahaRERA Approved: P51800079065 | Buy 1BHK 2BHK 3BHK flats in Andheri East Mumbai</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Velentine Apartment - Malad East -->
+  <url>
+    <loc>https://lalanigroup.in/projects/velentine-apartment</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://lalanigroup.in/logo.png</image:loc>
+      <image:title>Velentine Apartment - Ready Possession 1BHK 2BHK Flats Malad East Mumbai</image:title>
+      <image:caption>Buy ready possession 1BHK 2BHK flats in Malad East Mumbai | Lalani Group</image:caption>
+    </image:image>
   </url>
-  
-  <!-- WhatsApp Inquiry Page -->
+
+  <!-- Lalani Grandeur - Malad East -->
   <url>
-    <loc>https://lalanigroup.in/whatsapp-inquiry</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://lalanigroup.in/projects/lalani-grandeur</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://lalanigroup.in/logo.png</image:loc>
+      <image:title>Lalani Grandeur - Premium 2BHK 3BHK Apartments Malad East Mumbai</image:title>
+      <image:caption>Buy 2BHK 3BHK premium flats in Malad East Mumbai | Lalani Group</image:caption>
+    </image:image>
   </url>
-  
+
+  <!-- Lalani Heritage Park - Jogeshwari West -->
+  <url>
+    <loc>https://lalanigroup.in/projects/lalani-heritage-park</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://lalanigroup.in/logo.png</image:loc>
+      <image:title>Lalani Heritage Park - 2BHK 3BHK Apartments Jogeshwari West Mumbai</image:title>
+      <image:caption>Buy 2BHK 3BHK residential flats in Jogeshwari West Mumbai | Lalani Group</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Lalani Skyview - Goregaon West -->
+  <url>
+    <loc>https://lalanigroup.in/projects/lalani-skyview</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://lalanigroup.in/logo.png</image:loc>
+      <image:title>Lalani Skyview - 2BHK 3BHK High-Rise Apartments Goregaon West Mumbai</image:title>
+      <image:caption>Buy 2BHK 3BHK high-rise flats in Goregaon West Mumbai | Lalani Group</image:caption>
+    </image:image>
+  </url>
+
+  <!-- COMMERCIAL PROJECTS -->
+
+  <!-- Lalani Business Park - Khar West -->
+  <url>
+    <loc>https://lalanigroup.in/projects/lalani-business-park</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lalanigroup.in/logo.png</image:loc>
+      <image:title>Lalani Business Park - Commercial Office Space Khar West Mumbai</image:title>
+      <image:caption>Buy commercial office space in Khar West Mumbai | Lalani Group</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Lalani Corporate Plaza - BKC Mumbai -->
+  <url>
+    <loc>https://lalanigroup.in/projects/lalani-corporate-plaza</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lalanigroup.in/logo.png</image:loc>
+      <image:title>Lalani Corporate Plaza - Premium Office Space BKC Bandra Kurla Complex Mumbai</image:title>
+      <image:caption>Premium office space in BKC Mumbai | Lalani Corporate Plaza</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Lalani Towers - Andheri West -->
+  <url>
+    <loc>https://lalanigroup.in/projects/lalani-towers</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lalanigroup.in/logo.png</image:loc>
+      <image:title>Lalani Towers - Retail and Office Spaces Andheri West Mumbai</image:title>
+      <image:caption>Commercial retail and office spaces in Andheri West Mumbai | Lalani Group</image:caption>
+    </image:image>
+  </url>
+
+  <!-- COMPLETED / LEGACY PROJECTS -->
+
+  <!-- Dream Residency - Karjat -->
+  <url>
+    <loc>https://lalanigroup.in/projects/dream-residency</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lalanigroup.in/logo.png</image:loc>
+      <image:title>Dream Residency - Weekend Homes 1BHK 2BHK Karjat Maharashtra</image:title>
+      <image:caption>Weekend homes in Karjat near Mumbai | Dream Residency by Lalani Group</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Royal Manor - Bandra West -->
+  <url>
+    <loc>https://lalanigroup.in/projects/royal-manor</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lalanigroup.in/logo.png</image:loc>
+      <image:title>Royal Manor - Luxury Residences Bandra West Mumbai</image:title>
+      <image:caption>Completed luxury residential project in Bandra West Mumbai | Lalani Group</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Orchid Enclave - Andheri East -->
+  <url>
+    <loc>https://lalanigroup.in/projects/orchid-enclave</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lalanigroup.in/logo.png</image:loc>
+      <image:title>Orchid Enclave - Residential Apartments Andheri East Mumbai</image:title>
+      <image:caption>Completed residential project in Andheri East Mumbai | Lalani Group</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Lalani Fairmont - Khar West -->
+  <url>
+    <loc>https://lalanigroup.in/projects/lalani-fairmont</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lalanigroup.in/logo.png</image:loc>
+      <image:title>Lalani Fairmont - Premium Residences Khar West Mumbai</image:title>
+      <image:caption>Completed premium residences in Khar West Mumbai | Lalani Group</image:caption>
+    </image:image>
+  </url>
+
 </urlset>

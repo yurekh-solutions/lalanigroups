@@ -55,10 +55,30 @@ const Projects = () => {
   return (
     <>
       <SEO
-        title="Our Projects | Residential & Commercial Properties in Mumbai - Lalani Group"
-        description="Explore Lalani Group's premium residential & commercial projects in Mumbai. 1BHK, 2BHK, 3BHK apartments in Andheri, Malad, Khar, Jogeshwari. Office spaces in BKC & Khar West. MahaRERA approved. View all projects!"
-        keywords="Lalani Group projects, Mumbai properties, residential projects Mumbai, commercial properties Mumbai, flats in Andheri, apartments Malad, Khar office space, BKC commercial, MahaRERA projects"
+        title="Real Estate Projects in Mumbai | 1BHK 2BHK 3BHK Flats & Offices | Lalani Group"
+        description="Browse Lalani Group's premium residential & commercial projects across Mumbai. 1BHK, 2BHK, 3BHK apartments in Andheri East, Malad East, Khar West, Jogeshwari, Goregaon. Commercial office spaces in BKC & Khar West. All MahaRERA approved. Book site visit now!"
+        keywords="Lalani Group projects Mumbai, residential projects Mumbai, commercial projects Mumbai, flats in Andheri East, 1BHK Andheri, 2BHK Malad, 3BHK Khar, apartments Jogeshwari, flats Goregaon, office space Khar West, BKC commercial office, ready possession flats Mumbai, under construction projects Mumbai, new launch Mumbai, upcoming projects Mumbai, MahaRERA registered projects, buy apartment Mumbai, book flat Mumbai, site visit Mumbai, 2025 property Mumbai"
         canonicalUrl="/projects"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Real Estate Projects by Lalani Group Mumbai",
+          "description": "Complete list of residential and commercial property projects by Lalani Group in prime Mumbai locations",
+          "url": "https://lalanigroup.in/projects",
+          "provider": {
+            "@type": "Organization",
+            "name": "Lalani Group",
+            "url": "https://lalanigroup.in/"
+          },
+          "hasPart": [
+            { "@type": "WebPage", "name": "Lalani Goodwill - Andheri East", "url": "https://lalanigroup.in/projects/lalani-goodwill" },
+            { "@type": "WebPage", "name": "Lalani Grandeur - Malad East", "url": "https://lalanigroup.in/projects/lalani-grandeur" },
+            { "@type": "WebPage", "name": "Lalani Heritage Park - Jogeshwari West", "url": "https://lalanigroup.in/projects/lalani-heritage-park" },
+            { "@type": "WebPage", "name": "Lalani Skyview - Goregaon West", "url": "https://lalanigroup.in/projects/lalani-skyview" },
+            { "@type": "WebPage", "name": "Lalani Business Park - Khar West", "url": "https://lalanigroup.in/projects/lalani-business-park" },
+            { "@type": "WebPage", "name": "Lalani Corporate Plaza - BKC Mumbai", "url": "https://lalanigroup.in/projects/lalani-corporate-plaza" }
+          ]
+        }}
       />
       <Navbar />
       <PageHero 

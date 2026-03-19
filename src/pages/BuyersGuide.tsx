@@ -47,10 +47,48 @@ const BuyersGuide = () => {
   return (
     <>
       <SEO
-        title="Buyer's Guide | Home Buying Tips & Process - Lalani Group Mumbai"
-        description="Complete guide to buying property in Mumbai. Learn about legal documentation, RERA verification, home loans, property registration process. Expert tips from Lalani Group with 40+ years experience."
-        keywords="property buying guide Mumbai, home buying process, RERA verification, property documents, home loan tips, real estate investment guide, Mumbai property tips"
+        title="Home Buying Guide Mumbai 2025 | How to Buy Flat in Mumbai | Lalani Group"
+        description="Complete step-by-step guide to buying property in Mumbai. How to buy a flat in Mumbai, RERA verification, home loan process, legal documents checklist, property registration. Expert advice from Lalani Group – 40+ years of trusted real estate experience."
+        keywords="how to buy flat in Mumbai, home buying guide Mumbai, property buying process Mumbai, RERA verification Mumbai, home loan Mumbai, property documents checklist, real estate investment guide Mumbai, first time home buyer Mumbai, property registration Mumbai, stamp duty Mumbai, builder verification Mumbai, flat purchase checklist, property legal check"
         canonicalUrl="/buyers-guide"
+        structuredData={[
+          {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Buy a Flat in Mumbai",
+            "description": "Step-by-step guide on buying property in Mumbai from Lalani Group with 40+ years of real estate expertise.",
+            "totalTime": "PT30M",
+            "step": [
+              { "@type": "HowToStep", "position": 1, "name": "Evaluate Location & Connectivity", "text": "Check proximity to schools, hospitals, markets and public transport. Review upcoming infrastructure plans in the area." },
+              { "@type": "HowToStep", "position": 2, "name": "Verify Legal Documentation", "text": "Verify all property documents, title deeds, and ensure clear ownership with no disputes." },
+              { "@type": "HowToStep", "position": 3, "name": "Check Builder Reputation", "text": "Research the builder's track record, past projects, timely delivery, and customer reviews on Google." },
+              { "@type": "HowToStep", "position": 4, "name": "Verify MahaRERA Registration", "text": "All projects in Maharashtra must be RERA registered. Verify at maharerait.mahaonline.gov.in before booking." },
+              { "@type": "HowToStep", "position": 5, "name": "Arrange Home Loan Pre-Approval", "text": "Get pre-approved by SBI, HDFC, ICICI, or Axis Bank. Lalani Group assists with documentation for best interest rates." },
+              { "@type": "HowToStep", "position": 6, "name": "Pay Booking Amount & Register", "text": "Pay booking amount, execute sale agreement, and complete property registration at the sub-registrar office." }
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is RERA and why is it important when buying a flat in Mumbai?",
+                "acceptedAnswer": { "@type": "Answer", "text": "MahaRERA (Maharashtra Real Estate Regulatory Authority) ensures builders follow timelines, quality, and transparency. Always verify the RERA number at maharerait.mahaonline.gov.in before booking." }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the stamp duty for property purchase in Mumbai?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Stamp duty in Mumbai is 5% for male buyers, 4% for female buyers, and 4.5% for joint ownership. Registration charges are 1% of the property value." }
+              },
+              {
+                "@type": "Question",
+                "name": "Which banks offer home loans for Lalani Group projects?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Lalani Group has tie-ups with SBI, HDFC, ICICI Bank, Axis Bank and more. Our team assists with documentation to get the best interest rates for your home loan." }
+              }
+            ]
+          }
+        ]}
       />
       <Navbar />
       <PageHero 

@@ -41,10 +41,32 @@ const Contact = () => {
   return (
     <>
       <SEO
-        title="Contact Us | Lalani Group - Real Estate Developers Mumbai"
-        description="Contact Lalani Group for property inquiries. Visit us at Lalani Aura, Khar West, Mumbai. Call 022-6728 0000 or WhatsApp +91-93226-42370. Schedule site visits for our residential & commercial projects."
-        keywords="contact Lalani Group, Lalani Group phone number, Lalani Group address, Mumbai real estate contact, property inquiry Mumbai, site visit booking"
+        title="Contact Lalani Group | Real Estate Inquiry Mumbai | Call 022-6728 0000"
+        description="Contact Lalani Group for property inquiries in Mumbai. Visit Lalani Aura, 7th Floor, 34th Road, Khar West, Mumbai 400052. Call 022-6728 0000 or WhatsApp +91-93226-42370. Book free site visit for 1BHK, 2BHK, 3BHK apartments in Andheri, Malad, Khar, Jogeshwari."
+        keywords="contact Lalani Group Mumbai, Lalani Group phone number, Lalani Group address Khar West, property inquiry Mumbai, book site visit Mumbai, real estate enquiry Mumbai, free site visit Mumbai flats, Lalani Group office Mumbai, sales team Mumbai real estate, property consultation Mumbai, WhatsApp property Mumbai"
         canonicalUrl="/contact"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact Lalani Group",
+          "description": "Get in touch with Lalani Group for all property inquiries, site visit bookings, and real estate consultations in Mumbai.",
+          "url": "https://lalanigroup.in/contact",
+          "mainEntity": {
+            "@type": "LocalBusiness",
+            "name": "Lalani Group",
+            "telephone": "+91-22-6728-0000",
+            "email": "info@lalanigroup.in",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "7th Floor, Lalani Aura, 34th Road, Khar (W)",
+              "addressLocality": "Mumbai",
+              "addressRegion": "Maharashtra",
+              "postalCode": "400052",
+              "addressCountry": "IN"
+            },
+            "openingHours": "Mo-Sa 10:00-18:00"
+          }
+        }}
       />
       <Navbar />
       <PageHero 

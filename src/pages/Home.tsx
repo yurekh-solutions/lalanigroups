@@ -22,10 +22,45 @@ const Home = () => {
   return (
     <>
       <SEO
-        title="Lalani Group - Premium Real Estate Developers in Mumbai | 1BHK, 2BHK, 3BHK Apartments"
-        description="Lalani Group - Leading real estate builders in Mumbai since 1985. 40+ completed projects, 4000+ happy families. Explore luxury apartments in Andheri, Malad, Khar, Jogeshwari, BKC. MahaRERA approved. Call 022-6728 0000!"
-        keywords="Lalani Group, Mumbai real estate, property in Mumbai, apartments for sale Mumbai, 1BHK flats, 2BHK apartments, 3BHK homes, Andheri properties, Malad real estate, Khar apartments, MahaRERA approved projects, luxury homes Mumbai"
+        title="Lalani Group - Real Estate Developers Mumbai | Buy 1BHK 2BHK 3BHK Flats | MahaRERA Approved"
+        description="Lalani Group – Mumbai's trusted real estate builders since 1985. Buy 1BHK, 2BHK, 3BHK apartments in Andheri East, Malad East, Khar West, Jogeshwari, Goregaon, BKC. 40+ projects delivered. 4000+ happy families. MahaRERA approved. Ready possession & under construction flats. Call 022-6728 0000!"
+        keywords="Lalani Group Mumbai, buy flat Mumbai, flats for sale in Mumbai, 1BHK flats Andheri, 2BHK apartments Malad, 3BHK homes Khar, property in Mumbai, real estate Mumbai, Mumbai builders, property developers Mumbai, residential apartments Mumbai, buy property Mumbai, flats in western suburbs Mumbai, MahaRERA flats Mumbai, affordable luxury flats Mumbai, new projects Mumbai, ongoing projects Mumbai, ready possession flats Mumbai, property investment Mumbai, luxury apartments Mumbai, home for sale Mumbai, flat booking Mumbai"
         canonicalUrl="/"
+        structuredData={[
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": "Featured Real Estate Projects by Lalani Group Mumbai",
+            "description": "Premium residential and commercial projects by Lalani Group in prime Mumbai locations",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Lalani Goodwill - 1BHK 2BHK 3BHK in Andheri East", "url": "https://lalanigroup.in/projects/lalani-goodwill" },
+              { "@type": "ListItem", "position": 2, "name": "Lalani Grandeur - 2BHK 3BHK in Malad East", "url": "https://lalanigroup.in/projects/lalani-grandeur" },
+              { "@type": "ListItem", "position": 3, "name": "Lalani Heritage Park - 2BHK 3BHK in Jogeshwari West", "url": "https://lalanigroup.in/projects/lalani-heritage-park" },
+              { "@type": "ListItem", "position": 4, "name": "Lalani Skyview - 2BHK 3BHK in Goregaon West", "url": "https://lalanigroup.in/projects/lalani-skyview" }
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Where are Lalani Group's residential projects located in Mumbai?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Lalani Group has residential projects across Andheri East, Malad East, Khar West, Jogeshwari West, Goregaon West, Bandra, and commercial projects in BKC and Khar West Mumbai." }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the price range for Lalani Group flats in Mumbai?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Lalani Group offers 1BHK flats starting from ₹75 Lakhs, 2BHK from ₹98 Lakhs, and 3BHK from ₹1.12 Crore in prime Mumbai locations. Prices vary by location and configuration." }
+              },
+              {
+                "@type": "Question",
+                "name": "Are Lalani Group projects RERA approved?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes, all Lalani Group projects are MahaRERA registered. Lalani Goodwill: P51800079065 & P51800078852. You can verify at maharerait.mahaonline.gov.in." }
+              }
+            ]
+          }
+        ]}
       />
       <Navbar />
       <main>

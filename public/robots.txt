@@ -1,15 +1,13 @@
 # Lalani Group - Real Estate Builders Mumbai
+# https://lalanigroup.in
+
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://lalanigroup.in/sitemap.xml
-
-# Crawl-delay
-Crawl-delay: 1
-
 # Disallow admin and private areas
 Disallow: /admin/
+Disallow: /admin/login
+Disallow: /admin/dashboard
 Disallow: /private/
 Disallow: /*.json$
 
@@ -21,9 +19,14 @@ Allow: /*.png$
 Allow: /*.svg$
 Allow: /*.webp$
 
+# Sitemaps
+Sitemap: https://lalanigroup.in/sitemap.xml
+
 # Google bots
 User-agent: Googlebot
 Allow: /
+Disallow: /admin/
+Crawl-delay: 1
 
 User-agent: Googlebot-Image
 Allow: /
@@ -31,10 +34,15 @@ Allow: /
 # Bing
 User-agent: Bingbot
 Allow: /
+Disallow: /admin/
+Crawl-delay: 2
 
 # Social Media Crawlers
 User-agent: facebookexternalhit
 Allow: /
 
 User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
 Allow: /
