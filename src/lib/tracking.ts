@@ -1,23 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
+import { saveLeadToFirebase, getLeadsFromFirebase, type LeadData } from './firebase';
 
-export type LeadType = 'whatsapp' | 'phone' | 'form' | 'pageview';
+export type LeadType = 'whatsapp' | 'phone' | 'form' | 'page_view';
 
-export interface Lead {
-  id: string;
-  timestamp: string;
-  type: LeadType;
-  source: string;
-  visitorId: string;
-  ip: string;
-  location: {
-    city: string;
-    country: string;
-  };
-  device: string;
-  browser: string;
-  page: string;
-  data?: Record<string, unknown>;
-}
+export type Lead = LeadData;
 
 export interface Analytics {
   visitorId: string;
@@ -82,7 +68,7 @@ export const getLocation = async (): Promise<{ ip: string; city: string; country
   }
 };
 
-// Track event
+// Track event - saves to Firebase
 export const trackEvent = async (
   type: LeadType,
   page: string,
@@ -92,8 +78,7 @@ export const trackEvent = async (
   const { device, browser } = getDeviceInfo();
   const location = await getLocation();
 
-  const lead: Lead = {
-    id: uuidv4(),
+  const lead: Omit<Lead, 'id'> = {
     timestamp: new Date().toISOString(),
     type,
     source: window.location.hostname,
@@ -109,10 +94,16 @@ export const trackEvent = async (
     data
   };
 
-  // Store in localStorage for now (will be replaced with API call)
-  const existingLeads = JSON.parse(localStorage.getItem('leads') || '[]');
-  existingLeads.push(lead);
-  localStorage.setItem('leads', JSON.stringify(existingLeads));
+  // Save to Firebase (primary)
+  try {
+    await saveLeadToFirebase(lead);
+  } catch (error) {
+    console.error('Failed to save to Firebase, falling back to localStorage:', error);
+    // Fallback to localStorage if Firebase fails
+    const existingLeads = JSON.parse(localStorage.getItem('leads') || '[]');
+    existingLeads.push({ ...lead, id: uuidv4() });
+    localStorage.setItem('leads', JSON.stringify(existingLeads));
+  }
 
   // Also send to analytics
   updateAnalytics(visitorId, page);
@@ -171,9 +162,14 @@ export const endSession = (): void => {
   }
 };
 
-// Get all leads
-export const getLeads = (): Lead[] => {
-  return JSON.parse(localStorage.getItem('leads') || '[]');
+// Get all leads - from Firebase
+export const getLeads = async (): Promise<Lead[]> => {
+  try {
+    return await getLeadsFromFirebase();
+  } catch (error) {
+    console.error('Failed to get leads from Firebase, falling back to localStorage:', error);
+    return JSON.parse(localStorage.getItem('leads') || '[]');
+  }
 };
 
 // Get all analytics
@@ -182,8 +178,8 @@ export const getAnalytics = (): Analytics[] => {
 };
 
 // Get stats
-export const getStats = () => {
-  const leads = getLeads();
+export const getStats = async () => {
+  const leads = await getLeads();
   const analytics = getAnalytics();
 
   const today = new Date().toDateString();

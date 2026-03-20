@@ -33,12 +33,12 @@ const Dashboard: React.FC = () => {
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  const loadData = () => {
-    const leadsData = getLeads();
+  const loadData = async () => {
+    const leadsData = await getLeads();
     const analyticsData = getAnalytics();
-    const statsData = getStats();
+    const statsData = await getStats();
     
-    setLeads(leadsData.reverse()); // Most recent first
+    setLeads(leadsData); // Already sorted from Firebase
     setAnalytics(analyticsData);
     setStats(statsData);
     setLastUpdated(new Date());
