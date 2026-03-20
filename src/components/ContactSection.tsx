@@ -14,11 +14,11 @@ const ContactSection = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Track form submission
-    trackEvent('form', window.location.pathname, {
+    await trackEvent('form', window.location.pathname, {
       name: formData.name,
       email: formData.email,
       phone: formData.phone,

@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Linkedin, ArrowUpRight } from "lucide-react";
+ import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Linkedin, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import logo from "@/assets/logo.png";

@@ -30,12 +30,12 @@ const WhatsAppButton = () => {
     });
   };
 
-  const handlePhoneClick = () => {
-    trackEvent('phone', window.location.pathname);
+  const handlePhoneClick = async () => {
+    await trackEvent('phone', window.location.pathname);
   };
 
-  const handleWhatsAppClick = () => {
-    trackEvent('whatsapp', window.location.pathname);
+  const handleWhatsAppClick = async () => {
+    await trackEvent('whatsapp', window.location.pathname);
   };
 
   return (
