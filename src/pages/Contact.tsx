@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
 import ContactSection from "@/components/ContactSection";
@@ -11,6 +13,26 @@ import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Building2 } from "lucide-react";
 
 const Contact = () => {
+  const location = useLocation();
+
+  // Scroll to schedule-visit section when navigating with hash
+  useEffect(() => {
+    if (location.hash === "#schedule-visit") {
+      // Small delay to ensure the page is rendered
+      setTimeout(() => {
+        const element = document.getElementById("schedule-visit");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+          // Add highlight effect
+          element.classList.add("ring-2", "ring-primary", "ring-offset-4", "ring-offset-background");
+          setTimeout(() => {
+            element.classList.remove("ring-2", "ring-primary", "ring-offset-4", "ring-offset-background");
+          }, 2000);
+        }
+      }, 100);
+    }
+  }, [location]);
+
   const contactInfo = [
     {
       icon: MapPin,

@@ -35,7 +35,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="section-padding bg-secondary/30">
+    <section id="schedule-visit" className="section-padding bg-secondary/30 scroll-mt-24">
       <div className="container-max">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
