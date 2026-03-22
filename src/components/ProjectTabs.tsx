@@ -50,19 +50,19 @@ const ProjectTabs = () => {
           </p>
 
           {/* Tabs */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12 w-full max-w-lg sm:max-w-2xl mx-auto">
             {projectCategories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveTab(category.id)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`flex items-center justify-center gap-2 w-full px-4 py-3 rounded-full font-medium transition-all duration-300 ${
                   activeTab === category.id
                     ? "bg-gradient-to-r from-primary to-gold-light text-primary-foreground shadow-lg scale-105"
                     : "bg-card text-muted-foreground hover:text-foreground border border-border/50 hover:border-primary/50"
                 }`}
               >
-                <category.icon className="w-4 h-4" />
-                {category.label}
+                <category.icon className="w-4 h-4 shrink-0" />
+                <span className="text-sm sm:text-base">{category.label}</span>
               </button>
             ))}
           </div>
