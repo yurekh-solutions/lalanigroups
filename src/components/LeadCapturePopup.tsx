@@ -97,13 +97,13 @@ const LeadCapturePopup = () => {
 
           {/* Popup */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed inset-4 sm:inset-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 z-[61] max-w-md w-full sm:w-[calc(100%-2rem)] mx-auto flex items-center justify-center"
+            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[61] w-[calc(100%-2rem)] max-w-md"
           >
-            <div className="bg-gradient-to-br from-background via-background to-primary/5 rounded-2xl shadow-2xl border border-primary/20 overflow-hidden max-h-[90vh] overflow-y-auto w-full">
+            <div className="bg-gradient-to-br from-background via-background to-primary/5 rounded-2xl shadow-2xl border border-primary/20 overflow-hidden max-h-[85vh] overflow-y-auto relative">
               {/* Close Button */}
               <button
                 onClick={handleClose}
