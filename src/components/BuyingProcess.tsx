@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Search, FileText, Home, Key, CheckCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import hero2 from "@/assets/hero-2.jpg";
 
 const steps = [
@@ -156,15 +157,15 @@ const BuyingProcess = () => {
           <p className="text-base md:text-lg text-muted-foreground mb-6">
             Have questions about the buying process? Our team is here to help!
           </p>
-          <a
-            href="/contact"
+          <Link
+            to="/contact#schedule-visit"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-primary to-gold-light text-primary-foreground font-semibold hover:shadow-xl transition-all hover:scale-105"
           >
             Contact Our Team
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

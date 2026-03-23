@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Shield, Award, Users, Building, Clock, CheckCircle2, MapPin, Star, Gem } from "lucide-react";
+import { Link } from "react-router-dom";
 import hero1 from "@/assets/hero-1.jpg";
 
 const features = [
@@ -130,18 +131,18 @@ const WhyChooseUs = () => {
             Ready to find your dream home with a trusted developer?
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="/projects"
+            <Link
+              to="/projects"
               className="px-8 py-3.5 rounded-full bg-gradient-to-r from-primary to-gold-light text-primary-foreground font-semibold hover:shadow-xl transition-all hover:scale-105"
             >
               View Our Projects
-            </a>
-            <a
-              href="/contact"
+            </Link>
+            <Link
+              to="/contact#schedule-visit"
               className="px-8 py-3.5 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-primary-foreground transition-all hover:scale-105"
             >
               Talk to Our Experts
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

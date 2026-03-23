@@ -6,6 +6,7 @@ import { trackEvent } from "@/lib/tracking";
 const POPUP_DELAY = 10000; // Show after 10 seconds
 const POPUP_STORAGE_KEY = "lalani_popup_shown";
 const LEAD_STORAGE_KEY = "lalani_lead_submitted";
+const DISCLAIMER_STORAGE_KEY = "lalani_disclaimer_agreed";
 
 const LeadCapturePopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +22,8 @@ const LeadCapturePopup = () => {
   const canShowPopup = useCallback(() => {
     const popupShown = sessionStorage.getItem(POPUP_STORAGE_KEY);
     const leadSubmitted = localStorage.getItem(LEAD_STORAGE_KEY);
-    return !popupShown && !leadSubmitted;
+    const disclaimerAgreed = localStorage.getItem(DISCLAIMER_STORAGE_KEY);
+    return !popupShown && !leadSubmitted && !!disclaimerAgreed;
   }, []);
 
   // Exit intent detection (desktop only)

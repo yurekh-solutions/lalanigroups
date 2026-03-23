@@ -296,7 +296,7 @@ const HeroSection = () => {
                 </motion.div>
                 <motion.div variants={buttonVariants} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Link
-                    to="/contact"
+                    to="/contact#schedule-visit"
                     className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl border-2 border-white/60 text-white font-semibold text-sm md:text-base hover:bg-white/10 hover:border-white/80 transition-all duration-300 glass-3d"
                   >
                     <Play className="w-4 h-4" />
