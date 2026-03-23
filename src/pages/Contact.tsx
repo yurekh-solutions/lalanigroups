@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
+import LeadCapturePopup from "@/components/LeadCapturePopup";
 import SEO from "@/components/SEO";
 import hero2 from "@/assets/hero-2.jpg";
 import { motion } from "framer-motion";
@@ -18,7 +19,7 @@ const Contact = () => {
   // Scroll to schedule-visit section when navigating with hash
   useEffect(() => {
     if (location.hash === "#schedule-visit") {
-      // Small delay to ensure the page is rendered
+      // Increased delay to ensure page is fully rendered and ScrollToTop doesn't override
       setTimeout(() => {
         const element = document.getElementById("schedule-visit");
         if (element) {
@@ -29,7 +30,7 @@ const Contact = () => {
             element.classList.remove("ring-2", "ring-primary", "ring-offset-4", "ring-offset-background");
           }, 2000);
         }
-      }, 100);
+      }, 500);
     }
   }, [location]);
 
@@ -214,6 +215,7 @@ const Contact = () => {
       <WhatsAppButton />
       <EnquireButton />
       <BackToTopButton />
+      <LeadCapturePopup />
     </>
   );
 };

@@ -10,11 +10,15 @@ import LeadCapturePopup from "@/components/LeadCapturePopup";
 import SEO from "@/components/SEO";
 import { getProjectBySlug } from "@/data/projects";
 import { useState, useEffect } from "react";
+import { trackEvent } from "@/lib/tracking";
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const project = slug ? getProjectBySlug(slug) : undefined;
   const [activeImage, setActiveImage] = useState(0);
+  const [sidebarForm, setSidebarForm] = useState({ name: "", phone: "", email: "", message: "" });
+  const [sidebarLoading, setSidebarLoading] = useState(false);
+  const [sidebarSent, setSidebarSent] = useState(false);
 
   // Add structured data for SEO
   useEffect(() => {
@@ -78,6 +82,28 @@ const ProjectDetail = () => {
       document.head.removeChild(script);
     };
   }, [project]);
+
+  const handleSidebarSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSidebarLoading(true);
+    try {
+      await trackEvent("form", window.location.pathname, {
+        type: "project_enquiry",
+        name: sidebarForm.name,
+        phone: sidebarForm.phone,
+        email: sidebarForm.email,
+        message: sidebarForm.message,
+        project: project?.name,
+      });
+      const text = `Hi, I am interested in ${project?.name}.%0A%0AName: ${sidebarForm.name}%0APhone: ${sidebarForm.phone}%0AEmail: ${sidebarForm.email}%0AMessage: ${sidebarForm.message || "Please share more details"}%0ARERA: ${project?.rera}`;
+      window.open(`https://wa.me/919322642370?text=${text}`, "_blank");
+      setSidebarSent(true);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSidebarLoading(false);
+    }
+  };
 
   if (!project) {
     return <Navigate to="/projects" replace />;
@@ -415,7 +441,14 @@ const ProjectDetail = () => {
                     Fill out the form below and our team will get back to you within 24 hours.
                   </p>
 
-                  <form className="space-y-4">
+                  {sidebarSent ? (
+                    <div className="py-8 text-center">
+                      <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-3" />
+                      <p className="text-lg font-semibold text-foreground mb-1">Thank You!</p>
+                      <p className="text-sm text-muted-foreground">Our team will contact you shortly.</p>
+                    </div>
+                  ) : (
+                  <form className="space-y-4" onSubmit={handleSidebarSubmit}>
                     <div>
                       <label className="block text-sm font-medium text-foreground mb-2">
                         Full Name *
@@ -423,6 +456,8 @@ const ProjectDetail = () => {
                       <input
                         type="text"
                         required
+                        value={sidebarForm.name}
+                        onChange={(e) => setSidebarForm({ ...sidebarForm, name: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                         placeholder="Enter your name"
                       />
@@ -435,6 +470,8 @@ const ProjectDetail = () => {
                       <input
                         type="tel"
                         required
+                        value={sidebarForm.phone}
+                        onChange={(e) => setSidebarForm({ ...sidebarForm, phone: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                         placeholder="+91 "
                       />
@@ -447,6 +484,8 @@ const ProjectDetail = () => {
                       <input
                         type="email"
                         required
+                        value={sidebarForm.email}
+                        onChange={(e) => setSidebarForm({ ...sidebarForm, email: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                         placeholder="your@email.com"
                       />
@@ -458,6 +497,8 @@ const ProjectDetail = () => {
                       </label>
                       <textarea
                         rows={4}
+                        value={sidebarForm.message}
+                        onChange={(e) => setSidebarForm({ ...sidebarForm, message: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
                         placeholder="I'm interested in this project..."
                       ></textarea>
@@ -465,11 +506,13 @@ const ProjectDetail = () => {
 
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-lg bg-gradient-to-r from-primary to-gold-light text-primary-foreground font-semibold hover:shadow-lg transition-all hover:scale-105"
+                      disabled={sidebarLoading}
+                      className="w-full py-3.5 rounded-lg bg-gradient-to-r from-primary to-gold-light text-primary-foreground font-semibold hover:shadow-lg transition-all hover:scale-105 disabled:opacity-70"
                     >
-                      Submit Enquiry
+                      {sidebarLoading ? "Sending..." : "Submit Enquiry via WhatsApp"}
                     </button>
                   </form>
+                  )}
 
                   <div className="mt-6 pt-6 border-t border-border space-y-3">
                     <a

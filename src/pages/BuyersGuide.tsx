@@ -5,6 +5,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
 import FAQAccordion from "@/components/FAQAccordion";
+import LeadCapturePopup from "@/components/LeadCapturePopup";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { CheckCircle, FileText, Home, Shield, TrendingUp, Users } from "lucide-react";
@@ -203,6 +204,7 @@ const BuyersGuide = () => {
       <WhatsAppButton />
       <EnquireButton />
       <BackToTopButton />
+      <LeadCapturePopup />
     </>
   );
 };
