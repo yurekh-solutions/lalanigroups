@@ -101,9 +101,9 @@ const LeadCapturePopup = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed inset-x-4 top-1/2 -translate-y-1/2 sm:inset-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 z-[61] max-w-md w-full mx-auto"
+            className="fixed inset-4 sm:inset-auto sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 z-[61] max-w-md w-full sm:w-[calc(100%-2rem)] mx-auto flex items-center justify-center"
           >
-            <div className="bg-gradient-to-br from-background via-background to-primary/5 rounded-2xl shadow-2xl border border-primary/20 overflow-hidden">
+            <div className="bg-gradient-to-br from-background via-background to-primary/5 rounded-2xl shadow-2xl border border-primary/20 overflow-hidden max-h-[90vh] overflow-y-auto w-full">
               {/* Close Button */}
               <button
                 onClick={handleClose}
@@ -115,20 +115,20 @@ const LeadCapturePopup = () => {
               {!isSubmitted ? (
                 <>
                   {/* Header */}
-                  <div className="bg-gradient-to-r from-primary to-gold-light p-5 text-center">
-                    <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-3">
-                      <Gift className="w-7 h-7 text-white" />
+                  <div className="bg-gradient-to-r from-primary to-gold-light p-4 text-center">
+                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-2">
+                      <Gift className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="text-xl font-heading font-bold text-white mb-1">
+                    <h3 className="text-lg font-heading font-bold text-white mb-1">
                       Get Exclusive Offers!
                     </h3>
-                    <p className="text-white/90 text-sm">
+                    <p className="text-white/90 text-xs">
                       Request a callback & get special launch prices
                     </p>
                   </div>
 
                   {/* Form */}
-                  <form onSubmit={handleSubmit} className="p-5 space-y-4">
+                  <form onSubmit={handleSubmit} className="p-4 space-y-3">
                     <div>
                       <input
                         type="text"
@@ -184,7 +184,7 @@ const LeadCapturePopup = () => {
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-primary to-gold-light text-primary-foreground font-body font-semibold hover:shadow-glow-gold transition-all disabled:opacity-70"
+                      className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-gold-light text-primary-foreground font-body font-semibold hover:shadow-glow-gold transition-all disabled:opacity-70"
                     >
                       {isLoading ? (
                         <span className="animate-pulse">Submitting...</span>
@@ -198,12 +198,12 @@ const LeadCapturePopup = () => {
                     </button>
 
                     <p className="text-xs text-center text-muted-foreground">
-                      We'll call you within 30 minutes during business hours
+                      We'll call you within 30 minutes
                     </p>
                   </form>
 
                   {/* Trust Badges */}
-                  <div className="px-5 pb-5">
+                  <div className="px-4 pb-4">
                     <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <CheckCircle className="w-3 h-3 text-green-500" />
