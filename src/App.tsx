@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/context/AuthContext";
 import ProtectedRoute from "@/components/Admin/ProtectedRoute";
 import ScrollToTop from "./components/ScrollToTop";
+import DisclaimerPopup from "./components/DisclaimerPopup";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
@@ -28,6 +29,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
+          <DisclaimerPopup />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
