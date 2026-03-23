@@ -95,15 +95,15 @@ const LeadCapturePopup = () => {
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
           />
 
-          {/* Popup */}
+          {/* Popup Container - Flex Center */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[61] w-[calc(100%-2rem)] max-w-md"
+            className="fixed inset-0 z-[61] flex items-center justify-center p-4"
           >
-            <div className="bg-gradient-to-br from-background via-background to-primary/5 rounded-2xl shadow-2xl border border-primary/20 overflow-hidden max-h-[85vh] overflow-y-auto relative">
+            <div className="bg-gradient-to-br from-background via-background to-primary/5 rounded-2xl shadow-2xl border border-primary/20 overflow-hidden max-h-[85vh] overflow-y-auto w-full max-w-md relative">
               {/* Close Button */}
               <button
                 onClick={handleClose}
