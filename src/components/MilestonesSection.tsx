@@ -15,7 +15,7 @@ const MilestonesSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
@@ -31,7 +31,7 @@ const MilestonesSection = () => {
               key={item.label}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="glass-card rounded-xl p-6 lg:p-8 text-center group hover:border-primary/30 transition-all duration-500"
             >

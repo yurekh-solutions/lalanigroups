@@ -54,7 +54,7 @@ const FAQAccordion = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
@@ -75,7 +75,7 @@ const FAQAccordion = () => {
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
               className="bg-card rounded-xl border border-border/50 overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
             >

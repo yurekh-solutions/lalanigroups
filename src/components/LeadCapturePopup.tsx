@@ -2,14 +2,19 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Phone, Gift, CheckCircle, ArrowRight } from "lucide-react";
 import { trackEvent } from "@/lib/tracking";
+import { useLocation } from "react-router-dom";
 
-const POPUP_DELAY = 10000; // Show after 10 seconds
+const POPUP_DELAY = 20000; // Show after 20 seconds
 const POPUP_STORAGE_KEY = "lalani_popup_shown";
 const LEAD_STORAGE_KEY = "lalani_lead_submitted";
 const DISCLAIMER_STORAGE_KEY = "lalani_disclaimer_agreed";
 
+// Pages where popup should NOT show (users are already filling forms)
+const EXCLUDED_PATHS = ["/contact"];
+
 const LeadCapturePopup = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -23,8 +28,10 @@ const LeadCapturePopup = () => {
     const popupShown = sessionStorage.getItem(POPUP_STORAGE_KEY);
     const leadSubmitted = localStorage.getItem(LEAD_STORAGE_KEY);
     const disclaimerAgreed = localStorage.getItem(DISCLAIMER_STORAGE_KEY);
-    return !popupShown && !leadSubmitted && !!disclaimerAgreed;
-  }, []);
+    // Don't show on contact page — user is already engaging with a form
+    const isExcluded = EXCLUDED_PATHS.includes(location.pathname);
+    return !popupShown && !leadSubmitted && !!disclaimerAgreed && !isExcluded;
+  }, [location.pathname]);
 
   // Exit intent detection (desktop only)
   useEffect(() => {

@@ -85,9 +85,9 @@ const About = () => {
           <div className="container mx-auto px-3 sm:px-4 lg:px-8">
             <div className="max-w-5xl mx-auto">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.6 }}
                 className="space-y-6 sm:space-y-8"
               >
@@ -108,9 +108,9 @@ const About = () => {
 
                 <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                   <motion.div
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 1 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, amount: 0.1 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="glass-3d rounded-xl p-6 sm:p-8 hover:shadow-glow-gold transition-all duration-300"
                     whileHover={{ rotateY: 2, rotateX: 2 }}
@@ -128,9 +128,9 @@ const About = () => {
                   </motion.div>
 
                   <motion.div
-                    initial={{ opacity: 0, x: 20 }}
+                    initial={{ opacity: 1 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, amount: 0.1 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="glass-3d rounded-xl p-6 sm:p-8 hover:shadow-glow-gold transition-all duration-300"
                     whileHover={{ rotateY: -2, rotateX: 2 }}
@@ -157,9 +157,9 @@ const About = () => {
           <div className="container mx-auto px-3 sm:px-4 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.6 }}
                 className="text-center mb-8 sm:mb-12"
               >
@@ -175,9 +175,9 @@ const About = () => {
                 {coreValues.map((value, index) => (
                   <motion.div
                     key={value.title}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 1 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, amount: 0.1 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="glass-3d rounded-xl p-5 sm:p-6 text-center hover:shadow-glow-gold transition-all duration-300 group"
                     whileHover={{ y: -5, rotateX: 5 }}
@@ -206,9 +206,9 @@ const About = () => {
           <div className="container mx-auto px-3 sm:px-4 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.6 }}
                 className="text-center mb-8 sm:mb-12"
               >
@@ -224,9 +224,9 @@ const About = () => {
                 {legacyProjects.map((project, index) => (
                   <motion.div
                     key={project.name}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 1 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, amount: 0.1 }}
                     transition={{ duration: 0.4, delay: index * 0.06 }}
                     className="glass-3d rounded-xl p-4 sm:p-5 hover:shadow-glow-gold transition-all duration-300 group"
                     whileHover={{ y: -3 }}
@@ -249,9 +249,9 @@ const About = () => {
           <div className="container mx-auto px-3 sm:px-4 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.6 }}
                 className="glass-3d rounded-2xl p-6 sm:p-8 md:p-12 shadow-depth-2"
               >

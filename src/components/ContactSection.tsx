@@ -38,9 +38,9 @@ const ContactSection = () => {
     <section id="schedule-visit" className="section-padding bg-secondary/30 scroll-mt-24">
       <div className="container-max">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 1 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
@@ -57,9 +57,9 @@ const ContactSection = () => {
           {/* Form */}
           <motion.form
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 1 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.7 }}
             className="glass-card rounded-2xl p-8 space-y-5"
           >
@@ -128,9 +128,9 @@ const ContactSection = () => {
 
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 1 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.7 }}
             className="space-y-6"
           >

@@ -105,9 +105,9 @@ const Contact = () => {
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={info.title}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 1 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, amount: 0.1 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="glass-3d rounded-xl p-5 sm:p-6 hover:shadow-glow-gold transition-all duration-300 group"
                   whileHover={{ y: -5, rotateX: 5 }}
@@ -153,9 +153,9 @@ const Contact = () => {
             <div className="max-w-6xl mx-auto">
               {/* Google Map */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.6 }}
                 className="glass-3d rounded-2xl p-2 sm:p-3 mb-8 sm:mb-12 shadow-depth-2"
               >

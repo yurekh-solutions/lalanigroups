@@ -114,9 +114,9 @@ const Home = () => {
           
           <div className="container mx-auto px-3 sm:px-4 lg:px-8 relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 1 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.8 }}
               className="max-w-4xl mx-auto text-center"
             >

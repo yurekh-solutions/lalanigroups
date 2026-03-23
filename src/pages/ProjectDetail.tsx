@@ -172,7 +172,7 @@ const ProjectDetail = () => {
               </Link>
               
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 1 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
@@ -229,9 +229,9 @@ const ProjectDetail = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 className="bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-all"
               >
                 <IndianRupee className="w-8 h-8 text-primary mb-3" />
@@ -240,9 +240,9 @@ const ProjectDetail = () => {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ delay: 0.1 }}
                 className="bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-all"
               >
@@ -252,9 +252,9 @@ const ProjectDetail = () => {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ delay: 0.2 }}
                 className="bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-all"
               >
@@ -264,9 +264,9 @@ const ProjectDetail = () => {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ delay: 0.3 }}
                 className="bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-all"
               >
@@ -286,9 +286,9 @@ const ProjectDetail = () => {
               <div className="lg:col-span-2 space-y-12">
                 {/* Overview */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 1 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, amount: 0.1 }}
                 >
                   <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 gradient-gold-text">
                     Project Overview
@@ -300,9 +300,9 @@ const ProjectDetail = () => {
 
                 {/* Highlights */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 1 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, amount: 0.1 }}
                 >
                   <h2 className="text-2xl md:text-3xl font-heading font-bold mb-6 gradient-gold-text">
                     Key Highlights
@@ -320,9 +320,9 @@ const ProjectDetail = () => {
                 {/* Configuration */}
                 {project.configuration && project.configuration.length > 0 && (
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 1 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, amount: 0.1 }}
                   >
                     <h2 className="text-2xl md:text-3xl font-heading font-bold mb-6 gradient-gold-text">
                       Unit Configuration
@@ -350,9 +350,9 @@ const ProjectDetail = () => {
 
                 {/* Amenities */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 1 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, amount: 0.1 }}
                 >
                   <h2 className="text-2xl md:text-3xl font-heading font-bold mb-6 gradient-gold-text">
                     Amenities & Features
@@ -373,9 +373,9 @@ const ProjectDetail = () => {
                 {/* Specifications */}
                 {project.specifications && project.specifications.length > 0 && (
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 1 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, amount: 0.1 }}
                   >
                     <h2 className="text-2xl md:text-3xl font-heading font-bold mb-6 gradient-gold-text">
                       Specifications
@@ -401,9 +401,9 @@ const ProjectDetail = () => {
                 {/* Nearby Locations */}
                 {project.nearbyLocations && project.nearbyLocations.length > 0 && (
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 1 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, amount: 0.1 }}
                   >
                     <h2 className="text-2xl md:text-3xl font-heading font-bold mb-6 gradient-gold-text">
                       Connectivity & Nearby Locations
@@ -429,9 +429,9 @@ const ProjectDetail = () => {
               {/* Right Column - Sticky Contact Form */}
               <div className="lg:col-span-1">
                 <motion.div
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 1 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, amount: 0.1 }}
                   className="sticky top-24 bg-card p-6 md:p-8 rounded-2xl border border-border shadow-lg"
                 >
                   <h3 className="text-xl md:text-2xl font-heading font-bold mb-2 gradient-gold-text">

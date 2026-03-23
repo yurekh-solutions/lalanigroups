@@ -74,7 +74,7 @@ const DiscoverProperties = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
@@ -94,7 +94,7 @@ const DiscoverProperties = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
         >
           {properties.map((property) => (
@@ -162,7 +162,7 @@ const DiscoverProperties = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center mt-12"
         >
@@ -185,7 +185,7 @@ const DiscoverProperties = () => {
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.8 }}
                 className="relative p-8 md:p-12 lg:p-16 flex flex-col justify-center"
               >
@@ -236,7 +236,7 @@ const DiscoverProperties = () => {
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.8 }}
                 className="relative h-96 lg:h-auto min-h-[500px]"
               >

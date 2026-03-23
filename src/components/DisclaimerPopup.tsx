@@ -11,15 +11,19 @@ const DisclaimerPopup = () => {
     const hasAgreed = localStorage.getItem(DISCLAIMER_STORAGE_KEY);
     if (!hasAgreed) {
       setIsOpen(true);
-      // Prevent scrolling when popup is open
-      document.body.style.overflow = "hidden";
+      // NOTE: Do NOT set overflow:hidden — it breaks Framer Motion whileInView animations
     }
   }, []);
 
   const handleAgree = () => {
     localStorage.setItem(DISCLAIMER_STORAGE_KEY, "true");
     setIsOpen(false);
-    document.body.style.overflow = "auto";
+    // Force Framer Motion whileInView animations to re-trigger
+    // by dispatching scroll event after popup closes
+    setTimeout(() => {
+      window.dispatchEvent(new Event("scroll"));
+      window.dispatchEvent(new Event("resize"));
+    }, 100);
   };
 
   return (

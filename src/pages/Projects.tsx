@@ -99,9 +99,9 @@ const Projects = () => {
           <div className="container mx-auto px-3 sm:px-4 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.6 }}
                 className="text-center mb-8 sm:mb-12"
               >
@@ -117,9 +117,9 @@ const Projects = () => {
                 {amenities.map((amenity, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 1 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, amount: 0.1 }}
                     transition={{ duration: 0.4, delay: index * 0.05 }}
                     className="flex items-center gap-3 glass-3d rounded-lg p-3 sm:p-4 hover:shadow-glow-gold transition-all duration-300 group"
                     whileHover={{ x: 5 }}
@@ -140,9 +140,9 @@ const Projects = () => {
           <div className="container mx-auto px-3 sm:px-4 lg:px-8">
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 sm:gap-8">
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.6 }}
                 className="glass-3d rounded-2xl p-6 sm:p-8 hover:shadow-glow-gold transition-all duration-300"
                 whileHover={{ rotateY: 2, rotateX: 2 }}
@@ -163,9 +163,9 @@ const Projects = () => {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.6 }}
                 className="glass-3d rounded-2xl p-6 sm:p-8 hover:shadow-glow-gold transition-all duration-300"
                 whileHover={{ rotateY: -2, rotateX: 2 }}

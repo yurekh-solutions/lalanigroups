@@ -48,14 +48,14 @@ const BuyingProcess = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.1 }}
             className="inline-block mb-4"
           >
             <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold">
@@ -81,7 +81,7 @@ const BuyingProcess = () => {
                 key={step.title}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
                 className="relative"
               >
@@ -116,7 +116,7 @@ const BuyingProcess = () => {
               key={step.title}
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative flex gap-4"
             >
@@ -150,7 +150,7 @@ const BuyingProcess = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-16 text-center"
         >

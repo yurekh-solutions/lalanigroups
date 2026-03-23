@@ -55,7 +55,7 @@ const ProjectsSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
@@ -74,7 +74,7 @@ const ProjectsSection = () => {
               key={project.name}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               className="group glass-card rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-500"
             >
