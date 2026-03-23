@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
+import LeadCapturePopup from "@/components/LeadCapturePopup";
 import SEO from "@/components/SEO";
 import { getProjectBySlug } from "@/data/projects";
 import { useState, useEffect } from "react";
@@ -512,6 +513,7 @@ const ProjectDetail = () => {
       <WhatsAppButton />
       <EnquireButton />
       <BackToTopButton />
+      <LeadCapturePopup />
     </>
   );
 };

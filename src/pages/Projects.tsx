@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
+import LeadCapturePopup from "@/components/LeadCapturePopup";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { MapPin, Home, CheckCircle, Calendar, Shield, Award } from "lucide-react";
@@ -191,6 +192,7 @@ const Projects = () => {
       <WhatsAppButton />
       <EnquireButton />
       <BackToTopButton />
+      <LeadCapturePopup />
     </>
   );
 };
