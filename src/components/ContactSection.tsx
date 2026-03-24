@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
 import { trackEvent } from "@/lib/tracking";
 
-const WHATSAPP_NUMBER = "919136242706";
+const WHATSAPP_NUMBER = "919322642370";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({

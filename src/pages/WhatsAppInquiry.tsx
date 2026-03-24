@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
-const WHATSAPP_NUMBER = "919136242706";
+const WHATSAPP_NUMBER = "919322642370";
 
 const templates = [
   { label: "General Inquiry", text: "Hi, I am interested in Lalani Group projects. Please share more details." },
@@ -132,8 +132,9 @@ const WhatsAppInquiry = () => {
 
                 <div className="mt-6 pt-6 border-t border-border flex items-center gap-3">
                   <Phone className="w-4 h-4 text-primary" />
-                  <a href="tel:+919136242706" className="font-body text-sm text-primary hover:text-gold-light">
-                    +91 91362 42706
+                  <a href="tel:+919322642370" className="font-body text-sm text-primary hover:text-gold-light">
+                    +91 93226 42370
+
                   </a>
                 </div>
               </div>
