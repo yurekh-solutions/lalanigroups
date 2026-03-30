@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/context/AuthContext";
 import ProtectedRoute from "@/components/Admin/ProtectedRoute";
 import ScrollToTop from "./components/ScrollToTop";
@@ -18,6 +18,8 @@ import WhatsAppInquiry from "./pages/WhatsAppInquiry";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/Admin/Login";
 import AdminDashboard from "./pages/Admin/Dashboard";
+import LalaniGoodwill from "./pages/LalaniGoodwill";
+import LalaniBusinessPark from "./pages/LalaniBusinessPark";
 
 const queryClient = new QueryClient();
 
@@ -34,7 +36,11 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/lalani-goodwill" element={<Navigate to="/lalani-goodwill" replace />} />
             <Route path="/projects/:slug" element={<ProjectDetail />} />
+            <Route path="/lalani-goodwill" element={<LalaniGoodwill />} />
+            <Route path="/lalani-business-park" element={<LalaniBusinessPark />} />
+            <Route path="/projects/lalani-business-park" element={<Navigate to="/lalani-business-park" replace />} />
             <Route path="/buyers-guide" element={<BuyersGuide />} />
             <Route path="/media-room" element={<MediaRoom />} />
             <Route path="/contact" element={<Contact />} />

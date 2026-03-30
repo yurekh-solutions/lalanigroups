@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { MessageCircle, Phone, ArrowUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackEvent } from "@/lib/tracking";
+import { trackWhatsAppConversion, trackPhoneConversion } from "@/lib/conversionTracking";
 
 const WHATSAPP_NUMBER = "919322642370";
 const WHATSAPP_TEXT = "Hi, I am interested in Lalani Group Project. Please contact me.";
@@ -32,10 +33,12 @@ const WhatsAppButton = () => {
 
   const handlePhoneClick = async () => {
     await trackEvent('phone', window.location.pathname);
+    trackPhoneConversion(); // Track for Google Ads & Facebook Ads
   };
 
   const handleWhatsAppClick = async () => {
     await trackEvent('whatsapp', window.location.pathname);
+    trackWhatsAppConversion(); // Track for Google Ads & Facebook Ads
   };
 
   return (

@@ -1,6 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { MapPin, Home, Calendar, IndianRupee, CheckCircle, ArrowLeft, Phone, Mail } from "lucide-react";
+import { MapPin, Home, Calendar, CheckCircle, ArrowLeft, Phone, Mail } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -177,13 +177,6 @@ const ProjectDetail = () => {
                 transition={{ duration: 0.6 }}
               >
                 <div className="flex flex-wrap items-center gap-3 mb-4">
-                  <span className={`px-4 py-1.5 rounded-full text-sm font-semibold ${
-                    project.status === "Ready Possession"
-                      ? "bg-green-500 text-white"
-                      : "bg-primary text-primary-foreground"
-                  }`}>
-                    {project.status}
-                  </span>
                   <span className="px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-white text-sm font-semibold">
                     {project.category === "commercial" ? "Commercial" : "Residential"}
                   </span>
@@ -227,18 +220,7 @@ const ProjectDetail = () => {
         {/* Quick Info Cards */}
         <section className="py-8 bg-background border-b">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <motion.div
-                initial={{ opacity: 1 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.1 }}
-                className="bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-all"
-              >
-                <IndianRupee className="w-8 h-8 text-primary mb-3" />
-                <p className="text-sm text-muted-foreground mb-1">Starting Price</p>
-                <p className="text-xl font-bold text-foreground">{project.price}</p>
-              </motion.div>
-
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <motion.div
                 initial={{ opacity: 1 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -338,9 +320,6 @@ const ProjectDetail = () => {
                             <p className="text-sm text-muted-foreground">
                               <span className="font-semibold text-foreground">Area:</span> {config.area}
                             </p>
-                            <p className="text-sm text-muted-foreground">
-                              <span className="font-semibold text-foreground">Price:</span> {config.price}
-                            </p>
                           </div>
                         </div>
                       ))}
@@ -369,6 +348,27 @@ const ProjectDetail = () => {
                     ))}
                   </div>
                 </motion.div>
+
+                {/* Floor Plans */}
+                {project.floorPlan && (
+                  <motion.div
+                    initial={{ opacity: 1 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.1 }}
+                  >
+                    <h2 className="text-2xl md:text-3xl font-heading font-bold mb-6 gradient-gold-text">
+                      {project.floorPlanTitle || "Floor Plans"}
+                    </h2>
+                    <div className="bg-card p-4 md:p-6 rounded-xl border border-border">
+                      <img
+                        src={project.floorPlan}
+                        alt={`${project.name} Floor Plan`}
+                        className="w-full h-auto rounded-lg"
+                        loading="lazy"
+                      />
+                    </div>
+                  </motion.div>
+                )}
 
                 {/* Specifications */}
                 {project.specifications && project.specifications.length > 0 && (

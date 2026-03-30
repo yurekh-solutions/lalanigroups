@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Store, CheckCircle, MapPin, Home } from "lucide-react";
+import { Building2, Store, Clock, MapPin, Home } from "lucide-react";
 import { Link } from "react-router-dom";
-import { projects, getProjectsByCategory } from "@/data/projects";
+import { projects } from "@/data/projects";
 
 const projectCategories = [
   {
@@ -21,16 +21,25 @@ const projectCategories = [
     icon: Store
   },
   {
-    id: "completed",
-    label: "Completed",
-    icon: CheckCircle
+    id: "ongoing",
+    label: "Ongoing",
+    icon: Clock
   }
 ];
 
 const ProjectTabs = () => {
   const [activeTab, setActiveTab] = useState("all");
 
-  const filteredProjects = getProjectsByCategory(activeTab);
+  // Filter projects based on active tab
+  const filteredProjects = projects.filter(project => {
+    if (activeTab === "all") return true;
+    // For ongoing tab, show only projects with category "ongoing"
+    if (activeTab === "ongoing") return project.category === "ongoing";
+    // For residential/commercial tabs, show projects with that category OR "ongoing" projects of that type
+    if (activeTab === "residential") return project.category === "residential" || (project.category === "ongoing" && project.type.toLowerCase().includes("residence"));
+    if (activeTab === "commercial") return project.category === "commercial" || (project.category === "ongoing" && project.type.toLowerCase().includes("commercial"));
+    return project.category === activeTab;
+  });
 
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-background to-primary/5">
@@ -95,19 +104,9 @@ const ProjectTabs = () => {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    <div className="absolute top-4 right-4">
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md ${
-                        project.status === "Ready Possession"
-                          ? "bg-green-500/80 text-white"
-                          : "bg-primary/80 text-primary-foreground"
-                      }`}>
-                        {project.status}
-                      </span>
-                    </div>
 
                     <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <p className="text-white font-bold text-lg">{project.price}</p>
+                      <p className="text-white font-bold text-lg">{project.type}</p>
                     </div>
                   </div>
 

@@ -7,8 +7,47 @@ import BackToTopButton from "@/components/BackToTopButton";
 import LeadCapturePopup from "@/components/LeadCapturePopup";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
-import { Calendar, ExternalLink, Newspaper } from "lucide-react";
+import { Calendar, ExternalLink, Newspaper, Image, Award, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
 import project2 from "@/assets/project-2.jpg";
+
+// Media Gallery Images
+import media1 from "@/assets/lalanimedia/media1.png";
+import media3 from "@/assets/lalanimedia/media3.png";
+import media4 from "@/assets/lalanimedia/media4.png";
+import media5 from "@/assets/lalanimedia/media5.png";
+import media6 from "@/assets/lalanimedia/media6.png";
+import media7 from "@/assets/lalanimedia/media7.png";
+
+// Awards Gallery Images
+import awardCover from "@/assets/lalaniawards/awardcover.png";
+import award from "@/assets/lalaniawards/award.png";
+import award1 from "@/assets/lalaniawards/award1.png";
+import award3 from "@/assets/lalaniawards/award3.png";
+import award4 from "@/assets/lalaniawards/award4.png";
+import award5 from "@/assets/lalaniawards/award5.png";
+import award7 from "@/assets/lalaniawards/award7.png";
+import award8 from "@/assets/lalaniawards/award8.png";
+
+const mediaImages = [
+  { src: media1, alt: "Lalani Group Media Coverage 1" },
+  { src: media3, alt: "Lalani Group Media Coverage 3" },
+  { src: media4, alt: "Lalani Group Media Coverage 4" },
+  { src: media5, alt: "Lalani Group Media Coverage 5" },
+  { src: media6, alt: "Lalani Group Media Coverage 6" },
+  { src: media7, alt: "Lalani Group Media Coverage 7" },
+];
+
+const awardImages = [
+  { src: awardCover, alt: "Lalani Group Awards Cover" },
+  { src: award, alt: "Lalani Group Award" },
+  { src: award1, alt: "Lalani Group Award 1" },
+  { src: award3, alt: "Lalani Group Award 3" },
+  { src: award4, alt: "Lalani Group Award 4" },
+  { src: award5, alt: "Lalani Group Award 5" },
+  { src: award7, alt: "Lalani Group Award 7" },
+  { src: award8, alt: "Lalani Group Award 8" },
+];
 
 const newsArticles = [
   {
@@ -74,12 +113,24 @@ const newsArticles = [
 ];
 
 const MediaRoom = () => {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [lightboxType, setLightboxType] = useState<'media' | 'awards'>('media');
+
+  const openLightbox = (index: number, type: 'media' | 'awards') => {
+    setLightboxIndex(index);
+    setLightboxType(type);
+    setLightboxOpen(true);
+  };
+
+  const currentImages = lightboxType === 'media' ? mediaImages : awardImages;
+
   return (
     <>
       <SEO
-        title="Media Room | News & Updates - Lalani Group Mumbai"
-        description="Latest news and updates from Lalani Group. Stay informed about Mumbai real estate market trends, MahaRERA updates, home loan rates, property registrations, and Lalani Group announcements."
-        keywords="Lalani Group news, Mumbai real estate news, MahaRERA updates, property market Mumbai, real estate trends, home loan news, property registration Mumbai"
+        title="Media Room | News, Awards & Gallery - Lalani Group Mumbai"
+        description="Latest news, awards, and media coverage from Lalani Group. Stay informed about Mumbai real estate market trends, MahaRERA updates, home loan rates, property registrations, and Lalani Group achievements."
+        keywords="Lalani Group news, Mumbai real estate news, MahaRERA updates, property market Mumbai, real estate trends, home loan news, property registration Mumbai, Lalani Group awards, real estate awards Mumbai, construction awards, developer awards"
         canonicalUrl="/media-room"
       />
       <Navbar />
@@ -89,6 +140,92 @@ const MediaRoom = () => {
         backgroundImage={project2}
       />
       <main className="pt-0">
+        {/* Awards Gallery Section */}
+        <section className="py-16 bg-card">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-6xl mx-auto"
+            >
+              <div className="flex items-center gap-3 mb-8">
+                <Award className="w-8 h-8 text-primary" />
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
+                  Awards & Recognition
+                </h2>
+              </div>
+              <p className="text-muted-foreground mb-8 max-w-3xl">
+                Lalani Group has been recognized for excellence in real estate development with numerous awards and accolades over the years.
+              </p>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {awardImages.map((image, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="aspect-square overflow-hidden rounded-xl cursor-pointer group border border-border hover:border-primary/50 transition-all"
+                    onClick={() => openLightbox(index, 'awards')}
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Media Gallery Section */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-6xl mx-auto"
+            >
+              <div className="flex items-center gap-3 mb-8">
+                <Image className="w-8 h-8 text-primary" />
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
+                  Media Gallery
+                </h2>
+              </div>
+              <p className="text-muted-foreground mb-8 max-w-3xl">
+                Explore our media coverage, press releases, and featured articles highlighting Lalani Group's contributions to Mumbai's real estate landscape.
+              </p>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {mediaImages.map((image, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="aspect-video overflow-hidden rounded-xl cursor-pointer group border border-border hover:border-primary/50 transition-all"
+                    onClick={() => openLightbox(index, 'media')}
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* News & Updates Section */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -157,6 +294,38 @@ const MediaRoom = () => {
       <EnquireButton />
       <BackToTopButton />
       <LeadCapturePopup />
+
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4">
+          <button
+            onClick={() => setLightboxOpen(false)}
+            className="absolute top-4 right-4 p-2 text-white hover:text-primary transition-colors"
+          >
+            <X className="w-8 h-8" />
+          </button>
+          
+          <button
+            onClick={() => setLightboxIndex((prev) => (prev - 1 + currentImages.length) % currentImages.length)}
+            className="absolute left-4 p-2 text-white hover:text-primary transition-colors"
+          >
+            <ChevronLeft className="w-8 h-8" />
+          </button>
+          
+          <img
+            src={currentImages[lightboxIndex].src}
+            alt={currentImages[lightboxIndex].alt}
+            className="max-w-full max-h-[90vh] object-contain rounded-lg"
+          />
+          
+          <button
+            onClick={() => setLightboxIndex((prev) => (prev + 1) % currentImages.length)}
+            className="absolute right-4 p-2 text-white hover:text-primary transition-colors"
+          >
+            <ChevronRight className="w-8 h-8" />
+          </button>
+        </div>
+      )}
     </>
   );
 };

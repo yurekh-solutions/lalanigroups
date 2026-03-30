@@ -9,7 +9,7 @@ import LeadCapturePopup from "@/components/LeadCapturePopup";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Target, Eye, Heart, Lightbulb, Users2, TrendingUp, CheckCircle2, Star } from "lucide-react";
-import project3 from "@/assets/project-3.jpg";
+import aboutBg from "@/assets/about-bg.jpg";
 import { Link } from "react-router-dom";
 
 const About = () => {
@@ -77,7 +77,7 @@ const About = () => {
       <PageHero 
         title="About Lalani Group"
         subtitle="Building Trust, Creating Landmarks Since 1985"
-        backgroundImage={project3}
+        backgroundImage={aboutBg}
       />
       <main className="pt-0">
         {/* About Content with 3D Effects */}

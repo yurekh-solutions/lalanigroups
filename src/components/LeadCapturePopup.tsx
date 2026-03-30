@@ -2,15 +2,17 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Phone, Gift, CheckCircle, ArrowRight } from "lucide-react";
 import { trackEvent } from "@/lib/tracking";
+import { trackLeadConversion, trackPopupImpression } from "@/lib/conversionTracking";
 import { useLocation } from "react-router-dom";
 
-const POPUP_DELAY = 20000; // Show after 20 seconds
-const POPUP_STORAGE_KEY = "lalani_popup_shown";
+const POPUP_DELAY = 120000; // Show after 2 minutes (120 seconds)
+const POPUP_INTERVAL = 300000; // Show every 5 minutes if not converted
+const POPUP_STORAGE_KEY = "lalani_popup_last_shown";
 const LEAD_STORAGE_KEY = "lalani_lead_submitted";
 const DISCLAIMER_STORAGE_KEY = "lalani_disclaimer_agreed";
 
 // Pages where popup should NOT show (users are already filling forms)
-const EXCLUDED_PATHS = ["/contact"];
+const EXCLUDED_PATHS = ["/contact", "/admin/login", "/admin/dashboard"];
 
 const LeadCapturePopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,40 +25,62 @@ const LeadCapturePopup = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Check if popup was already shown or lead already submitted
+  // Check if popup can be shown based on timing and lead status
   const canShowPopup = useCallback(() => {
-    const popupShown = sessionStorage.getItem(POPUP_STORAGE_KEY);
+    const lastShown = localStorage.getItem(POPUP_STORAGE_KEY);
     const leadSubmitted = localStorage.getItem(LEAD_STORAGE_KEY);
     const disclaimerAgreed = localStorage.getItem(DISCLAIMER_STORAGE_KEY);
-    // Don't show on contact page — user is already engaging with a form
     const isExcluded = EXCLUDED_PATHS.includes(location.pathname);
-    return !popupShown && !leadSubmitted && !!disclaimerAgreed && !isExcluded;
+    
+    // Don't show if lead already submitted or disclaimer not agreed
+    if (leadSubmitted || !disclaimerAgreed || isExcluded) return false;
+    
+    // Show if never shown before or interval has passed
+    if (!lastShown) return true;
+    
+    const timeSinceLastShown = Date.now() - parseInt(lastShown);
+    return timeSinceLastShown > POPUP_INTERVAL;
   }, [location.pathname]);
 
-  // Exit intent detection (desktop only)
+  // Exit intent detection (desktop only) - shows popup when user tries to leave
   useEffect(() => {
     const handleMouseLeave = (e: MouseEvent) => {
       if (e.clientY <= 0 && canShowPopup()) {
         setIsOpen(true);
-        sessionStorage.setItem(POPUP_STORAGE_KEY, "true");
+        localStorage.setItem(POPUP_STORAGE_KEY, Date.now().toString());
+        // Track exit intent popup
+        trackEvent("form", location.pathname, {
+          type: "popup_exit_intent",
+          source: "exit_intent"
+        });
+        // Track for ads conversion
+        trackPopupImpression("exit_intent");
       }
     };
 
     document.addEventListener("mouseleave", handleMouseLeave);
     return () => document.removeEventListener("mouseleave", handleMouseLeave);
-  }, [canShowPopup]);
+  }, [canShowPopup, location.pathname]);
 
-  // Timed popup (after delay)
+  // Timed popup (after 2 minutes) - for lead generation campaigns
   useEffect(() => {
     const timer = setTimeout(() => {
       if (canShowPopup()) {
         setIsOpen(true);
-        sessionStorage.setItem(POPUP_STORAGE_KEY, "true");
+        localStorage.setItem(POPUP_STORAGE_KEY, Date.now().toString());
+        // Track timed popup
+        trackEvent("form", location.pathname, {
+          type: "popup_timed",
+          source: "timed_2min",
+          delay: POPUP_DELAY
+        });
+        // Track for ads conversion
+        trackPopupImpression("timed_2min");
       }
     }, POPUP_DELAY);
 
     return () => clearTimeout(timer);
-  }, [canShowPopup]);
+  }, [canShowPopup, location.pathname]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,6 +99,9 @@ const LeadCapturePopup = () => {
       // Mark lead as submitted
       localStorage.setItem(LEAD_STORAGE_KEY, "true");
       setIsSubmitted(true);
+      
+      // Track conversion for Google Ads & Facebook Ads
+      trackLeadConversion("popup_callback", 100000); // ₹1,00,000 estimated lead value
 
       // Auto close after success
       setTimeout(() => {

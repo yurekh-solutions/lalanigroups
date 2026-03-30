@@ -9,7 +9,7 @@ import LeadCapturePopup from "@/components/LeadCapturePopup";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { CheckCircle, FileText, Home, Shield, TrendingUp, Users } from "lucide-react";
-import project1 from "@/assets/project-1.jpg";
+import hero1 from "@/assets/hero-1.jpg";
 
 const BuyersGuide = () => {
   const guideItems = [
@@ -95,7 +95,7 @@ const BuyersGuide = () => {
       <PageHero 
         title="Buyer's Guide"
         subtitle="Everything You Need to Know About Buying Property in Mumbai"
-        backgroundImage={project1}
+        backgroundImage={hero1}
       />
       <main className="pt-0">
         {/* Guide Content */}

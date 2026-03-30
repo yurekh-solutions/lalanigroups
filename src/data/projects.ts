@@ -5,6 +5,9 @@ import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import aboutBg from "@/assets/about-bg.jpg";
 
+// Heritage Park Floor Plan
+import heritageFloorPlan from "@/assets/lalaniheritage/HP-Floor-Plan.webp";
+
 export interface Project {
   id: number;
   slug: string;
@@ -15,7 +18,7 @@ export interface Project {
   reraNumber2?: string;
   type: string;
   status: "Ongoing" | "Ready Possession" | "Upcoming";
-  category: "residential" | "commercial" | "completed";
+  category: "residential" | "commercial" | "completed" | "ongoing";
   price: string;
   possession: string;
   image: string;
@@ -36,6 +39,8 @@ export interface Project {
     name: string;
     distance: string;
   }[];
+  floorPlan?: string;
+  floorPlanTitle?: string;
 }
 
 export const projects: Project[] = [
@@ -50,7 +55,7 @@ export const projects: Project[] = [
     reraNumber2: "P51800078852",
     type: "1BHK, 2BHK & 3BHK Residences",
     status: "Ongoing",
-    category: "residential",
+    category: "ongoing",
     price: "₹85 Lakhs Onwards",
     possession: "December 2025",
     image: project1,
@@ -147,53 +152,71 @@ export const projects: Project[] = [
     price: "₹75 Lakhs Onwards",
     possession: "Ready to Move - OC Received",
     image: project3,
-    images: [project3, hero2, project1],
-    description: "Velentine Apartment Wing D offers ready-to-move-in 1BHK and 2BHK apartments in Malad East. With OC received, these homes are perfect for immediate possession. The project features modern amenities and is strategically located with excellent connectivity to major landmarks.",
+    images: [project3, hero2, project1, hero1, aboutBg],
+    description: "Velentine Apartment Wing D is a ready-to-move residential project offering spacious 1BHK and 2BHK apartments in the heart of Malad East, Mumbai. With Occupancy Certificate (OC) already received, these homes are perfect for immediate possession. Strategically located near Malad Railway Station and Western Express Highway, Velentine Apartment offers excellent connectivity to IT hubs, shopping malls, and educational institutions. The project features modern amenities, quality construction, and thoughtful layouts designed for comfortable family living. Choose Velentine Apartment for a hassle-free move-in experience in one of Mumbai's most sought-after residential localities.",
     highlights: [
       "Ready Possession - OC Received",
       "MahaRERA Approved - P51800028866",
-      "Move-in ready apartments",
-      "Near Malad Railway Station",
-      "Close to schools, hospitals & shopping centers",
-      "Well-planned residential complex",
+      "Immediate move-in ready apartments",
+      "10 Minutes from Malad Railway Station",
+      "Near Inorbit Mall & Infiniti Mall",
+      "Close to reputed schools & hospitals",
       "Excellent connectivity to Western Express Highway",
-      "Family-friendly neighborhood"
+      "Well-planned family-friendly complex",
+      "Ample natural light & ventilation",
+      "Covered & open parking available",
+      "24/7 water supply",
+      "Premium construction quality"
     ],
     amenities: [
-      "24/7 Security",
+      "24/7 Security with Guard",
       "CCTV Surveillance",
       "Covered Parking",
-      "Power Backup",
-      "Lift Facility",
+      "100% Power Backup for Common Areas",
+      "High-Speed Elevators",
       "Children's Play Area",
       "Landscaped Gardens",
-      "Intercom System",
-      "Water Storage & Pump",
-      "Fire Safety Equipment"
+      "Intercom Facility",
+      "Water Storage & Pump Room",
+      "Fire Safety Equipment",
+      "Garbage Disposal System",
+      "Society Office"
     ],
     specifications: [
       {
         title: "Flooring",
         details: [
-          "Vitrified tiles in living and dining",
+          "Premium vitrified tiles in living and dining",
           "Anti-skid ceramic tiles in bathrooms",
-          "Kitchen with ceramic tiles"
+          "Ceramic tiles in kitchen and utility",
+          "Marble finish in entrance lobby"
         ]
       },
       {
         title: "Doors & Windows",
         details: [
-          "Main door with premium finish",
-          "Internal doors flush type",
-          "UPVC/Aluminum windows with mosquito mesh"
+          "Laminated main door with premium lock",
+          "Internal flush doors with polish finish",
+          "UPVC/Aluminum windows with mosquito mesh",
+          "Premium quality door handles and fittings"
         ]
       },
       {
         title: "Electrical",
         details: [
           "Concealed copper wiring",
-          "Modular switches",
-          "Sufficient light and power points"
+          "Modular switches by Anchor/Havells",
+          "Adequate light and power points",
+          "MCB distribution board"
+        ]
+      },
+      {
+        title: "Kitchen",
+        details: [
+          "Granite platform with steel sink",
+          "Ceramic wall tiles above platform",
+          "Exhaust fan provision",
+          "Water purifier provision"
         ]
       }
     ],
@@ -202,6 +225,11 @@ export const projects: Project[] = [
         type: "1 BHK",
         area: "400-480 sq.ft",
         price: "₹75 Lakhs onwards"
+      },
+      {
+        type: "1 BHK Large",
+        area: "500-550 sq.ft",
+        price: "₹88 Lakhs onwards"
       },
       {
         type: "2 BHK",
@@ -215,7 +243,9 @@ export const projects: Project[] = [
       { name: "Infiniti Mall", distance: "15 min" },
       { name: "Link Road", distance: "5 min" },
       { name: "Western Express Highway", distance: "8 min" },
-      { name: "Schools & Hospitals", distance: "5-10 min" }
+      { name: "Oberoi International School", distance: "10 min" },
+      { name: "Holy Cross Hospital", distance: "8 min" },
+      { name: "Mindspace IT Park", distance: "15 min" }
     ]
   },
 
@@ -224,8 +254,8 @@ export const projects: Project[] = [
     id: 3,
     slug: "lalani-grandeur",
     name: "Lalani Grandeur",
-    location: "Malad (E)",
-    area: "Malad East",
+    location: "Goregaon (E)",
+    area: "Goregaon East",
     rera: "P51800045678",
     type: "2BHK & 3BHK Residences",
     status: "Ongoing",
@@ -233,58 +263,76 @@ export const projects: Project[] = [
     price: "₹1.12 Cr Onwards",
     possession: "March 2026",
     image: hero1,
-    images: [hero1, project2, hero2],
-    description: "Lalani Grandeur is an architectural masterpiece offering premium 2BHK and 3BHK apartments in Goregaon East. Designed with contemporary aesthetics and world-class amenities, this project redefines luxury living in one of Mumbai's most sought-after locations.",
+    images: [hero1, project2, hero2, project1, aboutBg],
+    description: "Lalani Grandeur is an architectural masterpiece offering premium 2BHK and 3BHK apartments in the heart of Goregaon East, Mumbai. This prestigious residential project redefines luxury living with contemporary design, world-class amenities, and thoughtful layouts. Strategically located near Goregaon Railway Station, Western Express Highway, and Film City, Lalani Grandeur offers unmatched connectivity to IT parks, entertainment hubs, and commercial centers. With a grand clubhouse, swimming pool, gymnasium, and landscaped gardens, this project is designed for families who seek the finest in urban living. Experience the perfect blend of comfort, convenience, and elegance at Lalani Grandeur.",
     highlights: [
       "MahaRERA Approved - P51800045678",
       "Premium 2BHK & 3BHK Apartments",
-      "Strategic location in Goregaon East",
-      "Near Metro Station & Railway Station",
-      "Close to Film City and IT Parks",
-      "Modern clubhouse with premium amenities",
-      "Earthquake resistant structure",
-      "Vastu-compliant design"
+      "Prime location in Goregaon East",
+      "5 Minutes from Goregaon Railway Station",
+      "Near Western Express Highway & Metro",
+      "Close to Film City and Oberoi Mall",
+      "Grand clubhouse with premium amenities",
+      "Earthquake resistant RCC structure",
+      "Vastu-compliant design",
+      "High-speed elevators",
+      "100% power backup",
+      "Double-height entrance lobby"
     ],
     amenities: [
-      "Grand Clubhouse",
+      "Grand Clubhouse with Lounge",
       "State-of-the-art Gymnasium",
-      "Swimming Pool with Deck",
+      "Temperature Controlled Swimming Pool",
       "Indoor Games Room",
-      "Multipurpose Hall",
-      "Landscaped Gardens",
-      "Children's Play Area",
-      "Jogging Track",
+      "Multipurpose Banquet Hall",
+      "Landscaped Podium Gardens",
+      "Children's Play Area with Safety Flooring",
+      "Jogging & Walking Track",
+      "Senior Citizen Corner",
       "Outdoor Sports Facilities",
       "24/7 Security with CCTV",
+      "Video Door Phone",
       "High-Speed Elevators",
-      "Basement & Ground Parking",
-      "Power Backup",
+      "Basement & Stilt Parking",
+      "100% Power Backup",
       "Rainwater Harvesting",
-      "Sewage Treatment Plant"
+      "Sewage Treatment Plant",
+      "Fire Fighting System"
     ],
     specifications: [
       {
-        title: "Living & Bedrooms",
+        title: "Living & Dining",
         details: [
-          "Premium vitrified tile flooring",
-          "Elegant paint with texture finish",
-          "Large windows with scenic views"
+          "Premium 2x2 vitrified tile flooring",
+          "Textured paint finish by Asian Paints",
+          "Large windows with scenic views",
+          "Concealed electrical wiring"
+        ]
+      },
+      {
+        title: "Master Bedroom",
+        details: [
+          "Vitrified tile flooring",
+          "Premium paint finish",
+          "Attached bathroom",
+          "Walk-in wardrobe provision"
         ]
       },
       {
         title: "Modular Kitchen",
         details: [
-          "Black granite platform",
+          "Black granite platform with steel sink",
           "Designer ceramic wall tiles",
-          "Stainless steel sink with drain board",
-          "Provision for chimney and water purifier"
+          "Provision for modular kitchen",
+          "Chimney and water purifier provision"
         ]
       },
       {
         title: "Bathrooms",
         details: [
-          "Designer wall and floor tiles",
-          "Premium CP fittings",
+          "Anti-skid ceramic floor tiles",
+          "Designer wall tiles up to ceiling",
+          "Premium CP fittings by Jaquar/equivalent",
           "Hot & cold water mixer",
           "Exhaust fan provision"
         ]
@@ -294,8 +342,8 @@ export const projects: Project[] = [
         details: [
           "Video door phone",
           "Fire alarm system",
-          "Smoke detectors",
-          "Emergency exits"
+          "Smoke detectors in common areas",
+          "Emergency exits with signage"
         ]
       }
     ],
@@ -306,19 +354,32 @@ export const projects: Project[] = [
         price: "₹1.12 Cr onwards"
       },
       {
+        type: "2 BHK Large",
+        area: "900-1000 sq.ft",
+        price: "₹1.35 Cr onwards"
+      },
+      {
         type: "3 BHK",
         area: "1050-1200 sq.ft",
         price: "₹1.58 Cr onwards"
+      },
+      {
+        type: "3 BHK Large",
+        area: "1250-1400 sq.ft",
+        price: "₹1.85 Cr onwards"
       }
     ],
     nearbyLocations: [
-      { name: "Malad Railway Station", distance: "8 min" },
-      { name: "Mindspace IT Park", distance: "10 min" },
-      { name: "Inorbit Mall", distance: "12 min" },
-      { name: "Infiniti Mall", distance: "15 min" },
+      { name: "Goregaon Railway Station", distance: "5 min" },
+      { name: "Goregaon Metro Station", distance: "8 min" },
+      { name: "Western Express Highway", distance: "3 min" },
+      { name: "Oberoi Mall", distance: "10 min" },
+      { name: "Film City", distance: "15 min" },
+      { name: "NESCO Exhibition Centre", distance: "8 min" },
+      { name: "Mindspace IT Park", distance: "12 min" },
       { name: "International Airport", distance: "25 min" },
-      { name: "Western Express Highway", distance: "5 min" },
-      { name: "Schools & Hospitals", distance: "5-10 min" }
+      { name: "Ryan International School", distance: "10 min" },
+      { name: "Wockhardt Hospital", distance: "12 min" }
     ]
   },
 
@@ -332,7 +393,7 @@ export const projects: Project[] = [
     rera: "P51800033063",
     type: "Commercial Spaces",
     status: "Ongoing",
-    category: "commercial",
+    category: "ongoing",
     price: "₹1.2 Cr Onwards",
     possession: "June 2026",
     image: project2,
@@ -400,87 +461,138 @@ export const projects: Project[] = [
     price: "₹98 Lakhs Onwards",
     possession: "September 2026",
     image: aboutBg,
-    images: [aboutBg, hero1, project1],
-    description: "Lalani Heritage Park offers spacious 2BHK and 3BHK apartments in Jogeshwari West. This thoughtfully designed project combines modern living with natural surroundings, featuring extensive green spaces and premium amenities for a balanced lifestyle.",
+    images: [aboutBg, hero1, project1, hero2, project2],
+    description: "Heritage Park is strategically located just off S.V. Road to ensure comfort, convenience and connectivity. Vibrant retail, fashion, dining, cultural, business destinations, ultra-luxury boutiques and international brand names cater to everyday conveniences. At Heritage Park, you have every necessity and indulgence just a few steps away from your home. The bustling Mega Mall, Inorbit, Infinity and Hypercity are in vicinity. Heritage Park is truly a fine blend of affordable luxury, convenience, peace of mind, privacy and security.",
     highlights: [
       "MahaRERA Approved - P51800056789",
       "Spacious 2BHK & 3BHK Apartments",
-      "Near Jogeshwari Metro Station",
-      "Close to Western Express Highway",
-      "Excellent connectivity to suburbs",
-      "Premium amenities and facilities",
+      "Just off S.V. Road - Prime Location",
+      "Near Mega Mall, Inorbit & Infinity Mall",
+      "Walking distance to 24Karat Multiplex",
+      "Close to Jogeshwari Railway Station",
+      "Easy access to JVLR & Airport",
+      "Near Balasaheb Thackeray Hospital",
       "Vastu-compliant design",
-      "Green building certified"
+      "Green building certified",
+      "Grand entrance lobby",
+      "Earthquake resistant RCC structure"
     ],
     amenities: [
-      "Clubhouse with Indoor Games",
-      "Swimming Pool",
-      "Gymnasium & Yoga Room",
-      "Landscaped Gardens",
-      "Children's Play Area",
-      "Jogging Track",
-      "24/7 Security",
-      "CCTV Surveillance",
-      "Covered Parking",
-      "Power Backup",
-      "Rainwater Harvesting",
-      "Solar Water Heaters"
+      "Grand Clubhouse with Indoor Games",
+      "Temperature Controlled Swimming Pool",
+      "State-of-the-art Gymnasium",
+      "Yoga & Meditation Room",
+      "Landscaped Podium Gardens",
+      "Children's Play Area with Safety Flooring",
+      "Jogging & Walking Track",
+      "Senior Citizen Seating Area",
+      "Multipurpose Banquet Hall",
+      "24/7 Security with CCTV",
+      "Video Door Phone",
+      "Covered & Open Parking",
+      "Power Backup for Common Areas",
+      "Rainwater Harvesting System",
+      "Solar Water Heating",
+      "Sewage Treatment Plant",
+      "Fire Fighting System",
+      "Intercom Facility"
     ],
     specifications: [
       {
-        title: "Living Areas",
+        title: "Living & Dining",
+        details: [
+          "Premium 2x2 vitrified tile flooring",
+          "Asian Paints Royale Shyne finish",
+          "Large windows with scenic views",
+          "Concealed electrical wiring"
+        ]
+      },
+      {
+        title: "Master Bedroom",
         details: [
           "Vitrified tile flooring",
-          "Premium quality paint",
-          "Large balconies with views"
+          "Premium quality paint finish",
+          "Attached bathroom provision",
+          "Wardrobe provision"
         ]
       },
       {
         title: "Kitchen",
         details: [
-          "Granite countertops",
-          "Ceramic wall tiles",
-          "Modular kitchen provision",
-          "Chimney and exhaust provision"
+          "Granite platform with stainless steel sink",
+          "Designer ceramic wall tiles",
+          "Provision for modular kitchen",
+          "Chimney and exhaust provision",
+          "Water purifier provision"
         ]
       },
       {
         title: "Bathrooms",
         details: [
-          "Designer tiles",
-          "Premium sanitary fittings",
+          "Anti-skid ceramic floor tiles",
+          "Designer wall tiles up to door height",
+          "Premium CP fittings by Jaquar/equivalent",
           "Hot & cold water mixer",
-          "Anti-skid flooring"
+          "Geyser provision"
+        ]
+      },
+      {
+        title: "Doors & Windows",
+        details: [
+          "Laminated main door with premium lock",
+          "Flush doors for internal rooms",
+          "Powder coated aluminum windows",
+          "UPVC windows with mosquito mesh option"
+        ]
+      },
+      {
+        title: "Floor Plans",
+        details: [
+          "Flat 1 - 278 sq.ft carpet area",
+          "Flat 2 - 276 sq.ft carpet area",
+          "Flat 3 - 278 sq.ft carpet area",
+          "Flat 4 - 277 sq.ft carpet area",
+          "Flat 5 - 279 sq.ft carpet area",
+          "Flat 6 - 274 sq.ft carpet area"
         ]
       }
     ],
     configuration: [
       {
+        type: "1 BHK",
+        area: "274-279 sq.ft (Carpet)",
+        price: "₹65 Lakhs onwards"
+      },
+      {
         type: "2 BHK",
-        area: "700-800 sq.ft",
+        area: "500-600 sq.ft",
         price: "₹98 Lakhs onwards"
       },
       {
         type: "3 BHK",
-        area: "1000-1150 sq.ft",
+        area: "800-950 sq.ft",
         price: "₹1.35 Cr onwards"
       }
     ],
     nearbyLocations: [
-      { name: "Jogeshwari Metro Station", distance: "8 min" },
-      { name: "Jogeshwari Railway Station", distance: "10 min" },
-      { name: "Western Express Highway", distance: "5 min" },
-      { name: "Oshiwara", distance: "7 min" },
-      { name: "Lokhandwala", distance: "12 min" },
-      { name: "Schools & Hospitals", distance: "5-10 min" }
-    ]
+      { name: "24Karat Multiplex", distance: "0.5 kms" },
+      { name: "Jogeshwari Railway Station", distance: "1.3 kms" },
+      { name: "Mega Mall", distance: "1.6 kms" },
+      { name: "Balasaheb Thackeray Hospital", distance: "1.9 kms" },
+      { name: "JVLR", distance: "2.0 kms" },
+      { name: "Link Road", distance: "2.5 kms" },
+      { name: "Andheri-Kurla Road", distance: "4.1 kms" },
+      { name: "Airport", distance: "7.0 kms" }
+    ],
+    floorPlan: heritageFloorPlan,
+    floorPlanTitle: "Floor Plans"
   },
 
   // DREAM RESIDENCY
   {
     id: 7,
     slug: "dream-residency",
-    name: "Dream Residency",
+    name: "Lalani Dream Residency",
     location: "Karjat (W)",
     area: "Karjat",
     rera: "P51800078901",
@@ -490,55 +602,84 @@ export const projects: Project[] = [
     price: "₹32 Lakhs Onwards",
     possession: "December 2026",
     image: project3,
-    images: [project3, hero1, hero2],
-    description: "Dream Residency is an idyllic weekend retreat nestled in the scenic surroundings of Karjat. Offering spacious 1BHK and 2BHK homes amidst lush greenery, this project is perfect for those seeking a peaceful escape from the city while staying connected to Mumbai.",
+    images: [project3, hero1, hero2, project1, aboutBg],
+    description: "Lalani Dream Residency is an idyllic weekend retreat nestled in the scenic surroundings of Karjat, just 2.5 hours from Mumbai by train. Offering spacious 1BHK and 2BHK homes amidst lush greenery and panoramic hill views, this project is perfect for those seeking a peaceful escape from the city chaos. Surrounded by nature's beauty including the Ulhas River, Kondana Caves, and waterfalls, Dream Residency combines tranquility with modern amenities. Whether you're looking for a weekend home, retirement retreat, or investment opportunity, Lalani Dream Residency offers the perfect blend of nature, comfort, and value in Maharashtra's most beautiful hill station region.",
     highlights: [
       "MahaRERA Approved - P51800078901",
-      "Scenic hill and valley views",
+      "Breathtaking hill and valley views",
       "Clean & pollution-free environment",
-      "Close to Karjat Railway Station",
-      "2.5 hours from Mumbai by train",
-      "Weekend home & investment opportunity",
+      "10 Minutes from Karjat Railway Station",
+      "2.5 hours from Mumbai by local train",
+      "1.5 hours from Pune by road",
+      "Perfect weekend home & investment",
+      "Surrounded by nature & waterfalls",
       "Vastu-compliant design",
-      "Green building practices"
+      "Eco-friendly green building",
+      "Low maintenance charges",
+      "24/7 security and maintenance"
     ],
     amenities: [
-      "Swimming Pool",
-      "Clubhouse",
-      "Landscaped Gardens",
-      "Children's Play Area",
-      "Jogging Track",
-      "Outdoor Sports Area",
+      "Infinity Swimming Pool with Valley Views",
+      "Premium Clubhouse",
+      "Landscaped Gardens with Walking Paths",
+      "Children's Adventure Play Area",
+      "Jogging & Cycling Track",
+      "Outdoor Sports Courts",
+      "Yoga & Meditation Pavilion",
       "24/7 Security",
-      "Covered Parking",
+      "Covered & Open Parking",
       "Power Backup",
       "Rainwater Harvesting",
       "Nature Walk Path",
-      "Bonfire Area"
+      "Bonfire & BBQ Area",
+      "Gazebo & Sit-out Areas",
+      "Organic Garden",
+      "Library & Reading Room"
     ],
     specifications: [
       {
-        title: "Living Areas",
+        title: "Living & Dining",
+        details: [
+          "Premium vitrified tile flooring",
+          "Textured paint finish",
+          "Large windows with nature views",
+          "Cross ventilation design"
+        ]
+      },
+      {
+        title: "Bedrooms",
         details: [
           "Vitrified tile flooring",
           "Premium quality paint",
-          "Large windows with nature views"
+          "Built-in wardrobe provision",
+          "Natural lighting"
         ]
       },
       {
         title: "Kitchen",
         details: [
-          "Granite countertops",
+          "Granite countertops with steel sink",
           "Ceramic wall tiles",
-          "Modular kitchen provision"
+          "Modular kitchen provision",
+          "Exhaust provision"
         ]
       },
       {
         title: "Bathrooms",
         details: [
-          "Designer tiles",
+          "Anti-skid ceramic tiles",
           "Premium sanitary fittings",
-          "Anti-skid flooring"
+          "Hot & cold water provision",
+          "Natural ventilation"
+        ]
+      },
+      {
+        title: "Balcony & Outdoor",
+        details: [
+          "Spacious balcony with views",
+          "Weather-resistant tiles",
+          "MS railing with glass panels",
+          "Utility area"
         ]
       }
     ],
@@ -549,9 +690,19 @@ export const projects: Project[] = [
         price: "₹32 Lakhs onwards"
       },
       {
+        type: "1 BHK Large",
+        area: "480-550 sq.ft",
+        price: "₹42 Lakhs onwards"
+      },
+      {
         type: "2 BHK",
         area: "580-680 sq.ft",
         price: "₹52 Lakhs onwards"
+      },
+      {
+        type: "2 BHK Large",
+        area: "700-800 sq.ft",
+        price: "₹65 Lakhs onwards"
       }
     ],
     nearbyLocations: [
@@ -559,8 +710,11 @@ export const projects: Project[] = [
       { name: "Ulhas River", distance: "5 min" },
       { name: "Kondana Caves", distance: "15 min" },
       { name: "Bhivpuri Waterfall", distance: "20 min" },
-      { name: "Mumbai", distance: "2.5 hrs by train" },
-      { name: "Pune", distance: "2 hrs by road" }
+      { name: "Matheran Hill Station", distance: "30 min" },
+      { name: "Mumbai (CST)", distance: "2.5 hrs by train" },
+      { name: "Pune", distance: "1.5 hrs by road" },
+      { name: "Lonavala", distance: "45 min" },
+      { name: "Imagicaa Theme Park", distance: "25 min" }
     ]
   },
 
