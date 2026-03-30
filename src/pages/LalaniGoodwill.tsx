@@ -18,7 +18,7 @@ import { trackEvent } from "@/lib/tracking";
 // Import images
 import goodwillLogo from "@/assets/lalanigoodwill/image.png";
 import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
-import image1 from "@/assets/lalanigoodwill/image1.png";
+import image1 from "@/assets/lalanigoodwill/image7.png";
 import image2 from "@/assets/lalanigoodwill/image2.png";
 import image3 from "@/assets/lalanigoodwill/image3.png";
 import image4 from "@/assets/lalanigoodwill/image4.png";
