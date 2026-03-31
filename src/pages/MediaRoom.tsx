@@ -114,10 +114,10 @@ const MediaRoom = () => {
   // Get height based on size
   const getHeight = (size: string) => {
     switch (size) {
-      case 'large': return 'h-64 sm:h-72 md:h-80';
-      case 'medium': return 'h-52 sm:h-56 md:h-64';
-      case 'small': return 'h-40 sm:h-48 md:h-56';
-      default: return 'h-48 sm:h-56 md:h-64';
+      case 'large': return 'h-48 sm:h-56 md:h-72';
+      case 'medium': return 'h-40 sm:h-48 md:h-60';
+      case 'small': return 'h-32 sm:h-40 md:h-48';
+      default: return 'h-40 sm:h-48 md:h-60';
     }
   };
 
@@ -137,15 +137,15 @@ const MediaRoom = () => {
       />
       <main className="pt-0">
         {/* Awards Gallery Section - 3D Carousel */}
-        <section className="py-12 md:py-20 bg-gradient-to-b from-card to-background overflow-hidden">
+        <section className="py-5 md:py-10 bg-gradient-to-b from-card to-background overflow-x-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 1 }}
-              className="max-w-6xl mx-auto mb-8 md:mb-12"
+              className="max-w-6xl mx-auto mb-3 md:mb-5"
             >
-              <div className="flex items-center justify-center gap-3 mb-3">
-                <Award className="w-6 h-6 md:w-8 md:h-8 text-primary" />
-                <h2 className="text-2xl md:text-4xl font-heading font-bold text-foreground">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Award className="w-5 h-5 md:w-8 md:h-8 text-primary" />
+                <h2 className="text-xl md:text-3xl font-heading font-bold text-foreground">
                   Awards & Recognition
                 </h2>
               </div>
@@ -155,13 +155,13 @@ const MediaRoom = () => {
             </motion.div>
           </div>
 
-          {/* Marquee Rows */}
-          <div className="max-w-7xl mx-auto px-4 mb-3 overflow-hidden">
+          {/* Marquee Row 1 */}
+          <div className="max-w-7xl mx-auto px-4 overflow-hidden mb-3">
             <div className="flex animate-marquee-forward">
               {[...allAwards, ...allAwards, ...allAwards].map((src, index) => (
                 <div
                   key={`row1-${index}`}
-                  className="flex-shrink-0 w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 mx-2 rounded-2xl overflow-hidden border-2 border-transparent hover:border-primary transition-all group cursor-pointer transform hover:scale-105 hover:-translate-y-2 duration-300"
+                  className="flex-shrink-0 w-28 h-24 sm:w-36 sm:h-32 md:w-48 md:h-44 lg:w-56 lg:h-52 mx-2 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden border-2 border-transparent hover:border-primary transition-all group cursor-pointer transform hover:scale-105 hover:-translate-y-2 duration-300"
                   onClick={() => openLightbox(index % allAwards.length, 'awards')}
                 >
                   <img
@@ -175,12 +175,13 @@ const MediaRoom = () => {
             </div>
           </div>
 
+          {/* Marquee Row 2 */}
           <div className="max-w-7xl mx-auto px-4 overflow-hidden">
             <div className="flex animate-marquee-reverse">
               {[...allAwards.slice().reverse(), ...allAwards.slice().reverse(), ...allAwards.slice().reverse()].map((src, index) => (
                 <div
                   key={`row2-${index}`}
-                  className="flex-shrink-0 w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 mx-2 rounded-2xl overflow-hidden border-2 border-transparent hover:border-primary transition-all group cursor-pointer transform hover:scale-105 hover:-translate-y-2 duration-300"
+                  className="flex-shrink-0 w-28 h-24 sm:w-36 sm:h-32 md:w-48 md:h-44 lg:w-56 lg:h-52 mx-2 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden border-2 border-transparent hover:border-primary transition-all group cursor-pointer transform hover:scale-105 hover:-translate-y-2 duration-300"
                   onClick={() => openLightbox((allAwards.length - 1 - (index % allAwards.length)), 'awards')}
                 >
                   <img
@@ -196,7 +197,7 @@ const MediaRoom = () => {
         </section>
 
         {/* Media Gallery Section - Unique Masonry */}
-        <section className="py-12 md:py-20 bg-background relative">
+        <section className="py-5 md:py-10 bg-background relative">
           {/* Decorative Elements */}
           <div className="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
@@ -207,18 +208,18 @@ const MediaRoom = () => {
               className="max-w-7xl mx-auto"
             >
               {/* Header */}
-              <div className="text-center mb-10 md:mb-16">
-                <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-3">
+              <div className="text-center mb-4 md:mb-8">
+                <h2 className="text-2xl md:text-4xl font-heading font-bold text-foreground mb-2">
                   <span className="gradient-gold-text">Media Gallery</span>
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
                   A visual journey through our media presence and press coverage
                 </p>
-                <div className="w-24 h-1 bg-gradient-to-r from-primary to-yellow-500 mx-auto mt-4 rounded-full" />
+                <div className="w-16 md:w-24 h-0.5 md:h-1 bg-gradient-to-r from-primary to-yellow-500 mx-auto mt-3 rounded-full" />
               </div>
 
               {/* Creative Masonry Gallery */}
-              <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-5 space-y-4 md:space-y-5">
+              <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-2 md:gap-3 space-y-2 md:space-y-3">
                 {mediaImages.map((image, index) => (
                   <div
                     key={index}
@@ -269,25 +270,25 @@ const MediaRoom = () => {
         </section>
 
         {/* News & Updates Section - Card Design */}
-        <section className="py-12 md:py-20 bg-card">
+        <section className="py-5 md:py-10 bg-card">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 1 }}
               className="max-w-6xl mx-auto"
             >
-              <div className="flex items-center justify-center gap-3 mb-10 md:mb-12">
-                <Newspaper className="w-6 h-6 md:w-8 md:h-8 text-primary" />
-                <h2 className="text-2xl md:text-4xl font-heading font-bold text-foreground">
+              <div className="flex items-center justify-center gap-2 mb-4 md:mb-6">
+                <Newspaper className="w-5 h-5 md:w-7 md:h-7 text-primary" />
+                <h2 className="text-xl md:text-3xl font-heading font-bold text-foreground">
                   News & Updates
                 </h2>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
                 {newsArticles.map((article, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 1 }}
-                    className="bg-background rounded-2xl p-5 md:p-6 shadow-lg border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group"
+                    className="bg-background rounded-xl md:rounded-2xl p-4 md:p-5 shadow-lg border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group"
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -312,7 +313,7 @@ const MediaRoom = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-10 md:mt-12 p-4 md:p-6 bg-muted/30 rounded-xl border border-border/50">
+              <div className="mt-4 md:mt-6 p-3 md:p-4 bg-muted/30 rounded-xl border border-border/50">
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   <strong>Disclaimer:</strong> Lalani Group should not be held responsible for any information posted in this section. The News articles are merely for information purpose.
                 </p>

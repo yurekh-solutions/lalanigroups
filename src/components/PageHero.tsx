@@ -8,7 +8,7 @@ interface PageHeroProps {
 
 const PageHero = ({ title, subtitle, backgroundImage }: PageHeroProps) => {
   return (
-    <section className="relative h-[40vh] md:h-[50vh] overflow-hidden">
+    <section className="relative h-[30vh] sm:h-[35vh] md:h-[45vh] overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
@@ -26,11 +26,11 @@ const PageHero = ({ title, subtitle, backgroundImage }: PageHeroProps) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-3">
               {title}
             </h1>
             {subtitle && (
-              <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
                 {subtitle}
               </p>
             )}
@@ -39,7 +39,7 @@ const PageHero = ({ title, subtitle, backgroundImage }: PageHeroProps) => {
       </div>
       
       {/* Bottom Gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-20 md:h-24 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };
