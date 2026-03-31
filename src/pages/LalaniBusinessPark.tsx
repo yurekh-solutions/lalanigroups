@@ -150,14 +150,14 @@ const LalaniBusinessPark = () => {
       // Stagger animations for cards
       gsap.utils.toArray<HTMLElement>(".gsap-card").forEach((card, i) => {
         gsap.from(card, {
-          y: 60,
-          opacity: 0,
-          duration: 0.8,
-          delay: i * 0.1,
+          y: 40,
+          duration: 0.6,
+          delay: i * 0.05,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: card,
-            start: "top 85%",
-            toggleActions: "play none none reverse"
+            start: "top 90%",
+            toggleActions: "play none none none"
           }
         });
       });
@@ -288,35 +288,26 @@ const LalaniBusinessPark = () => {
         {/* Project Hallmarks */}
         <section className="py-16 md:py-20 bg-card">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 1, y: 0 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
+            <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
                 Project Hallmarks
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Discover what makes Lalani Business Park the ideal choice for your business
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
               {projectHallmarks.map((item, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 1, y: 0 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
                   className="flex flex-col items-center p-4 md:p-6 bg-background rounded-xl border border-border hover:border-primary/50 transition-all group gsap-card"
                 >
                   <item.icon className="w-8 h-8 md:w-10 md:h-10 text-primary mb-3 group-hover:scale-110 transition-transform" />
                   <span className="text-sm md:text-base text-center text-foreground font-medium">
                     {item.text}
                   </span>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -326,12 +317,7 @@ const LalaniBusinessPark = () => {
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <motion.div
-                initial={{ opacity: 1, x: 0 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
+              <div className="gsap-card">
                 <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">About The Project</span>
                 <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
                   Redefining Commercial <span className="text-primary">Excellence</span>
@@ -361,15 +347,9 @@ const LalaniBusinessPark = () => {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 1, x: 0 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="relative"
-              >
+              <div className="relative gsap-card">
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border">
                   <img
                     src={hero1}
@@ -383,7 +363,7 @@ const LalaniBusinessPark = () => {
                   <p className="text-primary font-bold text-xl">P51800033063</p>
                   <p className="text-xs text-muted-foreground">MahaRERA Registration</p>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -391,12 +371,7 @@ const LalaniBusinessPark = () => {
         {/* Space Configurations */}
         <section className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 1, y: 0 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
+            <div className="text-center mb-12">
               <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Flexible Options</span>
               <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-4">
                 Space <span className="text-primary">Configurations</span>
@@ -404,7 +379,7 @@ const LalaniBusinessPark = () => {
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Choose from a variety of office configurations to suit your business needs
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
@@ -427,12 +402,8 @@ const LalaniBusinessPark = () => {
                   features: ["Customizable layout", "Dedicated entrance", "Branding options"]
                 },
               ].map((space, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 1, y: 0 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
                   className="bg-background rounded-2xl border border-border overflow-hidden group hover:border-primary/50 transition-all gsap-card"
                 >
                   <div className="aspect-[16/9] overflow-hidden">
@@ -460,7 +431,7 @@ const LalaniBusinessPark = () => {
                       ))}
                     </ul>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -470,12 +441,7 @@ const LalaniBusinessPark = () => {
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <motion.div
-                initial={{ opacity: 1, x: 0 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="order-2 lg:order-1"
-              >
+              <div className="order-2 lg:order-1">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-4">
                     <div className="aspect-[3/4] rounded-2xl overflow-hidden">
@@ -494,14 +460,9 @@ const LalaniBusinessPark = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 1, x: 0 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="order-1 lg:order-2"
-              >
+              <div className="order-1 lg:order-2">
                 <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Why Choose Us</span>
                 <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
                   Built for <span className="text-primary">Success</span>
@@ -530,7 +491,7 @@ const LalaniBusinessPark = () => {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -538,11 +499,7 @@ const LalaniBusinessPark = () => {
         {/* Amenities Section */}
         <section className="py-16 md:py-20 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 1, y: 0 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
+            <div className="text-center mb-12"
             >
               <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
                 World-Class Amenities
@@ -550,17 +507,13 @@ const LalaniBusinessPark = () => {
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 Experience a workspace designed for success with premium facilities and modern infrastructure.
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {amenities.map((amenity, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 1, y: 0 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="flex items-start gap-4 p-6 bg-card rounded-xl border border-border hover:border-primary/50 hover:shadow-lg transition-all group"
+                  className="flex items-start gap-4 p-6 bg-card rounded-xl border border-border hover:border-primary/50 hover:shadow-lg transition-all group gsap-card"
                 >
                   <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
                     <amenity.icon className="w-6 h-6 text-primary" />
@@ -569,7 +522,7 @@ const LalaniBusinessPark = () => {
                     <h3 className="font-semibold text-foreground mb-1">{amenity.title}</h3>
                     <p className="text-sm text-muted-foreground">{amenity.desc}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -578,12 +531,7 @@ const LalaniBusinessPark = () => {
         {/* Gallery Section - Unique Layout */}
         <section id="content" className="py-16 md:py-24 bg-card overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 1, y: 0 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
+            <div className="text-center mb-12">
               <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Visual Tour</span>
               <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-4">
                 Project <span className="text-primary">Gallery</span>
@@ -591,17 +539,13 @@ const LalaniBusinessPark = () => {
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Experience the premium quality and modern design
               </p>
-            </motion.div>
+            </div>
 
             {/* Unique Masonry-style Grid */}
             <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
               {galleryImages.map((image, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 1, y: 0 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.6 }}
                   className="break-inside-avoid gsap-card"
                 >
                   <div 
@@ -632,17 +576,12 @@ const LalaniBusinessPark = () => {
                       <ChevronRight className="w-4 h-4 text-white" />
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* Quick Stats */}
-            <motion.div
-              initial={{ opacity: 1, y: 0 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12"
-            >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
               {[
                 { value: "Khar West", label: "Prime Location" },
                 { value: "24/7", label: "Security" },
@@ -654,7 +593,7 @@ const LalaniBusinessPark = () => {
                   <p className="text-sm text-muted-foreground">{stat.label}</p>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -784,7 +723,7 @@ const LalaniBusinessPark = () => {
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Contact Form */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 1, x: 0 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 className="bg-card p-8 rounded-2xl border border-border"
@@ -869,7 +808,7 @@ const LalaniBusinessPark = () => {
 
               {/* Contact Info */}
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 1, x: 0 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 className="space-y-8"
