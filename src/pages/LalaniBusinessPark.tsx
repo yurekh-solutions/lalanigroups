@@ -1,9 +1,11 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { 
   MapPin, Phone, Mail, Download, Building2, Car, 
   Shield, Zap, Home, CheckCircle, X, ChevronLeft, ChevronRight,
-  Train, ShoppingBag, Building, Wifi, Users
+  Train, ShoppingBag, Building, Wifi, Users, ArrowDown, Star
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -13,6 +15,9 @@ import BackToTopButton from "@/components/BackToTopButton";
 import LeadCapturePopup from "@/components/LeadCapturePopup";
 import SEO from "@/components/SEO";
 import { trackEvent } from "@/lib/tracking";
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 // Import images
 import businessParkLogo from "@/assets/lalanibusinespark/busineesparklogo.png";
@@ -26,12 +31,12 @@ import aboutBg from "@/assets/about-bg.jpg";
 
 // Gallery images
 const galleryImages = [
-  { src: project2},
-  { src: hero1 },
-  { src: hero2 },
-  { src: project1 },
-  { src: project3},
-  { src: aboutBg},
+  { src: project2, alt: "Lalani Business Park Exterior" },
+  { src: hero1, alt: "Modern Office Space" },
+  { src: hero2, alt: "Building Architecture" },
+  { src: project1, alt: "Commercial Complex" },
+  { src: project3, alt: "Premium Location" },
+  { src: aboutBg, alt: "Business Hub" },
 ];
 
 const projectHallmarks = [
@@ -114,6 +119,7 @@ const specifications = [
 const LalaniBusinessPark = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState<'overview' | 'amenities' | 'gallery' | 'location'>('overview');
   const [contactForm, setContactForm] = useState({
     name: "",
     phone: "",
@@ -122,6 +128,43 @@ const LalaniBusinessPark = () => {
   });
   const [formLoading, setFormLoading] = useState(false);
   const [formSent, setFormSent] = useState(false);
+  
+  const heroRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // GSAP Animations
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero parallax effect
+      gsap.to(".hero-bg", {
+        yPercent: 30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+
+      // Stagger animations for cards
+      gsap.utils.toArray<HTMLElement>(".gsap-card").forEach((card, i) => {
+        gsap.from(card, {
+          y: 60,
+          opacity: 0,
+          duration: 0.8,
+          delay: i * 0.1,
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          }
+        });
+      });
+    });
+
+    return () => ctx.revert();
+  }, [activeTab]);
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -160,25 +203,26 @@ const LalaniBusinessPark = () => {
       
       <main className="min-h-screen bg-background">
         {/* Hero Section with Logo */}
-        <section className="relative min-h-[80vh] md:min-h-screen overflow-hidden flex items-center">
+        <section ref={heroRef} className="relative min-h-[90vh] md:min-h-screen overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <img
               src={project2}
               alt="Lalani Business Park"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover hero-bg scale-110"
               loading="eager"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
           </div>
 
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
             {/* Centered Logo */}
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
               className="flex justify-center mb-6 md:mb-8"
             >
-              <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full overflow-hidden bg-white/10 backdrop-blur-md p-3 sm:p-4 md:p-5 shadow-2xl border-2 md:border-4 border-white/20">
+              <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full overflow-hidden bg-white/10 backdrop-blur-md p-3 sm:p-4 md:p-5 shadow-2xl border-2 md:border-4 border-white/20 hover:border-primary/50 transition-colors duration-500">
                 <img
                   src={businessParkLogo}
                   alt="Lalani Business Park"
@@ -189,30 +233,56 @@ const LalaniBusinessPark = () => {
 
             {/* Hero Content */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
               className="text-center text-white max-w-4xl mx-auto"
             >
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold mb-3 md:mb-4 px-2">
-                Your Business Deserves a Premium Address
+              <span className="inline-block px-4 py-1.5 bg-primary/20 backdrop-blur-sm rounded-full text-primary text-sm font-medium mb-4">
+                Premium Commercial Spaces
+              </span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold mb-4 md:mb-6 px-2 leading-tight">
+                Your Business Deserves a <span className="text-primary">Premium</span> Address
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 leading-relaxed px-2 mb-6">
-                Lalani Business Park offers premium commercial spaces in the heart of Khar West. 
-                With modern infrastructure, high-speed connectivity, and a prestigious location, 
-                elevate your business to new heights.
+              <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed px-2 mb-8 max-w-3xl mx-auto">
+                Elevate your business with modern commercial spaces in the heart of Khar West. 
+                Premium infrastructure, strategic location, unmatched connectivity.
               </p>
 
-              <a
-                href={brochurePdf}
-                download="Lalani-Business-Park-Brochure.pdf"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-gold-light text-primary-foreground rounded-full font-semibold hover:shadow-lg transition-all hover:scale-105"
-              >
-                <Download className="w-5 h-5" />
-                Download Brochure
-              </a>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href={brochurePdf}
+                  download="Lalani-Business-Park-Brochure.pdf"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-gold-light text-primary-foreground rounded-full font-semibold hover:shadow-xl hover:shadow-primary/30 transition-all hover:scale-105"
+                >
+                  <Download className="w-5 h-5" />
+                  Download Brochure
+                </a>
+                <a
+                  href="#content"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 text-white rounded-full font-semibold hover:bg-white/20 transition-all"
+                >
+                  Explore More
+                </a>
+              </div>
             </motion.div>
           </div>
+
+          {/* Scroll Indicator */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          >
+            <span className="text-white/60 text-xs tracking-wider uppercase">Scroll</span>
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
+            >
+              <ArrowDown className="w-5 h-5 text-primary" />
+            </motion.div>
+          </motion.div>
         </section>
 
         {/* Project Hallmarks */}
@@ -240,7 +310,7 @@ const LalaniBusinessPark = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="flex flex-col items-center p-4 md:p-6 bg-background rounded-xl border border-border hover:border-primary/50 transition-all group"
+                  className="flex flex-col items-center p-4 md:p-6 bg-background rounded-xl border border-border hover:border-primary/50 transition-all group gsap-card"
                 >
                   <item.icon className="w-8 h-8 md:w-10 md:h-10 text-primary mb-3 group-hover:scale-110 transition-transform" />
                   <span className="text-sm md:text-base text-center text-foreground font-medium">
@@ -248,6 +318,219 @@ const LalaniBusinessPark = () => {
                   </span>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* About Project Section */}
+        <section className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">About The Project</span>
+                <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
+                  Redefining Commercial <span className="text-primary">Excellence</span>
+                </h2>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  Lalani Business Park stands as a beacon of modern commercial architecture in Khar West. 
+                  This premium development offers thoughtfully designed office spaces that combine 
+                  functionality with sophisticated aesthetics.
+                </p>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Strategically positioned in one of Mumbai's most sought-after business districts, 
+                  the project provides unparalleled connectivity to major commercial hubs, 
+                  transportation networks, and urban amenities.
+                </p>
+
+                {/* Feature List */}
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { icon: Building2, text: "Modern Office Spaces" },
+                    { icon: MapPin, text: "Prime Khar Location" },
+                    { icon: Shield, text: "24/7 Security" },
+                    { icon: Zap, text: "Full Power Backup" },
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center gap-3 p-3 bg-card rounded-lg border border-border">
+                      <item.icon className="w-5 h-5 text-primary shrink-0" />
+                      <span className="text-sm text-foreground">{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="relative"
+              >
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border">
+                  <img
+                    src={hero1}
+                    alt="Lalani Business Park Interior"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                {/* Floating Card */}
+                <div className="absolute -bottom-6 -left-6 bg-card p-5 rounded-xl border border-border shadow-xl">
+                  <p className="text-primary font-bold text-xl">P51800033063</p>
+                  <p className="text-xs text-muted-foreground">MahaRERA Registration</p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Space Configurations */}
+        <section className="py-16 md:py-24 bg-card">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Flexible Options</span>
+              <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-4">
+                Space <span className="text-primary">Configurations</span>
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Choose from a variety of office configurations to suit your business needs
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { 
+                  title: "Compact Offices", 
+                  size: "500-800 sq.ft.",
+                  desc: "Perfect for startups and small teams looking for efficient workspaces",
+                  features: ["Open plan layout", "Natural lighting", "AC provision"]
+                },
+                { 
+                  title: "Premium Suites", 
+                  size: "1000-2000 sq.ft.",
+                  desc: "Ideal for growing businesses needing professional environment",
+                  features: ["Private cabins", "Conference area", "Pantry space"]
+                },
+                { 
+                  title: "Corporate Floors", 
+                  size: "3000+ sq.ft.",
+                  desc: "Full floors for established companies requiring custom setups",
+                  features: ["Customizable layout", "Dedicated entrance", "Branding options"]
+                },
+              ].map((space, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-background rounded-2xl border border-border overflow-hidden group hover:border-primary/50 transition-all gsap-card"
+                >
+                  <div className="aspect-[16/9] overflow-hidden">
+                    <img
+                      src={galleryImages[index]?.src || project1}
+                      alt={space.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-xl font-heading font-bold text-foreground">{space.title}</h3>
+                      <span className="text-primary text-sm font-medium bg-primary/10 px-3 py-1 rounded-full">
+                        {space.size}
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground text-sm mb-4">{space.desc}</p>
+                    <ul className="space-y-2">
+                      {space.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <CheckCircle className="w-4 h-4 text-primary shrink-0" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us */}
+        <section className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="order-2 lg:order-1"
+              >
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-4">
+                    <div className="aspect-[3/4] rounded-2xl overflow-hidden">
+                      <img src={project2} alt="Modern Architecture" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                    <div className="aspect-square rounded-2xl overflow-hidden">
+                      <img src={project3} alt="Premium Facilities" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                  </div>
+                  <div className="space-y-4 pt-8">
+                    <div className="aspect-square rounded-2xl overflow-hidden">
+                      <img src={hero2} alt="Business Hub" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                    <div className="aspect-[3/4] rounded-2xl overflow-hidden">
+                      <img src={aboutBg} alt="Strategic Location" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="order-1 lg:order-2"
+              >
+                <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Why Choose Us</span>
+                <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
+                  Built for <span className="text-primary">Success</span>
+                </h2>
+                <p className="text-muted-foreground mb-8 leading-relaxed">
+                  With over three decades of experience in Mumbai's real estate landscape, 
+                  Lalani Group delivers projects that stand the test of time. Our commitment 
+                  to quality, transparency, and customer satisfaction sets us apart.
+                </p>
+
+                <div className="space-y-6">
+                  {[
+                    { title: "35+ Years Legacy", desc: "Trusted builder with proven track record" },
+                    { title: "RERA Compliant", desc: "Complete transparency and legal compliance" },
+                    { title: "Prime Locations", desc: "Strategic sites with excellent connectivity" },
+                    { title: "Quality Construction", desc: "Premium materials and modern techniques" },
+                  ].map((item, index) => (
+                    <div key={index} className="flex gap-4 p-4 bg-card rounded-xl border border-border hover:border-primary/30 transition-colors">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <span className="text-primary font-bold">0{index + 1}</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-sm text-muted-foreground">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -292,8 +575,8 @@ const LalaniBusinessPark = () => {
           </div>
         </section>
 
-        {/* Gallery Section */}
-        <section className="py-16 md:py-20 bg-card">
+        {/* Gallery Section - Unique Layout */}
+        <section id="content" className="py-16 md:py-24 bg-card overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -301,38 +584,77 @@ const LalaniBusinessPark = () => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
-                Gallery
+              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Visual Tour</span>
+              <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-4">
+                Project <span className="text-primary">Gallery</span>
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Experience the premium quality and modern design of Lalani Business Park
+                Experience the premium quality and modern design
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {/* Unique Masonry-style Grid */}
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
               {galleryImages.map((image, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group relative aspect-[4/3] overflow-hidden rounded-2xl cursor-pointer"
-                  onClick={() => openLightbox(index)}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  className="break-inside-avoid gsap-card"
                 >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="text-white text-sm font-medium">{image.alt}</p>
+                  <div 
+                    className={`group relative overflow-hidden rounded-2xl cursor-pointer ${
+                      index === 0 ? 'aspect-square' : index === 2 ? 'aspect-[4/5]' : 'aspect-[4/3]'
+                    }`}
+                    onClick={() => openLightbox(index)}
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                    
+                    {/* Content on hover */}
+                    <div className="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Star className="w-4 h-4 text-primary" />
+                        <span className="text-primary text-xs font-medium uppercase tracking-wider">Featured</span>
+                      </div>
+                      <h3 className="text-white text-lg font-semibold">{image.alt}</h3>
+                    </div>
+
+                    {/* Corner accent */}
+                    <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <ChevronRight className="w-4 h-4 text-white" />
+                    </div>
                   </div>
                 </motion.div>
               ))}
             </div>
+
+            {/* Quick Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12"
+            >
+              {[
+                { value: "Khar West", label: "Prime Location" },
+                { value: "24/7", label: "Security" },
+                { value: "100%", label: "Power Backup" },
+                { value: "RERA", label: "Approved" },
+              ].map((stat, index) => (
+                <div key={index} className="text-center p-4 bg-background rounded-xl border border-border hover:border-primary/30 transition-colors">
+                  <p className="text-xl md:text-2xl font-bold text-primary">{stat.value}</p>
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </section>
 

@@ -12,12 +12,18 @@ import { useState } from "react";
 import project2 from "@/assets/project-2.jpg";
 
 // Media Gallery Images
+import mediaCover from "@/assets/lalanimedia/media.png.png";
 import media1 from "@/assets/lalanimedia/media1.png";
 import media3 from "@/assets/lalanimedia/media3.png";
 import media4 from "@/assets/lalanimedia/media4.png";
 import media5 from "@/assets/lalanimedia/media5.png";
 import media6 from "@/assets/lalanimedia/media6.png";
 import media7 from "@/assets/lalanimedia/media7.png";
+import media10 from "@/assets/lalanimedia/media10.png";
+import media11 from "@/assets/lalanimedia/media11.png";
+import media12 from "@/assets/lalanimedia/media12.png";
+import media13 from "@/assets/lalanimedia/media13.png";
+import media14 from "@/assets/lalanimedia/media14.png";
 
 // Awards Gallery Images
 import awardCover from "@/assets/lalaniawards/awardcover.png";
@@ -28,14 +34,21 @@ import award4 from "@/assets/lalaniawards/award4.png";
 import award5 from "@/assets/lalaniawards/award5.png";
 import award7 from "@/assets/lalaniawards/award7.png";
 import award8 from "@/assets/lalaniawards/award8.png";
+import award9 from "@/assets/lalaniawards/award9.png";
 
 const mediaImages = [
-  { src: media1, alt: "Lalani Group Media Coverage 1" },
-  { src: media3, alt: "Lalani Group Media Coverage 3" },
-  { src: media4, alt: "Lalani Group Media Coverage 4" },
-  { src: media5, alt: "Lalani Group Media Coverage 5" },
-  { src: media6, alt: "Lalani Group Media Coverage 6" },
-  { src: media7, alt: "Lalani Group Media Coverage 7" },
+  { src: mediaCover, alt: "Lalani Group Media Feature" },
+  { src: media1, alt: "Lalani Group Press Coverage" },
+  { src: media3, alt: "Lalani Group News Article" },
+  { src: media4, alt: "Lalani Group Event Coverage" },
+  { src: media5, alt: "Lalani Group Publication" },
+  { src: media6, alt: "Lalani Group Interview" },
+  { src: media7, alt: "Lalani Group Feature Story" },
+  { src: media10, alt: "Lalani Group Exhibition" },
+  { src: media11, alt: "Lalani Group Property Showcase" },
+  { src: media12, alt: "Lalani Group Team Event" },
+  { src: media13, alt: "Lalani Group Expo" },
+  { src: media14, alt: "Lalani Group Ceremony" },
 ];
 
 const awardImages = [
@@ -47,7 +60,11 @@ const awardImages = [
   { src: award5, alt: "Lalani Group Award 5" },
   { src: award7, alt: "Lalani Group Award 7" },
   { src: award8, alt: "Lalani Group Award 8" },
+  { src: award9, alt: "Lalani Group Award 9" },
 ];
+
+// All awards for marquee rows
+const allAwards = [awardCover, award, award1, award3, award4, award5, award7, award8, award9];
 
 const newsArticles = [
   {
@@ -140,50 +157,69 @@ const MediaRoom = () => {
         backgroundImage={project2}
       />
       <main className="pt-0">
-        {/* Awards Gallery Section */}
-        <section className="py-16 bg-card">
+        {/* Awards Gallery Section - Marquee Carousel */}
+        <section className="py-16 bg-card overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="max-w-6xl mx-auto"
+              className="max-w-6xl mx-auto mb-10"
             >
-              <div className="flex items-center gap-3 mb-8">
+              <div className="flex items-center gap-3 mb-4">
                 <Award className="w-8 h-8 text-primary" />
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
                   Awards & Recognition
                 </h2>
               </div>
-              <p className="text-muted-foreground mb-8 max-w-3xl">
+              <p className="text-muted-foreground max-w-3xl">
                 Lalani Group has been recognized for excellence in real estate development with numerous awards and accolades over the years.
               </p>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                {awardImages.map((image, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    className="aspect-square overflow-hidden rounded-xl cursor-pointer group border border-border hover:border-primary/50 transition-all"
-                    onClick={() => openLightbox(index, 'awards')}
-                  >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                  </motion.div>
-                ))}
-              </div>
             </motion.div>
+          </div>
+
+          {/* Marquee Row 1 - Forward */}
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-4 overflow-hidden">
+            <div className="flex animate-marquee-forward">
+              {[...allAwards, ...allAwards, ...allAwards].map((src, index) => (
+                <div
+                  key={`row1-${index}`}
+                  className="flex-shrink-0 w-48 h-48 md:w-56 md:h-56 mx-2 rounded-xl overflow-hidden border border-border hover:border-primary/50 transition-all group cursor-pointer"
+                  onClick={() => openLightbox(index % allAwards.length, 'awards')}
+                >
+                  <img
+                    src={src}
+                    alt={`Lalani Group Award ${index + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Marquee Row 2 - Reverse */}
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <div className="flex animate-marquee-reverse">
+              {[...allAwards.slice().reverse(), ...allAwards.slice().reverse(), ...allAwards.slice().reverse()].map((src, index) => (
+                <div
+                  key={`row2-${index}`}
+                  className="flex-shrink-0 w-48 h-48 md:w-56 md:h-56 mx-2 rounded-xl overflow-hidden border border-border hover:border-primary/50 transition-all group cursor-pointer"
+                  onClick={() => openLightbox((allAwards.length - 1 - (index % allAwards.length)), 'awards')}
+                >
+                  <img
+                    src={src}
+                    alt={`Lalani Group Award ${index + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* Media Gallery Section */}
+        {/* Media Gallery Section - Expanding Accordion */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -192,35 +228,61 @@ const MediaRoom = () => {
               viewport={{ once: true }}
               className="max-w-6xl mx-auto"
             >
-              <div className="flex items-center gap-3 mb-8">
-                <Image className="w-8 h-8 text-primary" />
-                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
+              {/* Header */}
+              <div className="text-center mb-10">
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-3">
                   Media Gallery
                 </h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                  A visual collection of our media presence and press coverage
+                </p>
               </div>
-              <p className="text-muted-foreground mb-8 max-w-3xl">
-                Explore our media coverage, press releases, and featured articles highlighting Lalani Group's contributions to Mumbai's real estate landscape.
-              </p>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {mediaImages.map((image, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    className="aspect-video overflow-hidden rounded-xl cursor-pointer group border border-border hover:border-primary/50 transition-all"
-                    onClick={() => openLightbox(index, 'media')}
-                  >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                  </motion.div>
-                ))}
+              {/* Two Rows Layout - 6 images each */}
+              <div className="flex flex-col gap-6">
+                {/* Row 1 - First 6 images */}
+                <div className="flex items-center gap-3 md:gap-4 h-[350px] md:h-[400px]">
+                  {mediaImages.slice(0, 6).map((image, index) => (
+                    <div
+                      key={index}
+                      className="relative group flex-grow transition-all w-12 md:w-16 h-full duration-500 hover:w-full cursor-pointer rounded-xl overflow-hidden"
+                      onClick={() => openLightbox(index, 'media')}
+                    >
+                      <img
+                        className="h-full w-full object-cover object-center"
+                        src={image.src}
+                        alt={image.alt}
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <h3 className="text-sm md:text-lg font-semibold mb-1">{image.alt}</h3>
+                        <p className="text-xs text-white/80">Click to view</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Row 2 - Last 6 images */}
+                <div className="flex items-center gap-3 md:gap-4 h-[350px] md:h-[400px]">
+                  {mediaImages.slice(6, 12).map((image, index) => (
+                    <div
+                      key={index + 6}
+                      className="relative group flex-grow transition-all w-12 md:w-16 h-full duration-500 hover:w-full cursor-pointer rounded-xl overflow-hidden"
+                      onClick={() => openLightbox(index + 6, 'media')}
+                    >
+                      <img
+                        className="h-full w-full object-cover object-center"
+                        src={image.src}
+                        alt={image.alt}
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 text-white bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <h3 className="text-sm md:text-lg font-semibold mb-1">{image.alt}</h3>
+                        <p className="text-xs text-white/80">Click to view</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>

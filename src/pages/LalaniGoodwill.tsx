@@ -16,7 +16,7 @@ import SEO from "@/components/SEO";
 import { trackEvent } from "@/lib/tracking";
 
 // Import images
-import goodwillLogo from "@/assets/lalanigoodwill/image.png";
+import goodwillLogo from "@/assets/lalanigoodwill/goodwilllogo.png";
 import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
 import image1 from "@/assets/lalanigoodwill/image7.png";
 import image2 from "@/assets/lalanigoodwill/image2.png";
@@ -523,6 +523,139 @@ const LalaniGoodwill = () => {
                   </ul>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* About Project Section */}
+        <section className="py-16 md:py-20 bg-card">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">About The Project</span>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
+                  Redefining Urban Living in <span className="text-primary">Andheri East</span>
+                </h2>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  Lalani Goodwill stands as a testament to thoughtful architecture and modern living. 
+                  This 13-storey residential tower offers meticulously designed 1, 2, and 3 BHK homes 
+                  that cater to the discerning urban dweller seeking comfort, convenience, and class.
+                </p>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Located in the heart of Andheri East, one of Mumbai's most vibrant neighborhoods, 
+                  the project offers unparalleled connectivity to business hubs, entertainment centers, 
+                  educational institutions, and healthcare facilities. The triple-stack automated parking 
+                  system ensures that your vehicle is always secure and easily accessible.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-background p-4 rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-primary">13</p>
+                    <p className="text-sm text-muted-foreground">Storeys</p>
+                  </div>
+                  <div className="bg-background p-4 rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-primary">1, 2 & 3</p>
+                    <p className="text-sm text-muted-foreground">BHK Options</p>
+                  </div>
+                  <div className="bg-background p-4 rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-primary">Jodi</p>
+                    <p className="text-sm text-muted-foreground">Configurations</p>
+                  </div>
+                  <div className="bg-background p-4 rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-primary">RERA</p>
+                    <p className="text-sm text-muted-foreground">Approved</p>
+                  </div>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border">
+                  <img
+                    src={mainElevation}
+                    alt="Lalani Goodwill Main Elevation"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -left-6 bg-card p-4 rounded-xl border border-border shadow-xl">
+                  <p className="text-primary font-bold text-lg">P51700018549</p>
+                  <p className="text-xs text-muted-foreground">RERA Registration Number</p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Lifestyle Section */}
+        <section className="py-16 md:py-20 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Lifestyle</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
+                Experience The Good Life
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Every aspect of Lalani Goodwill has been designed to enhance your daily living experience
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0 }}
+                className="text-center"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Home className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-heading font-bold text-foreground mb-2">Thoughtful Design</h3>
+                <p className="text-muted-foreground text-sm">
+                  Homes designed with attention to every detail, ensuring optimal space utilization and natural light
+                </p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-center"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                  <MapPin className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-heading font-bold text-foreground mb-2">Prime Location</h3>
+                <p className="text-muted-foreground text-sm">
+                  Strategically located with easy access to metro, railway, highway, and airport
+                </p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-center"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Shield className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-heading font-bold text-foreground mb-2">Secure Living</h3>
+                <p className="text-muted-foreground text-sm">
+                  24/7 security surveillance and automated parking for complete peace of mind
+                </p>
+              </motion.div>
             </div>
           </div>
         </section>
