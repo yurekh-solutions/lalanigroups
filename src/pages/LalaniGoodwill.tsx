@@ -16,7 +16,7 @@ import SEO from "@/components/SEO";
 import { trackEvent } from "@/lib/tracking";
 
 // Import images
-import goodwillLogo from "@/assets/lalanigoodwill/goodwilllogo.png";
+import goodwillLogo from "@/assets/lalanigoodwill/image.png";
 import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
 import image1 from "@/assets/lalanigoodwill/image7.png";
 import image2 from "@/assets/lalanigoodwill/image2.png";
@@ -202,11 +202,11 @@ const LalaniGoodwill = () => {
               animate={{ opacity: 1, y: 0 }}
               className="flex justify-center mb-6 md:mb-8"
             >
-              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden bg-white/10 backdrop-blur-md p-2 sm:p-3 md:p-4 shadow-2xl border-2 md:border-4 border-white/20">
+              <div className="px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 rounded-2xl md:rounded-3xl bg-gradient-to-br from-red-900/30 via-yellow-500/20 to-white/10 backdrop-blur-xl shadow-2xl border border-white/30" style={{boxShadow: "0 8px 32px rgba(178, 31, 52, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)"}}>
                 <img
                   src={goodwillLogo}
                   alt="Lalani Goodwill"
-                  className="w-full h-full object-contain"
+                  className="w-40 sm:w-48 md:w-56 lg:w-64 h-auto object-contain"
                 />
               </div>
             </motion.div>
@@ -903,3 +903,6 @@ const LalaniGoodwill = () => {
 };
 
 export default LalaniGoodwill;
+
+
+
