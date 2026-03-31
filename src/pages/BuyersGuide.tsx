@@ -99,7 +99,7 @@ const BuyersGuide = () => {
       />
       <main className="pt-0">
         {/* Guide Content */}
-        <section className="py-16 md:py-24">
+        <section className="py-10 sm:py-14 md:py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <motion.div
@@ -107,20 +107,20 @@ const BuyersGuide = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.6 }}
-                className="mb-16"
+                className="mb-10 sm:mb-16"
               >
-                <div className="bg-card rounded-2xl p-8 md:p-12 shadow-lg border border-border/50">
-                  <h2 className="text-3xl font-heading font-bold mb-6 text-primary">
+                <div className="bg-card rounded-2xl p-5 sm:p-8 md:p-12 shadow-lg border border-border/50">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold mb-4 sm:mb-6 text-primary text-center sm:text-left">
                     Understanding Your Investment
                   </h2>
-                  <p className="text-lg text-foreground/90 leading-relaxed">
+                  <p className="text-sm sm:text-base md:text-lg text-foreground/90 leading-relaxed text-center sm:text-left">
                     Real estate is one of the most significant investments you'll make in your lifetime. Our comprehensive buyers' guide helps you navigate the complex process with confidence, ensuring you make informed decisions that align with your needs and budget.
                   </p>
                 </div>
               </motion.div>
 
               {/* Key Considerations Grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-10 sm:mb-16">
                 {guideItems.map((item, index) => (
                   <motion.div
                     key={item.title}
@@ -128,15 +128,15 @@ const BuyersGuide = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, amount: 0.1 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-card rounded-xl p-6 shadow-lg border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl"
+                    className="bg-card rounded-xl p-4 sm:p-6 shadow-lg border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl"
                   >
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                      <item.icon className="w-6 h-6 text-primary" />
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3 sm:mb-4">
+                      <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                     </div>
-                    <h3 className="text-xl font-heading font-bold mb-3 text-foreground">
+                    <h3 className="text-lg sm:text-xl font-heading font-bold mb-2 sm:mb-3 text-foreground">
                       {item.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                       {item.description}
                     </p>
                   </motion.div>
@@ -149,14 +149,14 @@ const BuyersGuide = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.6 }}
-                className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-8 md:p-12 border border-primary/20"
+                className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl p-5 sm:p-8 md:p-12 border border-primary/20"
               >
-                <h2 className="text-3xl font-heading font-bold mb-8 text-primary">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold mb-6 sm:mb-8 text-primary text-center sm:text-left">
                   Essential Documentation Checklist
                 </h2>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
-                    <h3 className="text-xl font-semibold mb-4 text-foreground">Before Purchase</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-foreground">Before Purchase</h3>
                     <ul className="space-y-3">
                       {[
                         "Title deed verification",

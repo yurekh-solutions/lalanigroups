@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { Lock, User, Eye, EyeOff } from 'lucide-react';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logolalani.png';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -37,15 +37,7 @@ const Login: React.FC = () => {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center overflow-hidden">
-              <img src={logo} alt="Lalani Group Logo" className="w-10 h-10 object-contain" />
-            </div>
-            <div className="text-left">
-              <span className="text-2xl font-bold text-[#c9a962] tracking-wider">LALANI</span>
-              <span className="block text-xs tracking-[0.2em] uppercase text-white/60">Group</span>
-            </div>
-          </div>
+          <img src={logo} alt="Lalani Group Logo" className="h-16 sm:h-20 w-auto object-contain mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-white">Admin Dashboard</h1>
           <p className="text-white/60 mt-2">Sign in to access lead tracking</p>
         </div>

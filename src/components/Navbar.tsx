@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logolalani.png";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -32,27 +32,17 @@ const Navbar = () => {
         scrolled || !isHomePage
           ? "bg-[#1a1f2e] shadow-lg" 
           : "bg-gradient-to-b from-black/80 to-transparent"
-      }`}
+      }`} 
     >
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="flex items-center justify-between py-3">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center overflow-hidden">
-              <img 
-                src={logo} 
-                alt="Lalani Group Logo" 
-                className="w-10 h-10 object-contain"
-              />
-            </div>
-            <div className="flex flex-col leading-tight">
-              <span className="font-heading text-xl font-bold tracking-wider text-[#c9a962]">
-                LALANI
-              </span>
-              <span className="text-[9px] tracking-[0.2em] uppercase font-medium text-white/80">
-                Group
-              </span>
-            </div>
+          <Link to="/" className="flex items-center">
+            <img 
+              src={logo} 
+              alt="Lalani Group Logo" 
+              className="h-10 sm:h-12 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Nav */}

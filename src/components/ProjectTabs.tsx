@@ -59,19 +59,19 @@ const ProjectTabs = () => {
           </p>
 
           {/* Tabs */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12 w-full max-w-lg sm:max-w-2xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-8 sm:mb-12 w-full max-w-lg sm:max-w-2xl mx-auto px-2">
             {projectCategories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveTab(category.id)}
-                className={`flex items-center justify-center gap-2 w-full px-4 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`flex items-center justify-center gap-1.5 sm:gap-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-full font-medium transition-all duration-300 ${
                   activeTab === category.id
                     ? "bg-gradient-to-r from-primary to-gold-light text-primary-foreground shadow-lg scale-105"
                     : "bg-card text-muted-foreground hover:text-foreground border border-border/50 hover:border-primary/50"
                 }`}
               >
-                <category.icon className="w-4 h-4 shrink-0" />
-                <span className="text-sm sm:text-base">{category.label}</span>
+                <category.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <span className="text-xs sm:text-sm">{category.label}</span>
               </button>
             ))}
           </div>
@@ -85,7 +85,7 @@ const ProjectTabs = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto"
           >
             {filteredProjects.map((project, index) => (
               <motion.div

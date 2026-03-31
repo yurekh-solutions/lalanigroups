@@ -99,9 +99,9 @@ const Contact = () => {
       />
       <main className="pt-0">
         {/* Contact Info Cards with 3D Effects */}
-        <section className="py-8 sm:py-12 relative -mt-16 z-10">
-          <div className="container mx-auto px-3 sm:px-4 lg:px-8">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16">
+        <section className="py-10 sm:py-14 relative z-10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10 sm:mb-16">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={info.title}

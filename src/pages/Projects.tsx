@@ -95,8 +95,8 @@ const Projects = () => {
         <ImageGallery />
 
         {/* Amenities Section with 3D Cards */}
-        <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-background to-primary/5 section-3d-bg">
-          <div className="container mx-auto px-3 sm:px-4 lg:px-8">
+        <section className="py-10 sm:py-14 md:py-20 bg-gradient-to-b from-background to-primary/5 section-3d-bg">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <motion.div
                 initial={{ opacity: 1 }}
@@ -105,10 +105,10 @@ const Projects = () => {
                 transition={{ duration: 0.6 }}
                 className="text-center mb-8 sm:mb-12"
               >
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-3 sm:mb-4 gradient-gold-text">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold mb-3 sm:mb-4 gradient-gold-text">
                   World-Class Amenities
                 </h2>
-                <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+                <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
                   Experience luxury living with premium facilities designed for your comfort
                 </p>
               </motion.div>
@@ -136,8 +136,8 @@ const Projects = () => {
         </section>
 
         {/* Additional Info Section with 3D Cards */}
-        <section className="py-12 sm:py-16 bg-background">
-          <div className="container mx-auto px-3 sm:px-4 lg:px-8">
+        <section className="py-10 sm:py-14 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 sm:gap-8">
               <motion.div
                 initial={{ opacity: 1 }}

@@ -81,8 +81,8 @@ const About = () => {
       />
       <main className="pt-0">
         {/* About Content with 3D Effects */}
-        <section className="py-12 sm:py-16 md:py-24 section-3d-bg">
-          <div className="container mx-auto px-3 sm:px-4 lg:px-8">
+        <section className="py-10 sm:py-14 md:py-20 section-3d-bg">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto">
               <motion.div
                 initial={{ opacity: 1 }}
@@ -91,11 +91,11 @@ const About = () => {
                 transition={{ duration: 0.6 }}
                 className="space-y-6 sm:space-y-8"
               >
-                <div className="glass-3d rounded-2xl p-6 sm:p-8 md:p-12 shadow-depth-2">
-                  <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 sm:mb-6 gradient-gold-text">
+                <div className="glass-3d rounded-2xl p-5 sm:p-8 md:p-12 shadow-depth-2">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold mb-4 sm:mb-6 gradient-gold-text text-center sm:text-left">
                     Our Legacy
                   </h2>
-                  <p className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-4 sm:mb-6">
+                  <p className="text-sm sm:text-base md:text-lg text-foreground/90 leading-relaxed mb-4 sm:mb-6 text-center sm:text-left">
                     Founded in the year 1985 by Mr. Shaukat Lalani, The Lalani Group is one of the leading construction companies based in Mumbai. With over four decades of in-depth customer understanding and experience, The Lalani legacy boasts of homes and commercial spaces that offer unmatched quality and absolute value for money to its clients.
                   </p>
                   <p className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-4 sm:mb-6">

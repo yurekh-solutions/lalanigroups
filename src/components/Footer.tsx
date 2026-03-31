@@ -1,7 +1,7 @@
  import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Linkedin, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logolalani.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -48,22 +48,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {/* Brand with Logo */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link to="/" className="flex items-center gap-3 mb-4 group">
-              <motion.div 
-                className="w-12 h-12 rounded-xl overflow-hidden bg-white shadow-depth-2 group-hover:shadow-glow-gold transition-all duration-300"
-                whileHover={{ rotateY: 10, scale: 1.05 }}
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                <img 
-                  src={logo} 
-                  alt="Lalani Group Logo - Premium Real Estate Developers Mumbai" 
-                  className="w-full h-full object-contain p-2"
-                />
-              </motion.div>
-              <div className="flex flex-col leading-tight">
-                <span className="font-heading text-xl font-bold gradient-gold-text">LALANI</span>
-                <span className="text-[9px] tracking-[0.3em] text-cream-muted uppercase">Group</span>
-              </div>
+            <Link to="/" className="flex items-center mb-4 group">
+              <motion.img 
+                src={logo} 
+                alt="Lalani Group Logo" 
+                className="h-10 sm:h-12 w-auto object-contain"
+                whileHover={{ scale: 1.05 }}
+              />
             </Link>
             <p className="font-body text-sm text-muted-foreground leading-relaxed mb-4">
               Building trust since 1985. One of Mumbai's leading construction companies delivering quality homes
