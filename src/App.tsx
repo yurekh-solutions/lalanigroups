@@ -20,6 +20,8 @@ import AdminLogin from "./pages/Admin/Login";
 import AdminDashboard from "./pages/Admin/Dashboard";
 import LalaniGoodwill from "./pages/LalaniGoodwill";
 import LalaniBusinessPark from "./pages/LalaniBusinessPark";
+import LalaniHeritagePark from "./pages/LalaniHeritagePark";
+import VelentineApartment from "./pages/VelentineApartment";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +43,10 @@ const App = () => (
             <Route path="/lalani-goodwill" element={<LalaniGoodwill />} />
             <Route path="/lalani-business-park" element={<LalaniBusinessPark />} />
             <Route path="/projects/lalani-business-park" element={<Navigate to="/lalani-business-park" replace />} />
+            <Route path="/lalani-heritage-park" element={<LalaniHeritagePark />} />
+            <Route path="/projects/lalani-heritage-park" element={<Navigate to="/lalani-heritage-park" replace />} />
+            <Route path="/velentine-apartment" element={<VelentineApartment />} />
+            <Route path="/projects/velentine-apartment" element={<Navigate to="/velentine-apartment" replace />} />
             <Route path="/buyers-guide" element={<BuyersGuide />} />
             <Route path="/media-room" element={<MediaRoom />} />
             <Route path="/contact" element={<Contact />} />
