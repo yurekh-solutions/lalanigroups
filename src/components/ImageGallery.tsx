@@ -1,26 +1,33 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import hero1 from "@/assets/hero-1.jpg";
-import hero2 from "@/assets/hero-2.jpg";
-import aboutBg from "@/assets/about-bg.jpg";
+
+// Local project images
+import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
+import busines from "@/assets/lalanibusinespark/busines.png";
+import busines3 from "@/assets/lalanibusinespark/busines3.png";
+import business1 from "@/assets/lalanibusinespark/business1.png";
+import business2 from "@/assets/lalanibusinespark/business2.png";
+import dream from "@/assets/lalaniheritage/dream.png";
+import heritage from "@/assets/lalaniheritage/heritage.png";
+import lalaniaura from "@/assets/lalanibusinespark/lalaniaura.png";
+import graduner from "@/assets/lalaniheritage/graduner.png";
+import residency from "@/assets/lalanibusinespark/residency.png";
+import quantum from "@/assets/lalanibusinespark/quantum.png";
 
 const galleryImages = [
-  { id: 1, src: project1, title: "Lalani Goodwill", category: "Residential" },
-  { id: 2, src: project2, title: "Lalani Business Park", category: "Commercial" },
-  { id: 3, src: project3, title: "Velentine Apartment", category: "Residential" },
-  { id: 4, src: hero1, title: "Premium Interiors", category: "Interiors" },
-  { id: 5, src: hero2, title: "Modern Architecture", category: "Architecture" },
-  { id: 6, src: aboutBg, title: "Luxury Living", category: "Lifestyle" },
-  { id: 7, src: project1, title: "Spacious Layouts", category: "Design" },
-  { id: 8, src: project2, title: "Commercial Excellence", category: "Commercial" },
-  { id: 9, src: project3, title: "Ready Possession", category: "Completed" },
-  { id: 10, src: hero1, title: "Elegant Finishes", category: "Interiors" },
-  { id: 11, src: hero2, title: "Contemporary Design", category: "Architecture" },
-  { id: 12, src: aboutBg, title: "Premium Amenities", category: "Facilities" }
+  { id: 1, src: mainElevation, title: "Lalani Goodwill", category: "Andheri East" },
+  { id: 2, src: busines, title: "Lalani Business Park", category: "Khar West" },
+  { id: 3, src: busines3, title: "Velentine Apartment", category: "Malad East" },
+  { id: 4, src: business1, title: "Lalani Corporate Plaza", category: "BKC" },
+  { id: 5, src: business2, title: "Lalani Towers", category: "Andheri West" },
+  { id: 6, src: dream, title: "Lalani Dream Residency", category: "Karjat" },
+  { id: 7, src: heritage, title: "Lalani Heritage Park", category: "Jogeshwari West" },
+  { id: 8, src: lalaniaura, title: "Lalani Aura", category: "Commercial" },
+  { id: 9, src: graduner, title: "Lalani Grandeur", category: "Goregaon East" },
+  { id: 10, src: residency, title: "Lalani Skyview", category: "Goregaon West" },
+  { id: 11, src: quantum, title: "Lalani Quantum", category: "Commercial" },
+  { id: 12, src: mainElevation, title: "Premium Residences", category: "Mumbai" }
 ];
 
 const ImageGallery = () => {

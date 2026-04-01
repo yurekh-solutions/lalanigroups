@@ -1,70 +1,51 @@
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Play, Building2, MapPin } from "lucide-react";
-import hero1 from "@/assets/hero-1.jpg";
-import hero2 from "@/assets/hero-2.jpg";
-import project3 from "@/assets/project-3.jpg";
+// import business1 from "@/assets/lalanibusinespark/business1.png";
+import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
+import quantum from "@/assets/lalanibusinespark/quantum.png";
+import busines from "@/assets/lalanibusinespark/busines.png";
+import business4 from "@/assets/lalanibusinespark/business4.png";
 
 const slides = [
+  
   {
-    image: hero1,
-    title: "Building Trust Since",
-    titleHighlight: "1985",
-    subtitle: "40+ years of delivering excellence in real estate",
-    location: "Mumbai, India",
-    tag: "Heritage"
+    image: mainElevation,
+    title: "Luxury Residential",
+    titleHighlight: "Homes",
+    subtitle: "Thoughtfully designed 1, 2 & 3 BHK residences in Andheri East",
+    location: "Andheri East, Mumbai",
+    tag: "Goodwill"
   },
   {
-    image: hero2,
-    title: "Luxury Homes in",
-    titleHighlight: "Mumbai",
-    subtitle: "Premium residences crafted for discerning families",
-    location: "Andheri, Malad, Khar",
-    tag: "Residential"
+    image: busines,
+    title: "Premium Commercial",
+    titleHighlight: "Spaces",
+    subtitle: "Modern office spaces designed for growing businesses in Khar West",
+    location: "Khar West, Mumbai",
+    tag: "Business Park"
   },
   {
-    image: project3,
-    title: "Premium Real Estate",
-    titleHighlight: "Developers",
-    subtitle: "Creating iconic landmarks across Mumbai's prime locations",
-    location: "BKC, Goregaon, Jogeshwari",
+    image: quantum,
+    title: "Strategic Business",
+    titleHighlight: "Location",
+    subtitle: "Prime commercial development with excellent connectivity",
+    location: "BKC, Mumbai",
     tag: "Commercial"
+  },
+ 
+  {
+    image: business4,
+    title: "Excellence in",
+    titleHighlight: "Real Estate",
+    subtitle: "40+ years of delivering quality projects across Mumbai",
+    location: "Mumbai, Maharashtra",
+    tag: "Heritage"
   },
 ];
 
 // Animation variants
-const imageVariants = {
-  enter: { scale: 1.1, opacity: 0 },
-  center: { 
-    scale: 1, 
-    opacity: 1,
-    transition: { 
-      duration: 1.2, 
-      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number]
-    }
-  },
-  exit: { 
-    opacity: 0,
-    scale: 1.05,
-    transition: { duration: 0.6, ease: "easeInOut" as const }
-  }
-};
-
-const kenBurnsVariants = {
-  animate: {
-    scale: [1, 1.08],
-    x: [0, -15],
-    y: [0, -10],
-    transition: {
-      duration: 10,
-      ease: "linear" as const,
-      repeat: Infinity,
-      repeatType: "reverse" as const
-    }
-  }
-};
-
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -159,114 +140,88 @@ const floatingVariants = {
 
 const HeroSection = () => {
   const [current, setCurrent] = useState(0);
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 150]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   const next = useCallback(() => setCurrent((p) => (p + 1) % slides.length), []);
 
   useEffect(() => {
-    const timer = setInterval(next, 7000);
+    const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
   }, [next]);
 
   return (
-    <section id="home" className="relative h-screen min-h-[600px] w-full overflow-hidden">
-      {/* 3D Parallax Background */}
-      <motion.div style={{ y }} className="absolute inset-0">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current}
-            variants={imageVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            className="absolute inset-0"
-            style={{ perspective: "1000px" }}
-          >
-            <motion.div
-              variants={kenBurnsVariants}
-              animate="animate"
-              className="w-full h-full"
-            >
-              <img
-                src={slides[current].image}
-                alt={`${slides[current].title} ${slides[current].titleHighlight} - Lalani Group Mumbai Real Estate`}
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-            </motion.div>
-            
-            {/* Multi-layer Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
-                      <div className="absolute inset-0" style={{ background: "var(--gradient-hero-overlay)" }} />
+    <section id="home" className="relative h-screen min-h-[600px] w-full overflow-hidden cursor-pointer">
+      {/* Background Images - Clean Display No Zoom */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0"
+        >
+          <img
+            src={slides[current].image}
+            alt={`${slides[current].title} ${slides[current].titleHighlight} - Lalani Group Mumbai`}
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+          
+          {/* Gradient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent" />
+        </motion.div>
+      </AnimatePresence>
 
-            {/* 3D Grid Overlay */}
-            <div 
-              className="absolute inset-0 opacity-[0.03]"
-              style={{
-                backgroundImage: `
-                  linear-gradient(rgba(201, 169, 98, 0.5) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(201, 169, 98, 0.5) 1px, transparent 1px)
-                `,
-                backgroundSize: "80px 80px"
-              }}
-            />
-          </motion.div>
-        </AnimatePresence>
-      </motion.div>
-
-
-
-      {/* Content with 3D Animations */}
-      <motion.div style={{ opacity }} className="relative z-10 flex items-center h-full">
-        <div className="container mx-auto px-3 sm:px-4 lg:px-8">
+      {/* Content */}
+      <div className="relative z-10 flex items-center h-full">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="max-w-4xl"
-              style={{ perspective: "1000px" }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-3xl"
             >
               {/* Tag Badge */}
               <motion.div 
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-3d mb-6"
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6"
               >
                 <Building2 className="w-4 h-4 text-[#c9a962]" />
                 <span className="text-sm font-medium text-white/90">{slides[current].tag}</span>
               </motion.div>
               
-              {/* Title with 3D Effect */}
+              {/* Title */}
               <motion.h1 
-                variants={textRevealVariants}
-                className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-1 sm:mb-2 tracking-tight leading-tight"
-                style={{ transformStyle: "preserve-3d" }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 tracking-tight leading-tight"
               >
                 {slides[current].title}
               </motion.h1>
               
-              {/* Title Highlight with Gradient */}
-              {slides[current].titleHighlight && (
-                <motion.h1 
-                  variants={textRevealVariants}
-                  className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 tracking-tight leading-tight gradient-gold-text"
-                  style={{ transformStyle: "preserve-3d" }}
-                >
-                  {slides[current].titleHighlight}
-                </motion.h1>
-              )}
-              {!slides[current].titleHighlight && <div className="mb-4 sm:mb-6" />}
+              {/* Title Highlight */}
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight leading-tight gradient-gold-text"
+              >
+                {slides[current].titleHighlight}
+              </motion.h1>
               
-              {/* Location Badge */}
+              {/* Location */}
               <motion.div 
-                variants={subtitleVariants}
-                className="flex items-center gap-2 text-white/70 mb-3 sm:mb-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="flex items-center gap-2 text-white/70 mb-4"
               >
                 <MapPin className="w-4 h-4 text-[#c9a962]" />
                 <span className="text-sm sm:text-base">{slides[current].location}</span>
@@ -274,40 +229,55 @@ const HeroSection = () => {
               
               {/* Subtitle */}
               <motion.p 
-                variants={subtitleVariants}
-                className="font-body text-base sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-8 md:mb-10 max-w-lg sm:max-w-xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="font-body text-base sm:text-lg text-white/80 mb-8 max-w-xl"
               >
                 {slides[current].subtitle}
               </motion.p>
               
-              {/* Buttons with 3D Effect */}
+              {/* Buttons */}
               <motion.div 
-                variants={buttonContainerVariants}
-                className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="flex flex-col sm:flex-row items-start gap-4"
               >
-                <motion.div variants={buttonVariants} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Link
-                    to="/projects"
-                    className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-gradient-to-r from-[#c9a962] to-[#d4b876] text-black font-semibold text-sm md:text-base shadow-depth-2 hover:shadow-glow-gold transition-all duration-300 btn-3d"
-                  >
-                    Explore Projects
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </motion.div>
-                <motion.div variants={buttonVariants} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Link
-                    to="/contact#schedule-visit"
-                    className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl border-2 border-white/60 text-white font-semibold text-sm md:text-base hover:bg-white/10 hover:border-white/80 transition-all duration-300 glass-3d"
-                  >
-                    <Play className="w-4 h-4" />
-                    Schedule a Visit
-                  </Link>
-                </motion.div>
+                <Link
+                  to="/projects"
+                  className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-gradient-to-r from-[#c9a962] to-[#d4b876] text-black font-semibold text-sm md:text-base hover:shadow-lg transition-all duration-300"
+                >
+                  Explore Projects
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  to="/contact#schedule-visit"
+                  className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl border-2 border-white/60 text-white font-semibold text-sm md:text-base hover:bg-white/10 hover:border-white/80 transition-all duration-300"
+                >
+                  <Play className="w-4 h-4" />
+                  Schedule a Visit
+                </Link>
               </motion.div>
             </motion.div>
           </AnimatePresence>
         </div>
-      </motion.div>
+      </div>
+
+      {/* Dot Navigation */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={(e) => { e.stopPropagation(); setCurrent(index); }}
+            className={`transition-all duration-300 rounded-full ${
+              current === index
+                ? 'w-8 h-2 bg-[#c9a962]'
+                : 'w-2 h-2 bg-white/50 hover:bg-white/80'
+            }`}
+          />
+        ))}
+      </div>
     </section>
   );
 };

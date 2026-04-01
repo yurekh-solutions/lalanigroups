@@ -1,12 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { 
-  MapPin, Building2, Car,
-  Shield, Zap, Home, CheckCircle, X, ChevronLeft, ChevronRight,
-  Train, ShoppingBag, Building, Users, ArrowDown, Star, TreePine
-} from "lucide-react";
+import { useState } from "react";
+import { MapPin, Building2, Car, Shield, Zap, Home, CheckCircle, X, ChevronLeft, ChevronRight, Train, ShoppingBag, Building, Phone, Mail, Download, MapIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -16,63 +9,65 @@ import LeadCapturePopup from "@/components/LeadCapturePopup";
 import SEO from "@/components/SEO";
 import { trackEvent } from "@/lib/tracking";
 
-gsap.registerPlugin(ScrollTrigger);
-
 import heritageFloorPlan from "@/assets/lalaniheritage/HP-Floor-Plan.webp";
 import heritageEntrance from "@/assets/lalaniheritage/entrenceiamge.webp";
 import heritageHome from "@/assets/lalaniheritage/homeimage.webp";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import hero1 from "@/assets/hero-1.jpg";
-import hero2 from "@/assets/hero-2.jpg";
-import aboutBg from "@/assets/about-bg.jpg";
+import heritage from "@/assets/lalaniheritage/heritage.png";
+import heritage1 from "@/assets/lalaniheritage/heritage1.png";
 
 const galleryImages = [
-  { src: heritageHome, alt: "Lalani Heritage Park Building" },
-  { src: heritageEntrance, alt: "Grand Entrance" },
-  { src: aboutBg, alt: "Heritage Park Interior" },
-  { src: hero1, alt: "Modern Amenities" },
-  { src: project1, alt: "Spacious Apartments" },
-  { src: hero2, alt: "Premium Location" },
+  { src: heritage, alt: "Heritage Park Building", category: "Proposed" },
+  { src: heritage1, alt: "Heritage Park Elevation", category: "Proposed" },
+  { src: heritageEntrance, alt: "Grand Entrance Lobby", category: "Actual" },
+  { src: heritageHome, alt: "Heritage Park View", category: "Actual" },
 ];
 
-const projectHallmarks = [
-  { icon: Home, text: "2BHK & 3BHK Residences" },
-  { icon: MapPin, text: "Prime Jogeshwari West" },
-  { icon: Building, text: "Near Mega Mall & Inorbit" },
-  { icon: Car, text: "Covered & Open Parking" },
-  { icon: Zap, text: "100% Power Backup" },
-  { icon: Shield, text: "24/7 Security with CCTV" },
-  { icon: TreePine, text: "Landscaped Gardens" },
-  { icon: Building2, text: "Grand Clubhouse" },
-  { icon: Users, text: "Multipurpose Hall" },
-  { icon: Star, text: "Swimming Pool" },
-  { icon: Shield, text: "Fire Safety Systems" },
-  { icon: CheckCircle, text: "RERA Approved" },
+const floorPlans = [
+  { title: "Flat 1", size: "278 sq.ft." },
+  { title: "Flat 2", size: "276 sq.ft." },
+  { title: "Flat 3", size: "278 sq.ft." },
+  { title: "Flat 4", size: "277 sq.ft." },
+  { title: "Flat 5", size: "279 sq.ft." },
+  { title: "Flat 6", size: "274 sq.ft." },
 ];
 
 const amenities = [
-  { icon: Building2, title: "Grand Clubhouse", desc: "Indoor games & lounge" },
-  { icon: Star, title: "Swimming Pool", desc: "Temperature controlled" },
-  { icon: TreePine, title: "Podium Gardens", desc: "Landscaped green spaces" },
-  { icon: Users, title: "Multipurpose Hall", desc: "Events & gatherings" },
-  { icon: Shield, title: "24/7 Security", desc: "CCTV & video door phone" },
-  { icon: Car, title: "Parking", desc: "Covered & open options" },
-  { icon: Zap, title: "Power Backup", desc: "100% for common areas" },
-  { icon: Building2, title: "High-Speed Lifts", desc: "Modern elevators" },
-  { icon: TreePine, title: "Jogging Track", desc: "Podium level track" },
+  "Grand Designer Entrance Lobby",
+  "Decorative Entrance Gate with Security Cabin",
+  "Well Lit Compound Wall",
+  "Individual Floor / Lift Lobby in vitrified / Designer tiles",
+  "ThyssenKrupp Elevators",
+  "CCTV Cameras",
+  "Fire Safety measures as per MCGM Norms",
+  "Earthquake Resistance Design",
+  "Piped Natural Gas, if available in the vicinity",
+  "Checkered Tiles / Pavers in the entire compound",
+  "Rainwater Harvesting",
+];
+
+const specifications = [
+  "24\" x 24\" Vitrified Tiles in Rooms and Passage",
+  "Anodized Aluminum Sliding Windows",
+  "Anti-Skid Flooring in Bathrooms and Ceramic Tiles up to 7 Feet on Dado",
+  "Jaguar Fittings & Concealed Plumbing Fittings",
+  "Cable TV / Telephone & Internet Point in Rooms",
+  "Instant Electrical Geyser in Bathroom",
+  "Roma Modular Switches",
+  "Intercom & Video Door Phones",
+  "External Paint in Weather Shield Paint",
+  "Internal Paint in OBD / Acrylic Paint",
+  "Flush Doors (Painted) / Laminated Doors / Polish for Internal Doors",
 ];
 
 const connectivityItems = [
-  { icon: Train, name: "Jogeshwari Station", distance: "1.3 kms" },
-  { icon: ShoppingBag, name: "24Karat Multiplex", distance: "0.5 kms" },
-  { icon: Building, name: "Mega Mall", distance: "1.6 kms" },
-  { icon: Building, name: "Inorbit Mall", distance: "2.0 kms" },
-  { icon: Building, name: "Balasaheb Thackeray Hospital", distance: "1.9 kms" },
-  { icon: Train, name: "JVLR", distance: "2.0 kms" },
-  { icon: ShoppingBag, name: "Link Road", distance: "2.5 kms" },
-  { icon: Building, name: "Airport", distance: "7.0 kms" },
+  { name: "24Karat Multiplex", distance: "0.5 kms" },
+  { name: "Link Road", distance: "2.5 kms" },
+  { name: "Mega Mall", distance: "1.6 kms" },
+  { name: "JVLR", distance: "2.0 kms" },
+  { name: "Balasaheb Thackeray Hospital", distance: "1.9 kms" },
+  { name: "Jogeshwari Railway Station", distance: "1.3 kms" },
+  { name: "Andheri-Kurla road", distance: "4.1 kms" },
+  { name: "Airport", distance: "7.0 kms" },
 ];
 
 const LalaniHeritagePark = () => {
@@ -86,37 +81,6 @@ const LalaniHeritagePark = () => {
   });
   const [formLoading, setFormLoading] = useState(false);
   const [formSent, setFormSent] = useState(false);
-
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to(".hero-bg", {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true
-        }
-      });
-      gsap.utils.toArray<HTMLElement>(".gsap-card").forEach((card, i) => {
-        gsap.from(card, {
-          y: 60,
-          opacity: 0,
-          duration: 0.8,
-          delay: i * 0.1,
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            toggleActions: "play none none reverse"
-          }
-        });
-      });
-    });
-    return () => ctx.revert();
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -137,208 +101,421 @@ const LalaniHeritagePark = () => {
     }
   };
 
+  const handlePrevious = () => {
+    setLightboxIndex(lightboxIndex === 0 ? galleryImages.length - 1 : lightboxIndex - 1);
+  };
+
+  const handleNext = () => {
+    setLightboxIndex(lightboxIndex === galleryImages.length - 1 ? 0 : lightboxIndex + 1);
+  };
+
   return (
     <>
       <SEO
-        title="Lalani Heritage Park | 2BHK & 3BHK Flats in Jogeshwari West Mumbai"
-        description="Lalani Heritage Park - Premium 2BHK & 3BHK residences in Jogeshwari West, Mumbai. Near Mega Mall, Inorbit & Infinity Mall. MahaRERA: P51800056789. Starting ₹98 Lakhs."
-        keywords="Lalani Heritage Park, flats in Jogeshwari West, 2BHK Jogeshwari, 3BHK Jogeshwari West, apartments Jogeshwari, property Jogeshwari Mumbai"
+        title="Lalani Heritage Park | 1BHK Flats in Jogeshwari West Mumbai | Ready Possession"
+        description="Lalani Heritage Park - Ready possession 1BHK apartments in Jogeshwari West, Mumbai. OC Received. Near Mega Mall, Inorbit. Last few units remaining!"
+        keywords="Lalani Heritage Park, 1BHK Jogeshwari West, ready possession flats Mumbai, OC received, Jogeshwari apartments, Mumbai real estate"
         canonicalUrl="/lalani-heritage-park"
       />
       <Navbar />
       <main className="min-h-screen bg-background">
-        <section ref={heroRef} className="relative min-h-[90vh] md:min-h-screen overflow-hidden flex items-center">
+        
+        {/* Hero Section */}
+        <section className="relative min-h-[70vh] overflow-hidden">
           <div className="absolute inset-0">
-            <img src={heritageHome} alt="Lalani Heritage Park" className="w-full h-full object-cover hero-bg scale-110" loading="eager" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
+            <img src={heritage} alt="Lalani Heritage Park" className="w-full h-full object-cover" loading="eager" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
           </div>
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }} className="text-center text-white max-w-4xl mx-auto">
-              <span className="inline-block px-4 py-1.5 bg-primary/20 backdrop-blur-sm rounded-full text-primary text-sm font-medium mb-4">Premium Residences in Jogeshwari West</span>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold mb-4 md:mb-6 px-2 leading-tight">Where Heritage Meets <span className="text-primary">Modern Living</span></h1>
-              <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed px-2 mb-8 max-w-3xl mx-auto">Spacious 2BHK & 3BHK apartments in the heart of Jogeshwari West. A fine blend of affordable luxury, convenience, and security.</p>
-              <div className="flex flex-wrap items-center justify-center gap-6 text-white/90 mb-8">
-                <div className="flex items-center gap-2"><MapPin className="w-5 h-5 text-primary" /><span>Jogeshwari (W)</span></div>
-                <div className="flex items-center gap-2"><Home className="w-5 h-5 text-primary" /><span>2BHK & 3BHK</span></div>
-                <div className="flex items-center gap-2"><CheckCircle className="w-5 h-5 text-primary" /><span>Starting ₹98 Lakhs</span></div>
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+            <div className="text-center text-white max-w-4xl mx-auto">
+              <span className="inline-block px-4 py-1.5 bg-green-500/20 backdrop-blur-sm rounded-full text-green-400 text-sm font-medium mb-4">
+                Ready Possession - OC Received
+              </span>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-4">
+                Heritage Park
+              </h1>
+              <p className="text-lg sm:text-xl text-white/80 leading-relaxed mb-6 max-w-3xl mx-auto">
+                An inspired harmony of modern architecture, infused with cozy luxury demanded by today's aspirational generation.
+              </p>
+              <p className="text-base text-white/70 mb-8">
+                Stilt plus 13 storied tower with thoughtfully planned 1 BHK Apartments with contemporary amenities and hi-tech security.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+                <span className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-sm">
+                  <MapPin className="w-4 h-4 text-primary" /> Jogeshwari (W), Mumbai
+                </span>
+                <span className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-sm">
+                  <Home className="w-4 h-4 text-primary" /> Planned 1BHK Residences
+                </span>
               </div>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <EnquireButton />
-                <a href="#content" className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 text-white rounded-full font-semibold hover:bg-white/20 transition-all">Explore More</a>
+                <a href="#overview" className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 text-white rounded-full font-semibold hover:bg-white/20 transition-all">
+                  Explore More
+                </a>
               </div>
-            </motion.div>
+            </div>
           </div>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-            <span className="text-white/60 text-xs tracking-wider uppercase">Scroll</span>
-            <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}><ArrowDown className="w-5 h-5 text-primary" /></motion.div>
-          </motion.div>
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background to-transparent h-20" />
         </section>
 
-        <section className="py-16 md:py-20 bg-card">
+        {/* Quick Info Bar */}
+        <section className="py-8 bg-card border-b border-border">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">Project Hallmarks</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Discover what makes Lalani Heritage Park the perfect home for your family</p>
-            </motion.div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-              {projectHallmarks.map((item, index) => (
-                <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.05 }} className="flex flex-col items-center p-4 md:p-6 bg-background rounded-xl border border-border hover:border-primary/50 transition-all group gsap-card">
-                  <item.icon className="w-8 h-8 md:w-10 md:h-10 text-primary mb-3 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm md:text-base text-center text-foreground font-medium">{item.text}</span>
-                </motion.div>
-              ))}
+            <div className="flex flex-wrap items-center justify-center gap-6 text-center">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-green-500" />
+                <span className="text-sm font-medium">Ready Possession - OC Received</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Building2 className="w-5 h-5 text-primary" />
+                <span className="text-sm font-medium">Last few Units Remaining</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Shield className="w-5 h-5 text-primary" />
+                <span className="text-sm font-medium">MahaRERA Approved</span>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="py-16 md:py-24 bg-background" id="content">
+        {/* Overview Section */}
+        <section id="overview" className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-                <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">About The Project</span>
-                <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">A Perfect Blend of <span className="text-primary">Comfort & Convenience</span></h2>
-                <p className="text-muted-foreground mb-4 leading-relaxed">Heritage Park is strategically located just off S.V. Road to ensure comfort, convenience and connectivity. Vibrant retail, fashion, dining, cultural destinations cater to everyday conveniences.</p>
-                <p className="text-muted-foreground mb-6 leading-relaxed">At Heritage Park, you have every necessity and indulgence just a few steps away. The bustling Mega Mall, Inorbit, Infinity and Hypercity are in vicinity.</p>
+              <div>
+                <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Project Overview</span>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
+                  A Perfect Blend of <span className="text-primary">Affordable Luxury</span>
+                </h2>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  Heritage Park is an inspired harmony of modern architecture, infused with cozy luxury demanded by today's aspirational generation.
+                </p>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  It is an imposing stilt plus 13 storied tower with thoughtfully planned 1 BHK Apartments with contemporary amenities and hi-tech security.
+                </p>
                 <div className="grid grid-cols-2 gap-4">
-                  {[{ icon: Home, text: "Spacious Apartments" }, { icon: MapPin, text: "Off S.V. Road" }, { icon: Shield, text: "24/7 Security" }, { icon: Zap, text: "Power Backup" }].map((item, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-card rounded-lg border border-border">
-                      <item.icon className="w-5 h-5 text-primary shrink-0" />
-                      <span className="text-sm text-foreground">{item.text}</span>
-                    </div>
-                  ))}
+                  <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border">
+                    <Home className="w-5 h-5 text-primary shrink-0" />
+                    <span className="text-sm text-foreground">1BHK Residences</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border">
+                    <MapPin className="w-5 h-5 text-primary shrink-0" />
+                    <span className="text-sm text-foreground">Off S.V. Road</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border">
+                    <Shield className="w-5 h-5 text-primary shrink-0" />
+                    <span className="text-sm text-foreground">Hi-tech Security</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border">
+                    <CheckCircle className="w-5 h-5 text-green-500 shrink-0" />
+                    <span className="text-sm text-foreground">OC Received</span>
+                  </div>
                 </div>
-              </motion.div>
-              <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative">
+                <div className="mt-8 flex gap-4">
+                  <a href="#" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all">
+                    <Download className="w-4 h-4" />
+                    E-Brochure Download
+                  </a>
+                </div>
+              </div>
+              <div className="relative">
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border">
                   <img src={heritageEntrance} alt="Heritage Park Entrance" className="w-full h-full object-cover" loading="lazy" />
                 </div>
-                <div className="absolute -bottom-6 -left-6 bg-card p-5 rounded-xl border border-border shadow-xl">
-                  <p className="text-primary font-bold text-xl">P51800056789</p>
-                  <p className="text-xs text-muted-foreground">MahaRERA Registration</p>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 md:py-24 bg-card">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Spacious Homes</span>
-              <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-4">Apartment <span className="text-primary">Configurations</span></h2>
-            </motion.div>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[{ title: "1 BHK", size: "274-279 sq.ft (Carpet)", price: "₹65 Lakhs onwards", features: ["Efficient layout", "Natural lighting"] }, { title: "2 BHK", size: "500-600 sq.ft", price: "₹98 Lakhs onwards", features: ["Spacious living", "Master bedroom"] }, { title: "3 BHK", size: "800-950 sq.ft", price: "₹1.35 Cr onwards", features: ["Premium finishes", "Multiple balconies"] }].map((space, index) => (
-                <motion.div key={index} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-background rounded-2xl border border-border overflow-hidden group hover:border-primary/50 transition-all gsap-card">
-                  <div className="aspect-[16/9] overflow-hidden">
-                    <img src={galleryImages[index]?.src || project1} alt={space.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-heading font-bold text-foreground mb-2">{space.title}</h3>
-                    <p className="text-xs text-muted-foreground mb-1">{space.size}</p>
-                    <p className="text-primary font-semibold mb-4">{space.price}</p>
-                    <ul className="space-y-2">
-                      {space.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <CheckCircle className="w-4 h-4 text-primary shrink-0" />{feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 md:py-24 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Floor Plans</span>
-              <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-4">Thoughtfully Designed <span className="text-primary">Layouts</span></h2>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="max-w-4xl mx-auto">
-              <div className="rounded-2xl overflow-hidden border border-border bg-card p-4">
-                <img src={heritageFloorPlan} alt="Heritage Park Floor Plan" className="w-full h-auto rounded-lg" loading="lazy" />
               </div>
-            </motion.div>
-          </div>
-        </section>
-
-        <section className="py-16 md:py-20 bg-card">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">World-Class Amenities</h2>
-            </motion.div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-              {amenities.map((item, index) => (
-                <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.05 }} className="flex flex-col items-center p-4 md:p-6 bg-background rounded-xl border border-border hover:border-primary/50 transition-all group text-center gsap-card">
-                  <item.icon className="w-8 h-8 md:w-10 md:h-10 text-primary mb-3 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm md:text-base font-medium text-foreground mb-1">{item.title}</span>
-                  <span className="text-xs text-muted-foreground">{item.desc}</span>
-                </motion.div>
-              ))}
             </div>
           </div>
         </section>
 
-        <section className="py-16 md:py-20 bg-background">
+        {/* Location Section */}
+        <section id="location" className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">Strategic Location</h2>
-            </motion.div>
+            <div className="text-center mb-12">
+              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Location</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+                Strategic <span className="text-primary">Location</span>
+              </h2>
+              <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Heritage Park is strategically located just off S.V. Road to ensure comfort, convenience and connectivity. Vibrant retail, fashion, dining, cultural, business destinations, ultra-luxury boutiques and international brand names which cater to everyday conveniences.
+              </p>
+              <p className="text-muted-foreground max-w-3xl mx-auto mt-4 leading-relaxed">
+                At Heritage Park, you have every necessity and indulgence just a few steps away from your home. The bustling Mega Mall, Inorbit, Infinity and Hypercity are in vicinity. Heritage Park is truly a fine blend of affordable luxury, convenience, peace of mind, privacy and security.
+              </p>
+            </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {connectivityItems.map((item, index) => (
-                <motion.div key={index} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.05 }} className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border hover:border-primary/30 transition-all gsap-card">
-                  <item.icon className="w-5 h-5 text-primary shrink-0" />
+                <div key={index} className="flex items-center gap-3 p-4 bg-background rounded-xl border border-border hover:border-primary/30 transition-all">
+                  <MapIcon className="w-5 h-5 text-primary shrink-0" />
                   <div>
                     <p className="text-sm font-medium text-foreground">{item.name}</p>
                     <p className="text-xs text-muted-foreground">{item.distance}</p>
                   </div>
-                </motion.div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all">
+                <MapPin className="w-4 h-4" />
+                Google Map
+              </a>
+              <a href="#" className="inline-flex items-center gap-2 px-6 py-3 bg-card border border-border text-foreground rounded-lg font-medium hover:border-primary/50 transition-all">
+                <MapIcon className="w-4 h-4" />
+                Location Map
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Floor Plans Section */}
+        <section id="floor-plans" className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Floor Plans</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+                Thoughtfully Designed <span className="text-primary">Layouts</span>
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+              {floorPlans.map((plan, index) => (
+                <div key={index} className="p-4 bg-card rounded-xl border border-border text-center hover:border-primary/50 transition-all">
+                  <h3 className="font-semibold text-foreground mb-1">{plan.title}</h3>
+                  <p className="text-sm text-muted-foreground">{plan.size}</p>
+                </div>
+              ))}
+            </div>
+            <div className="max-w-4xl mx-auto">
+              <div className="rounded-2xl overflow-hidden border border-border bg-card p-4">
+                <img src={heritageFloorPlan} alt="Heritage Park Floor Plan" className="w-full h-auto rounded-lg" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Amenities Section */}
+        <section id="amenities" className="py-16 md:py-24 bg-card">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Amenities</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+                Modern <span className="text-primary">Amenities</span>
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+              {amenities.map((amenity, index) => (
+                <div key={index} className="flex items-center gap-3 p-4 bg-background rounded-lg border border-border">
+                  <CheckCircle className="w-5 h-5 text-primary shrink-0" />
+                  <span className="text-sm text-foreground">{amenity}</span>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-16 md:py-24 bg-card">
+        {/* Specifications Section */}
+        <section id="specifications" className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">Schedule a Site Visit</h2>
-              </motion.div>
-              <motion.form initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} onSubmit={handleSubmit} className="bg-background p-6 md:p-8 rounded-2xl border border-border">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Name *</label>
-                    <input type="text" required value={contactForm.name} onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })} className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="Your name" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Phone *</label>
-                    <input type="tel" required value={contactForm.phone} onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })} className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="Your phone number" />
-                  </div>
+            <div className="text-center mb-12">
+              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Specifications</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+                Premium <span className="text-primary">Specifications</span>
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+              {specifications.map((spec, index) => (
+                <div key={index} className="flex items-start gap-3 p-4 bg-card rounded-lg border border-border">
+                  <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                  <span className="text-sm text-foreground">{spec}</span>
                 </div>
-                <button type="submit" disabled={formLoading} className="mt-6 w-full px-8 py-4 bg-gradient-to-r from-primary to-gold-light text-primary-foreground rounded-lg font-semibold hover:shadow-xl hover:shadow-primary/30 transition-all disabled:opacity-50">
-                  {formLoading ? "Sending..." : formSent ? "Sent Successfully!" : "Send Enquiry via WhatsApp"}
-                </button>
-              </motion.form>
+              ))}
             </div>
           </div>
         </section>
 
-        <AnimatePresence>
-          {lightboxOpen && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center" onClick={() => setLightboxOpen(false)}>
-              <button className="absolute top-4 right-4 text-white hover:text-primary transition-colors" onClick={() => setLightboxOpen(false)}><X className="w-8 h-8" /></button>
-              <motion.img key={lightboxIndex} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} src={galleryImages[lightboxIndex].src} alt={galleryImages[lightboxIndex].alt} className="max-w-[90vw] max-h-[85vh] object-contain" />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Gallery Section */}
+        <section id="gallery" className="py-16 md:py-24 bg-card">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Gallery</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+                Project <span className="text-primary">Gallery</span>
+              </h2>
+            </div>
+            <div className="flex justify-center gap-4 mb-8">
+              <span className="px-4 py-2 bg-primary/20 text-primary rounded-full text-sm font-medium">Proposed</span>
+              <span className="px-4 py-2 bg-green-500/20 text-green-500 rounded-full text-sm font-medium">Actual</span>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+              {galleryImages.map((image, index) => (
+                <div
+                  key={index}
+                  className="relative group cursor-pointer overflow-hidden rounded-xl aspect-square"
+                  onClick={() => { setLightboxOpen(true); setLightboxIndex(index); }}
+                >
+                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <p className="text-white font-medium text-sm">{image.alt}</p>
+                      <span className={`text-xs ${image.category === 'Actual' ? 'text-green-400' : 'text-primary'}`}>{image.category}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Contact</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+                Get in <span className="text-primary">Touch</span>
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {/* Site Office */}
+              <div className="p-6 bg-card rounded-2xl border border-border">
+                <h3 className="text-xl font-heading font-bold text-foreground mb-4 flex items-center gap-2">
+                  <Building2 className="w-5 h-5 text-primary" />
+                  Site OFFICE
+                </h3>
+                <p className="font-semibold text-foreground mb-2">HERITAGE PARK</p>
+                <p className="text-muted-foreground text-sm mb-4">
+                  Gautam Nagar, Off S.V. Road,<br />
+                  Jogeshwari (W), Mumbai - 400 102.
+                </p>
+                <div className="space-y-2">
+                  <a href="tel:+919322642370" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                    <Phone className="w-4 h-4" />
+                    91-93226 42370
+                  </a>
+                  <a href="mailto:sales@lalanigroup.in" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                    <Mail className="w-4 h-4" />
+                    sales@lalanigroup.in
+                  </a>
+                </div>
+              </div>
+              
+              {/* Corporate Office */}
+              <div className="p-6 bg-card rounded-2xl border border-border">
+                <h3 className="text-xl font-heading font-bold text-foreground mb-4 flex items-center gap-2">
+                  <Building2 className="w-5 h-5 text-primary" />
+                  Corporate Office
+                </h3>
+                <p className="font-semibold text-foreground mb-2">LALANI GROUP</p>
+                <p className="text-muted-foreground text-sm mb-4">
+                  7th floor, Lalani Aura, 34th road,<br />
+                  Khar (W), Mumbai - 400 052.
+                </p>
+                <div className="space-y-2">
+                  <a href="tel:+912267280000" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                    <Phone className="w-4 h-4" />
+                    91-22-6728 0000
+                  </a>
+                  <a href="mailto:info@lalanigroup.in" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                    <Mail className="w-4 h-4" />
+                    info@lalanigroup.in
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="mt-12 max-w-2xl mx-auto">
+              <div className="p-6 md:p-8 bg-card rounded-2xl border border-border">
+                <h3 className="text-xl font-heading font-bold text-foreground mb-6 text-center">Enquire Now</h3>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">Name *</label>
+                      <input
+                        type="text"
+                        required
+                        value={contactForm.name}
+                        onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                        className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        placeholder="Your name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">Phone *</label>
+                      <input
+                        type="tel"
+                        required
+                        value={contactForm.phone}
+                        onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                        className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        placeholder="Your phone number"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                    <input
+                      type="email"
+                      value={contactForm.email}
+                      onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      placeholder="Your email"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Message</label>
+                    <textarea
+                      value={contactForm.message}
+                      onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                      rows={3}
+                      className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      placeholder="Your message"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={formLoading}
+                    className="w-full px-8 py-4 bg-gradient-to-r from-primary to-gold-light text-primary-foreground rounded-lg font-semibold hover:shadow-xl hover:shadow-primary/30 transition-all disabled:opacity-50"
+                  >
+                    {formLoading ? "Sending..." : formSent ? "Sent Successfully!" : "Send Enquiry via WhatsApp"}
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
+      
       <Footer />
       <WhatsAppButton />
       <BackToTopButton />
       <LeadCapturePopup />
+
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4" onClick={() => setLightboxOpen(false)}>
+          <button
+            onClick={() => setLightboxOpen(false)}
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); handlePrevious(); }}
+            className="absolute left-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); handleNext(); }}
+            className="absolute right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+          <div onClick={(e) => e.stopPropagation()} className="max-w-5xl max-h-[90vh]">
+            <img src={galleryImages[lightboxIndex].src} alt={galleryImages[lightboxIndex].alt} className="w-full h-full object-contain rounded-lg" />
+          </div>
+        </div>
+      )}
     </>
   );
 };

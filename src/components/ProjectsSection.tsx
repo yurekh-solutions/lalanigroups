@@ -1,50 +1,32 @@
 import { motion } from "framer-motion";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import hero1 from "@/assets/hero-1.jpg";
-import hero2 from "@/assets/hero-2.jpg";
+import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
+import busines from "@/assets/lalanibusinespark/busines.png";
+import busines3 from "@/assets/lalanibusinespark/busines3.png";
 
 const projects = [
   {
-    image: project1,
+    image: mainElevation,
     name: "Lalani Goodwill",
     location: "J.B. Nagar, Andheri (E)",
-    rera: "MahaRERA No. P51800079065",
     type: "1BHK, 2BHK & 3BHK Residences",
     status: "Ongoing",
+    possession: "December 2025",
   },
   {
-    image: project2,
+    image: busines,
     name: "Lalani Business Park",
     location: "Khar (W)",
-    rera: "MahaRERA No. P51800033063",
     type: "Commercial Spaces",
     status: "Ongoing",
+    possession: "June 2026",
   },
   {
-    image: project3,
+    image: busines3,
     name: "Velentine Apartment",
     location: "Malad (E)",
-    rera: "MahaRERA No. P51800028866",
     type: "1BHK & 2BHK Residences",
     status: "Ready Possession",
-  },
-  {
-    image: hero1,
-    name: "Lalani Grandeur",
-    location: "Malad (E)",
-    rera: "MahaRERA No. P51800045678",
-    type: "2BHK & 3BHK Residences",
-    status: "Ongoing",
-  },
-  {
-    image: hero2,
-    name: "Lalani Heritage Park",
-    location: "Jogeshwari (W)",
-    rera: "MahaRERA No. P51800056789",
-    type: "2BHK & 3BHK Residences",
-    status: "Ongoing",
+    possession: "Ready to Move",
   },
 ];
 
@@ -101,20 +83,11 @@ const ProjectsSection = () => {
                 </h3>
                 <p className="text-sm text-primary font-body mb-3">{project.location}</p>
                 <p className="text-sm text-muted-foreground font-body mb-2">{project.type}</p>
-                <div className="pt-3 border-t border-border">
-                  <p className="text-xs text-muted-foreground font-body">{project.rera}</p>
-                  <p className="text-xs text-muted-foreground font-body mt-1">
-                    Available on{" "}
-                    <a
-                      href="https://maharerait.mahaonline.gov.in/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:text-gold-light underline"
-                    >
-                      maharerait.mahaonline.gov.in
-                    </a>
+                {project.possession && (
+                  <p className="text-sm text-muted-foreground font-body">
+                    <span className="font-semibold">Possession:</span> {project.possession}
                   </p>
-                </div>
+                )}
               </div>
             </motion.div>
           ))}

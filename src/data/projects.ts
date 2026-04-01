@@ -5,6 +5,46 @@ import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import aboutBg from "@/assets/about-bg.jpg";
 
+// Lalani Goodwill Images
+import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
+import busines3 from "@/assets/lalanibusinespark/busines3.png";
+
+// Lalani Business Park Images
+import busines from "@/assets/lalanibusinespark/busines.png";
+import business1 from "@/assets/lalanibusinespark/business1.png";
+import business2 from "@/assets/lalanibusinespark/business2.png";
+import business4 from "@/assets/lalanibusinespark/business4.png";
+import business5 from "@/assets/lalanibusinespark/business5.png";
+import quantum from "@/assets/lalanibusinespark/quantum.png";
+
+// Lalani Heritage Images
+import homeimage from "@/assets/lalaniheritage/homeimage.webp";
+import lalanigraduner from "@/assets/lalaniheritage/lalanigraduner.png";
+
+// Lalani Residency Images
+import residency from "@/assets/lalanibusinespark/residency.png";
+import residency2 from "@/assets/lalanibusinespark/residency2.png";
+
+// Lalani Dream Residency Images
+import dream from "@/assets/lalaniheritage/dream.png";
+import dream1 from "@/assets/lalaniheritage/dream1.png";
+import dream3 from "@/assets/lalaniheritage/dream3.png";
+
+// Lalani Heritage Additional Images
+import heritage from "@/assets/lalaniheritage/heritage.png";
+import heritage1 from "@/assets/lalaniheritage/heritage1.png";
+
+// Lalani Aura Images
+import lalaniaura from "@/assets/lalanibusinespark/lalaniaura.png";
+import lalaniaura1 from "@/assets/lalanibusinespark/lalaniaura1.png";
+import lalaniaura2 from "@/assets/lalanibusinespark/lalaniaura2.png";
+import lalaniaura3 from "@/assets/lalanibusinespark/lalaniaura3.png";
+
+// Lalani Graduner Images
+import graduner from "@/assets/lalaniheritage/graduner.png";
+import graduner1 from "@/assets/lalaniheritage/graduner1.png";
+import graduner2 from "@/assets/lalaniheritage/graduner2.png";
+
 // Heritage Park Floor Plan
 import heritageFloorPlan from "@/assets/lalaniheritage/HP-Floor-Plan.webp";
 
@@ -51,15 +91,15 @@ export const projects: Project[] = [
     name: "Lalani Goodwill",
     location: "J.B. Nagar, Andheri (E)",
     area: "Andheri East",
-    rera: "P51800079065",
-    reraNumber2: "P51800078852",
+    rera: "",
+    reraNumber2: "",
     type: "1BHK, 2BHK & 3BHK Residences",
     status: "Ongoing",
     category: "ongoing",
-    price: "₹85 Lakhs Onwards",
+    price: "",
     possession: "December 2025",
-    image: project1,
-    images: [project1, hero1, hero2],
+    image: mainElevation,
+    images: [mainElevation, busines3],
     description: "Lalani Goodwill is a premium residential project offering meticulously designed 1BHK, 2BHK & 3BHK apartments in the heart of Andheri East. With modern amenities and strategic location near J.B. Nagar metro station, it offers the perfect blend of luxury and convenience for Mumbai's urban lifestyle.",
     highlights: [
       "MahaRERA Approved - P51800079065 & P51800078852",
@@ -149,10 +189,10 @@ export const projects: Project[] = [
     type: "1BHK & 2BHK Residences",
     status: "Ready Possession",
     category: "completed",
-    price: "₹75 Lakhs Onwards",
+    price: "",
     possession: "Ready to Move - OC Received",
-    image: project3,
-    images: [project3, hero2, project1, hero1, aboutBg],
+    image: busines3,
+    images: [busines3, business4],
     description: "Velentine Apartment Wing D is a ready-to-move residential project offering spacious 1BHK and 2BHK apartments in the heart of Malad East, Mumbai. With Occupancy Certificate (OC) already received, these homes are perfect for immediate possession. Strategically located near Malad Railway Station and Western Express Highway, Velentine Apartment offers excellent connectivity to IT hubs, shopping malls, and educational institutions. The project features modern amenities, quality construction, and thoughtful layouts designed for comfortable family living. Choose Velentine Apartment for a hassle-free move-in experience in one of Mumbai's most sought-after residential localities.",
     highlights: [
       "Ready Possession - OC Received",
@@ -256,14 +296,14 @@ export const projects: Project[] = [
     name: "Lalani Grandeur",
     location: "Goregaon (E)",
     area: "Goregaon East",
-    rera: "P51800045678",
+    rera: "",
     type: "2BHK & 3BHK Residences",
     status: "Ongoing",
     category: "residential",
-    price: "₹1.12 Cr Onwards",
+    price: "",
     possession: "March 2026",
-    image: hero1,
-    images: [hero1, project2, hero2, project1, aboutBg],
+    image: graduner,
+    images: [graduner, graduner1, graduner2],
     description: "Lalani Grandeur is an architectural masterpiece offering premium 2BHK and 3BHK apartments in the heart of Goregaon East, Mumbai. This prestigious residential project redefines luxury living with contemporary design, world-class amenities, and thoughtful layouts. Strategically located near Goregaon Railway Station, Western Express Highway, and Film City, Lalani Grandeur offers unmatched connectivity to IT parks, entertainment hubs, and commercial centers. With a grand clubhouse, swimming pool, gymnasium, and landscaped gardens, this project is designed for families who seek the finest in urban living. Experience the perfect blend of comfort, convenience, and elegance at Lalani Grandeur.",
     highlights: [
       "MahaRERA Approved - P51800045678",
@@ -390,14 +430,14 @@ export const projects: Project[] = [
     name: "Lalani Business Park",
     location: "Khar (W)",
     area: "Khar West",
-    rera: "P51800033063",
+    rera: "",
     type: "Commercial Spaces",
     status: "Ongoing",
     category: "ongoing",
-    price: "₹1.2 Cr Onwards",
+    price: "",
     possession: "June 2026",
-    image: project2,
-    images: [project2, hero1, project3],
+    image: busines,
+    images: [busines, business1],
     description: "Lalani Business Park is a premium commercial development in the heart of Khar West. Offering state-of-the-art office spaces with modern infrastructure, this project is ideal for businesses looking for a prestigious address in Mumbai's prime business district.",
     highlights: [
       "MahaRERA Approved - P51800033063",
@@ -454,14 +494,14 @@ export const projects: Project[] = [
     name: "Lalani Heritage Park",
     location: "Jogeshwari (W)",
     area: "Jogeshwari West",
-    rera: "P51800056789",
+    rera: "",
     type: "2BHK & 3BHK Residences",
     status: "Ongoing",
     category: "residential",
-    price: "₹98 Lakhs Onwards",
+    price: "",
     possession: "September 2026",
-    image: aboutBg,
-    images: [aboutBg, hero1, project1, hero2, project2],
+    image: heritage,
+    images: [heritage, heritage1],
     description: "Heritage Park is strategically located just off S.V. Road to ensure comfort, convenience and connectivity. Vibrant retail, fashion, dining, cultural, business destinations, ultra-luxury boutiques and international brand names cater to everyday conveniences. At Heritage Park, you have every necessity and indulgence just a few steps away from your home. The bustling Mega Mall, Inorbit, Infinity and Hypercity are in vicinity. Heritage Park is truly a fine blend of affordable luxury, convenience, peace of mind, privacy and security.",
     highlights: [
       "MahaRERA Approved - P51800056789",
@@ -595,14 +635,14 @@ export const projects: Project[] = [
     name: "Lalani Dream Residency",
     location: "Karjat (W)",
     area: "Karjat",
-    rera: "P51800078901",
+    rera: "",
     type: "1BHK & 2BHK Weekend Homes",
     status: "Ongoing",
     category: "residential",
-    price: "₹32 Lakhs Onwards",
+    price: "",
     possession: "December 2026",
-    image: project3,
-    images: [project3, hero1, hero2, project1, aboutBg],
+    image: dream,
+    images: [dream, dream1, dream3],
     description: "Lalani Dream Residency is an idyllic weekend retreat nestled in the scenic surroundings of Karjat, just 2.5 hours from Mumbai by train. Offering spacious 1BHK and 2BHK homes amidst lush greenery and panoramic hill views, this project is perfect for those seeking a peaceful escape from the city chaos. Surrounded by nature's beauty including the Ulhas River, Kondana Caves, and waterfalls, Dream Residency combines tranquility with modern amenities. Whether you're looking for a weekend home, retirement retreat, or investment opportunity, Lalani Dream Residency offers the perfect blend of nature, comfort, and value in Maharashtra's most beautiful hill station region.",
     highlights: [
       "MahaRERA Approved - P51800078901",
@@ -725,14 +765,14 @@ export const projects: Project[] = [
     name: "Lalani Corporate Plaza",
     location: "BKC, Bandra (E)",
     area: "Bandra Kurla Complex",
-    rera: "P51800067890",
+    rera: "",
     type: "Premium Office Spaces",
     status: "Ongoing",
     category: "commercial",
-    price: "₹1.8 Cr Onwards",
+    price: "",
     possession: "August 2026",
-    image: hero2,
-    images: [hero2, project2, hero1],
+    image: lalaniaura,
+    images: [lalaniaura, lalaniaura1, lalaniaura2, lalaniaura3],
     description: "Lalani Corporate Plaza is a landmark commercial tower in the prestigious Bandra Kurla Complex. Featuring premium office spaces with world-class amenities, this project offers an unparalleled business address in Mumbai's premier business district.",
     highlights: [
       "MahaRERA Approved - P51800067890",
@@ -808,18 +848,14 @@ export const projects: Project[] = [
     name: "Royal Manor",
     location: "Bandra (W)",
     area: "Bandra West",
-    rera: "Legacy Project",
+    rera: "",
     type: "Luxury Residences",
     status: "Ready Possession",
     category: "completed",
-    price: "Sold Out",
+    price: "",
     possession: "Completed",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&auto=format&fit=crop&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop&q=80"
-    ],
+    image: business1,
+    images: [business1, business4],
     description: "Royal Manor is a landmark completed residential project in the prestigious St. Roque Road, Bandra (W). An elegant and tastefully done construction with premium finishes, Royal Manor stands as a symbol of Lalani Group's commitment to architectural excellence and quality living.",
     highlights: [
       "Prestigious address on St. Roque Road, Bandra",
@@ -864,14 +900,14 @@ export const projects: Project[] = [
     name: "Orchid Enclave",
     location: "Andheri (E)",
     area: "Andheri East",
-    rera: "Legacy Project",
+    rera: "",
     type: "Residential Apartments",
     status: "Ready Possession",
     category: "completed",
-    price: "Sold Out",
+    price: "",
     possession: "Completed",
     image: project1,
-    images: [project1, hero1, hero2],
+    images: [project1, hero1],
     description: "Orchid Enclave is a successfully completed residential project in Andheri East offering residents the best amenities and quality living standards at competitive pricing. The well-planned apartments maximize floor space, offering true value for money, a hallmark of the Lalani Group.",
     highlights: [
       "Strategically located in Andheri East",
@@ -917,14 +953,14 @@ export const projects: Project[] = [
     name: "Lalani Fairmont",
     location: "Khar (W)",
     area: "Khar West",
-    rera: "Legacy Project",
+    rera: "",
     type: "Premium Residences",
     status: "Ready Possession",
     category: "completed",
-    price: "Sold Out",
+    price: "",
     possession: "Completed",
     image: project2,
-    images: [project2, hero1, hero2],
+    images: [project2, hero1],
     description: "Lalani Fairmont is one of the Group's most celebrated completed projects in the premium Khar (W) locality of Mumbai. With clear architectural distinction from surrounding buildings, Lalani Fairmont has set the benchmark for quality residential construction, as endorsed by its esteemed residents including retired ONGC officials and senior professionals.",
     highlights: [
       "Premium location in Khar West",
@@ -971,18 +1007,14 @@ export const projects: Project[] = [
     name: "Lalani Skyview",
     location: "Goregaon (W)",
     area: "Goregaon West",
-    rera: "P51800089012",
+    rera: "",
     type: "2BHK & 3BHK Residences",
     status: "Ongoing",
     category: "residential",
-    price: "₹1.25 Cr Onwards",
+    price: "",
     possession: "June 2027",
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&auto=format&fit=crop&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&auto=format&fit=crop&q=80"
-    ],
+    image: residency,
+    images: [residency, residency2],
     description: "Lalani Skyview is a stunning high-rise residential project in Goregaon West offering breathtaking panoramic views of the city skyline. With contemporary architecture and premium amenities, this project is designed for those who aspire to live above the ordinary.",
     highlights: [
       "MahaRERA Approved - P51800089012",
@@ -1067,18 +1099,14 @@ export const projects: Project[] = [
     name: "Lalani Towers",
     location: "Andheri (W)",
     area: "Andheri West",
-    rera: "P51800090123",
+    rera: "",
     type: "Premium Retail & Office Spaces",
     status: "Ongoing",
     category: "commercial",
-    price: "₹95 Lakhs Onwards",
+    price: "",
     possession: "December 2026",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&auto=format&fit=crop&q=80"
-    ],
+    image: lalanigraduner,
+    images: [lalanigraduner, homeimage],
     description: "Lalani Towers is a modern commercial complex in the bustling Andheri West business corridor. Offering premium retail shops and office spaces, this project provides excellent visibility and footfall for businesses seeking a prime commercial address.",
     highlights: [
       "MahaRERA Approved - P51800090123",

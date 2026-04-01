@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   MapPin, Phone, Mail, Download, Building2, Car, Trees, 
   Dumbbell, Shield, Droplets, Zap, Home, CheckCircle, 
-  ChevronLeft, ChevronRight, X,
+  ChevronLeft, ChevronRight, ChevronDown, X,
   Train, Plane, ShoppingBag, GraduationCap, Building
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -18,6 +18,11 @@ import { trackEvent } from "@/lib/tracking";
 // Import images
 import goodwillLogo from "@/assets/lalanigoodwill/image.png";
 import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
+import carsoule1 from "@/assets/lalanigoodwill/carsoule1.webp";
+import carsoule2 from "@/assets/lalanigoodwill/carsoule2.webp";
+import carsoule3 from "@/assets/lalanigoodwill/carsoule3.webp";
+import carsoule4 from "@/assets/lalanigoodwill/carsoule4.webp";
+import lalaniimg from "@/assets/lalanigoodwill/lalaniimg.webp";
 import image1 from "@/assets/lalanigoodwill/image7.png";
 import image2 from "@/assets/lalanigoodwill/image2.png";
 import image3 from "@/assets/lalanigoodwill/image3.png";
@@ -139,6 +144,7 @@ const galleryImages = [
 const LalaniGoodwill = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState('construction');
   const [contactForm, setContactForm] = useState({
     name: "",
     phone: "",
@@ -192,57 +198,75 @@ const LalaniGoodwill = () => {
               alt="Lalani Goodwill"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+            {/* <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/20 to-black/20" /> */}
           </div>
 
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
-            {/* Centered Logo - Rounded */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex justify-center mb-6 md:mb-8"
-            >
-              <div className="px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 rounded-2xl md:rounded-3xl bg-gradient-to-br from-red-900/30 via-yellow-500/20 to-white/10 backdrop-blur-xl shadow-2xl border border-white/30" style={{boxShadow: "0 8px 32px rgba(178, 31, 52, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)"}}>
-                <img
-                  src={goodwillLogo}
-                  alt="Lalani Goodwill"
-                  className="w-40 sm:w-48 md:w-56 lg:w-64 h-auto object-contain"
-                />
-              </div>
-            </motion.div>
-
-            {/* Hero Content */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-center text-white max-w-4xl mx-auto"
-            >
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold mb-3 md:mb-4 px-2">
-                The Good Life Begins Here
-              </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 leading-relaxed px-2">
-                A good life is one where everything falls into place—your comfort, your time, your happiness. 
-                At LALANI GOODWILL, we've created homes that do just that. With 1, 2, 3 Bed & Jodi Residences 
-                in Andheri's most prominent neighborhood, experience a life that is as thoughtful as it is effortless.
-              </p>
-            </motion.div>
-          </div>
+          
         </section>
+<section className="py-12 md:py-16 bg-background">
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Project Hallmarks */}
-        <section className="py-16 md:py-20 bg-card">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Logo */}
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="flex justify-center mb-6"
+    >
+      <div className="px-4 py-3 sm:px-6 sm:py-4 rounded-2xl bg-gradient-to-br from-red-900/30 via-yellow-500/20 to-white/10 backdrop-blur-xl shadow-xl border border-white/20">
+        
+        <img
+          src={goodwillLogo}
+          alt="Lalani Goodwill"
+          className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain"
+        />
+
+      </div>
+    </motion.div>
+
+    {/* Content */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+      className="text-center text-white max-w-3xl mx-auto"
+    >
+      <h1 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
+        The Good Life Begins Here
+      </h1>
+
+      <p className="text-base md:text-lg text-muted-foreground">
+        A good life is one where everything falls into place—your comfort, your time, your happiness. 
+        At LALANI GOODWILL, we've created homes that do just that. With 1, 2, 3 Bed & Jodi Residences 
+        in Andheri's most prominent neighborhood, experience a life that is as thoughtful as it is effortless.
+      </p>
+    </motion.div>
+
+  </div>
+</section>
+
+        {/* Project Hallmarks with Cover Background */}
+        <section className="relative py-16 md:py-24 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img
+              src={lalaniimg}
+              alt="Lalani Goodwill Background"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/70" />
+          </div>
+          
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
                 Project Hallmarks
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg text-white/80 max-w-2xl mx-auto">
                 Discover the distinctive features that make Lalani Goodwill your perfect home
               </p>
             </motion.div>
@@ -255,14 +279,110 @@ const LalaniGoodwill = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="flex flex-col items-center p-4 md:p-6 bg-background rounded-xl border border-border hover:border-primary/50 transition-all group"
+                  className="flex flex-col items-center p-4 md:p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:border-primary/50 transition-all group"
                 >
                   <item.icon className="w-8 h-8 md:w-10 md:h-10 text-primary mb-3 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm md:text-base text-center text-foreground font-medium">
+                  <span className="text-sm md:text-base text-center text-white font-medium">
                     {item.text}
                   </span>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Visual Tour & Construction Update - Combined Section */}
+        <section className="py-12 md:py-16 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-8"
+            >
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-primary mb-3">
+                Steady Progress, Strong Foundations!
+              </h2>
+            </motion.div>
+
+            {/* Tabs */}
+            <div className="flex justify-center gap-0 mb-8">
+              <button
+                onClick={() => setActiveTab('construction')}
+                className={`px-6 py-3 md:px-8 md:py-4 text-sm md:text-base font-medium transition-all ${
+                  activeTab === 'construction'
+                    ? 'bg-primary text-white'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                }`}
+              >
+                Construction Update
+              </button>
+              <button
+                onClick={() => setActiveTab('digitour')}
+                className={`px-6 py-3 md:px-8 md:py-4 text-sm md:text-base font-medium transition-all ${
+                  activeTab === 'digitour'
+                    ? 'bg-primary text-white'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                }`}
+              >
+                Digitour
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="max-w-6xl mx-auto">
+              <AnimatePresence mode="wait">
+                {activeTab === 'construction' ? (
+                  <motion.div
+                    key="construction"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {/* Construction Grid - 4 Images */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                      {[carsoule1, carsoule2, carsoule3, carsoule4].map((img, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: index * 0.1 }}
+                          className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg bg-card border border-border group cursor-pointer"
+                        >
+                          <img
+                            src={img}
+                            alt={`Construction Update ${index + 1}`}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            loading="lazy"
+                          />
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="digitour"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="max-w-4xl mx-auto"
+                  >
+                    <div className="aspect-video rounded-xl overflow-hidden shadow-lg bg-card border border-border">
+                      <img
+                        src={mainElevation}
+                        alt="Lalani Goodwill Main Elevation"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p className="text-center text-sm text-muted-foreground mt-4">
+                      Main Elevation - Latest Construction Update
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </section>
@@ -583,10 +703,7 @@ const LalaniGoodwill = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-6 -left-6 bg-card p-4 rounded-xl border border-border shadow-xl">
-                  <p className="text-primary font-bold text-lg">P51700018549</p>
-                  <p className="text-xs text-muted-foreground">RERA Registration Number</p>
-                </div>
+              
               </motion.div>
             </div>
           </div>

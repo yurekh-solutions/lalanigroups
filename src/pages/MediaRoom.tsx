@@ -7,318 +7,395 @@ import BackToTopButton from "@/components/BackToTopButton";
 import LeadCapturePopup from "@/components/LeadCapturePopup";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
-import { Calendar, ExternalLink, Newspaper, Image, Award, X, ChevronLeft, ChevronRight, Eye } from "lucide-react";
-import { useState } from "react";
+import { X, ChevronLeft, ChevronRight, Calendar, MapPin, Award, Star } from "lucide-react";
+import { useState, useEffect } from "react";
 import project2 from "@/assets/project-2.jpg";
 
-// Media Gallery Images
-import mediaCover from "@/assets/lalanimedia/media.png.png";
-import media1 from "@/assets/lalanimedia/media1.png";
-import media3 from "@/assets/lalanimedia/media3.png";
-import media4 from "@/assets/lalanimedia/media4.png";
-import media5 from "@/assets/lalanimedia/media5.png";
-import media6 from "@/assets/lalanimedia/media6.png";
-import media7 from "@/assets/lalanimedia/media7.png";
-import media10 from "@/assets/lalanimedia/media10.png";
-import media11 from "@/assets/lalanimedia/media11.png";
-import media12 from "@/assets/lalanimedia/media12.png";
-import media13 from "@/assets/lalanimedia/media13.png";
-import media14 from "@/assets/lalanimedia/media14.png";
+// Dynamic imports for all media images
+const mediaImages2016 = import.meta.glob('@/assets/lalanimedia/9 CREDAI YOUTH WING EXPO VASHI NAVI MUMBAI  2016/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const mediaImages2015 = import.meta.glob('@/assets/lalanimedia/8 MCHI 2015/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const mediaImages2014 = import.meta.glob('@/assets/lalanimedia/7 MCHI EXP 2014/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const mediaImages2013HT = import.meta.glob('@/assets/lalanimedia/6 HT EXPO OCTOBER 2013/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const mediaImages2013Credai = import.meta.glob('@/assets/lalanimedia/5 MCHI CREDAI BKC OCTOBER 2013/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const mediaImages2012 = import.meta.glob('@/assets/lalanimedia/4 MCHI EXPO BKC NOVEMBER 2012/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const mediaImages2011 = import.meta.glob('@/assets/lalanimedia/3 DNA EXPO JANUARY 2011/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const mediaImages2010BKC = import.meta.glob('@/assets/lalanimedia/2 MCHI EXPO BKC OCTOBER 2010/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const mediaImages2010Thane = import.meta.glob('@/assets/lalanimedia/1 MCHI EXPO THANE MAY 2010/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
 
-// Awards Gallery Images
-import awardCover from "@/assets/lalaniawards/awardcover.png";
-import award from "@/assets/lalaniawards/award.png";
-import award1 from "@/assets/lalaniawards/award1.png";
-import award3 from "@/assets/lalaniawards/award3.png";
-import award4 from "@/assets/lalaniawards/award4.png";
-import award5 from "@/assets/lalaniawards/award5.png";
-import award7 from "@/assets/lalaniawards/award7.png";
-import award8 from "@/assets/lalaniawards/award8.png";
-import award9 from "@/assets/lalaniawards/award9.png";
+// Award images
+const awardImages2016 = import.meta.glob('@/assets/lalaniawards/*2016*/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const awardImages2014 = import.meta.glob('@/assets/lalaniawards/*2014*/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const awardImages2013 = import.meta.glob('@/assets/lalaniawards/*2013*/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const awardImages2012 = import.meta.glob('@/assets/lalaniawards/*2012*/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const awardImages2010 = import.meta.glob('@/assets/lalaniawards/*2010*/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const awardImages2009 = import.meta.glob('@/assets/lalaniawards/*2009*/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const awardImages2008 = import.meta.glob('@/assets/lalaniawards/*2008*/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
+const awardImages2007 = import.meta.glob('@/assets/lalaniawards/*2007*/*.{jpg,JPG,jpeg,png}', { eager: true, query: '?url', import: 'default' });
 
-const mediaImages = [
-  { src: mediaCover, alt: "Lalani Group Media Feature", size: "large" },
-  { src: media1, alt: "Lalani Group Press Coverage", size: "small" },
-  { src: media3, alt: "Lalani Group News Article", size: "medium" },
-  { src: media4, alt: "Lalani Group Event Coverage", size: "large" },
-  { src: media5, alt: "Lalani Group Publication", size: "small" },
-  { src: media6, alt: "Lalani Group Interview", size: "medium" },
-  { src: media7, alt: "Lalani Group Feature Story", size: "large" },
-  { src: media10, alt: "Lalani Group Exhibition", size: "small" },
-  { src: media11, alt: "Lalani Group Property Showcase", size: "medium" },
-  { src: media12, alt: "Lalani Group Team Event", size: "large" },
-  { src: media13, alt: "Lalani Group Expo", size: "small" },
-  { src: media14, alt: "Lalani Group Ceremony", size: "medium" },
-];
+// Helper function to convert glob results to array
+const globToArray = (globObj: Record<string, unknown>): string[] => {
+  return Object.values(globObj) as string[];
+};
 
-const awardImages = [
-  { src: awardCover, alt: "Lalani Group Awards Cover" },
-  { src: award, alt: "Lalani Group Award" },
-  { src: award1, alt: "Lalani Group Award 1" },
-  { src: award3, alt: "Lalani Group Award 3" },
-  { src: award4, alt: "Lalani Group Award 4" },
-  { src: award5, alt: "Lalani Group Award 5" },
-  { src: award7, alt: "Lalani Group Award 7" },
-  { src: award8, alt: "Lalani Group Award 8" },
-  { src: award9, alt: "Lalani Group Award 9" },
-];
+interface MediaEvent {
+  year: number;
+  title: string;
+  location: string;
+  date: string;
+  images: string[];
+  type: 'media' | 'award';
+}
 
-const allAwards = [awardCover, award, award1, award3, award4, award5, award7, award8, award9];
-
-const newsArticles = [
-  {
-    title: "Mumbai Real Estate Market Sees Strong Recovery with Record Registrations in 2024",
-    date: "15-Jan-2025",
-    excerpt: "Mumbai's property market continues its bullish run with record-breaking registrations in 2024."
-  },
-  {
-    title: "MahaRERA Strengthens Homebuyer Protection with New Guidelines for 2025",
-    date: "10-Jan-2025",
-    excerpt: "MahaRERA has introduced new guidelines to strengthen homebuyer protection."
-  },
-  {
-    title: "Mumbai's Western Suburbs Emerge as Top Residential Investment Destinations",
-    date: "02-Dec-2024",
-    excerpt: "Areas like Andheri East, Malad East, Jogeshwari West have emerged as top investment destinations."
-  },
-  {
-    title: "Home Loan Rates Stabilize as RBI Holds Repo Rate; Positive for Buyers",
-    date: "08-Nov-2024",
-    excerpt: "The Reserve Bank of India's decision to hold the repo rate steady has brought stability."
-  },
-  {
-    title: "Residential unit sales up 34% QoQ in July-September",
-    date: "02-Jan-2021",
-    excerpt: "The residential real estate market has shown initial signs of a pick-up."
-  },
-  {
-    title: "Mumbai property registration bounces back to pre-Covid level",
-    date: "21-Nov-2020",
-    excerpt: "The Stamp duty reduction has resulted in a sharp bounce back in property sales."
-  },
-];
+interface AwardData {
+  year: number;
+  title: string;
+  subtitle: string;
+  location?: string;
+  description: string;
+}
 
 const MediaRoom = () => {
+  const [activeTab, setActiveTab] = useState<number>(2016);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [lightboxType, setLightboxType] = useState<'media' | 'awards'>('media');
+  const [lightboxImages, setLightboxImages] = useState<string[]>([]);
 
-  const openLightbox = (index: number, type: 'media' | 'awards') => {
+  // Award data organized by year
+  const awardDataByYear: Record<number, AwardData[]> = {
+    2016: [
+      { year: 2016, title: "Best Project of the Year - Residential", subtitle: "Lalani Grandeur", location: "Mumbai", description: "Award for excellence in residential development" },
+      { year: 2016, title: "Excellence in Commercial Development", subtitle: "Lalani Business Park", location: "Mumbai", description: "Recognition for outstanding commercial project" },
+      { year: 2016, title: "Innovation in Architecture", subtitle: "Design Excellence Award", location: "Mumbai", description: "Award for innovative architectural design" },
+      { year: 2016, title: "Sustainable Development Award", subtitle: "Green Building Initiative", location: "Mumbai", description: "Recognition for sustainable construction practices" },
+      { year: 2016, title: "Customer Satisfaction Award", subtitle: "Client Choice Award", location: "Mumbai", description: "Award for exceptional customer service" }
+    ],
+    2014: [
+      { year: 2014, title: "Rising Star Developer", subtitle: "Emerging Leader", location: "Mumbai", description: "Recognition as an emerging leader in real estate" },
+      { year: 2014, title: "Quality Construction Award", subtitle: "Build Excellence", location: "Mumbai", description: "Award for superior construction quality" }
+    ],
+    2013: [
+      { year: 2013, title: "Best Affordable Housing", subtitle: "People's Choice", location: "Mumbai", description: "Award for affordable housing excellence" },
+      { year: 2013, title: "Timely Delivery Award", subtitle: "Commitment Fulfilled", location: "Mumbai", description: "Recognition for on-time project delivery" }
+    ],
+    2012: [
+      { year: 2012, title: "Luxury Living Award", subtitle: "Premium Development", location: "Mumbai", description: "Award for luxury residential project" },
+      { year: 2012, title: "Best Amenities", subtitle: "Lifestyle Excellence", location: "Mumbai", description: "Recognition for world-class amenities" },
+      { year: 2012, title: "Prime Location Award", subtitle: "Connectivity Plus", location: "Mumbai", description: "Award for strategic location advantage" },
+      { year: 2012, title: "Value for Money", subtitle: "Smart Investment", location: "Mumbai", description: "Recognition for providing excellent value" },
+      { year: 2012, title: "Modern Design Award", subtitle: "Contemporary Living", location: "Mumbai", description: "Award for modern architectural design" }
+    ],
+    2010: [
+      { year: 2010, title: "First Time Homebuyer Award", subtitle: "Dream Home", location: "Mumbai", description: "Recognition for helping first-time buyers" }
+    ],
+    2009: [
+      { year: 2009, title: "Trust & Reliability", subtitle: "Builder You Can Trust", location: "Mumbai", description: "Award for building trust with customers" },
+      { year: 2009, title: "Safety Standards", subtitle: "Secure Construction", location: "Mumbai", description: "Recognition for maintaining high safety standards" },
+      { year: 2009, title: "Community Impact", subtitle: "Making a Difference", location: "Mumbai", description: "Award for positive community impact" }
+    ],
+    2008: [
+      { year: 2008, title: "Emerging Developer", subtitle: "New Force in Real Estate", location: "Mumbai", description: "Recognition as an emerging developer" },
+      { year: 2008, title: "Innovation Award", subtitle: "Thinking Different", location: "Mumbai", description: "Award for innovative approaches" },
+      { year: 2008, title: "Customer First", subtitle: "Service Excellence", location: "Mumbai", description: "Recognition for customer-centric approach" }
+    ],
+    2007: [
+      { year: 2007, title: "Debut Project Award", subtitle: "Strong Start", location: "Mumbai", description: "Recognition for impressive debut project" },
+      { year: 2007, title: "Promise of Excellence", subtitle: "Future Leader", location: "Mumbai", description: "Award showing promise of future excellence" },
+      { year: 2007, title: "Local Hero", subtitle: "Community Favorite", location: "Mumbai", description: "Recognition as a local favorite builder" }
+    ]
+  };
+
+  // Helper function to convert glob results to array
+  const globToArray = (globObj: Record<string, unknown>): string[] => {
+    return Object.values(globObj) as string[];
+  };
+
+  // Media events organized by year
+  const mediaEvents: Record<number, MediaEvent[]> = {
+    2016: [
+      { year: 2016, title: "CREDAI Youth Wing Expo", location: "Vashi, Navi Mumbai", date: "2016", images: globToArray(mediaImages2016), type: 'media' },
+    ],
+    2015: [
+      { year: 2015, title: "MCHI Exhibition", location: "Mumbai", date: "2015", images: globToArray(mediaImages2015), type: 'media' },
+    ],
+    2014: [
+      { year: 2014, title: "MCHI Expo", location: "Mumbai", date: "2014", images: globToArray(mediaImages2014), type: 'media' },
+    ],
+    2013: [
+      { year: 2013, title: "HT Expo", location: "Mumbai", date: "October 2013", images: globToArray(mediaImages2013HT), type: 'media' },
+      { year: 2013, title: "MCHI CREDAI Expo", location: "BKC, Mumbai", date: "October 2013", images: globToArray(mediaImages2013Credai), type: 'media' },
+    ],
+    2012: [
+      { year: 2012, title: "MCHI Expo", location: "BKC, Mumbai", date: "November 2012", images: globToArray(mediaImages2012), type: 'media' },
+    ],
+    2010: [
+      { year: 2010, title: "MCHI Expo BKC", location: "BKC, Mumbai", date: "October 2010", images: globToArray(mediaImages2010BKC), type: 'media' },
+      { year: 2010, title: "MCHI Expo Thane", location: "Thane", date: "May 2010", images: globToArray(mediaImages2010Thane), type: 'media' },
+    ],
+  };
+
+  const openLightbox = (index: number, images: string[]) => {
+    setLightboxImages(images);
     setLightboxIndex(index);
-    setLightboxType(type);
     setLightboxOpen(true);
   };
 
-  const currentImages = lightboxType === 'media' ? mediaImages : awardImages;
+  // Get all years from both media and awards
+  const allYears = Array.from(new Set([
+    ...Object.keys(mediaEvents).map(Number),
+    ...Object.keys(awardDataByYear).map(Number)
+  ])).sort((a, b) => b - a); // Sort descending
 
-  // Get height based on size
-  const getHeight = (size: string) => {
-    switch (size) {
-      case 'large': return 'h-48 sm:h-56 md:h-72';
-      case 'medium': return 'h-40 sm:h-48 md:h-60';
-      case 'small': return 'h-32 sm:h-40 md:h-48';
-      default: return 'h-40 sm:h-48 md:h-60';
-    }
-  };
+  const currentEvents = mediaEvents[activeTab] || [];
+  const currentAwards = awardDataByYear[activeTab] || [];
 
   return (
     <>
       <SEO
-        title="Media Room | News, Awards & Gallery - Lalani Group Mumbai"
-        description="Latest news, awards, and media coverage from Lalani Group."
-        keywords="Lalani Group news, Mumbai real estate news, MahaRERA updates"
+        title="Media Room & Awards | Gallery - Lalani Group Mumbai"
+        description="Latest news, media gallery and awards from Lalani Group."
+        keywords="Lalani Group news, Mumbai real estate news, MahaRERA updates, awards"
         canonicalUrl="/media-room"
       />
       <Navbar />
       <PageHero 
-        title="Media Room"
-        subtitle="Press Releases, News & Updates from Lalani Group"
+        title="Media Room & Awards"
+        subtitle="Press Releases, Media Events & Recognition from Lalani Group"
         backgroundImage={project2}
       />
       <main className="pt-0">
-        {/* Awards Gallery Section - 3D Carousel */}
-        <section className="py-5 md:py-10 bg-gradient-to-b from-card to-background overflow-x-hidden">
+        {/* Section 1: Media Events */}
+        <section className="py-8 sm:py-10 md:py-16 bg-gradient-to-b from-card via-background to-card">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            
+            {/* Header */}
             <motion.div
               initial={{ opacity: 1 }}
-              className="max-w-6xl mx-auto mb-3 md:mb-5"
+              className="max-w-6xl mx-auto mb-8 md:mb-12"
             >
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Award className="w-5 h-5 md:w-8 md:h-8 text-primary" />
-                <h2 className="text-xl md:text-3xl font-heading font-bold text-foreground">
-                  Awards & Recognition
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Calendar className="w-6 h-6 md:w-8 md:h-8 text-primary" />
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-foreground">
+                  Media Events Gallery
                 </h2>
               </div>
-              <p className="text-center text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
-                Celebrating excellence in real estate development with prestigious awards
+              <p className="text-center text-muted-foreground max-w-3xl mx-auto text-sm sm:text-base md:text-lg px-4">
+                A visual journey through our exhibitions, expos, and media appearances
               </p>
             </motion.div>
-          </div>
 
-          {/* Marquee Row 1 */}
-          <div className="max-w-7xl mx-auto px-4 overflow-hidden mb-3">
-            <div className="flex animate-marquee-forward">
-              {[...allAwards, ...allAwards, ...allAwards].map((src, index) => (
-                <div
-                  key={`row1-${index}`}
-                  className="flex-shrink-0 w-28 h-24 sm:w-36 sm:h-32 md:w-48 md:h-44 lg:w-56 lg:h-52 mx-2 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden border-2 border-transparent hover:border-primary transition-all group cursor-pointer transform hover:scale-105 hover:-translate-y-2 duration-300"
-                  onClick={() => openLightbox(index % allAwards.length, 'awards')}
-                >
-                  <img
-                    src={src}
-                    alt={`Award ${index + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Marquee Row 2 */}
-          <div className="max-w-7xl mx-auto px-4 overflow-hidden">
-            <div className="flex animate-marquee-reverse">
-              {[...allAwards.slice().reverse(), ...allAwards.slice().reverse(), ...allAwards.slice().reverse()].map((src, index) => (
-                <div
-                  key={`row2-${index}`}
-                  className="flex-shrink-0 w-28 h-24 sm:w-36 sm:h-32 md:w-48 md:h-44 lg:w-56 lg:h-52 mx-2 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden border-2 border-transparent hover:border-primary transition-all group cursor-pointer transform hover:scale-105 hover:-translate-y-2 duration-300"
-                  onClick={() => openLightbox((allAwards.length - 1 - (index % allAwards.length)), 'awards')}
-                >
-                  <img
-                    src={src}
-                    alt={`Award ${index + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Media Gallery Section - Unique Masonry */}
-        <section className="py-5 md:py-10 bg-background relative">
-          {/* Decorative Elements */}
-          <div className="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-          
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <motion.div
-              initial={{ opacity: 1 }}
-              className="max-w-7xl mx-auto"
-            >
-              {/* Header */}
-              <div className="text-center mb-4 md:mb-8">
-                <h2 className="text-2xl md:text-4xl font-heading font-bold text-foreground mb-2">
-                  <span className="gradient-gold-text">Media Gallery</span>
-                </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
-                  A visual journey through our media presence and press coverage
-                </p>
-                <div className="w-16 md:w-24 h-0.5 md:h-1 bg-gradient-to-r from-primary to-yellow-500 mx-auto mt-3 rounded-full" />
+            {/* Year Tabs for Media */}
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12">
+                {allYears.map((year) => (
+                  <button
+                    key={year}
+                    onClick={() => setActiveTab(year)}
+                    className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${
+                      activeTab === year
+                        ? 'bg-gradient-to-r from-primary to-primary/80 text-white shadow-lg shadow-primary/30 scale-105'
+                        : 'bg-card text-muted-foreground hover:bg-primary/10 hover:text-primary border border-border'
+                    }`}
+                  >
+                    <span className="text-sm md:text-base">{year}</span>
+                  </button>
+                ))}
               </div>
 
-              {/* Creative Masonry Gallery */}
-              <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-2 md:gap-3 space-y-2 md:space-y-3">
-                {mediaImages.map((image, index) => (
-                  <div
-                    key={index}
-                    className={`relative group break-inside-avoid cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-primary/30 transition-all duration-500 transform hover:-translate-y-3 ${getHeight(image.size)}`}
-                    onClick={() => openLightbox(index, 'media')}
-                  >
-                    <img
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      src={image.src}
-                      alt={image.alt}
-                      loading="lazy"
-                    />
-                    
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    {/* Gold Border Animation */}
-                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary/50 rounded-2xl transition-colors duration-500" />
-                    
-                    {/* Bottom Gold Line */}
-                    <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-primary via-yellow-400 to-primary group-hover:w-full transition-all duration-700" />
-                    
-                    {/* Content Card */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                      <div className="bg-white/10 backdrop-blur-xl rounded-xl p-3 md:p-4 border border-white/20">
-                        <h3 className="text-white font-semibold text-sm md:text-base mb-1 line-clamp-2">{image.alt}</h3>
-                        <div className="flex items-center gap-2 text-white/70 text-xs">
-                          <Eye className="w-3 h-3" />
-                          <span>Click to view</span>
+              {/* Media Events Content */}
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="space-y-6 md:space-y-8"
+              >
+                {currentEvents.length > 0 && currentEvents.map((event, eventIndex) => (
+                  <div key={`${activeTab}-${eventIndex}`}>
+                    {/* Event Header Card */}
+                    <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent rounded-t-2xl p-4 md:p-6 border-b border-primary/20">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg">
+                            <Calendar className="w-6 h-6 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-xl md:text-2xl font-bold text-foreground">{event.title}</h3>
+                            <div className="flex items-center gap-4 mt-1 text-sm text-muted-foreground">
+                              <div className="flex items-center gap-1">
+                                <MapPin className="w-3 h-3" />
+                                <span>{event.location}</span>
+                              </div>
+                              <span>•</span>
+                              <span>{event.date}</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    
-                    {/* Corner Badge */}
-                    <div className="absolute top-3 right-3 w-10 h-10 bg-primary rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-0 group-hover:scale-100 shadow-lg">
-                      <Image className="w-5 h-5 text-white" />
-                    </div>
-                    
-                    {/* Shine Effect */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 skew-x-12" />
+
+                    {/* Images - Horizontal Scroll Gallery */}
+                    <div className="bg-card/30 rounded-b-2xl p-4 border border-t-0 border-border/50">
+                      <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
+                        {event.images.map((imageSrc, imgIndex) => (
+                          <motion.div
+                            key={`${activeTab}-${eventIndex}-${imgIndex}`}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: imgIndex * 0.05 }}
+                            className="flex-shrink-0 w-[280px] sm:w-[320px] md:w-[400px] aspect-video rounded-xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-300 group relative snap-start"
+                            onClick={() => openLightbox(imgIndex, event.images)}
+                          >
+                            <img
+                              src={imageSrc}
+                              alt={`${event.title} - Photo ${imgIndex + 1}`}
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                              loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                              <div className="bg-white/20 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm font-medium">
+                                View Photo {imgIndex + 1}
+                              </div>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
-        {/* News & Updates Section - Card Design */}
-        <section className="py-5 md:py-10 bg-card">
+        {/* Section 3: Awards & Recognition */}
+        <section className="py-8 sm:py-10 md:py-16 bg-gradient-to-b from-card via-background to-card border-t border-border/50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            
+            {/* Header */}
             <motion.div
               initial={{ opacity: 1 }}
-              className="max-w-6xl mx-auto"
+              className="max-w-6xl mx-auto mb-8 md:mb-12"
             >
-              <div className="flex items-center justify-center gap-2 mb-4 md:mb-6">
-                <Newspaper className="w-5 h-5 md:w-7 md:h-7 text-primary" />
-                <h2 className="text-xl md:text-3xl font-heading font-bold text-foreground">
-                  News & Updates
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Award className="w-6 h-6 md:w-8 md:h-8 text-primary" />
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-foreground">
+                  Awards & Recognition
                 </h2>
               </div>
+              <p className="text-center text-muted-foreground max-w-3xl mx-auto text-sm sm:text-base md:text-lg px-4">
+                Celebrating excellence in real estate development with prestigious awards
+              </p>
+            </motion.div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
-                {newsArticles.map((article, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 1 }}
-                    className="bg-background rounded-xl md:rounded-2xl p-4 md:p-5 shadow-lg border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group"
+            {/* Year Tabs for Awards */}
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12">
+                {allYears.map((year) => (
+                  <button
+                    key={year}
+                    onClick={() => setActiveTab(year)}
+                    className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${
+                      activeTab === year
+                        ? 'bg-gradient-to-r from-primary to-primary/80 text-white shadow-lg shadow-primary/30 scale-105'
+                        : 'bg-card text-muted-foreground hover:bg-primary/10 hover:text-primary border border-border'
+                    }`}
                   >
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                        <Calendar className="w-4 h-4 text-primary" />
-                      </div>
-                      <span className="text-xs md:text-sm text-muted-foreground font-medium">
-                        {article.date}
-                      </span>
-                    </div>
-                    <h3 className="text-base md:text-lg font-heading font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                      {article.title}
-                    </h3>
-                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-2">
-                      {article.excerpt}
-                    </p>
-                    <button className="flex items-center gap-2 text-xs md:text-sm text-primary font-semibold group-hover:gap-3 transition-all">
-                      Read more
-                      <ExternalLink className="w-3 h-3 md:w-4 md:h-4" />
-                    </button>
-                  </motion.div>
+                    <span className="text-sm md:text-base">{year}</span>
+                  </button>
                 ))}
               </div>
 
-              {/* Disclaimer */}
-              <div className="mt-4 md:mt-6 p-3 md:p-4 bg-muted/30 rounded-xl border border-border/50">
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  <strong>Disclaimer:</strong> Lalani Group should not be held responsible for any information posted in this section. The News articles are merely for information purpose.
-                </p>
-              </div>
-            </motion.div>
+              {/* Awards Content - Card Design */}
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                {currentAwards.length > 0 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                    {currentAwards.slice(0, 12).map((award, awardIndex) => {
+                      let awardImages: string[] = [];
+                      
+                      switch(award.year) {
+                        case 2016: awardImages = globToArray(awardImages2016 as Record<string, unknown>); break;
+                        case 2014: awardImages = globToArray(awardImages2014 as Record<string, unknown>); break;
+                        case 2013: awardImages = globToArray(awardImages2013 as Record<string, unknown>); break;
+                        case 2012: awardImages = globToArray(awardImages2012 as Record<string, unknown>); break;
+                        case 2010: awardImages = globToArray(awardImages2010 as Record<string, unknown>); break;
+                        case 2009: awardImages = globToArray(awardImages2009 as Record<string, unknown>); break;
+                        case 2008: awardImages = globToArray(awardImages2008 as Record<string, unknown>); break;
+                        case 2007: awardImages = globToArray(awardImages2007 as Record<string, unknown>); break;
+                        default: awardImages = globToArray(awardImages2016 as Record<string, unknown>);
+                      }
+                      
+                      const imageSrc = awardImages[awardIndex % awardImages.length] || project2;
+
+                      return (
+                        <motion.div
+                          key={`${activeTab}-${awardIndex}`}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: awardIndex * 0.05 }}
+                          className="group relative h-auto min-h-[400px] sm:min-h-[450px] rounded-xl md:rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500 bg-card"
+                          onClick={() => openLightbox(awardIndex, [imageSrc])}
+                        >
+                          {/* Image Container */}
+                          <div className="relative w-full h-64 sm:h-72 md:h-80 overflow-hidden bg-gradient-to-br from-primary/5 to-transparent">
+                            <img
+                              src={imageSrc}
+                              alt={award.title}
+                              className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
+                              loading="lazy"
+                            />
+                          </div>
+
+                          {/* Content Section */}
+                          <div className="p-4 md:p-5">
+                            {/* Badge */}
+                            <div className="flex items-center gap-2 mb-2">
+                              <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                                <Star className="w-3 h-3 text-white fill-white" />
+                              </div>
+                              <span className="text-xs md:text-sm font-medium text-primary">{award.subtitle}</span>
+                            </div>
+
+                            {/* Title */}
+                            <h4 className="text-lg md:text-xl font-bold text-foreground mb-3 leading-tight">
+                              {award.title}
+                            </h4>
+
+                            {/* Location */}
+                            {award.location && (
+                              <div className="flex items-center gap-2 mb-2">
+                                <MapPin className="w-3 h-3 text-muted-foreground" />
+                                <span className="text-xs text-muted-foreground">{award.location}</span>
+                              </div>
+                            )}
+
+                            {/* Description */}
+                            <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3 mb-3">
+                              {award.description}
+                            </p>
+
+                            {/* Click Hint */}
+                            <div className="flex items-center justify-between text-xs text-muted-foreground mt-4 pt-3 border-t border-border/50">
+                              <span>Click to view details</span>
+                              <Award className="w-4 h-4 text-primary" />
+                            </div>
+                          </div>
+
+                          {/* Border Highlight on Hover */}
+                          <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary/30 rounded-xl md:rounded-2xl transition-colors duration-500 pointer-events-none" />
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                )}
+              </motion.div>
+            </div>
           </div>
         </section>
       </main>
@@ -329,30 +406,30 @@ const MediaRoom = () => {
       <LeadCapturePopup />
 
       {/* Lightbox */}
-      {lightboxOpen && (
+      {lightboxOpen && lightboxImages.length > 0 && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm p-4">
           <button
             onClick={() => setLightboxOpen(false)}
-            className="absolute top-4 right-4 p-3 bg-white/10 rounded-full text-white hover:bg-primary transition-colors"
+            className="absolute top-4 right-4 p-3 bg-white/10 rounded-full text-white hover:bg-primary transition-colors z-10"
           >
             <X className="w-6 h-6" />
           </button>
           
           <button
-            onClick={() => setLightboxIndex((prev) => (prev - 1 + currentImages.length) % currentImages.length)}
+            onClick={() => setLightboxIndex((prev) => (prev - 1 + lightboxImages.length) % lightboxImages.length)}
             className="absolute left-2 md:left-6 p-3 bg-white/10 rounded-full text-white hover:bg-primary transition-colors"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           
           <img
-            src={currentImages[lightboxIndex].src}
-            alt={currentImages[lightboxIndex].alt}
-            className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+            src={lightboxImages[lightboxIndex]}
+            alt={`Media Event Photo ${lightboxIndex + 1}`}
+            className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl"
           />
           
           <button
-            onClick={() => setLightboxIndex((prev) => (prev + 1) % currentImages.length)}
+            onClick={() => setLightboxIndex((prev) => (prev + 1) % lightboxImages.length)}
             className="absolute right-2 md:right-6 p-3 bg-white/10 rounded-full text-white hover:bg-primary transition-colors"
           >
             <ChevronRight className="w-6 h-6" />
@@ -360,7 +437,7 @@ const MediaRoom = () => {
           
           {/* Image Counter */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-white/10 rounded-full text-white text-sm">
-            {lightboxIndex + 1} / {currentImages.length}
+            {lightboxIndex + 1} / {lightboxImages.length}
           </div>
         </div>
       )}

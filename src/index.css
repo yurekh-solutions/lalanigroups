@@ -352,4 +352,24 @@
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--gold-light));
   }
+
+  /* Hide Scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Auto Swipe Animation */
+  @keyframes autoSwipe {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-auto-swipe {
+    animation: autoSwipe 30s linear infinite;
+  }
 }

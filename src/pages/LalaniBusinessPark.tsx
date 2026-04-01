@@ -21,6 +21,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Import images
 import businessParkLogo from "@/assets/lalanibusinespark/busineesparklogo.png";
+import business2 from "@/assets/lalanibusinespark/business2.png";
+import busines from "@/assets/lalanibusinespark/busines.png";
+import busines3 from "@/assets/lalanibusinespark/busines3.png";
+import business1 from "@/assets/lalanibusinespark/business1.png";
+import business4 from "@/assets/lalanibusinespark/business4.png";
+import business5 from "@/assets/lalanibusinespark/business5.png";
+import quantum from "@/assets/lalanibusinespark/quantum.png";
+import quantum1 from "@/assets/lalanibusinespark/quantum1.png";
 import brochurePdf from "@/assets/lalanibusinespark/Business Park single page PDF.pdf";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
@@ -31,12 +39,12 @@ import aboutBg from "@/assets/about-bg.jpg";
 
 // Gallery images
 const galleryImages = [
-  { src: project2, alt: "Lalani Business Park Exterior" },
-  { src: hero1, alt: "Modern Office Space" },
-  { src: hero2, alt: "Building Architecture" },
-  { src: project1, alt: "Commercial Complex" },
-  { src: project3, alt: "Premium Location" },
-  { src: aboutBg, alt: "Business Hub" },
+  { src: business2, alt: "Lalani Business Park Exterior" },
+  { src: busines, alt: "Corporate Office Space" },
+  { src: quantum1, alt: "Premium Office Interior" },
+  { src: business1, alt: "Modern Building Architecture" },
+  { src: business4, alt: "Commercial Complex" },
+  { src: business5, alt: "Business Hub" },
 ];
 
 const projectHallmarks = [
@@ -194,7 +202,7 @@ const LalaniBusinessPark = () => {
     <>
       <SEO
         title="Lalani Business Park | Premium Commercial Spaces in Khar West Mumbai"
-        description="Lalani Business Park - Premium commercial office spaces in Khar West, Mumbai. Modern infrastructure, high-speed elevators, 24/7 power backup, ample parking. MahaRERA: P51800033063. Ideal for businesses seeking prestigious address."
+        description="Lalani Business Park - Premium commercial office spaces in Khar West, Mumbai. Modern infrastructure, high-speed elevators, 24/7 power backup, ample parking. Ideal for businesses seeking prestigious address."
         keywords="Lalani Business Park, commercial space Khar, office space Khar West, commercial property Mumbai, office for sale Khar, Lalani Group commercial, Khar West office, business park Mumbai, commercial real estate Mumbai, RERA approved commercial"
         canonicalUrl="/lalani-business-park"
       />
@@ -352,16 +360,11 @@ const LalaniBusinessPark = () => {
               <div className="relative gsap-card">
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border">
                   <img
-                    src={hero1}
-                    alt="Lalani Business Park Interior"
+                    src={business2}
+                    alt="Lalani Business Park Exterior"
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
-                </div>
-                {/* Floating Card */}
-                <div className="absolute -bottom-6 -left-6 bg-card p-5 rounded-xl border border-border shadow-xl">
-                  <p className="text-primary font-bold text-xl">P51800033063</p>
-                  <p className="text-xs text-muted-foreground">MahaRERA Registration</p>
                 </div>
               </div>
             </div>
@@ -382,24 +385,27 @@ const LalaniBusinessPark = () => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              {[
+              {[ 
                 { 
                   title: "Compact Offices", 
                   size: "500-800 sq.ft.",
                   desc: "Perfect for startups and small teams looking for efficient workspaces",
-                  features: ["Open plan layout", "Natural lighting", "AC provision"]
+                  features: ["Open plan layout", "Natural lighting", "AC provision"],
+                  image: business1
                 },
                 { 
                   title: "Premium Suites", 
                   size: "1000-2000 sq.ft.",
                   desc: "Ideal for growing businesses needing professional environment",
-                  features: ["Private cabins", "Conference area", "Pantry space"]
+                  features: ["Private cabins", "Conference area", "Pantry space"],
+                  image: busines
                 },
                 { 
                   title: "Corporate Floors", 
                   size: "3000+ sq.ft.",
                   desc: "Full floors for established companies requiring custom setups",
-                  features: ["Customizable layout", "Dedicated entrance", "Branding options"]
+                  features: ["Customizable layout", "Dedicated entrance", "Branding options"],
+                  image: quantum1
                 },
               ].map((space, index) => (
                 <div
@@ -408,7 +414,7 @@ const LalaniBusinessPark = () => {
                 >
                   <div className="aspect-[16/9] overflow-hidden">
                     <img
-                      src={galleryImages[index]?.src || project1}
+                      src={space.image}
                       alt={space.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
@@ -445,18 +451,18 @@ const LalaniBusinessPark = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-4">
                     <div className="aspect-[3/4] rounded-2xl overflow-hidden">
-                      <img src={project2} alt="Modern Architecture" className="w-full h-full object-cover" loading="lazy" />
+                      <img src={business2} alt="Modern Architecture" className="w-full h-full object-cover" loading="lazy" />
                     </div>
                     <div className="aspect-square rounded-2xl overflow-hidden">
-                      <img src={project3} alt="Premium Facilities" className="w-full h-full object-cover" loading="lazy" />
+                      <img src={busines} alt="Premium Facilities" className="w-full h-full object-cover" loading="lazy" />
                     </div>
                   </div>
                   <div className="space-y-4 pt-8">
                     <div className="aspect-square rounded-2xl overflow-hidden">
-                      <img src={hero2} alt="Business Hub" className="w-full h-full object-cover" loading="lazy" />
+                      <img src={business4} alt="Business Hub" className="w-full h-full object-cover" loading="lazy" />
                     </div>
                     <div className="aspect-[3/4] rounded-2xl overflow-hidden">
-                      <img src={aboutBg} alt="Strategic Location" className="w-full h-full object-cover" loading="lazy" />
+                      <img src={business5} alt="Strategic Location" className="w-full h-full object-cover" loading="lazy" />
                     </div>
                   </div>
                 </div>

@@ -124,15 +124,14 @@ const ProjectTabs = () => {
                       <p className="text-sm text-foreground/80">
                         <span className="font-semibold">Type:</span> {project.type}
                       </p>
-                      <p className="text-sm text-foreground/80">
-                        <span className="font-semibold">Possession:</span> {project.possession}
-                      </p>
+                      {(project.slug === 'lalani-goodwill' || project.slug === 'lalani-business-park' || project.slug === 'velentine-apartment') && (
+                        <p className="text-sm text-foreground/80">
+                          <span className="font-semibold">Possession:</span> {project.possession}
+                        </p>
+                      )}
                     </div>
 
                     <div className="pt-4 border-t border-border">
-                      <p className="text-xs text-muted-foreground mb-1">
-                        MahaRERA: {project.rera}
-                      </p>
                       <span className="text-xs text-primary hover:text-gold-light underline">
                         View Details →
                       </span>
