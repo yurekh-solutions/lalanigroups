@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Play, Building2, MapPin, Home } from "lucide-react";
 import valetanie from "@/assets/lalanigoodwill/valetanie.webp";
 import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
@@ -13,7 +13,8 @@ const slides = [
     titleHighlight: "Andheri East",
     subtitle: "Thoughtfully designed 1, 2 & 3 BHK residences in Andheri East",
     location: "Andheri East, Mumbai",
-    tag: "Residential"
+    tag: "Residential",
+    route: "/lalani-goodwill"
   },
   
   {
@@ -22,7 +23,8 @@ const slides = [
     titleHighlight: "Khar West",
     subtitle: "Premium commercial spaces designed for growing businesses",
     location: "Khar West, Mumbai",
-    tag: "Commercial"
+    tag: "Commercial",
+    route: "/lalani-business-park"
   },
   {
     image: valetanie,
@@ -30,7 +32,8 @@ const slides = [
     titleHighlight: "Malad East",
     subtitle: "Ready-to-move 1BHK & 2BHK residential apartments in Malad East, Mumbai",
     location: "Malad East, Mumbai",
-    tag: "Residential"
+    tag: "Residential",
+    route: "/velentine-apartment"
   },
   
 ];
@@ -130,6 +133,7 @@ const floatingVariants = {
 
 const HeroSection = () => {
   const [current, setCurrent] = useState(0);
+  const navigate = useNavigate();
 
   const next = useCallback(() => setCurrent((p) => (p + 1) % slides.length), []);
 
@@ -138,8 +142,13 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, [next]);
 
+  const handleSlideClick = () => {
+    navigate(slides[current].route);
+    window.location.reload();
+  };
+
   return (
-    <section id="home" className="relative h-screen min-h-[600px] w-full overflow-hidden cursor-pointer">
+    <section id="home" className="relative h-screen min-h-[600px] w-full overflow-hidden cursor-pointer" onClick={handleSlideClick}>
       {/* Background Images - Clean Display No Zoom */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -259,7 +268,7 @@ const HeroSection = () => {
       </div>
 
       {/* Dot Navigation */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20" onClick={(e) => e.stopPropagation()}>
         {slides.map((_, index) => (
           <button
             key={index}
