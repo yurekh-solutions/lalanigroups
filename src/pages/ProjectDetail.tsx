@@ -1,6 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { MapPin, Home, Calendar, CheckCircle, ArrowLeft, Phone, Mail } from "lucide-react";
+import { MapPin, Home, Calendar, CheckCircle, ArrowLeft, Phone, Mail, Share2, Copy, ExternalLink } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -8,7 +8,7 @@ import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
 import LeadCapturePopup from "@/components/LeadCapturePopup";
 import SEO from "@/components/SEO";
-import { getProjectBySlug } from "@/data/projects";
+import { getProjectBySlug, projects } from "@/data/projects";
 import { useState, useEffect } from "react";
 import { trackEvent } from "@/lib/tracking";
 
@@ -19,6 +19,24 @@ const ProjectDetail = () => {
   const [sidebarForm, setSidebarForm] = useState({ name: "", phone: "", email: "", message: "" });
   const [sidebarLoading, setSidebarLoading] = useState(false);
   const [sidebarSent, setSidebarSent] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setLinkCopied(true);
+    setTimeout(() => setLinkCopied(false), 2000);
+  };
+
+  const handleWhatsAppShare = () => {
+    const text = `Check out ${project?.name} by Lalani Group - ${project?.type} in ${project?.location}. ${window.location.href}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+  };
+
+  const relatedProjects = projects
+    .filter(p => p.slug !== slug && (p.area === project?.area || p.category === project?.category))
+    .slice(0, 3);
+
+  const mapQuery = encodeURIComponent(`${project?.name}, ${project?.location}, Mumbai, India`);
 
   // Add structured data for SEO
   useEffect(() => {
@@ -178,7 +196,7 @@ const ProjectDetail = () => {
               >
                 <div className="flex flex-wrap items-center gap-3 mb-4">
                   <span className="px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-white text-sm font-semibold">
-                    {project.category === "commercial" ? "Commercial" : "Residential"}
+                    {project.type.toLowerCase().includes("commercial") || project.type.toLowerCase().includes("office") || project.type.toLowerCase().includes("retail") ? "Commercial" : "Residential"}
                   </span>
                 </div>
                 
@@ -424,6 +442,75 @@ const ProjectDetail = () => {
                     </div>
                   </motion.div>
                 )}
+
+                {/* Google Maps Location */}
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.1 }}
+                >
+                  <h2 className="text-2xl md:text-3xl font-heading font-bold mb-6 gradient-gold-text">
+                    Project Location
+                  </h2>
+                  <div className="rounded-2xl overflow-hidden border border-border shadow-lg">
+                    <iframe
+                      title={`${project.name} Location Map`}
+                      src={`https://maps.google.com/maps?q=${mapQuery}&output=embed&z=15`}
+                      width="100%"
+                      height="400"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="w-full"
+                    />
+                  </div>
+                  <a
+                    href={`https://www.google.com/maps/search/${mapQuery}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 mt-3 text-sm text-primary hover:text-gold-light transition-colors"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Open in Google Maps
+                  </a>
+                </motion.div>
+
+                {/* Share This Project */}
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.1 }}
+                  className="bg-card p-6 rounded-2xl border border-border"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <Share2 className="w-5 h-5 text-primary" />
+                    <h3 className="text-lg font-bold text-foreground">Share This Project</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <button
+                      onClick={handleWhatsAppShare}
+                      className="flex items-center gap-2 px-4 py-2.5 bg-green-500 hover:bg-green-600 text-white rounded-lg text-sm font-medium transition-all"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.083.534 4.04 1.47 5.742L0 24l6.43-1.448A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.88 0-3.63-.488-5.15-1.342l-.364-.216-3.794.854.854-3.708-.236-.38A9.969 9.969 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                      Share on WhatsApp
+                    </button>
+                    <button
+                      onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, "_blank")}
+                      className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-all"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                      Share on Facebook
+                    </button>
+                    <button
+                      onClick={handleCopyLink}
+                      className="flex items-center gap-2 px-4 py-2.5 bg-card hover:bg-primary/10 text-foreground border border-border rounded-lg text-sm font-medium transition-all"
+                    >
+                      <Copy className="w-4 h-4" />
+                      {linkCopied ? "Copied!" : "Copy Link"}
+                    </button>
+                  </div>
+                </motion.div>
               </div>
 
               {/* Right Column - Sticky Contact Form */}
@@ -551,6 +638,54 @@ const ProjectDetail = () => {
           </div>
         </section>
       </main>
+
+      {/* Related Projects Section */}
+      {relatedProjects.length > 0 && (
+        <section className="py-16 bg-primary/5 border-t border-border">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-8 gradient-gold-text text-center">
+              You May Also Like
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {relatedProjects.map((related) => (
+                <Link
+                  key={related.id}
+                  to={`/projects/${related.slug}`}
+                  onClick={() => window.scrollTo(0, 0)}
+                  className="group bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/50 shadow-md hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={related.image}
+                      alt={related.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-heading font-bold text-lg text-foreground group-hover:text-primary transition-colors mb-1">
+                      {related.name}
+                    </h3>
+                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-2">
+                      <MapPin className="w-3.5 h-3.5 text-primary shrink-0" />
+                      {related.location}
+                    </div>
+                    <span className="text-xs font-semibold text-primary">View Details →</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="text-center mt-10">
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-gold-light text-primary-foreground font-semibold hover:shadow-lg transition-all hover:scale-105"
+              >
+                View All Projects
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       <Footer />
       <WhatsAppButton />
