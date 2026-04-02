@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Store, Clock, MapPin, Home } from "lucide-react";
+import { Building2, Store, Clock, MapPin, Home, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { projects } from "@/data/projects";
 
@@ -11,19 +11,19 @@ const projectCategories = [
     icon: Building2
   },
   {
-    id: "residential",
-    label: "Residential",
-    icon: Home
+    id: "ongoing",
+    label: "Ongoing",
+    icon: Clock
+  },
+  {
+    id: "completed",
+    label: "Completed",
+    icon: CheckCircle
   },
   {
     id: "commercial",
     label: "Commercial",
     icon: Store
-  },
-  {
-    id: "ongoing",
-    label: "Ongoing",
-    icon: Clock
   }
 ];
 
@@ -33,11 +33,9 @@ const ProjectTabs = () => {
   // Filter projects based on active tab
   const filteredProjects = projects.filter(project => {
     if (activeTab === "all") return true;
-    // For ongoing tab, show only projects with category "ongoing"
     if (activeTab === "ongoing") return project.category === "ongoing";
-    // For residential/commercial tabs, show projects with that category OR "ongoing" projects of that type
-    if (activeTab === "residential") return project.category === "residential" || (project.category === "ongoing" && project.type.toLowerCase().includes("residence"));
-    if (activeTab === "commercial") return project.category === "commercial" || (project.category === "ongoing" && project.type.toLowerCase().includes("commercial"));
+    if (activeTab === "completed") return project.category === "completed" || project.category === "residential";
+    if (activeTab === "commercial") return project.category === "commercial";
     return project.category === activeTab;
   });
 
