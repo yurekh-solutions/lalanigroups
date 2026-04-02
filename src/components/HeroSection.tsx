@@ -254,13 +254,7 @@ const HeroSection = () => {
                   Explore Projects
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <Link
-                  to="/contact#schedule-visit"
-                  className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl border-2 border-white/60 text-white font-semibold text-sm md:text-base hover:bg-white/10 hover:border-white/80 transition-all duration-300"
-                >
-                  <Play className="w-4 h-4" />
-                  Schedule a Visit
-                </Link>
+               
               </motion.div>
             </motion.div>
           </AnimatePresence>

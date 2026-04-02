@@ -193,8 +193,8 @@ export const projects: Project[] = [
     category: "ongoing",
     price: "",
     possession: "Ready to Move - OC Received",
-    image: valetanie,
-    images: [valetanie, goodwillImage],
+    image: business2,
+    images: [business2, valetanie, goodwillImage],
     description: "Velentine Apartment Wing D is a ready-to-move residential project offering spacious 1BHK and 2BHK apartments in the heart of Malad East, Mumbai. With Occupancy Certificate (OC) already received, these homes are perfect for immediate possession. Strategically located near Malad Railway Station and Western Express Highway, Velentine Apartment offers excellent connectivity to IT hubs, shopping malls, and educational institutions. The project features modern amenities, quality construction, and thoughtful layouts designed for comfortable family living. Choose Velentine Apartment for a hassle-free move-in experience in one of Mumbai's most sought-after residential localities.",
     highlights: [
       "Ready Possession - OC Received",
