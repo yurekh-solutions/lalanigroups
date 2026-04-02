@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Store, Clock, MapPin, Home, CheckCircle } from "lucide-react";
+import { Building2, Clock, MapPin, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { projects } from "@/data/projects";
 
@@ -19,11 +19,6 @@ const projectCategories = [
     id: "completed",
     label: "Completed",
     icon: CheckCircle
-  },
-  {
-    id: "commercial",
-    label: "Commercial",
-    icon: Store
   }
 ];
 
@@ -35,8 +30,7 @@ const ProjectTabs = () => {
     if (activeTab === "all") return true;
     if (activeTab === "ongoing") return project.category === "ongoing";
     if (activeTab === "completed") return project.category === "completed" || project.category === "residential";
-    if (activeTab === "commercial") return project.category === "commercial";
-    return project.category === activeTab;
+    return false;
   });
 
   return (

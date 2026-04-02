@@ -60,7 +60,7 @@ export interface Project {
   reraNumber2?: string;
   type: string;
   status: "Ongoing" | "Ready Possession" | "Upcoming";
-  category: "residential" | "commercial" | "completed" | "ongoing";
+  category: "residential" |  "completed" | "ongoing";
   price: string;
   possession: string;
   image: string;
