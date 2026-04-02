@@ -484,6 +484,49 @@ const ProjectDetail = () => {
                   </a>
                 </motion.div>
 
+                {/* How to Reach Section */}
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.1 }}
+                  className="bg-card p-6 rounded-2xl border border-border"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <MapPin className="w-5 h-5 text-primary" />
+                    <h3 className="text-lg font-bold text-foreground">How to Reach</h3>
+                  </div>
+                  <div className="space-y-3 text-sm text-muted-foreground">
+                    {project?.nearbyLocations && project.nearbyLocations.length > 0 ? (
+                      <>
+                        <p className="font-semibold text-foreground">Nearby Landmarks & Transport:</p>
+                        <ul className="space-y-2">
+                          {project.nearbyLocations.map((location, idx) => (
+                            <li key={idx} className="flex items-start gap-2">
+                              <span className="text-primary font-bold mt-0.5">•</span>
+                              <span>
+                                <span className="text-foreground font-medium">{location.name}</span>
+                                <span className="text-muted-foreground"> - {location.distance}</span>
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    ) : null}
+                    <div className="mt-4 pt-4 border-t border-border">
+                      <p className="text-foreground font-semibold mb-2">Quick Navigation:</p>
+                      <a
+                        href={mapSearchUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-medium transition-all"
+                      >
+                        <MapPin className="w-4 h-4" />
+                        Get Directions on Google Maps
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+
                 {/* Share This Project */}
                 <motion.div
                   initial={{ opacity: 1 }}
