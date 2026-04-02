@@ -36,16 +36,20 @@ const ProjectDetail = () => {
     .filter(p => p.slug !== slug && (p.area === project?.area || p.category === project?.category))
     .slice(0, 3);
 
-  // Use exact address for Google Maps - address is more accurate than lat/lng for finding buildings
-  const mapAddress = project?.address || `${project?.name}, ${project?.location}, Mumbai, India`;
-  
-  // Special handling for Lalani Goodwill with exact coordinates
-  let mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(mapAddress)}&output=embed&z=18`;
-  if (project?.slug === 'lalani-goodwill') {
-    mapUrl = 'https://www.google.com/maps?q=19.1069994,72.8665386&z=17&output=embed';
+  // Use exact lat/lng coordinates for precise building location
+  let mapUrl = '';
+  if (project?.lat && project?.lng) {
+    mapUrl = `https://www.google.com/maps?q=${project.lat},${project.lng}&z=18&output=embed`;
+  } else {
+    // Fallback to address if coordinates not available
+    const mapAddress = project?.address || `${project?.name}, ${project?.location}, Mumbai, India`;
+    mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(mapAddress)}&output=embed&z=18`;
   }
 
-  const mapSearchUrl = `https://www.google.com/maps/search/${encodeURIComponent(mapAddress)}`;
+  const mapAddress = project?.address || `${project?.name}, ${project?.location}, Mumbai, India`;
+  const mapSearchUrl = project?.lat && project?.lng
+    ? `https://www.google.com/maps?q=${project.lat},${project.lng}`
+    : `https://www.google.com/maps/search/${encodeURIComponent(mapAddress)}`;
   
   const mapQuery = encodeURIComponent(`${project?.name}, ${project?.location}, Mumbai, India`);
 

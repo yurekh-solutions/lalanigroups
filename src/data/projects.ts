@@ -181,8 +181,8 @@ export const projects: Project[] = [
       { name: "Western Express Highway", distance: "5 min" },
       { name: "Powai Lake", distance: "20 min" }
     ],
-    lat: 19.1132,
-    lng: 72.8697,
+    lat: 19.1069994,
+    lng: 72.8665386,
     address: "Goodwill C.H.S Ltd, Opp. Janakalyan Bank, J B Nagar, Andheri East, Mumbai-400059"
   },
 
@@ -295,8 +295,8 @@ export const projects: Project[] = [
       { name: "Holy Cross Hospital", distance: "8 min" },
       { name: "Mindspace IT Park", distance: "15 min" }
     ],
-    lat: 19.1958,
-    lng: 72.8382,
+    lat: 19.1956,
+    lng: 72.8404,
     address: "Valentine Apartment, A2, Riddhi Gardens, Malad East, Mumbai, Maharashtra 400097"
   },
 
@@ -497,6 +497,8 @@ export const projects: Project[] = [
       { name: "Bandra-Kurla Complex", distance: "15 min" },
       { name: "International Airport", distance: "20 min" }
     ],
+    lat: 19.0618,
+    lng: 72.8285,
     address: "Lalani Business Park, 14th Road, Khar West, Mumbai, Maharashtra 400052"
   },
 
