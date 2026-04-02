@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { MapPin, Home, Clock, X, Phone, Mail, Download, CheckCircle, Building2 } from "lucide-react";
+import { MapPin, Home, Clock, X, Phone, Mail, Download, CheckCircle, Building2, User, FileText } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -96,6 +96,15 @@ const VelentineApartment = () => {
   });
   const [formLoading, setFormLoading] = useState(false);
   const [formSent, setFormSent] = useState(false);
+  
+  // Brochure Download Popup State
+  const [brochurePopupOpen, setBrochurePopupOpen] = useState(false);
+  const [brochureForm, setBrochureForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+  const [brochureFormLoading, setBrochureFormLoading] = useState(false);
 
   // Auto-advance hero carousel
   useEffect(() => {
@@ -130,6 +139,51 @@ const VelentineApartment = () => {
     setLightboxOpen(true);
   };
 
+  // Brochure download handler with lead capture
+  const handleBrochureDownload = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBrochureFormLoading(true);
+    try {
+      // Track the lead in Firebase
+      await trackEvent("form", "/velentine-apartment", {
+        type: "brochure_download",
+        name: brochureForm.name,
+        email: brochureForm.email,
+        phone: brochureForm.phone,
+        project: "Velentine Apartment",
+      });
+      
+      // Close popup
+      setBrochurePopupOpen(false);
+      
+      // Trigger download
+      const link = document.createElement('a');
+      link.href = brochurePDF;
+      link.download = "Velentine-Apartment-E-Brochure.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Send details to WhatsApp
+      const whatsappText = `Hi, I downloaded the Velentine Apartment E-Brochure.%0A%0A*My Details:*%0AName: ${brochureForm.name}%0AEmail: ${brochureForm.email}%0APhone: ${brochureForm.phone}%0A%0APlease share more details about the project.`;
+      window.open(`https://wa.me/919322642370?text=${whatsappText}`, "_blank");
+      
+      // Reset form
+      setBrochureForm({
+        name: "",
+        email: "",
+        phone: "",
+      });
+    } catch (err) {
+      console.error("Error tracking brochure download:", err);
+    } finally {
+      setBrochureFormLoading(false);
+    }
+  };
+
+  // Hero carousel section navigation
+  const heroSlideLinks = ["#overview", "#amenities", "#amenities"];
+
   return (
     <>
       <SEO
@@ -161,13 +215,14 @@ const VelentineApartment = () => {
         {/* Hero Section - Clean with Images Only */}
         <section className="relative h-screen max-h-[900px] overflow-hidden">
           <AnimatePresence mode="wait">
-            <motion.div
+            <motion.a
               key={heroCurrent}
+              href={heroSlideLinks[heroCurrent]}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.2 }}
-              className="absolute inset-0"
+              className="absolute inset-0 cursor-pointer"
             >
               <img 
                 src={heroSlides[heroCurrent].image} 
@@ -176,7 +231,11 @@ const VelentineApartment = () => {
                 loading="eager" 
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
-            </motion.div>
+              {/* Click indicator */}
+              <div className="absolute bottom-32 left-1/2 -translate-x-1/2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm border border-white/30 flex items-center gap-2 opacity-0 hover:opacity-100 transition-opacity">
+                <span>Click to view {heroSlides[heroCurrent].alt}</span>
+              </div>
+            </motion.a>
           </AnimatePresence>
           
           {/* Hero Content - Minimal */}
@@ -1151,15 +1210,13 @@ const VelentineApartment = () => {
                     </div>
                   </div>
                   
-                  <a 
-                    href={brochurePDF}
-                    download="Velentine-Apartment-E-Brochure.pdf"
-                    onClick={() => trackEvent("form", "/velentine-apartment", { type: "brochure_download" })}
+                  <button 
+                    onClick={() => setBrochurePopupOpen(true)}
                     className="inline-flex items-center gap-3 px-8 py-4 bg-[#c9a962] text-black rounded-lg font-bold text-base md:text-lg hover:bg-[#d4b876] transition-all hover:shadow-xl hover:shadow-[#c9a962]/30"
                   >
                     <Download className="w-5 h-5 md:w-6 md:h-6" />
                     Download Brochure
-                  </a>
+                  </button>
                   
                   <p className="text-xs text-muted-foreground mt-4">
                     * PDF format • 5.2 MB • Updated January 2025
@@ -1314,6 +1371,113 @@ const VelentineApartment = () => {
       <WhatsAppButton />
       <BackToTopButton />
       <LeadCapturePopup />
+
+      {/* Brochure Download Lead Capture Popup */}
+      <AnimatePresence>
+        {brochurePopupOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setBrochurePopupOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-background border border-border rounded-2xl shadow-2xl w-full max-w-md overflow-hidden"
+            >
+              {/* Header */}
+              <div className="bg-gradient-to-r from-[#c9a962] to-[#d4b876] p-6 text-center relative">
+                <button 
+                  onClick={() => setBrochurePopupOpen(false)}
+                  className="absolute top-4 right-4 w-8 h-8 bg-black/20 hover:bg-black/40 rounded-full flex items-center justify-center transition-colors"
+                >
+                  <X className="w-5 h-5 text-white" />
+                </button>
+                <FileText className="w-12 h-12 text-black mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-black">Download E-Brochure</h3>
+                <p className="text-black/80 text-sm mt-1">Get complete project details</p>
+              </div>
+              
+              {/* Form */}
+              <form onSubmit={handleBrochureDownload} className="p-6 space-y-5">
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Full Name <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                    <input
+                      type="text"
+                      required
+                      value={brochureForm.name}
+                      onChange={(e) => setBrochureForm({ ...brochureForm, name: e.target.value })}
+                      placeholder="Enter your name"
+                      className="w-full pl-12 pr-4 py-3.5 bg-card border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c9a962] focus:border-transparent transition-all text-base"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Email Address <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                    <input
+                      type="email"
+                      required
+                      value={brochureForm.email}
+                      onChange={(e) => setBrochureForm({ ...brochureForm, email: e.target.value })}
+                      placeholder="Enter your email"
+                      className="w-full pl-12 pr-4 py-3.5 bg-card border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c9a962] focus:border-transparent transition-all text-base"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Phone Number <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                    <input
+                      type="tel"
+                      required
+                      value={brochureForm.phone}
+                      onChange={(e) => setBrochureForm({ ...brochureForm, phone: e.target.value })}
+                      placeholder="+91 98765 43210"
+                      className="w-full pl-12 pr-4 py-3.5 bg-card border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c9a962] focus:border-transparent transition-all text-base"
+                    />
+                  </div>
+                </div>
+                
+                <button
+                  type="submit"
+                  disabled={brochureFormLoading}
+                  className="w-full py-4 mt-2 bg-[#c9a962] hover:bg-[#d4b876] text-black font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-70 text-lg shadow-lg hover:shadow-xl"
+                >
+                  {brochureFormLoading ? (
+                    <div className="w-6 h-6 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                  ) : (
+                    <>
+                      <Download className="w-5 h-5" />
+                      Download Brochure
+                    </>
+                  )}
+                </button>
+                
+                <p className="text-xs text-muted-foreground text-center pt-2">
+                  Your details will be sent to WhatsApp for quick assistance
+                </p>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Lightbox */}
       {lightboxOpen && (
