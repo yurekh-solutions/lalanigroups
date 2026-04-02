@@ -9,7 +9,7 @@ const navLinks = [
   { label: "About Us", href: "/about" },
   { label: "Projects", href: "/projects" },
   { label: "Buyers' Guide", href: "/buyers-guide" },
-  { label: "Media Room & Awards", href: "/media-room" },
+  { label: "Media Room ", href: "/media-room" },
   { label: "Contact Us", href: "/contact" },
 ];
 

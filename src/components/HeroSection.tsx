@@ -1,48 +1,38 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Play, Building2, MapPin } from "lucide-react";
-// import business1 from "@/assets/lalanibusinespark/business1.png";
+import { ArrowRight, Play, Building2, MapPin, Home } from "lucide-react";
+import valetanie from "@/assets/lalanigoodwill/valetanie.webp";
 import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
-import quantum from "@/assets/lalanibusinespark/quantum.png";
 import busines from "@/assets/lalanibusinespark/busines.png";
-import business4 from "@/assets/lalanibusinespark/business4.png";
 
 const slides = [
-  
   {
     image: mainElevation,
-    title: "Luxury Residential",
-    titleHighlight: "Homes",
+    title: "Lalani Goodwill",
+    titleHighlight: "Andheri East",
     subtitle: "Thoughtfully designed 1, 2 & 3 BHK residences in Andheri East",
     location: "Andheri East, Mumbai",
-    tag: "Goodwill"
+    tag: "Residential"
   },
+  
   {
     image: busines,
-    title: "Premium Commercial",
-    titleHighlight: "Spaces",
-    subtitle: "Modern office spaces designed for growing businesses in Khar West",
+    title: "Lalani Business Park",
+    titleHighlight: "Khar West",
+    subtitle: "Premium commercial spaces designed for growing businesses",
     location: "Khar West, Mumbai",
-    tag: "Business Park"
-  },
-  {
-    image: quantum,
-    title: "Strategic Business",
-    titleHighlight: "Location",
-    subtitle: "Prime commercial development with excellent connectivity",
-    location: "BKC, Mumbai",
     tag: "Commercial"
   },
- 
   {
-    image: business4,
-    title: "Excellence in",
-    titleHighlight: "Real Estate",
-    subtitle: "40+ years of delivering quality projects across Mumbai",
-    location: "Mumbai, Maharashtra",
-    tag: "Heritage"
+    image: valetanie,
+    title: "Velentine Apartment",
+    titleHighlight: "Malad East",
+    subtitle: "Ready-to-move 1BHK & 2BHK residential apartments in Malad East, Mumbai",
+    location: "Malad East, Mumbai",
+    tag: "Residential"
   },
+  
 ];
 
 // Animation variants
@@ -192,7 +182,11 @@ const HeroSection = () => {
                 transition={{ delay: 0.2 }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6"
               >
-                <Building2 className="w-4 h-4 text-[#c9a962]" />
+                {slides[current].tag === "Residential" ? (
+                  <Home className="w-4 h-4 text-[#c9a962]" />
+                ) : (
+                  <Building2 className="w-4 h-4 text-[#c9a962]" />
+                )}
                 <span className="text-sm font-medium text-white/90">{slides[current].tag}</span>
               </motion.div>
               

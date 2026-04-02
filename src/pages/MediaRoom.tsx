@@ -5,6 +5,8 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
 import LeadCapturePopup from "@/components/LeadCapturePopup";
+import ImageGallery from "@/components/ImageGallery";
+
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Calendar, MapPin, Award, Star } from "lucide-react";
@@ -151,14 +153,14 @@ const MediaRoom = () => {
   return (
     <>
       <SEO
-        title="Media Room & Awards | Gallery - Lalani Group Mumbai"
+        title="Media Room | Gallery - Lalani Group Mumbai"
         description="Latest news, media gallery and awards from Lalani Group."
         keywords="Lalani Group news, Mumbai real estate news, MahaRERA updates, awards"
         canonicalUrl="/media-room"
       />
       <Navbar />
       <PageHero 
-        title="Media Room & Awards"
+        title="Media Room "
         subtitle="Press Releases, Media Events & Recognition from Lalani Group"
         backgroundImage={project2}
       />
@@ -331,7 +333,9 @@ const MediaRoom = () => {
                         default: awardImages = globToArray(awardImages2016 as Record<string, unknown>);
                       }
                       
-                      const imageSrc = awardImages[awardIndex % awardImages.length] || project2;
+                      const imageSrc = awardImages[awardIndex % Math.max(awardImages.length, 1)] || project2;
+                      const lightboxImgs = awardImages.length > 0 ? awardImages : [imageSrc];
+                      const lightboxStart = awardImages.length > 0 ? awardIndex % awardImages.length : 0;
 
                       return (
                         <motion.div
@@ -340,7 +344,7 @@ const MediaRoom = () => {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: awardIndex * 0.05 }}
                           className="group relative h-auto min-h-[400px] sm:min-h-[450px] rounded-xl md:rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500 bg-card"
-                          onClick={() => openLightbox(awardIndex, [imageSrc])}
+                          onClick={() => openLightbox(lightboxStart, lightboxImgs)}
                         >
                           {/* Image Container */}
                           <div className="relative w-full h-64 sm:h-72 md:h-80 overflow-hidden bg-gradient-to-br from-primary/5 to-transparent">
@@ -398,6 +402,7 @@ const MediaRoom = () => {
             </div>
           </div>
         </section>
+         <ImageGallery /> 
       </main>
       <Footer />
       <WhatsAppButton />

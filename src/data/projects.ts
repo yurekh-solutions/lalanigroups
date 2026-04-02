@@ -7,6 +7,8 @@ import aboutBg from "@/assets/about-bg.jpg";
 
 // Lalani Goodwill Images
 import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
+import valetanie from "@/assets/valentine/Elevation-Front-min-1-1.webp";
+import goodwillImage from "@/assets/lalanigoodwill/image.png";
 import busines3 from "@/assets/lalanibusinespark/busines3.png";
 
 // Lalani Business Park Images
@@ -19,7 +21,7 @@ import quantum from "@/assets/lalanibusinespark/quantum.png";
 
 // Lalani Heritage Images
 import homeimage from "@/assets/lalaniheritage/homeimage.webp";
-import lalanigraduner from "@/assets/lalaniheritage/lalanigraduner.png";
+import lalanigraduner from "@/assets/image.png";
 
 // Lalani Residency Images
 import residency from "@/assets/lalanibusinespark/residency.png";
@@ -188,11 +190,11 @@ export const projects: Project[] = [
     rera: "P51800028866",
     type: "1BHK & 2BHK Residences",
     status: "Ready Possession",
-    category: "completed",
+    category: "ongoing",
     price: "",
     possession: "Ready to Move - OC Received",
-    image: busines3,
-    images: [busines3, business4],
+    image: valetanie,
+    images: [valetanie, goodwillImage],
     description: "Velentine Apartment Wing D is a ready-to-move residential project offering spacious 1BHK and 2BHK apartments in the heart of Malad East, Mumbai. With Occupancy Certificate (OC) already received, these homes are perfect for immediate possession. Strategically located near Malad Railway Station and Western Express Highway, Velentine Apartment offers excellent connectivity to IT hubs, shopping malls, and educational institutions. The project features modern amenities, quality construction, and thoughtful layouts designed for comfortable family living. Choose Velentine Apartment for a hassle-free move-in experience in one of Mumbai's most sought-after residential localities.",
     highlights: [
       "Ready Possession - OC Received",
@@ -302,8 +304,8 @@ export const projects: Project[] = [
     category: "residential",
     price: "",
     possession: "March 2026",
-    image: graduner,
-    images: [graduner, graduner1, graduner2],
+    image: graduner1,
+    images: [graduner1, graduner2],
     description: "Lalani Grandeur is an architectural masterpiece offering premium 2BHK and 3BHK apartments in the heart of Goregaon East, Mumbai. This prestigious residential project redefines luxury living with contemporary design, world-class amenities, and thoughtful layouts. Strategically located near Goregaon Railway Station, Western Express Highway, and Film City, Lalani Grandeur offers unmatched connectivity to IT parks, entertainment hubs, and commercial centers. With a grand clubhouse, swimming pool, gymnasium, and landscaped gardens, this project is designed for families who seek the finest in urban living. Experience the perfect blend of comfort, convenience, and elegance at Lalani Grandeur.",
     highlights: [
       "MahaRERA Approved - P51800045678",

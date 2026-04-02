@@ -6,7 +6,6 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import BuyingProcess from "@/components/BuyingProcess";
 import FeaturesGrid from "@/components/FeaturesGrid";
 import StatsCounter from "@/components/StatsCounter";
-import ImageGallery from "@/components/ImageGallery";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQAccordion from "@/components/FAQAccordion";
 import Footer from "@/components/Footer";
@@ -85,8 +84,7 @@ const Home = () => {
         {/* Features Grid */}
         <FeaturesGrid />
 
-        {/* Image Gallery */}
-        <ImageGallery />
+       
 
         {/* Testimonials Section */}
         <TestimonialsSection />

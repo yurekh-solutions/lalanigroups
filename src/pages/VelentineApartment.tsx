@@ -1,65 +1,93 @@
-import { useState } from "react";
-import { MapPin, Building2, Car, Shield, Zap, Home, CheckCircle, X, ChevronLeft, ChevronRight, Train, ShoppingBag, Building, Phone, Mail, Download, MapIcon, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
+import { MapPin, Home, Clock, X, Phone, Mail, Download, CheckCircle, Building2, Play } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import EnquireButton from "@/components/EnquireButton";
 import BackToTopButton from "@/components/BackToTopButton";
 import LeadCapturePopup from "@/components/LeadCapturePopup";
 import SEO from "@/components/SEO";
+import { motion, AnimatePresence } from "framer-motion";
 import { trackEvent } from "@/lib/tracking";
 
-import business2 from "@/assets/lalanibusinespark/business2.png";
-import business1 from "@/assets/lalanibusinespark/business1.png";
-import busines3 from "@/assets/lalanibusinespark/busines3.png";
-import busines from "@/assets/lalanibusinespark/busines.png";
+// Valentine Apartment Images
+import elevation1 from "@/assets/valentine/Elevation-Front-min-1-1.webp";
+import lobby from "@/assets/valentine/lobby.webp";
+import multipurpose from "@/assets/valentine/multi-purpose-hall-view_01-min.webp";
 
-const galleryImages = [
-  { src: busines3, alt: "Velentine Apartment Building", category: "Actual" },
-  { src: business2, alt: "Modern Interiors", category: "Actual" },
-  { src: business1, alt: "Premium Amenities", category: "Actual" },
-  { src: busines, alt: "Spacious Living", category: "Actual" },
+// 1BHK Floor Plans
+import bhk401 from "@/assets/valentine/1bhk 401.webp";
+import bhk405 from "@/assets/valentine/1bhk405.webp";
+import bhk3872d from "@/assets/valentine/1bhk3872d.webp";
+import bhk3873d from "@/assets/valentine/1bhk3873d.webp";
+import bhk3d from "@/assets/valentine/1bhk3d.webp";
+import bhk4002d from "@/assets/valentine/1bhk4002d.webp";
+import bhk4003d from "@/assets/valentine/1bhk4003d.webp";
+
+// 2BHK Floor Plans
+import bhk592sqft2d from "@/assets/valentine/2bhk592sqft2d.webp";
+import bhk592sqft3d from "@/assets/valentine/2bhk592sqft3d.webp";
+import bhk613sqft2d from "@/assets/valentine/2bhk613sqft2d.webp";
+import bhk613sqft3d from "@/assets/valentine/2bhk613sqft3d.webp";
+
+// Video
+import projectVideo from "@/assets/valentine/kumkang-compressed.mp4";
+// Brochure PDF
+import brochurePDF from "@/assets/valentine/E-Brochure-Velentine-Apartment-1-Wing-D-7-4-21-1.pdf";
+
+const heroSlides = [
+  { image: elevation1, alt: "Building Elevation" },
+  { image: lobby, alt: "Elegant Lobby" },
+  { image: multipurpose, alt: "Multi-Purpose Hall" },
+];
+
+const floorPlans1BHK = [
+  { src: bhk401, title: "1 BHK - 401 sq.ft", type: "2D Layout" },
+  { src: bhk405, title: "1 BHK - 405 sq.ft", type: "2D Layout" },
+  { src: bhk3872d, title: "1 BHK - 387 sq.ft", type: "2D View" },
+  { src: bhk3873d, title: "1 BHK - 387 sq.ft", type: "3D View" },
+  { src: bhk3d, title: "1 BHK", type: "3D View" },
+  { src: bhk4002d, title: "1 BHK - 400 sq.ft", type: "2D View" },
+  { src: bhk4003d, title: "1 BHK - 400 sq.ft", type: "3D View" },
+];
+
+const floorPlans2BHK = [
+  { src: bhk592sqft2d, title: "2 BHK - 592 sq.ft", type: "2D View" },
+  { src: bhk592sqft3d, title: "2 BHK - 592 sq.ft", type: "3D View" },
+  { src: bhk613sqft2d, title: "2 BHK - 613 sq.ft", type: "2D View" },
+  { src: bhk613sqft3d, title: "2 BHK - 613 sq.ft", type: "3D View" },
 ];
 
 const amenities = [
-  "24/7 Security with Guard",
-  "CCTV Surveillance",
-  "Covered Parking",
-  "100% Power Backup for Common Areas",
-  "High-Speed Elevators",
-  "Children's Play Area",
-  "Landscaped Gardens",
-  "Intercom Facility",
-  "Water Storage & Pump Room",
-  "Fire Safety Equipment",
-  "Garbage Disposal System",
-  "Society Office",
+  { name: "24/7 Security with Guard", description: "Round-the-clock security personnel for your safety" },
+  { name: "CCTV Surveillance", description: "Complete coverage of all common areas" },
+  { name: "Covered Parking", description: "Protected parking spaces for residents" },
+  { name: "100% Power Backup", description: "Uninterrupted power supply for all units" },
+  { name: "High-Speed Elevators", description: "Modern elevators for quick access" },
+  { name: "Children's Play Area", description: "Safe and fun play zone for kids" },
+  { name: "Landscaped Gardens", description: "Beautiful green spaces for relaxation" },
+  { name: "Intercom Facility", description: "Seamless communication within the building" },
+  { name: "Multi-Purpose Hall", description: "Spacious hall for events and gatherings" },
+  { name: "Rainwater Harvesting", description: "Eco-friendly water conservation system" },
+  { name: "Fire Safety Systems", description: "Advanced fire detection and suppression" },
+  { name: "Visitor Parking", description: "Dedicated parking for your guests" },
 ];
 
-const specifications = [
-  "Premium vitrified tiles in living and dining",
-  "Anti-skid ceramic tiles in bathrooms",
-  "Granite kitchen platform with stainless steel sink",
-  "Anodized aluminum sliding windows",
-  "Concealed plumbing with premium fittings",
-  "Modular electrical switches",
-  "Intercom & video door phone facility",
-  "Television & telephone points in living & bedrooms",
-  "Adequate electrical points for AC & geysers",
-];
-
-const connectivityItems = [
-  { name: "Malad Railway Station", distance: "10 min" },
-  { name: "Inorbit Mall", distance: "12 min" },
-  { name: "Infiniti Mall", distance: "15 min" },
-  { name: "Western Express Highway", distance: "5 min" },
-  { name: "Mindspace IT Park", distance: "15 min" },
-  { name: "Chhatrapati Shivaji Airport", distance: "25 min" },
+const highlights = [
+  { title: "Ready Possession - OC Received", description: "Occupancy Certificate obtained, move in immediately" },
+  { title: "MahaRERA Approved - P51800028866", description: "Fully registered and compliant with RERA regulations" },
+  { title: "Immediate move-in ready", description: "All units are complete with quality finishes" },
+  { title: "10 Minutes from Malad Railway Station", description: "Easy access to Western Railway line for daily commute" },
+  { title: "Near Oberoi Mall & Infiniti Mall", description: "Shopping, dining, and entertainment at your doorstep" },
+  { title: "Close to reputed schools & hospitals", description: "Ryan International, Podar School, and quality healthcare nearby" },
+  { title: "Excellent connectivity to Western Express Highway", description: "Quick access to all parts of Mumbai" },
+  { title: "Aarey Colony Proximity", description: "Mumbai's green lung just minutes away for fresh air" },
 ];
 
 const VelentineApartment = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [lightboxImage, setLightboxImage] = useState<string>("");
+  const [lightboxTitle, setLightboxTitle] = useState<string>("");
+  const [heroCurrent, setHeroCurrent] = useState(0);
   const [contactForm, setContactForm] = useState({
     name: "",
     phone: "",
@@ -68,6 +96,14 @@ const VelentineApartment = () => {
   });
   const [formLoading, setFormLoading] = useState(false);
   const [formSent, setFormSent] = useState(false);
+
+  // Auto-advance hero carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroCurrent((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -88,237 +124,981 @@ const VelentineApartment = () => {
     }
   };
 
-  const handlePrevious = () => {
-    setLightboxIndex(lightboxIndex === 0 ? galleryImages.length - 1 : lightboxIndex - 1);
-  };
-
-  const handleNext = () => {
-    setLightboxIndex(lightboxIndex === galleryImages.length - 1 ? 0 : lightboxIndex + 1);
+  const openLightbox = (src: string, title: string) => {
+    setLightboxImage(src);
+    setLightboxTitle(title);
+    setLightboxOpen(true);
   };
 
   return (
     <>
       <SEO
         title="Velentine Apartment | Ready to Move 1BHK & 2BHK Flats in Malad East Mumbai"
-        description="Velentine Apartment Wing D - Ready possession 1BHK & 2BHK flats in Malad East, Mumbai. OC Received. Immediate move-in. Near Malad Station & Western Express Highway."
-        keywords="Velentine Apartment, ready flats Malad, 1BHK Malad East, 2BHK Malad, ready possession Mumbai, OC received flats"
+        description="Velentine Apartment Wing D - Ready possession 1BHK & 2BHK flats in Malad East, Mumbai. OC Received. Immediate move-in. Near Malad Station & Western Express Highway. Starting from ₹75 Lakhs."
+        keywords="Velentine Apartment, ready flats Malad, 1BHK Malad East, 2BHK Malad, ready possession Mumbai, OC received flats, affordable flats Malad, Lalani Group Malad, residential property Malad East, ready to move apartments Mumbai"
         canonicalUrl="/velentine-apartment"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "RealEstateListing",
+          "name": "Velentine Apartment - Wing D",
+          "description": "Ready possession 1BHK & 2BHK apartments in Malad East, Mumbai",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Wing D, Malad East",
+            "addressLocality": "Mumbai",
+            "addressRegion": "Maharashtra",
+            "postalCode": "400097",
+            "addressCountry": "IN"
+          },
+          "numberOfRooms": "1-2",
+          "occupancy": "Ready to Move",
+          "priceRange": "₹75 Lakhs - ₹1.05 Crore"
+        }}
       />
       <Navbar />
       <main className="min-h-screen bg-background">
         
-        {/* Hero Section */}
-        <section className="relative min-h-[70vh] overflow-hidden">
-          <div className="absolute inset-0">
-            <img src={business2} alt="Velentine Apartment" className="w-full h-full object-cover" loading="eager" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
-          </div>
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-            <div className="text-center text-white max-w-4xl mx-auto">
-              <span className="inline-block px-4 py-1.5 bg-green-500/20 backdrop-blur-sm rounded-full text-green-400 text-sm font-medium mb-4">
-                Ready Possession - OC Received
+        {/* Hero Section - Clean with Images Only */}
+        <section className="relative h-screen max-h-[900px] overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={heroCurrent}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2 }}
+              className="absolute inset-0"
+            >
+              <img 
+                src={heroSlides[heroCurrent].image} 
+                alt={heroSlides[heroCurrent].alt}
+                className="w-full h-full object-cover" 
+                loading="eager" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+            </motion.div>
+          </AnimatePresence>
+          
+          {/* Hero Content - Minimal */}
+          <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="inline-block px-5 py-2 bg-green-500/30 backdrop-blur-sm rounded-full text-green-300 text-sm font-medium mb-6 border border-green-500/30"
+            >
+              Ready Possession - OC Received
+            </motion.span>
+            
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-bold mb-4 tracking-tight"
+            >
+              Velentine Apartment
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="text-xl sm:text-2xl text-white/90 font-light mb-10"
+            >
+              Welcome to Your New Home
+            </motion.p>
+            
+            {/* Info Pills */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+              className="flex flex-wrap items-center justify-center gap-4 mb-12"
+            >
+              <span className="flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm rounded-full text-sm border border-white/20">
+                <MapPin className="w-4 h-4 text-[#c9a962]" /> Malad East, Mumbai
               </span>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-4">
-                Velentine Apartment
-              </h1>
-              <p className="text-lg sm:text-xl text-white/80 leading-relaxed mb-6 max-w-3xl mx-auto">
-                Spacious 1BHK and 2BHK apartments in Malad East, Mumbai. Ready to move-in with OC received.
-              </p>
-              <p className="text-base text-white/70 mb-8">
-                Strategically located near Malad Station and Western Express Highway.
-              </p>
-              <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
-                <span className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-sm">
-                  <MapPin className="w-4 h-4 text-primary" /> Malad (E), Mumbai
-                </span>
-                <span className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-sm">
-                  <Home className="w-4 h-4 text-primary" /> 1BHK & 2BHK Residences
-                </span>
-                <span className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-sm">
-                  <Clock className="w-4 h-4 text-green-400" /> Immediate Possession
-                </span>
-              </div>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <EnquireButton />
-                <a href="#overview" className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 text-white rounded-full font-semibold hover:bg-white/20 transition-all">
-                  Explore More
-                </a>
-              </div>
-            </div>
+              <span className="flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm rounded-full text-sm border border-white/20">
+                <Home className="w-4 h-4 text-[#c9a962]" /> Residential Project
+              </span>
+              <span className="flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm rounded-full text-sm border border-white/20">
+                <Clock className="w-4 h-4 text-green-400" /> Ready to Move
+              </span>
+            </motion.div>
+            
+            <motion.a 
+              href="#overview"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.1 }}
+              className="inline-flex items-center gap-2 px-10 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/40 text-white rounded-full font-semibold hover:bg-white/20 transition-all text-lg"
+            >
+              Explore More
+            </motion.a>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background to-transparent h-20" />
+          
+          {/* Hero Carousel Navigation - Dots */}
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
+            {heroSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setHeroCurrent(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  heroCurrent === index
+                    ? 'w-10 h-2.5 bg-[#c9a962]'
+                    : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'
+                }`}
+              />
+            ))}
+          </div>
+          
+          {/* Scroll Indicator */}
+          
         </section>
 
-        {/* Quick Info Bar */}
-        <section className="py-8 bg-card border-b border-border">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap items-center justify-center gap-6 text-center">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-500" />
-                <span className="text-sm font-medium">Ready Possession - OC Received</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Building2 className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium">Immediate Move-In</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium">MahaRERA Approved</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Overview Section */}
+        {/* Project Info Section */}
         <section id="overview" className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Project Overview</span>
-                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
-                  Your New Home is <span className="text-primary">Ready</span>
-                </h2>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Velentine Apartment Wing D is a ready-to-move residential project offering spacious 1BHK and 2BHK apartments in the heart of Malad East, Mumbai.
-                </p>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  With Occupancy Certificate (OC) already received, these homes are perfect for immediate possession. Strategically located near Malad Railway Station and Western Express Highway, Velentine Apartment offers excellent connectivity to IT hubs, shopping malls, and educational institutions.
-                </p>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border">
-                    <Home className="w-5 h-5 text-primary shrink-0" />
-                    <span className="text-sm text-foreground">1BHK & 2BHK</span>
-                  </div>
-                  <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border">
-                    <MapPin className="w-5 h-5 text-primary shrink-0" />
-                    <span className="text-sm text-foreground">Malad East</span>
-                  </div>
-                  <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border">
-                    <Shield className="w-5 h-5 text-primary shrink-0" />
-                    <span className="text-sm text-foreground">24/7 Security</span>
-                  </div>
-                  <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border">
-                    <CheckCircle className="w-5 h-5 text-green-500 shrink-0" />
-                    <span className="text-sm text-foreground">OC Received</span>
-                  </div>
+            <div className="max-w-5xl mx-auto text-center mb-12">
+              <motion.span 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-4 block"
+              >
+                Project Overview
+              </motion.span>
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-tight"
+              >
+                Your New Home is <span className="text-[#c9a962]">Ready</span>
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-6"
+              >
+                Velentine Apartment 1 – Wing D is a supreme embodiment of a sprawling lifestyle and resplendent features. 
+                It is the perfect fusion of contemporary architecture, ideal location, elegant spaces and carefully curated luxury amenities. 
+                The 1 & 2 BHK exquisite apartments showcase the most thoughtful design, stylish appointments, finest quality finishing 
+                and best brands to provide an unparalleled experience in luxury living.
+              </motion.p>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto"
+              >
+                From its magnificent designer entrance lobby, high-speed elevators silently whisk you up to your luxurious abodes. 
+                Inside, every square inch is designed to build in functionality and create an aesthetic appeal at every turn. 
+                Your every element is conceived to help you live a life of inhabited luxury with premium vitrified flooring, 
+                modular kitchens, and top-quality sanitary fittings from renowned brands.
+              </motion.p>
+            </div>
+            
+            {/* Key Highlights Grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto mb-12">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/40 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-[#c9a962]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Home className="w-6 h-6 md:w-7 md:h-7 text-[#c9a962]" />
                 </div>
-                <div className="mt-8 flex gap-4">
-                  <a href="#" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all">
-                    <Download className="w-4 h-4" />
-                    E-Brochure Download
-                  </a>
+                <p className="font-bold text-foreground text-sm md:text-base">1BHK & 2BHK</p>
+                <p className="text-xs md:text-sm text-muted-foreground mt-1">Spacious Units</p>
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/40 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-[#c9a962]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <MapPin className="w-6 h-6 md:w-7 md:h-7 text-[#c9a962]" />
                 </div>
+                <p className="font-bold text-foreground text-sm md:text-base">Malad East</p>
+                <p className="text-xs md:text-sm text-muted-foreground mt-1">Prime Location</p>
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/40 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <CheckCircle className="w-6 h-6 md:w-7 md:h-7 text-green-500" />
+                </div>
+                <p className="font-bold text-foreground text-sm md:text-base">OC Received</p>
+                <p className="text-xs md:text-sm text-muted-foreground mt-1">Ready to Move</p>
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/40 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-[#c9a962]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Building2 className="w-6 h-6 md:w-7 md:h-7 text-[#c9a962]" />
+                </div>
+                <p className="font-bold text-foreground text-sm md:text-base">Wing D</p>
+                <p className="text-xs md:text-sm text-muted-foreground mt-1">Premium Tower</p>
+              </motion.div>
+            </div>
+            
+            {/* Highlights List */}
+            <div className="max-w-4xl mx-auto">
+              <motion.h3 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-2xl md:text-3xl font-heading font-bold text-center mb-8"
+              >
+                Project Highlights
+              </motion.h3>
+              <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
+                {highlights.map((item, index) => (
+                  <motion.div 
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="flex items-start gap-3 p-4 bg-card rounded-xl border border-border hover:border-[#c9a962]/30 hover:shadow-md transition-all duration-300"
+                  >
+                    <CheckCircle className="w-5 h-5 text-[#c9a962] shrink-0 mt-1" />
+                    <div>
+                      <h4 className="text-foreground text-sm md:text-base font-semibold mb-1">{item.title}</h4>
+                      <p className="text-xs md:text-sm text-muted-foreground">{item.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-              <div className="relative">
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border">
-                  <img src={business1} alt="Velentine Apartment Interior" className="w-full h-full object-cover" loading="lazy" />
+            </div>
+          </div>
+        </section>
+
+        {/* Video Tour Section */}
+        <section className="py-16 md:py-24 bg-card">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                {/* Left Side - Video */}
+                <motion.div 
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="order-2 lg:order-1"
+                >
+                  <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-2xl border border-border">
+                    <video
+                      className="w-full aspect-video object-cover"
+                      controls
+                      preload="metadata"
+                      poster={elevation1}
+                    >
+                      <source src={projectVideo} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                  
+                  {/* Video Features */}
+                  <div className="grid grid-cols-2 gap-4 mt-6">
+                    <div className="p-4 bg-background rounded-xl border border-border text-center">
+                      <Play className="w-6 h-6 text-[#c9a962] mx-auto mb-2" />
+                      <p className="text-sm font-semibold text-foreground">HD Quality</p>
+                      <p className="text-xs text-muted-foreground mt-1">Crystal Clear</p>
+                    </div>
+                    <div className="p-4 bg-background rounded-xl border border-border text-center">
+                      <Building2 className="w-6 h-6 text-[#c9a962] mx-auto mb-2" />
+                      <p className="text-sm font-semibold text-foreground">360° View</p>
+                      <p className="text-xs text-muted-foreground mt-1">Complete Tour</p>
+                    </div>
+                  </div>
+                </motion.div>
+                
+                {/* Right Side - Details */}
+                <motion.div 
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="order-1 lg:order-2"
+                >
+                  <span className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-4 block">
+                    Virtual Tour
+                  </span>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">
+                    Experience Your <span className="text-[#c9a962]">Dream Home</span>
+                  </h2>
+                  <p className="text-base md:text-lg text-muted-foreground mb-8 leading-relaxed">
+                    Take a cinematic virtual tour through Velentine Apartment and experience the premium lifestyle it offers. 
+                    Explore every corner of your future home from the comfort of your current one.
+                  </p>
+                  
+                  {/* Tour Highlights */}
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
+                        <CheckCircle className="w-5 h-5 text-[#c9a962]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-1">Elegant Entrance Lobby</h4>
+                        <p className="text-sm text-muted-foreground">Designer entrance with premium finishes</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
+                        <CheckCircle className="w-5 h-5 text-[#c9a962]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-1">Spacious Apartments</h4>
+                        <p className="text-sm text-muted-foreground">Well-ventilated rooms with natural light</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
+                        <CheckCircle className="w-5 h-5 text-[#c9a962]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-1">Premium Amenities</h4>
+                        <p className="text-sm text-muted-foreground">Multi-purpose hall and recreational facilities</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <a 
+                    href="#contact"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-[#c9a962] text-black rounded-lg font-bold hover:bg-[#d4b876] transition-all hover:shadow-lg"
+                  >
+                    Schedule Site Visit
+                  </a>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Floor Plans Section */}
+        <section id="floorplans" className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <motion.span 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-4 block"
+              >
+                Floor Plans
+              </motion.span>
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4 leading-tight"
+              >
+                Choose Your <span className="text-[#c9a962]">Perfect Home</span>
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
+              >
+                Explore our meticulously designed floor plans with detailed 2D and 3D layouts. Each unit is crafted to maximize space, natural light, and ventilation.
+              </motion.p>
+            </div>
+            
+            {/* 1BHK Floor Plans */}
+            <div className="mb-16 md:mb-20">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="flex flex-col items-center mb-10"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="w-12 h-12 md:w-14 md:h-14 bg-[#c9a962] text-black rounded-full flex items-center justify-center text-lg md:text-xl font-bold">1</span>
+                  <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground">1 BHK Apartments</h3>
                 </div>
+                <div className="flex flex-wrap items-center justify-center gap-4 text-sm md:text-base text-muted-foreground">
+                  <span className="flex items-center gap-2">
+                    <Home className="w-4 h-4 text-[#c9a962]" />
+                    Carpet Area: 387 - 405 sq.ft
+                  </span>
+                  <span className="hidden sm:inline">•</span>
+                  <span className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-[#c9a962]" />
+                    Ideal for Singles & Couples
+                  </span>
+                  <span className="hidden sm:inline">•</span>
+                  <span className="flex items-center gap-2">
+                    <Building2 className="w-4 h-4 text-[#c9a962]" />
+                    Multiple Configurations
+                  </span>
+                </div>
+              </motion.div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
+                {floorPlans1BHK.map((plan, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="group cursor-pointer bg-card rounded-2xl overflow-hidden border border-border hover:border-[#c9a962]/50 transition-all hover:shadow-2xl"
+                    onClick={() => openLightbox(plan.src, plan.title)}
+                  >
+                    <div className="aspect-[4/3] overflow-hidden bg-muted relative">
+                      <img 
+                        src={plan.src} 
+                        alt={plan.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                        loading="lazy" 
+                      />
+                      <div className="absolute top-3 right-3 px-3 py-1.5 bg-[#c9a962] text-black text-xs font-bold rounded-full">
+                        {plan.type}
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <h4 className="font-bold text-foreground text-base md:text-lg mb-3">{plan.title}</h4>
+                      <div className="space-y-2.5 text-sm text-muted-foreground mb-4">
+                        <div className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-medium text-foreground">Spacious Living Area</p>
+                            <p className="text-xs">Well-ventilated with natural light</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-medium text-foreground">Modern Kitchen</p>
+                            <p className="text-xs">Modular design with premium fittings</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-medium text-foreground">Attached Bathroom</p>
+                            <p className="text-xs">Quality sanitary ware & fixtures</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-medium text-foreground">Vitrified Flooring</p>
+                            <p className="text-xs">Premium tiles throughout</p>
+                          </div>
+                        </div>
+                      </div>
+                      <button className="mt-2 w-full py-2.5 bg-[#c9a962]/10 text-[#c9a962] rounded-lg font-semibold text-sm hover:bg-[#c9a962] hover:text-black transition-all">
+                        View Full Plan
+                      </button>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            
+            {/* 2BHK Floor Plans */}
+            <div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="flex flex-col items-center mb-10"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="w-12 h-12 md:w-14 md:h-14 bg-[#c9a962] text-black rounded-full flex items-center justify-center text-lg md:text-xl font-bold">2</span>
+                  <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground">2 BHK Apartments</h3>
+                </div>
+                <div className="flex flex-wrap items-center justify-center gap-4 text-sm md:text-base text-muted-foreground">
+                  <span className="flex items-center gap-2">
+                    <Home className="w-4 h-4 text-[#c9a962]" />
+                    Carpet Area: 592 - 613 sq.ft
+                  </span>
+                  <span className="hidden sm:inline">•</span>
+                  <span className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-[#c9a962]" />
+                    Perfect for Small Families
+                  </span>
+                  <span className="hidden sm:inline">•</span>
+                  <span className="flex items-center gap-2">
+                    <Building2 className="w-4 h-4 text-[#c9a962]" />
+                    Premium Layouts
+                  </span>
+                </div>
+              </motion.div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
+                {floorPlans2BHK.map((plan, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="group cursor-pointer bg-card rounded-2xl overflow-hidden border border-border hover:border-[#c9a962]/50 transition-all hover:shadow-2xl"
+                    onClick={() => openLightbox(plan.src, plan.title)}
+                  >
+                    <div className="aspect-[4/3] overflow-hidden bg-muted relative">
+                      <img 
+                        src={plan.src} 
+                        alt={plan.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                        loading="lazy" 
+                      />
+                      <div className="absolute top-3 right-3 px-3 py-1.5 bg-[#c9a962] text-black text-xs font-bold rounded-full">
+                        {plan.type}
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <h4 className="font-bold text-foreground text-base md:text-lg mb-3">{plan.title}</h4>
+                      <div className="space-y-2.5 text-sm text-muted-foreground mb-4">
+                        <div className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-medium text-foreground">2 Spacious Bedrooms</p>
+                            <p className="text-xs">Master bedroom with attached bath</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-medium text-foreground">Living & Dining Area</p>
+                            <p className="text-xs">Open layout for family gatherings</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-medium text-foreground">2 Bathrooms</p>
+                            <p className="text-xs">Premium fittings & fixtures</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-medium text-foreground">Balcony</p>
+                            <p className="text-xs">Private outdoor space</p>
+                          </div>
+                        </div>
+                      </div>
+                      <button className="mt-2 w-full py-2.5 bg-[#c9a962]/10 text-[#c9a962] rounded-lg font-semibold text-sm hover:bg-[#c9a962] hover:text-black transition-all">
+                        View Full Plan
+                      </button>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Amenities Section */}
+        <section id="amenities" className="py-16 md:py-24 bg-card">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <motion.span 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-4 block"
+              >
+                Amenities & Specifications
+              </motion.span>
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4 leading-tight"
+              >
+                Modern <span className="text-[#c9a962]">Amenities</span>
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto"
+              >
+                Welcome to an extraordinary world of fine living where aesthetics, design excellence and practical functionality 
+                are combined to create the most perfect ambience for a luxury lifestyle.
+              </motion.p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 max-w-6xl mx-auto mb-16">
+              {amenities.map((amenity, index) => (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="flex items-start gap-3 p-5 md:p-6 bg-background rounded-xl border border-border hover:border-[#c9a962]/40 hover:shadow-lg transition-all duration-300"
+                >
+                  <CheckCircle className="w-5 h-5 text-[#c9a962] shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="text-foreground text-sm md:text-base font-semibold mb-1">{amenity.name}</h4>
+                    <p className="text-xs md:text-sm text-muted-foreground">{amenity.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Specifications */}
+            <div className="max-w-6xl mx-auto">
+              <motion.h3 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-2xl md:text-3xl font-heading font-bold text-center mb-8"
+              >
+                Premium Specifications
+              </motion.h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="p-6 bg-background rounded-xl border border-border"
+                >
+                  <h4 className="font-bold text-foreground mb-4 text-lg">Interior Features</h4>
+                  <ul className="space-y-3 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Flooring:</strong> Premium vitrified tiles in all rooms</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Kitchen:</strong> Modular kitchen with granite counter top</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Bathroom:</strong> Premium sanitary fittings from reputed brands</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Doors:</strong> Hardwood frame with flush doors</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Windows:</strong> Powder coated aluminum sliding windows</span>
+                    </li>
+                  </ul>
+                </motion.div>
+                
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="p-6 bg-background rounded-xl border border-border"
+                >
+                  <h4 className="font-bold text-foreground mb-4 text-lg">Electrical & Plumbing</h4>
+                  <ul className="space-y-3 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Wiring:</strong> Concealed copper wiring with modular switches</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">AC Provision:</strong> Split AC provision in all bedrooms</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Geyser:</strong> Electrical geyser in all bathrooms</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Internet:</strong> Broadband internet point in living room</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Security:</strong> Video door phone & intercom system</span>
+                    </li>
+                  </ul>
+                </motion.div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Location Section */}
-        <section id="location" className="py-16 md:py-24 bg-card">
+        <section id="location" className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Location</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-                Prime <span className="text-primary">Location</span>
-              </h2>
-              <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Strategically located in Malad East with excellent connectivity to IT hubs, shopping malls, and educational institutions. Near Malad Railway Station and Western Express Highway.
-              </p>
+              <motion.span 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-4 block"
+              >
+                Location
+              </motion.span>
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4 leading-tight"
+              >
+                Prime <span className="text-[#c9a962]">Location</span>
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto"
+              >
+                Malad's emergence as one of the most sought after residential suburbs of Mumbai is very much evident in its evolving landscape. 
+                Besides being in close proximity to the largest green zone in Mumbai – the Aarey colony, Malad is also a commercial hub 
+                with excellent connectivity to both the western and eastern suburbs.
+              </motion.p>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {connectivityItems.map((item, index) => (
-                <div key={index} className="flex items-center gap-3 p-4 bg-background rounded-xl border border-border hover:border-primary/30 transition-all">
-                  <MapIcon className="w-5 h-5 text-primary shrink-0" />
-                  <div>
-                    <p className="text-sm font-medium text-foreground">{item.name}</p>
-                    <p className="text-xs text-muted-foreground">{item.distance}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all">
-                <MapPin className="w-4 h-4" />
-                Google Map
-              </a>
-              <a href="#" className="inline-flex items-center gap-2 px-6 py-3 bg-card border border-border text-foreground rounded-lg font-medium hover:border-primary/50 transition-all">
-                <MapIcon className="w-4 h-4" />
-                Location Map
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Amenities Section */}
-        <section id="amenities" className="py-16 md:py-24 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Amenities</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-                Modern <span className="text-primary">Amenities</span>
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-              {amenities.map((amenity, index) => (
-                <div key={index} className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border">
-                  <CheckCircle className="w-5 h-5 text-primary shrink-0" />
-                  <span className="text-sm text-foreground">{amenity}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Specifications Section */}
-        <section id="specifications" className="py-16 md:py-24 bg-card">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Specifications</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-                Premium <span className="text-primary">Specifications</span>
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-              {specifications.map((spec, index) => (
-                <div key={index} className="flex items-start gap-3 p-4 bg-background rounded-lg border border-border">
-                  <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                  <span className="text-sm text-foreground">{spec}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Gallery Section */}
-        <section id="gallery" className="py-16 md:py-24 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Gallery</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-                Project <span className="text-primary">Gallery</span>
-              </h2>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-              {galleryImages.map((image, index) => (
-                <div
-                  key={index}
-                  className="relative group cursor-pointer overflow-hidden rounded-xl aspect-square"
-                  onClick={() => { setLightboxOpen(true); setLightboxIndex(index); }}
+            
+            {/* Google Map Embed */}
+            <div className="max-w-5xl mx-auto">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="aspect-video rounded-xl md:rounded-2xl overflow-hidden border border-border shadow-xl"
+              >
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.1234567890123!2d72.85678901234567!3d19.234567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDE0JzA0LjQiTiA3MsKwNTEnMjQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Velentine Apartment Location"
+                />
+              </motion.div>
+              
+              {/* Location Details */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mt-8 mb-12">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/30 hover:shadow-md transition-all"
                 >
-                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <p className="text-white font-medium text-sm">{image.alt}</p>
-                      <span className="text-xs text-green-400">{image.category}</span>
+                  <p className="font-bold text-foreground mb-1 text-sm md:text-base">Malad Railway Station</p>
+                  <p className="text-[#c9a962] text-sm md:text-base mb-2">10 Minutes</p>
+                  <p className="text-xs text-muted-foreground">Western Railway Line</p>
+                </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/30 hover:shadow-md transition-all"
+                >
+                  <p className="font-bold text-foreground mb-1 text-sm md:text-base">Oberoi Mall</p>
+                  <p className="text-[#c9a962] text-sm md:text-base mb-2">1.7 km</p>
+                  <p className="text-xs text-muted-foreground">Shopping & Entertainment</p>
+                </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/30 hover:shadow-md transition-all"
+                >
+                  <p className="font-bold text-foreground mb-1 text-sm md:text-base">Western Express Highway</p>
+                  <p className="text-[#c9a962] text-sm md:text-base mb-2">1.75 km</p>
+                  <p className="text-xs text-muted-foreground">Major Connectivity</p>
+                </motion.div>
+              </div>
+              
+              {/* Nearby Landmarks */}
+              <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="p-6 bg-card rounded-xl border border-border"
+                >
+                  <h4 className="font-bold text-foreground mb-4 flex items-center gap-2">
+                    <Building2 className="w-5 h-5 text-[#c9a962]" />
+                    Educational Institutions
+                  </h4>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-[#c9a962] rounded-full"></span>
+                      Ryan International School - 230m
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-[#c9a962] rounded-full"></span>
+                      Podar Jumbo Kids - 650m
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-[#c9a962] rounded-full"></span>
+                      Oberoi International School - 1.5km
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-[#c9a962] rounded-full"></span>
+                      Whistling Woods International - 2.3km
+                    </li>
+                  </ul>
+                </motion.div>
+                
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="p-6 bg-card rounded-xl border border-border"
+                >
+                  <h4 className="font-bold text-foreground mb-4 flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-[#c9a962]" />
+                    Healthcare Facilities
+                  </h4>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-[#c9a962] rounded-full"></span>
+                      Vasudha Hospital - 350m
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-[#c9a962] rounded-full"></span>
+                      RadhaKrishna Hospital - 400m
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-[#c9a962] rounded-full"></span>
+                      Gokuldham Medical Center - 1.1km
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-[#c9a962] rounded-full"></span>
+                      Multiple Clinics & Pharmacies nearby
+                    </li>
+                  </ul>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Brochure Download Section */}
+        <section className="py-16 md:py-24 bg-gradient-to-br from-[#c9a962]/10 via-card to-[#c9a962]/5">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                {/* Left Side - Images */}
+                <motion.div 
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="order-2 lg:order-1"
+                >
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-4">
+                      <div className="rounded-xl overflow-hidden border border-border shadow-lg">
+                        <img src={elevation1} alt="Building Elevation" className="w-full h-48 object-cover" />
+                      </div>
+                      <div className="rounded-xl overflow-hidden border border-border shadow-lg">
+                        <img src={multipurpose} alt="Multi-Purpose Hall" className="w-full h-48 object-cover" />
+                      </div>
+                    </div>
+                    <div className="space-y-4 pt-8">
+                      <div className="rounded-xl overflow-hidden border border-border shadow-lg">
+                        <img src={lobby} alt="Lobby" className="w-full h-48 object-cover" />
+                      </div>
+                      <div className="p-6 bg-[#c9a962] text-black rounded-xl shadow-lg">
+                        <h4 className="font-bold text-2xl mb-2">100+</h4>
+                        <p className="text-sm">Happy Families</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                </motion.div>
+                
+                {/* Right Side - Details */}
+                <motion.div 
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="order-1 lg:order-2"
+                >
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">
+                    Download <span className="text-[#c9a962]">E-Brochure</span>
+                  </h2>
+                  <p className="text-base md:text-lg text-muted-foreground mb-8 leading-relaxed">
+                    Get detailed information about floor plans, specifications, amenities, and pricing in our comprehensive e-brochure. 
+                    Everything you need to know about your dream home in one place.
+                  </p>
+                  
+                  {/* Brochure Features */}
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
+                        <Home className="w-5 h-5 text-[#c9a962]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-1">Detailed Floor Plans</h4>
+                        <p className="text-sm text-muted-foreground">2D & 3D layouts with dimensions</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
+                        <CheckCircle className="w-5 h-5 text-[#c9a962]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-1">Complete Specifications</h4>
+                        <p className="text-sm text-muted-foreground">Materials, finishes & fixtures details</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
+                        <Building2 className="w-5 h-5 text-[#c9a962]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-1">Amenities Overview</h4>
+                        <p className="text-sm text-muted-foreground">All facilities & recreational areas</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
+                        <MapPin className="w-5 h-5 text-[#c9a962]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-1">Location Advantages</h4>
+                        <p className="text-sm text-muted-foreground">Connectivity & nearby landmarks</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <a 
+                    href={brochurePDF}
+                    download="Velentine-Apartment-E-Brochure.pdf"
+                    onClick={() => trackEvent("form", "/velentine-apartment", { type: "brochure_download" })}
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-[#c9a962] text-black rounded-lg font-bold text-base md:text-lg hover:bg-[#d4b876] transition-all hover:shadow-xl hover:shadow-[#c9a962]/30"
+                  >
+                    <Download className="w-5 h-5 md:w-6 md:h-6" />
+                    Download Brochure
+                  </a>
+                  
+                  <p className="text-xs text-muted-foreground mt-4">
+                    * PDF format • 5.2 MB • Updated January 2025
+                  </p>
+                </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -327,96 +1107,116 @@ const VelentineApartment = () => {
         <section id="contact" className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Contact</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-                Get in <span className="text-primary">Touch</span>
-              </h2>
+              <motion.span 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-4 block"
+              >
+                Contact Us
+              </motion.span>
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4 leading-tight"
+              >
+                Get in <span className="text-[#c9a962]">Touch</span>
+              </motion.h2>
             </div>
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {/* Site Office */}
-              <div className="p-6 bg-background rounded-2xl border border-border">
-                <h3 className="text-xl font-heading font-bold text-foreground mb-4 flex items-center gap-2">
-                  <Building2 className="w-5 h-5 text-primary" />
-                  Site OFFICE
-                </h3>
-                <p className="font-semibold text-foreground mb-2">VELENTINE APARTMENT</p>
-                <p className="text-muted-foreground text-sm mb-4">
-                  Wing D, Malad East,<br />
-                  Mumbai - 400 097.
-                </p>
-                <div className="space-y-2">
-                  <a href="tel:+919322642370" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                    <Phone className="w-4 h-4" />
-                    91-93226 42370
-                  </a>
-                  <a href="mailto:sales@lalanigroup.in" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                    <Mail className="w-4 h-4" />
-                    sales@lalanigroup.in
-                  </a>
-                </div>
+            
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
+              {/* Contact Info */}
+              <div className="space-y-6 md:space-y-8">
+                <motion.div 
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="p-6 md:p-8 bg-background rounded-xl md:rounded-2xl border border-border hover:border-[#c9a962]/30 transition-all"
+                >
+                  <h3 className="text-xl md:text-2xl font-heading font-bold text-foreground mb-4 md:mb-6">Site Office</h3>
+                  <p className="text-muted-foreground mb-4 md:mb-6 text-sm md:text-base">
+                    <strong className="text-foreground">Velentine Apartment - Wing D</strong><br />
+                    Malad East, Mumbai - 400 097
+                  </p>
+                  <div className="space-y-3 md:space-y-4">
+                    <a href="tel:+919322642370" className="flex items-center gap-3 text-foreground hover:text-[#c9a962] transition-colors text-sm md:text-base">
+                      <Phone className="w-4 h-4 md:w-5 md:h-5 text-[#c9a962] shrink-0" />
+                      +91-93226 42370
+                    </a>
+                    <a href="mailto:sales@lalanigroup.in" className="flex items-center gap-3 text-foreground hover:text-[#c9a962] transition-colors text-sm md:text-base">
+                      <Mail className="w-4 h-4 md:w-5 md:h-5 text-[#c9a962] shrink-0" />
+                      sales@lalanigroup.in
+                    </a>
+                  </div>
+                </motion.div>
+                
+                <motion.div 
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  className="p-6 md:p-8 bg-background rounded-xl md:rounded-2xl border border-border hover:border-[#c9a962]/30 transition-all"
+                >
+                  <h3 className="text-xl md:text-2xl font-heading font-bold text-foreground mb-4 md:mb-6">Corporate Office</h3>
+                  <p className="text-muted-foreground mb-4 md:mb-6 text-sm md:text-base">
+                    <strong className="text-foreground">Lalani Group</strong><br />
+                    7th Floor, Lalani Aura, 34th Road,<br />
+                    Khar (W), Mumbai - 400 052
+                  </p>
+                  <div className="space-y-3 md:space-y-4">
+                    <a href="tel:+912267280000" className="flex items-center gap-3 text-foreground hover:text-[#c9a962] transition-colors text-sm md:text-base">
+                      <Phone className="w-4 h-4 md:w-5 md:h-5 text-[#c9a962] shrink-0" />
+                      +91-22-6728 0000
+                    </a>
+                    <a href="mailto:info@lalanigroup.in" className="flex items-center gap-3 text-foreground hover:text-[#c9a962] transition-colors text-sm md:text-base">
+                      <Mail className="w-4 h-4 md:w-5 md:h-5 text-[#c9a962] shrink-0" />
+                      info@lalanigroup.in
+                    </a>
+                  </div>
+                </motion.div>
               </div>
               
-              {/* Corporate Office */}
-              <div className="p-6 bg-background rounded-2xl border border-border">
-                <h3 className="text-xl font-heading font-bold text-foreground mb-4 flex items-center gap-2">
-                  <Building2 className="w-5 h-5 text-primary" />
-                  Corporate Office
-                </h3>
-                <p className="font-semibold text-foreground mb-2">LALANI GROUP</p>
-                <p className="text-muted-foreground text-sm mb-4">
-                  7th floor, Lalani Aura, 34th road,<br />
-                  Khar (W), Mumbai - 400 052.
-                </p>
-                <div className="space-y-2">
-                  <a href="tel:+912267280000" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                    <Phone className="w-4 h-4" />
-                    91-22-6728 0000
-                  </a>
-                  <a href="mailto:info@lalanigroup.in" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                    <Mail className="w-4 h-4" />
-                    info@lalanigroup.in
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="mt-12 max-w-2xl mx-auto">
-              <div className="p-6 md:p-8 bg-background rounded-2xl border border-border">
-                <h3 className="text-xl font-heading font-bold text-foreground mb-6 text-center">Enquire Now</h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">Name *</label>
-                      <input
-                        type="text"
-                        required
-                        value={contactForm.name}
-                        onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                        className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
-                        placeholder="Your name"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">Phone *</label>
-                      <input
-                        type="tel"
-                        required
-                        value={contactForm.phone}
-                        onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
-                        className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
-                        placeholder="Your phone number"
-                      />
-                    </div>
+              {/* Contact Form */}
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="p-6 md:p-8 bg-background rounded-xl md:rounded-2xl border border-border"
+              >
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-foreground mb-6">Enquire Now</h3>
+                <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Full Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={contactForm.name}
+                      onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                      className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9a962]/50 text-sm md:text-base"
+                      placeholder="Enter your name"
+                    />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                    <label className="block text-sm font-medium text-foreground mb-2">Phone Number *</label>
+                    <input
+                      type="tel"
+                      required
+                      value={contactForm.phone}
+                      onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                      className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9a962]/50 text-sm md:text-base"
+                      placeholder="Enter your phone number"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Email Address</label>
                     <input
                       type="email"
                       value={contactForm.email}
                       onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                      className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
-                      placeholder="Your email"
+                      className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9a962]/50 text-sm md:text-base"
+                      placeholder="Enter your email"
                     />
                   </div>
                   <div>
@@ -424,25 +1224,25 @@ const VelentineApartment = () => {
                     <textarea
                       value={contactForm.message}
                       onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                      rows={3}
-                      className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
-                      placeholder="Your message"
+                      rows={4}
+                      className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9a962]/50 text-sm md:text-base"
+                      placeholder="Your message..."
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={formLoading}
-                    className="w-full px-8 py-4 bg-gradient-to-r from-primary to-gold-light text-primary-foreground rounded-lg font-semibold hover:shadow-xl hover:shadow-primary/30 transition-all disabled:opacity-50"
+                    className="w-full px-8 py-3 md:py-4 bg-[#c9a962] text-black rounded-lg font-bold text-base md:text-lg hover:bg-[#d4b876] transition-all disabled:opacity-50"
                   >
-                    {formLoading ? "Sending..." : formSent ? "Sent Successfully!" : "Send Enquiry via WhatsApp"}
+                    {formLoading ? "Sending..." : formSent ? "Sent Successfully!" : "Send Enquiry"}
                   </button>
                 </form>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
       </main>
-      
+
       <Footer />
       <WhatsAppButton />
       <BackToTopButton />
@@ -453,24 +1253,13 @@ const VelentineApartment = () => {
         <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4" onClick={() => setLightboxOpen(false)}>
           <button
             onClick={() => setLightboxOpen(false)}
-            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
           >
             <X className="w-6 h-6" />
           </button>
-          <button
-            onClick={(e) => { e.stopPropagation(); handlePrevious(); }}
-            className="absolute left-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onClick={(e) => { e.stopPropagation(); handleNext(); }}
-            className="absolute right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-          <div onClick={(e) => e.stopPropagation()} className="max-w-5xl max-h-[90vh]">
-            <img src={galleryImages[lightboxIndex].src} alt={galleryImages[lightboxIndex].alt} className="w-full h-full object-contain rounded-lg" />
+          <div onClick={(e) => e.stopPropagation()} className="max-w-5xl max-h-[90vh] text-center">
+            <img src={lightboxImage} alt={lightboxTitle} className="w-full h-full object-contain rounded-lg max-h-[80vh]" />
+            <p className="text-white text-xl mt-4 font-semibold">{lightboxTitle}</p>
           </div>
         </div>
       )}
