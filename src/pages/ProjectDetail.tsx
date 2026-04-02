@@ -36,13 +36,20 @@ const ProjectDetail = () => {
     .filter(p => p.slug !== slug && (p.area === project?.area || p.category === project?.category))
     .slice(0, 3);
 
-  // Use exact address for Google Maps - this pins the exact building location
-  const mapAddress = project?.address || `${project?.name}, ${project?.location}, Mumbai, India`;
+  // Use exact lat/lng for precise building pin - coordinates are most accurate
+  let mapUrl = '';
+  let mapSearchUrl = '';
   
-  // Always search by exact address - more accurate for finding the specific building
-  const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(mapAddress)}&z=18&output=embed`;
-
-  const mapSearchUrl = `https://www.google.com/maps/search/${encodeURIComponent(mapAddress)}`;
+  if (project?.lat && project?.lng) {
+    // Use coordinates with high zoom (19 = building level)
+    mapUrl = `https://www.google.com/maps?q=${project.lat},${project.lng}&z=19&output=embed`;
+    mapSearchUrl = `https://www.google.com/maps?q=${project.lat},${project.lng}&z=19`;
+  } else {
+    // Fallback to address
+    const mapAddress = project?.address || `${project?.name}, ${project?.location}, Mumbai, India`;
+    mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(mapAddress)}&z=18&output=embed`;
+    mapSearchUrl = `https://www.google.com/maps/search/${encodeURIComponent(mapAddress)}`;
+  }
   
   const mapQuery = encodeURIComponent(`${project?.name}, ${project?.location}, Mumbai, India`);
 
