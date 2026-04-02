@@ -181,8 +181,8 @@ export const projects: Project[] = [
       { name: "Western Express Highway", distance: "5 min" },
       { name: "Powai Lake", distance: "20 min" }
     ],
-    lat: 19.1069994,
-    lng: 72.8665386,
+    lat: 19.10655,
+    lng: 72.86659,
     address: "Goodwill C.H.S Ltd, Opp. Janakalyan Bank, J B Nagar, Andheri East, Mumbai-400059"
   },
 

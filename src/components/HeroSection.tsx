@@ -2,11 +2,10 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Play, Building2, MapPin, Home } from "lucide-react";
-import valetanie from "@/assets/lalanigoodwill/valetanie.webp";
+import valetanie from "@/assets/lalanibusinespark/business2.png";
 import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
 import busines from "@/assets/lalanibusinespark/busines.png";
 import businesspark from "@/assets/lalanibusinespark/businesspark.png";
-
 const slides = [
   {
     image: mainElevation,
