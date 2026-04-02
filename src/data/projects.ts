@@ -497,8 +497,8 @@ export const projects: Project[] = [
       { name: "Bandra-Kurla Complex", distance: "15 min" },
       { name: "International Airport", distance: "20 min" }
     ],
-    lat: 19.0618,
-    lng: 72.8285,
+    lat: 19.068066,
+    lng: 72.8320477,
     address: "Lalani Business Park, 14th Road, Khar West, Mumbai, Maharashtra 400052"
   },
 
