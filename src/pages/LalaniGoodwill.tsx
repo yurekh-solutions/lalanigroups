@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   MapPin, Phone, Mail, Download, Building2, Car, Trees, 
   Dumbbell, Shield, Droplets, Zap, Home, CheckCircle, 
-  ChevronLeft, ChevronRight, ChevronDown, X,
+  ChevronLeft, ChevronRight, ChevronDown, X, User, FileText,
   Train, Plane, ShoppingBag, GraduationCap, Building
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -154,6 +154,15 @@ const LalaniGoodwill = () => {
   const [formLoading, setFormLoading] = useState(false);
   const [formSent, setFormSent] = useState(false);
 
+  // Brochure Download Popup State
+  const [brochurePopupOpen, setBrochurePopupOpen] = useState(false);
+  const [brochureForm, setBrochureForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+  const [brochureFormLoading, setBrochureFormLoading] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormLoading(true);
@@ -176,6 +185,48 @@ const LalaniGoodwill = () => {
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
     setLightboxOpen(true);
+  };
+
+  // Brochure download handler with lead capture
+  const handleBrochureDownload = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBrochureFormLoading(true);
+    try {
+      // Track the lead in Firebase
+      await trackEvent("form", "/lalani-goodwill", {
+        type: "brochure_download",
+        name: brochureForm.name,
+        email: brochureForm.email,
+        phone: brochureForm.phone,
+        project: "Lalani Goodwill",
+      });
+      
+      // Close popup
+      setBrochurePopupOpen(false);
+      
+      // Trigger download
+      const link = document.createElement('a');
+      link.href = brochurePdf;
+      link.download = "Lalani-Goodwill-E-Brochure.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Send details to WhatsApp
+      const whatsappText = `Hi, I downloaded the Lalani Goodwill E-Brochure.%0A%0A*My Details:*%0AName: ${brochureForm.name}%0AEmail: ${brochureForm.email}%0APhone: ${brochureForm.phone}%0A%0APlease share more details about the project.`;
+      window.open(`https://wa.me/919322642370?text=${whatsappText}`, "_blank");
+      
+      // Reset form
+      setBrochureForm({
+        name: "",
+        email: "",
+        phone: "",
+      });
+    } catch (err) {
+      console.error("Error tracking brochure download:", err);
+    } finally {
+      setBrochureFormLoading(false);
+    }
   };
 
   return (
@@ -932,14 +983,13 @@ const LalaniGoodwill = () => {
                   </a>
                 </div>
 
-                <a
-                  href={brochurePdf}
-                  download="Lalani-Goodwill-Brochure.pdf"
-                  className="flex items-center justify-center gap-2 w-full py-4 bg-card border border-border rounded-xl hover:border-primary/50 transition-all group"
+                <button
+                  onClick={() => setBrochurePopupOpen(true)}
+                  className="flex items-center justify-center gap-2 w-full py-4 bg-[#c9a962] hover:bg-[#d4b876] text-black font-bold rounded-xl transition-all group"
                 >
-                  <Download className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-                  <span className="font-medium text-foreground">Download E-Brochure</span>
-                </a>
+                  <Download className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  <span>Download E-Brochure</span>
+                </button>
               </motion.div>
             </div>
           </div>
@@ -1015,6 +1065,113 @@ const LalaniGoodwill = () => {
       <EnquireButton />
       <BackToTopButton />
       <LeadCapturePopup />
+
+      {/* Brochure Download Lead Capture Popup */}
+      <AnimatePresence>
+        {brochurePopupOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setBrochurePopupOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-background border border-border rounded-2xl shadow-2xl w-full max-w-md overflow-hidden"
+            >
+              {/* Header */}
+              <div className="bg-gradient-to-r from-[#c9a962] to-[#d4b876] p-6 text-center relative">
+                <button 
+                  onClick={() => setBrochurePopupOpen(false)}
+                  className="absolute top-4 right-4 w-8 h-8 bg-black/20 hover:bg-black/40 rounded-full flex items-center justify-center transition-colors"
+                >
+                  <X className="w-5 h-5 text-white" />
+                </button>
+                <FileText className="w-12 h-12 text-black mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-black">Download E-Brochure</h3>
+                <p className="text-black/80 text-sm mt-1">Get complete project details</p>
+              </div>
+              
+              {/* Form */}
+              <form onSubmit={handleBrochureDownload} className="p-6 space-y-5">
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Full Name <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                    <input
+                      type="text"
+                      required
+                      value={brochureForm.name}
+                      onChange={(e) => setBrochureForm({ ...brochureForm, name: e.target.value })}
+                      placeholder="Enter your name"
+                      className="w-full pl-12 pr-4 py-3.5 bg-card border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c9a962] focus:border-transparent transition-all text-base"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Email Address <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                    <input
+                      type="email"
+                      required
+                      value={brochureForm.email}
+                      onChange={(e) => setBrochureForm({ ...brochureForm, email: e.target.value })}
+                      placeholder="Enter your email"
+                      className="w-full pl-12 pr-4 py-3.5 bg-card border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c9a962] focus:border-transparent transition-all text-base"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Phone Number <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                    <input
+                      type="tel"
+                      required
+                      value={brochureForm.phone}
+                      onChange={(e) => setBrochureForm({ ...brochureForm, phone: e.target.value })}
+                      placeholder="+91 98765 43210"
+                      className="w-full pl-12 pr-4 py-3.5 bg-card border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c9a962] focus:border-transparent transition-all text-base"
+                    />
+                  </div>
+                </div>
+                
+                <button
+                  type="submit"
+                  disabled={brochureFormLoading}
+                  className="w-full py-4 mt-2 bg-[#c9a962] hover:bg-[#d4b876] text-black font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-70 text-lg shadow-lg hover:shadow-xl"
+                >
+                  {brochureFormLoading ? (
+                    <div className="w-6 h-6 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                  ) : (
+                    <>
+                      <Download className="w-5 h-5" />
+                      Download Brochure
+                    </>
+                  )}
+                </button>
+                
+                <p className="text-xs text-muted-foreground text-center pt-2">
+                  Your details will be sent to WhatsApp for quick assistance
+                </p>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
