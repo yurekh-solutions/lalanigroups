@@ -5,6 +5,7 @@ import { ArrowRight, Play, Building2, MapPin, Home } from "lucide-react";
 import valetanie from "@/assets/lalanigoodwill/valetanie.webp";
 import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
 import busines from "@/assets/lalanibusinespark/busines.png";
+import businesspark from "@/assets/lalanibusinespark/businesspark.png";
 
 const slides = [
   {
@@ -19,6 +20,7 @@ const slides = [
   
   {
     image: busines,
+    desktopImage: businesspark,
     title: "Lalani Business Park",
     titleHighlight: "Khar West",
     subtitle: "Premium commercial spaces designed for growing businesses",
@@ -159,12 +161,24 @@ const HeroSection = () => {
           transition={{ duration: 0.8 }}
           className="absolute inset-0"
         >
-          <img
-            src={slides[current].image}
-            alt={`${slides[current].title} ${slides[current].titleHighlight} - Lalani Group Mumbai`}
-            className="w-full h-full object-cover"
-            loading="eager"
-          />
+          {slides[current].desktopImage ? (
+            <picture className="w-full h-full block">
+              <source media="(min-width: 768px)" srcSet={slides[current].desktopImage as string} />
+              <img
+                src={slides[current].image}
+                alt={`${slides[current].title} ${slides[current].titleHighlight} - Lalani Group Mumbai`}
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </picture>
+          ) : (
+            <img
+              src={slides[current].image}
+              alt={`${slides[current].title} ${slides[current].titleHighlight} - Lalani Group Mumbai`}
+              className="w-full h-full object-cover"
+              loading="eager"
+            />
+          )}
           
           {/* Gradient Overlays */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/40" />
