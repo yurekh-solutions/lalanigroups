@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { MapPin, Home, Clock, X, Phone, Mail, Download, CheckCircle, Building2, Play } from "lucide-react";
+import { MapPin, Home, Clock, X, Phone, Mail, Download, CheckCircle, Building2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -29,8 +29,8 @@ import bhk592sqft3d from "@/assets/valentine/2bhk592sqft3d.webp";
 import bhk613sqft2d from "@/assets/valentine/2bhk613sqft2d.webp";
 import bhk613sqft3d from "@/assets/valentine/2bhk613sqft3d.webp";
 
-// Video
-import projectVideo from "@/assets/valentine/kumkang-compressed.mp4";
+// Additional Images
+import floorplanWebp from "@/assets/valentine/floorplanning.webp";
 // Brochure PDF
 import brochurePDF from "@/assets/valentine/E-Brochure-Velentine-Apartment-1-Wing-D-7-4-21-1.pdf";
 
@@ -391,72 +391,96 @@ const VelentineApartment = () => {
           </div>
         </section>
 
-        {/* Video Tour Section */}
+        {/* Lifestyle & Amenities Showcase */}
         <section className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
-              <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-                {/* Left Side - Video */}
+              <div className="text-center mb-12">
+                <motion.span 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-4 block"
+                >
+                  Lifestyle & Amenities
+                </motion.span>
+                <motion.h2 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4 leading-tight"
+                >
+                  Premium <span className="text-[#c9a962]">Living Experience</span>
+                </motion.h2>
+                <motion.p 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto"
+                >
+                  Discover a world of comfort, convenience and luxury with our thoughtfully designed amenities
+                </motion.p>
+              </div>
+
+              <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center mb-12">
+                {/* Left Side - Image Gallery Grid */}
                 <motion.div 
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   className="order-2 lg:order-1"
                 >
-                  <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-2xl border border-border">
-                    <video
-                      className="w-full aspect-video object-cover"
-                      controls
-                      preload="metadata"
-                      poster={elevation1}
-                    >
-                      <source src={projectVideo} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                  
-                  {/* Video Features */}
-                  <div className="grid grid-cols-2 gap-4 mt-6">
-                    <div className="p-4 bg-background rounded-xl border border-border text-center">
-                      <Play className="w-6 h-6 text-[#c9a962] mx-auto mb-2" />
-                      <p className="text-sm font-semibold text-foreground">HD Quality</p>
-                      <p className="text-xs text-muted-foreground mt-1">Crystal Clear</p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-4">
+                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(lobby, "Elegant Lobby")}>
+                        <img src={lobby} alt="Elegant Lobby" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
+                      </div>
+                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(multipurpose, "Multi-Purpose Hall")}>
+                        <img src={multipurpose} alt="Multi-Purpose Hall" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
+                      </div>
                     </div>
-                    <div className="p-4 bg-background rounded-xl border border-border text-center">
-                      <Building2 className="w-6 h-6 text-[#c9a962] mx-auto mb-2" />
-                      <p className="text-sm font-semibold text-foreground">360° View</p>
-                      <p className="text-xs text-muted-foreground mt-1">Complete Tour</p>
+                    <div className="space-y-4 pt-8">
+                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(elevation1, "Building Elevation")}>
+                        <img src={elevation1} alt="Building Elevation" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
+                      </div>
+                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(floorplanWebp, "Floor Planning")}>
+                        <img src={floorplanWebp} alt="Floor Planning" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
+                      </div>
                     </div>
                   </div>
                 </motion.div>
                 
-                {/* Right Side - Details */}
+                {/* Right Side - Features */}
                 <motion.div 
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   className="order-1 lg:order-2"
                 >
-                  <span className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-4 block">
-                    Virtual Tour
-                  </span>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">
-                    Experience Your <span className="text-[#c9a962]">Dream Home</span>
-                  </h2>
-                  <p className="text-base md:text-lg text-muted-foreground mb-8 leading-relaxed">
-                    Take a cinematic virtual tour through Velentine Apartment and experience the premium lifestyle it offers. 
-                    Explore every corner of your future home from the comfort of your current one.
-                  </p>
+                  <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">
+                    World-Class <span className="text-[#c9a962]">Features</span>
+                  </h3>
                   
-                  {/* Tour Highlights */}
+                  {/* Feature List */}
                   <div className="space-y-4 mb-8">
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
-                        <CheckCircle className="w-5 h-5 text-[#c9a962]" />
+                        <Home className="w-5 h-5 text-[#c9a962]" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-foreground mb-1">Elegant Entrance Lobby</h4>
-                        <p className="text-sm text-muted-foreground">Designer entrance with premium finishes</p>
+                        <h4 className="font-semibold text-foreground mb-1">Spacious Residences</h4>
+                        <p className="text-sm text-muted-foreground">Well-ventilated 1BHK & 2BHK apartments with modern finishes</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
+                        <Building2 className="w-5 h-5 text-[#c9a962]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-1">Designer Entrance Lobby</h4>
+                        <p className="text-sm text-muted-foreground">Grand lobby with premium flooring and elegant lighting</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
@@ -464,27 +488,70 @@ const VelentineApartment = () => {
                         <CheckCircle className="w-5 h-5 text-[#c9a962]" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-foreground mb-1">Spacious Apartments</h4>
-                        <p className="text-sm text-muted-foreground">Well-ventilated rooms with natural light</p>
+                        <h4 className="font-semibold text-foreground mb-1">Multi-Purpose Hall</h4>
+                        <p className="text-sm text-muted-foreground">Spacious venue for celebrations and community events</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
-                        <CheckCircle className="w-5 h-5 text-[#c9a962]" />
+                        <MapPin className="w-5 h-5 text-[#c9a962]" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-foreground mb-1">Premium Amenities</h4>
-                        <p className="text-sm text-muted-foreground">Multi-purpose hall and recreational facilities</p>
+                        <h4 className="font-semibold text-foreground mb-1">Prime Location</h4>
+                        <p className="text-sm text-muted-foreground">Close to malls, schools, hospitals and major highways</p>
                       </div>
                     </div>
                   </div>
                   
                   <a 
-                    href="#contact"
+                    href="#amenities"
                     className="inline-flex items-center gap-2 px-8 py-4 bg-[#c9a962] text-black rounded-lg font-bold hover:bg-[#d4b876] transition-all hover:shadow-lg"
                   >
-                    Schedule Site Visit
+                    Explore All Amenities
                   </a>
+                </motion.div>
+              </div>
+
+              {/* Quick Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12 pt-12 border-t border-border">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="text-center"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-[#c9a962] mb-2">100+</div>
+                  <p className="text-sm text-muted-foreground">Happy Families</p>
+                </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  className="text-center"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-[#c9a962] mb-2">12+</div>
+                  <p className="text-sm text-muted-foreground">Premium Amenities</p>
+                </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="text-center"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-[#c9a962] mb-2">OC</div>
+                  <p className="text-sm text-muted-foreground">Received</p>
+                </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  className="text-center"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-[#c9a962] mb-2">100%</div>
+                  <p className="text-sm text-muted-foreground">Ready to Move</p>
                 </motion.div>
               </div>
             </div>
