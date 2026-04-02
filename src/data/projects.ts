@@ -83,6 +83,9 @@ export interface Project {
   }[];
   floorPlan?: string;
   floorPlanTitle?: string;
+  lat?: number;
+  lng?: number;
+  address?: string; // Exact building address for Google Maps
 }
 
 export const projects: Project[] = [
@@ -177,7 +180,10 @@ export const projects: Project[] = [
       { name: "International Airport", distance: "15 min" },
       { name: "Western Express Highway", distance: "5 min" },
       { name: "Powai Lake", distance: "20 min" }
-    ]
+    ],
+    lat: 19.1132,
+    lng: 72.8697,
+    address: "Goodwill C.H.S Ltd, Opp. Janakalyan Bank, J B Nagar, Andheri East, Mumbai-400059"
   },
 
   // VELENTINE APARTMENT
@@ -288,7 +294,10 @@ export const projects: Project[] = [
       { name: "Oberoi International School", distance: "10 min" },
       { name: "Holy Cross Hospital", distance: "8 min" },
       { name: "Mindspace IT Park", distance: "15 min" }
-    ]
+    ],
+    lat: 19.1958,
+    lng: 72.8382,
+    address: "Valentine Apartment, A2, Riddhi Gardens, Malad East, Mumbai, Maharashtra 400097"
   },
 
   // LALANI GRANDEUR
@@ -422,7 +431,8 @@ export const projects: Project[] = [
       { name: "International Airport", distance: "25 min" },
       { name: "Ryan International School", distance: "10 min" },
       { name: "Wockhardt Hospital", distance: "12 min" }
-    ]
+    ],
+    address: "Lalani Grandeur, Film City Road, Goregaon East, Mumbai, Maharashtra 400065"
   },
 
   // LALANI BUSINESS PARK (Commercial)
@@ -486,7 +496,8 @@ export const projects: Project[] = [
       { name: "Linking Road", distance: "3 min" },
       { name: "Bandra-Kurla Complex", distance: "15 min" },
       { name: "International Airport", distance: "20 min" }
-    ]
+    ],
+    address: "Lalani Business Park, 14th Road, Khar West, Mumbai, Maharashtra 400052"
   },
 
   // LALANI HERITAGE PARK (Residential)
@@ -627,7 +638,8 @@ export const projects: Project[] = [
       { name: "Airport", distance: "7.0 kms" }
     ],
     floorPlan: heritageFloorPlan,
-    floorPlanTitle: "Floor Plans"
+    floorPlanTitle: "Floor Plans",
+    address: "Heritage Park, S.V. Road, Jogeshwari West, Mumbai, Maharashtra 400102"
   },
 
   // DREAM RESIDENCY
@@ -757,7 +769,8 @@ export const projects: Project[] = [
       { name: "Pune", distance: "1.5 hrs by road" },
       { name: "Lonavala", distance: "45 min" },
       { name: "Imagicaa Theme Park", distance: "25 min" }
-    ]
+    ],
+    address: "Lalani Dream Residency, Near Kondivade Village, Karjat, Maharashtra 410201"
   },
 
   // ROYAL MANOR (Completed)
@@ -809,7 +822,8 @@ export const projects: Project[] = [
       { name: "Linking Road", distance: "5 min" },
       { name: "Bandstand", distance: "10 min" },
       { name: "International Airport", distance: "20 min" }
-    ]
+    ],
+    address: "Royal Manor, 17th Road, Bandra West, Mumbai, Maharashtra 400050"
   },
 
   // ORCHID ENCLAVE (Completed)
@@ -862,7 +876,8 @@ export const projects: Project[] = [
       { name: "Andheri Metro Station", distance: "8 min" },
       { name: "International Airport", distance: "15 min" },
       { name: "Western Express Highway", distance: "5 min" }
-    ]
+    ],
+    address: "Orchid Enclave, MIDC, Andheri East, Mumbai, Maharashtra 400093"
   },
 
   // LALANI FAIRMONT (Completed)
@@ -916,7 +931,8 @@ export const projects: Project[] = [
       { name: "Linking Road", distance: "3 min" },
       { name: "Bandra-Kurla Complex", distance: "15 min" },
       { name: "International Airport", distance: "20 min" }
-    ]
+    ],
+    address: "Lalani Fairmont, 16th Road, Khar West, Mumbai, Maharashtra 400052"
   },
 
   // LALANI SKYVIEW (Residential)
@@ -1008,7 +1024,8 @@ export const projects: Project[] = [
       { name: "Film City", distance: "15 min" },
       { name: "International Airport", distance: "25 min" },
       { name: "Western Express Highway", distance: "5 min" }
-    ]
+    ],
+    address: "Lalani Skyview, Off New Link Road, Goregaon West, Mumbai, Maharashtra 400104"
   },
 
   // LALANI QUANTUM (Completed - Commercial)
@@ -1029,7 +1046,8 @@ export const projects: Project[] = [
     description: "Lalani Quantum is a completed commercial complex in Bavdhan, Pune — one of Lalani Group's landmark commercial projects outside Mumbai. Offering premium commercial spaces in Pune's rapidly growing zone, Lalani Quantum reflects the Group's commitment to quality construction and timely delivery.",
     highlights: ["Landmark commercial project in Pune", "Prime location in Bavdhan", "Premium quality construction", "Lalani Group legacy project", "100% completed & handed over"],
     amenities: ["24/7 Security", "Covered Parking", "Power Backup", "Lift Facility", "Fire Safety Systems"],
-    nearbyLocations: [{ name: "Bavdhan Market", distance: "5 min" }, { name: "Mumbai-Pune Highway", distance: "10 min" }]
+    nearbyLocations: [{ name: "Bavdhan Market", distance: "5 min" }, { name: "Mumbai-Pune Highway", distance: "10 min" }],
+    address: "Lalani Quantum, Survey No. 38, Bavdhan, Pune, Maharashtra 411021"
   },
 
   // KOHINOOR GRANDEUR (Completed - JV)
@@ -1050,7 +1068,8 @@ export const projects: Project[] = [
     description: "Kohinoor Grandeur is a successfully completed joint venture residential project in Ravet, Pune. Developed in collaboration with Kohinoor Group, this project exemplifies Lalani Group's capability to execute large-scale residential developments in Pune's growing suburban zones.",
     highlights: ["Joint venture with Kohinoor Group", "Prime location in Ravet, Pune", "Quality residential construction", "All amenities provided", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup", "Landscaped Gardens"],
-    nearbyLocations: [{ name: "Ravet Bus Stand", distance: "5 min" }, { name: "Pimpri-Chinchwad", distance: "15 min" }]
+    nearbyLocations: [{ name: "Ravet Bus Stand", distance: "5 min" }, { name: "Pimpri-Chinchwad", distance: "15 min" }],
+    address: "Kohinoor Grandeur, Ravet, Pune, Maharashtra 412101"
   },
 
   // LALANI RESIDENCY (Completed)
@@ -1071,7 +1090,8 @@ export const projects: Project[] = [
     description: "Lalani Residency in Thane (W) is a completed award-winning residential project that received the prestigious 'Best Residential Project of the Year' award from Accommodation Times. Located in the rapidly developing suburb of Thane West, this project offers quality homes with excellent connectivity to Mumbai and Pune.",
     highlights: ["Award-winning residential project", "Best Residential Project - Accommodation Times", "Prime location in Thane West", "Excellent connectivity", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup", "Children's Play Area", "Landscaped Gardens"],
-    nearbyLocations: [{ name: "Thane Railway Station", distance: "10 min" }, { name: "Viviana Mall", distance: "15 min" }, { name: "Eastern Express Highway", distance: "5 min" }]
+    nearbyLocations: [{ name: "Thane Railway Station", distance: "10 min" }, { name: "Viviana Mall", distance: "15 min" }, { name: "Eastern Express Highway", distance: "5 min" }],
+    address: "Lalani Residency, Pokhran Road No. 2, Thane West, Maharashtra 400610"
   },
 
   // LALANI'S DIVINE RESIDENCY (Completed)
@@ -1092,7 +1112,8 @@ export const projects: Project[] = [
     description: "Lalani's Divine Residency is a completed premium residential project in Andheri (W), offering well-designed apartments in one of Mumbai's most sought-after western suburbs. With excellent connectivity and modern amenities, this project stands as a testament to Lalani Group's quality construction.",
     highlights: ["Premium Andheri West location", "Well-designed apartment layouts", "Excellent connectivity", "Close to railway station", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup", "Intercom System", "Landscaped Gardens"],
-    nearbyLocations: [{ name: "Andheri Railway Station", distance: "10 min" }, { name: "Andheri Metro", distance: "8 min" }, { name: "International Airport", distance: "15 min" }]
+    nearbyLocations: [{ name: "Andheri Railway Station", distance: "10 min" }, { name: "Andheri Metro", distance: "8 min" }, { name: "International Airport", distance: "15 min" }],
+    address: "Lalani's Divine Residency, D.N. Nagar, Andheri West, Mumbai, Maharashtra 400053"
   },
 
   // VELENTINE APT - VI (Completed)
@@ -1113,7 +1134,8 @@ export const projects: Project[] = [
     description: "Velentine Apartment VI is a completed residential project in Goregaon East, the sixth in the acclaimed Velentine series by Lalani Group. Located near Film City, Goregaon Railway Station, and Western Express Highway, this project offers excellent connectivity and a well-established neighbourhood.",
     highlights: ["Sixth in the Velentine series", "Prime Goregaon East location", "Near Film City & WEH", "Quality construction", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup", "Intercom System"],
-    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Film City", distance: "15 min" }, { name: "Western Express Highway", distance: "5 min" }]
+    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Film City", distance: "15 min" }, { name: "Western Express Highway", distance: "5 min" }],
+    address: "Velentine Apartment VI, SV Road, Goregaon East, Mumbai, Maharashtra 400063"
   },
 
   // LALANI AURA (Completed)
@@ -1134,7 +1156,8 @@ export const projects: Project[] = [
     description: "Lalani Aura on 34th Road, Khar (W) is the prestigious headquarters of Lalani Group itself. A landmark commercial building offering premium office spaces, Lalani Aura represents the pinnacle of the Group's architectural excellence in one of Mumbai's most prime neighborhoods.",
     highlights: ["Lalani Group Headquarters", "Prime 34th Road, Khar (W) address", "Premium commercial office spaces", "Iconic commercial architecture", "State-of-the-art infrastructure"],
     amenities: ["High-Speed Elevators", "24/7 Security", "CCTV Surveillance", "Covered Parking", "Power Backup", "Modern Lobby"],
-    nearbyLocations: [{ name: "Khar Railway Station", distance: "5 min" }, { name: "Linking Road", distance: "3 min" }, { name: "Bandra-Kurla Complex", distance: "15 min" }]
+    nearbyLocations: [{ name: "Khar Railway Station", distance: "5 min" }, { name: "Linking Road", distance: "3 min" }, { name: "Bandra-Kurla Complex", distance: "15 min" }],
+    address: "Lalani Aura, 34th Road, Khar West, Mumbai, Maharashtra 400052"
   },
 
   // RELIANCE TRENDS (Completed - Commercial)
@@ -1155,7 +1178,8 @@ export const projects: Project[] = [
     description: "Reliance Trends on Hill Road, Bandra (W) is a landmark completed commercial project by Lalani Group. This high-street retail development hosts the renowned Reliance Trends retail outlet and stands as one of Lalani Group's celebrated commercial achievements in the prestigious Bandra West area.",
     highlights: ["High-street retail landmark", "Prime Hill Road, Bandra (W) location", "Hosts Reliance Trends retail", "Award-winning project", "100% tenanted"],
     amenities: ["24/7 Security", "CCTV Surveillance", "Covered Parking", "Power Backup", "Modern Retail Infrastructure"],
-    nearbyLocations: [{ name: "Bandra Railway Station", distance: "5 min" }, { name: "Linking Road", distance: "3 min" }, { name: "Bandstand", distance: "10 min" }]
+    nearbyLocations: [{ name: "Bandra Railway Station", distance: "5 min" }, { name: "Linking Road", distance: "3 min" }, { name: "Bandstand", distance: "10 min" }],
+    address: "Reliance Trends, Hill Road, Bandra West, Mumbai, Maharashtra 400050"
   },
 
   // VELENTINE APT - V (Completed)
@@ -1176,7 +1200,8 @@ export const projects: Project[] = [
     description: "Velentine Apartment V is a completed residential project in Goregaon East, the fifth in the acclaimed Velentine series by Lalani Group. A well-established residential complex offering comfortable family homes in one of Mumbai's most well-connected eastern suburbs.",
     highlights: ["Fifth in the Velentine series", "Prime Goregaon East location", "Well-established complex", "Quality construction", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup"],
-    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Western Express Highway", distance: "5 min" }]
+    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Western Express Highway", distance: "5 min" }],
+    address: "Velentine Apartment V, SV Road, Goregaon East, Mumbai, Maharashtra 400063"
   },
 
   // VELENTINE APT - IV (Completed)
@@ -1197,7 +1222,8 @@ export const projects: Project[] = [
     description: "Velentine Apartment IV is a completed residential project in Goregaon East, the fourth in the Velentine series by Lalani Group. Offering quality residential homes in a well-connected location with access to major transportation hubs and commercial centers.",
     highlights: ["Fourth in the Velentine series", "Goregaon East prime location", "Quality residential homes", "Well-connected", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup"],
-    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Western Express Highway", distance: "5 min" }]
+    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Western Express Highway", distance: "5 min" }],
+    address: "Velentine Apartment IV, SV Road, Goregaon East, Mumbai, Maharashtra 400063"
   },
 
   // MEADOW PARK (Completed)
@@ -1218,7 +1244,8 @@ export const projects: Project[] = [
     description: "Meadow Park is a completed residential project in Jogeshwari (W), offering comfortable homes in one of Mumbai's well-established western suburbs. Located near S.V. Road and Jogeshwari Railway Station, this project exemplifies Lalani Group's commitment to quality residential development.",
     highlights: ["Prime Jogeshwari West location", "Near S.V. Road", "Quality residential complex", "Close to Jogeshwari Station", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup", "Landscaped Gardens"],
-    nearbyLocations: [{ name: "Jogeshwari Railway Station", distance: "10 min" }, { name: "S.V. Road", distance: "5 min" }, { name: "Airport", distance: "15 min" }]
+    nearbyLocations: [{ name: "Jogeshwari Railway Station", distance: "10 min" }, { name: "S.V. Road", distance: "5 min" }, { name: "Airport", distance: "15 min" }],
+    address: "Meadow Park, S.V. Road, Jogeshwari West, Mumbai, Maharashtra 400102"
   },
 
   // LOTUS PARK (Completed)
@@ -1239,7 +1266,8 @@ export const projects: Project[] = [
     description: "Lotus Park is a completed large-scale residential project in Jogeshwari (W), offering well-designed apartments in a lush, green setting. One of Lalani Group's prominent developments in the Jogeshwari area, featuring spacious homes with modern amenities.",
     highlights: ["Large residential complex", "Lush green surroundings", "Prime Jogeshwari West", "Modern amenities", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup", "Children's Play Area", "Landscaped Gardens"],
-    nearbyLocations: [{ name: "Jogeshwari Railway Station", distance: "10 min" }, { name: "JVLR", distance: "5 min" }, { name: "Airport", distance: "15 min" }]
+    nearbyLocations: [{ name: "Jogeshwari Railway Station", distance: "10 min" }, { name: "JVLR", distance: "5 min" }, { name: "Airport", distance: "15 min" }],
+    address: "Lotus Park, JVLR, Jogeshwari West, Mumbai, Maharashtra 400102"
   },
 
   // OYSTER (Completed - Commercial)
@@ -1260,7 +1288,8 @@ export const projects: Project[] = [
     description: "Oyster is a completed commercial development in the prime Khar (W) area of Mumbai. Located in one of Mumbai's most prestigious neighborhoods, this commercial project offers premium retail and office spaces with excellent connectivity and high footfall near Linking Road.",
     highlights: ["Prime Khar West commercial location", "Premium retail & office spaces", "High footfall area", "Near Linking Road", "100% tenanted"],
     amenities: ["24/7 Security", "Covered Parking", "Power Backup", "Modern Infrastructure"],
-    nearbyLocations: [{ name: "Khar Railway Station", distance: "5 min" }, { name: "Linking Road", distance: "3 min" }]
+    nearbyLocations: [{ name: "Khar Railway Station", distance: "5 min" }, { name: "Linking Road", distance: "3 min" }],
+    address: "Oyster, 16th Road, Khar West, Mumbai, Maharashtra 400052"
   },
 
   // VELENTINE APT - III (Completed)
@@ -1281,7 +1310,8 @@ export const projects: Project[] = [
     description: "Velentine Apartment III is a completed residential project in Goregaon East, the third in the Velentine series by Lalani Group. Part of the iconic Velentine cluster in Goregaon East, this project has established itself as a premier residential address for Mumbai families.",
     highlights: ["Third in the Velentine series", "Goregaon East address", "Established residential complex", "Quality construction", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup"],
-    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Western Express Highway", distance: "5 min" }]
+    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Western Express Highway", distance: "5 min" }],
+    address: "Velentine Apartment III, SV Road, Goregaon East, Mumbai, Maharashtra 400063"
   },
 
   // VELENTINE APT - II (Completed)
@@ -1302,7 +1332,8 @@ export const projects: Project[] = [
     description: "Velentine Apartment II is a completed residential project in Goregaon East, the second in the Velentine series by Lalani Group. One of the earlier Velentine projects that helped establish Lalani Group's presence in Goregaon East, offering quality residential homes to Mumbai families.",
     highlights: ["Second in the Velentine series", "Established residential address", "Goregaon East location", "Quality construction", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup"],
-    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Western Express Highway", distance: "5 min" }]
+    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Western Express Highway", distance: "5 min" }],
+    address: "Velentine Apartment II, SV Road, Goregaon East, Mumbai, Maharashtra 400063"
   },
 
   // VELENTINE APT - I (Completed)
@@ -1323,7 +1354,8 @@ export const projects: Project[] = [
     description: "Velentine Apartment I is the first and original project in the iconic Velentine series by Lalani Group in Goregaon East. This pioneering project established Lalani Group's foothold in Goregaon East and set the quality benchmark for all subsequent Velentine projects.",
     highlights: ["The original Velentine project", "Pioneer of the Velentine series", "Established Goregaon East legacy", "Quality foundation project", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup"],
-    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Western Express Highway", distance: "5 min" }]
+    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Western Express Highway", distance: "5 min" }],
+    address: "Velentine Apartment I, SV Road, Goregaon East, Mumbai, Maharashtra 400063"
   },
 
   // SHISHU WELFARE TRUST (Completed)
@@ -1344,7 +1376,8 @@ export const projects: Project[] = [
     description: "Shishu Welfare Trust is a completed social contribution project by Lalani Group in Goregaon East. Reflecting the Group's commitment to social responsibility, this project demonstrates Lalani Group's broader vision beyond commercial real estate development and their dedication to community welfare.",
     highlights: ["Social contribution project", "Lalani Group CSR initiative", "Goregaon East location", "Community development", "Completed project"],
     amenities: ["24/7 Security", "Landscaped Surroundings", "Community Facilities"],
-    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Western Express Highway", distance: "5 min" }]
+    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Western Express Highway", distance: "5 min" }],
+    address: "Shishu Welfare Trust, SV Road, Goregaon East, Mumbai, Maharashtra 400063"
   },
 
   // VELENTINE TOWER (Completed)
@@ -1365,7 +1398,8 @@ export const projects: Project[] = [
     description: "Velentine Tower is a completed high-rise residential tower in Goregaon East. Part of the iconic Velentine series by Lalani Group, this tower offers panoramic views and spacious apartments in the heart of Goregaon East, contributing to the Group's rich legacy in this sought-after suburb.",
     highlights: ["High-rise residential tower", "Part of the Velentine series", "Panoramic views", "Prime Goregaon East address", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "High-Speed Lifts", "Power Backup"],
-    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Film City", distance: "15 min" }, { name: "Western Express Highway", distance: "5 min" }]
+    nearbyLocations: [{ name: "Goregaon Railway Station", distance: "10 min" }, { name: "Film City", distance: "15 min" }, { name: "Western Express Highway", distance: "5 min" }],
+    address: "Velentine Tower, SV Road, Goregaon East, Mumbai, Maharashtra 400063"
   },
 
   // CLASSIC (Completed)
@@ -1386,7 +1420,8 @@ export const projects: Project[] = [
     description: "Classic is a completed residential project in the prestigious Bandra (W). A refined residential development by Lalani Group in one of Mumbai's most coveted addresses, offering timeless design and quality construction to discerning homebuyers.",
     highlights: ["Prestigious Bandra West address", "Classic architectural design", "Premium residential finishes", "Excellent connectivity", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup"],
-    nearbyLocations: [{ name: "Bandra Railway Station", distance: "5 min" }, { name: "Linking Road", distance: "5 min" }, { name: "Bandstand", distance: "10 min" }]
+    nearbyLocations: [{ name: "Bandra Railway Station", distance: "5 min" }, { name: "Linking Road", distance: "5 min" }, { name: "Bandstand", distance: "10 min" }],
+    address: "Classic, Chapel Road, Bandra West, Mumbai, Maharashtra 400050"
   },
 
   // DUNHILL DOME (Completed)
@@ -1407,7 +1442,8 @@ export const projects: Project[] = [
     description: "Dunhill Dome is a completed residential project in Bandra (W), part of Lalani Group's iconic Dunhill series. Known for its distinctive dome architecture, this project stands as a testament to the Group's architectural creativity and quality in Mumbai's most premium neighborhoods.",
     highlights: ["Iconic dome architecture", "Part of the Dunhill series", "Prestigious Bandra West address", "Distinctive design landmark", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup"],
-    nearbyLocations: [{ name: "Bandra Railway Station", distance: "5 min" }, { name: "Linking Road", distance: "5 min" }]
+    nearbyLocations: [{ name: "Bandra Railway Station", distance: "5 min" }, { name: "Linking Road", distance: "5 min" }],
+    address: "Dunhill Dome, Hill Road, Bandra West, Mumbai, Maharashtra 400050"
   },
 
   // ORCHARD PALACE (Completed)
@@ -1428,7 +1464,8 @@ export const projects: Project[] = [
     description: "Orchard Palace is a completed luxury residential project in Bandra (W). With its palatial design and premium quality construction, this project exemplifies Lalani Group's excellence in developing high-end residential properties in Mumbai's most desirable western suburb.",
     highlights: ["Palatial residential design", "Luxury Bandra West address", "Premium quality construction", "Prestigious neighborhood", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup", "Landscaped Gardens"],
-    nearbyLocations: [{ name: "Bandra Railway Station", distance: "5 min" }, { name: "Bandstand", distance: "10 min" }]
+    nearbyLocations: [{ name: "Bandra Railway Station", distance: "5 min" }, { name: "Bandstand", distance: "10 min" }],
+    address: "Orchard Palace, St. Paul Road, Bandra West, Mumbai, Maharashtra 400050"
   },
 
   // DUNHILL CORNER (Completed)
@@ -1449,7 +1486,8 @@ export const projects: Project[] = [
     description: "Dunhill Corner is a completed residential project in Santacruz (E), part of Lalani Group's Dunhill series. Offering quality homes in the strategically located Santacruz East — close to the international airport, railways, and commercial centers.",
     highlights: ["Part of the Dunhill series", "Santacruz East prime location", "Near international airport", "Excellent connectivity", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup"],
-    nearbyLocations: [{ name: "Santacruz Railway Station", distance: "5 min" }, { name: "International Airport", distance: "10 min" }, { name: "Vile Parle", distance: "8 min" }]
+    nearbyLocations: [{ name: "Santacruz Railway Station", distance: "5 min" }, { name: "International Airport", distance: "10 min" }, { name: "Vile Parle", distance: "8 min" }],
+    address: "Dunhill Corner, Nehru Road, Santacruz East, Mumbai, Maharashtra 400055"
   },
 
   // DUNHILL APARTMENT (Completed)
@@ -1470,7 +1508,8 @@ export const projects: Project[] = [
     description: "Dunhill Apartment is a completed residential project in Andheri (E), part of Lalani Group's Dunhill series. Located in the vibrant Andheri East, this project offers comfortable residential homes with excellent connectivity to Mumbai's financial districts and the international airport.",
     highlights: ["Part of the Dunhill series", "Andheri East location", "Near international airport", "Excellent connectivity", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup"],
-    nearbyLocations: [{ name: "Andheri Railway Station", distance: "10 min" }, { name: "International Airport", distance: "15 min" }, { name: "MIDC", distance: "5 min" }]
+    nearbyLocations: [{ name: "Andheri Railway Station", distance: "10 min" }, { name: "International Airport", distance: "15 min" }, { name: "MIDC", distance: "5 min" }],
+    address: "Dunhill Apartment, MIDC, Andheri East, Mumbai, Maharashtra 400093"
   },
 
   // DUNHILL VILLA (Completed)
@@ -1491,7 +1530,8 @@ export const projects: Project[] = [
     description: "Dunhill Villa is a completed luxury villa project in Santacruz (W), part of Lalani Group's Dunhill series. An exclusive development in one of Mumbai's most upscale western suburbs, offering the finest in luxury living with villa-style spaciousness and premium finishes.",
     highlights: ["Luxury villa-style development", "Part of the Dunhill series", "Exclusive Santacruz West address", "Spacious layouts", "100% sold out"],
     amenities: ["24/7 Security", "Private Parking", "Landscaped Gardens", "Power Backup"],
-    nearbyLocations: [{ name: "Santacruz Railway Station", distance: "5 min" }, { name: "Carter Road", distance: "10 min" }, { name: "International Airport", distance: "10 min" }]
+    nearbyLocations: [{ name: "Santacruz Railway Station", distance: "5 min" }, { name: "Carter Road", distance: "10 min" }, { name: "International Airport", distance: "10 min" }],
+    address: "Dunhill Villa, Juhu Tara Road, Santacruz West, Mumbai, Maharashtra 400054"
   },
 
   // DUNHILL CASTLE (Completed)
@@ -1512,7 +1552,8 @@ export const projects: Project[] = [
     description: "Dunhill Castle is a completed residential project in Ville Parle (E), part of Lalani Group's Dunhill series. Named for its castle-like grandeur, this project stands proudly in the elegant Ville Parle East — known for its tree-lined streets, educational institutions, and cosmopolitan community.",
     highlights: ["Castle-inspired grand architecture", "Part of the Dunhill series", "Prestigious Ville Parle East", "Educational hub location", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup", "Landscaped Gardens"],
-    nearbyLocations: [{ name: "Vile Parle Railway Station", distance: "5 min" }, { name: "International Airport", distance: "10 min" }, { name: "Juhu Beach", distance: "10 min" }]
+    nearbyLocations: [{ name: "Vile Parle Railway Station", distance: "5 min" }, { name: "International Airport", distance: "10 min" }, { name: "Juhu Beach", distance: "10 min" }],
+    address: "Dunhill Castle, Irla Road, Vile Parle East, Mumbai, Maharashtra 400057"
   },
 
   // DUNHILL APT (Completed)
@@ -1533,7 +1574,8 @@ export const projects: Project[] = [
     description: "Dunhill Apt is a completed residential project in Bandra (W), part of Lalani Group's iconic Dunhill series. Nestled in Mumbai's most sought-after western suburb, this project offers premium residential apartments with the signature Dunhill quality and Lalani Group's 40+ year legacy of excellence.",
     highlights: ["Part of the iconic Dunhill series", "Premium Bandra West address", "Signature Dunhill quality", "Excellent neighborhood", "100% sold out"],
     amenities: ["24/7 Security", "Covered Parking", "Lift Facility", "Power Backup"],
-    nearbyLocations: [{ name: "Bandra Railway Station", distance: "5 min" }, { name: "Linking Road", distance: "5 min" }, { name: "Bandstand", distance: "10 min" }]
+    nearbyLocations: [{ name: "Bandra Railway Station", distance: "5 min" }, { name: "Linking Road", distance: "5 min" }, { name: "Bandstand", distance: "10 min" }],
+    address: "Dunhill Apartment, 16th Road, Bandra West, Mumbai, Maharashtra 400050"
   }
 ];
 

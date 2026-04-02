@@ -14,11 +14,6 @@ const projectCategories = [
     id: "ongoing",
     label: "Ongoing",
     icon: Clock
-  },
-  {
-    id: "completed",
-    label: "Completed",
-    icon: CheckCircle
   }
 ];
 
@@ -47,7 +42,6 @@ const ProjectTabs = () => {
     const matchesTab =
       activeTab === "all" ? true :
       activeTab === "ongoing" ? project.category === "ongoing" :
-      activeTab === "completed" ? (project.category === "completed" || project.category === "residential") :
       false;
 
     if (!searchQuery.trim()) return matchesTab;
@@ -117,12 +111,12 @@ const ProjectTabs = () => {
           )}
 
           {/* Tabs */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-8 sm:mb-12 w-full max-w-lg sm:max-w-2xl mx-auto px-2">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mb-8 sm:mb-12">
             {projectCategories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveTab(category.id)}
-                className={`flex items-center justify-center gap-1.5 sm:gap-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`flex items-center justify-center gap-1.5 sm:gap-2 w-64 px-3 sm:px-4 py-2.5 sm:py-3 rounded-full font-medium transition-all duration-300 ${
                   activeTab === category.id
                     ? "bg-gradient-to-r from-primary to-gold-light text-primary-foreground shadow-lg scale-105"
                     : "bg-card text-muted-foreground hover:text-foreground border border-border/50 hover:border-primary/50"

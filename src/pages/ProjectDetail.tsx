@@ -36,6 +36,17 @@ const ProjectDetail = () => {
     .filter(p => p.slug !== slug && (p.area === project?.area || p.category === project?.category))
     .slice(0, 3);
 
+  // Use exact address for Google Maps if available, fallback to lat/lng or name
+  const mapAddress = project?.address || `${project?.name}, ${project?.location}, Mumbai, India`;
+  
+  const mapUrl = project?.lat && project?.lng
+    ? `https://maps.google.com/maps?q=${project.lat},${project.lng}&output=embed&z=17`
+    : `https://maps.google.com/maps?q=${encodeURIComponent(mapAddress)}&output=embed&z=16`;
+
+  const mapSearchUrl = project?.lat && project?.lng
+    ? `https://www.google.com/maps?q=${project.lat},${project.lng}`
+    : `https://www.google.com/maps/search/${encodeURIComponent(mapAddress)}`;
+  
   const mapQuery = encodeURIComponent(`${project?.name}, ${project?.location}, Mumbai, India`);
 
   // Add structured data for SEO
@@ -455,7 +466,7 @@ const ProjectDetail = () => {
                   <div className="rounded-2xl overflow-hidden border border-border shadow-lg">
                     <iframe
                       title={`${project.name} Location Map`}
-                      src={`https://maps.google.com/maps?q=${mapQuery}&output=embed&z=15`}
+                      src={mapUrl}
                       width="100%"
                       height="400"
                       style={{ border: 0 }}
@@ -466,7 +477,7 @@ const ProjectDetail = () => {
                     />
                   </div>
                   <a
-                    href={`https://www.google.com/maps/search/${mapQuery}`}
+                    href={mapSearchUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 mt-3 text-sm text-primary hover:text-gold-light transition-colors"
