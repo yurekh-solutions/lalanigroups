@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Clock, MapPin, CheckCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Building2, Clock, MapPin, CheckCircle, Search, X } from "lucide-react";
+import { Link, useSearchParams } from "react-router-dom";
 import { projects } from "@/data/projects";
 
 const projectCategories = [
@@ -24,13 +24,48 @@ const projectCategories = [
 
 const ProjectTabs = () => {
   const [activeTab, setActiveTab] = useState("all");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
+  const searchQuery = searchParams.get("q") || "";
 
-  // Filter projects based on active tab
+  const handleSearch = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    if (searchInput.trim()) {
+      setSearchParams({ q: searchInput.trim() });
+    } else {
+      setSearchParams({});
+    }
+  };
+
+  const clearSearch = () => {
+    setSearchInput("");
+    setSearchParams({});
+  };
+
+  // Filter projects based on active tab + search query
   const filteredProjects = projects.filter(project => {
-    if (activeTab === "all") return true;
-    if (activeTab === "ongoing") return project.category === "ongoing";
-    if (activeTab === "completed") return project.category === "completed" || project.category === "residential";
-    return false;
+    const matchesTab =
+      activeTab === "all" ? true :
+      activeTab === "ongoing" ? project.category === "ongoing" :
+      activeTab === "completed" ? (project.category === "completed" || project.category === "residential") :
+      false;
+
+    if (!searchQuery.trim()) return matchesTab;
+
+    const q = searchQuery.toLowerCase();
+    const normalize = (s: string) => s.toLowerCase().replace(/[\s\-_]/g, "");
+    const nq = normalize(q);
+    const matchesSearch =
+      project.name.toLowerCase().includes(q) ||
+      normalize(project.name).includes(nq) ||
+      project.slug.toLowerCase().includes(q) ||
+      normalize(project.slug).includes(nq) ||
+      project.location.toLowerCase().includes(q) ||
+      project.area.toLowerCase().includes(q) ||
+      project.type.toLowerCase().includes(q) ||
+      (project.description?.toLowerCase().includes(q) ?? false);
+
+    return matchesTab && matchesSearch;
   });
 
   return (
@@ -46,9 +81,40 @@ const ProjectTabs = () => {
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 gradient-gold-text">
             Explore Our Projects
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
             Browse through our diverse portfolio of residential and commercial developments
           </p>
+
+          {/* Search Bar */}
+          <form onSubmit={handleSearch} className="flex items-center max-w-xl mx-auto mb-8 bg-card border border-border rounded-2xl overflow-hidden shadow-md hover:border-primary/50 transition-all">
+            <Search className="w-5 h-5 text-muted-foreground ml-4 shrink-0" />
+            <input
+              type="text"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              placeholder="Search by project, location, BHK type..."
+              className="flex-1 bg-transparent text-foreground placeholder-muted-foreground outline-none text-sm py-3.5 px-3"
+            />
+            {searchInput && (
+              <button type="button" onClick={clearSearch} className="px-3 text-muted-foreground hover:text-foreground transition-colors">
+                <X className="w-4 h-4" />
+              </button>
+            )}
+            <button
+              type="submit"
+              className="px-5 py-3.5 bg-gradient-to-r from-primary to-gold-light text-primary-foreground font-semibold text-sm hover:opacity-90 transition-all shrink-0"
+            >
+              Search
+            </button>
+          </form>
+
+          {/* Active search label */}
+          {searchQuery && (
+            <p className="text-sm text-muted-foreground mb-4">
+              Showing results for <span className="text-primary font-semibold">"{searchQuery}"</span>
+              {" "}&mdash; {filteredProjects.length} project{filteredProjects.length !== 1 ? "s" : ""} found
+            </p>
+          )}
 
           {/* Tabs */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-8 sm:mb-12 w-full max-w-lg sm:max-w-2xl mx-auto px-2">
