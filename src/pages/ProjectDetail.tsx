@@ -36,16 +36,13 @@ const ProjectDetail = () => {
     .filter(p => p.slug !== slug && (p.area === project?.area || p.category === project?.category))
     .slice(0, 3);
 
-  // Use exact address for Google Maps if available, fallback to lat/lng or name
+  // Use exact address for Google Maps - address is more accurate than lat/lng for finding buildings
   const mapAddress = project?.address || `${project?.name}, ${project?.location}, Mumbai, India`;
   
-  const mapUrl = project?.lat && project?.lng
-    ? `https://maps.google.com/maps?q=${project.lat},${project.lng}&output=embed&z=17`
-    : `https://maps.google.com/maps?q=${encodeURIComponent(mapAddress)}&output=embed&z=16`;
+  // Always use address for map query - more precise for finding exact buildings
+  const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(mapAddress)}&output=embed&z=18`;
 
-  const mapSearchUrl = project?.lat && project?.lng
-    ? `https://www.google.com/maps?q=${project.lat},${project.lng}`
-    : `https://www.google.com/maps/search/${encodeURIComponent(mapAddress)}`;
+  const mapSearchUrl = `https://www.google.com/maps/search/${encodeURIComponent(mapAddress)}`;
   
   const mapQuery = encodeURIComponent(`${project?.name}, ${project?.location}, Mumbai, India`);
 
