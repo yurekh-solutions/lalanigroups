@@ -21,9 +21,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Import images
 import businessParkLogo from "@/assets/lalanibusinespark/busineesparklogo.png";
-import business2 from "@/assets/lalanibusinespark/business2.png";
 import busines from "@/assets/lalanibusinespark/busines.png";
 import businesspark from "@/assets/lalanibusinespark/businesspark.png";
+import business2 from "@/assets/lalanibusinespark/business2.png";
 import busines3 from "@/assets/lalanibusinespark/busines3.png";
 import business1 from "@/assets/lalanibusinespark/business1.png";
 import business4 from "@/assets/lalanibusinespark/business4.png";
@@ -324,10 +324,18 @@ const LalaniBusinessPark = () => {
         <section ref={heroRef} className="relative min-h-[90vh] md:min-h-screen overflow-hidden flex items-center">
          
  <div className="absolute inset-0">
+            {/* Mobile Image */}
+            <img
+              src={busines}
+              alt="Lalani Business Park Mobile"
+              className="w-full h-full object-cover hero-bg scale-110 md:hidden"
+              loading="eager"
+            />
+            {/* Desktop Image */}
             <img
               src={businesspark}
-              alt="Lalani Business Park"
-              className="w-full h-full object-cover hero-bg scale-110"
+              alt="Lalani Business Park Desktop"
+              className="w-full h-full object-cover hero-bg scale-110 hidden md:block"
               loading="eager"
             />
           </div>
@@ -464,7 +472,7 @@ const LalaniBusinessPark = () => {
               <div className="relative gsap-card">
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border">
                   <img
-                    src={businesspark}
+                    src={businesspark }
                     alt="Lalani Business Park Exterior"
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -474,8 +482,346 @@ const LalaniBusinessPark = () => {
             </div>
           </div>
         </section>
+    {/* Amenities Section */}
+        <section className="py-16 md:py-20 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
+                World-Class Amenities
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Experience a workspace designed for success with premium facilities and modern infrastructure.
+              </p>
+            </div>
 
-        {/* Space Configurations */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {amenities.map((amenity, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-4 p-6 bg-card rounded-xl border border-border hover:border-primary/50 hover:shadow-lg transition-all group gsap-card"
+                >
+                  <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                    <amenity.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">{amenity.title}</h3>
+                    <p className="text-sm text-muted-foreground">{amenity.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+   {/* Gallery Section - Unique Layout */}
+        <section id="content" className="py-16 md:py-24 bg-card overflow-hidden">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Visual Tour</span>
+              <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-4">
+                Project <span className="text-primary">Gallery</span>
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Experience the premium quality and modern design
+              </p>
+            </div>
+
+            {/* Unique Masonry-style Grid */}
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+              {galleryImages.map((image, index) => (
+                <div
+                  key={index}
+                  className="break-inside-avoid gsap-card"
+                >
+                  <div 
+                    className={`group relative overflow-hidden rounded-2xl cursor-pointer ${
+                      index === 0 ? 'aspect-square' : index === 2 ? 'aspect-[4/5]' : 'aspect-[4/3]'
+                    }`}
+                    onClick={() => openLightbox(index)}
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                    
+                    {/* Content on hover */}
+                    <div className="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Star className="w-4 h-4 text-primary" />
+                        <span className="text-primary text-xs font-medium uppercase tracking-wider">Featured</span>
+                      </div>
+                      <h3 className="text-white text-lg font-semibold">{image.alt}</h3>
+                    </div>
+
+                    {/* Corner accent */}
+                    <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <ChevronRight className="w-4 h-4 text-white" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Quick Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+              {[
+                { value: "Khar West", label: "Prime Location" },
+                { value: "24/7", label: "Security" },
+                { value: "100%", label: "Power Backup" },
+                { value: "RERA", label: "Approved" },
+              ].map((stat, index) => (
+                <div key={index} className="text-center p-4 bg-background rounded-xl border border-border hover:border-primary/30 transition-colors">
+                  <p className="text-xl md:text-2xl font-bold text-primary">{stat.value}</p>
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+          {/* Space Configurations / Pricing Section */}
+        <section className="py-16 md:py-20 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+              <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">Space Configurations</p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-3">Floor Plans & Pricing</h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-primary to-gold-light mx-auto mb-4 rounded-full" />
+              <p className="text-muted-foreground">Flexible spaces from 425 – 1,654 sq.ft · Avg. ₹38.1K/sq.ft</p>
+            </motion.div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {floorPlanConfigs.map((config, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                  className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-xl transition-all group"
+                >
+                  {/* Floor Plan Image */}
+                  <div className="relative h-[220px] sm:h-[240px] bg-white overflow-hidden cursor-pointer"
+                    onClick={() => { setLightboxIndex(i); setLightboxOpen(false); window.open(config.image, '_blank'); }}>
+                    <img
+                      src={config.image}
+                      alt={`${config.type} Floor Plan`}
+                      className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 flex items-center justify-center transition-all">
+                      <span className="opacity-0 group-hover:opacity-100 bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1 shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+                        View Full Plan
+                      </span>
+                    </div>
+                    <div className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full">
+                      {config.type}
+                    </div>
+                  </div>
+                  {/* Info */}
+                  <div className="p-5">
+                    <div className="flex items-center justify-between mb-3">
+                      <div>
+                        <p className="text-xs text-muted-foreground">{config.label}</p>
+                        <p className="text-xl font-bold text-foreground mt-0.5">{config.size}</p>
+                      </div>
+                      <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full whitespace-nowrap">{config.price}</span>
+                    </div>
+                    <ul className="space-y-1.5 mb-4">
+                      {config.features.map((f, fi) => (
+                        <li key={fi} className="flex items-start gap-2 text-sm text-muted-foreground">
+                          <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <button onClick={() => setBrochurePopupOpen(true)}
+                      className="w-full py-2.5 rounded-xl border border-primary text-primary text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-all">
+                      Enquire Now
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+    {/* Connectivity Section */}
+        <section className="py-16 md:py-20 bg-card">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
+                Prime Location & Connectivity
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Strategically located for easy access to major business hubs
+              </p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {connectivityItems.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="flex items-center gap-4 p-4 bg-background rounded-xl border border-border hover:border-primary/50 transition-all"
+                >
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <item.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-foreground">{item.name}</p>
+                    <p className="text-xs text-primary font-semibold">{item.distance}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+        
+        {/* Google Map Section */}
+        <section className="py-16 md:py-20 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
+                Location
+              </h2>
+              <p className="text-lg text-muted-foreground">
+  Lalani Business Park, Khar West, Mumbai, Maharashtra 400052
+
+              </p>
+            </motion.div>
+
+          <motion.div
+  initial={{ opacity: 1, y: 0 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  className="w-full rounded-2xl overflow-hidden border border-border shadow-lg"
+>
+  <iframe
+    src="https://www.google.com/maps?q=Lalani+Business+Park,+Khar+West,+Mumbai,+Maharashtra+400052&output=embed"
+    width="100%"
+    height="450"
+    style={{ border: 0 }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="Lalani Business Park - Khar West, Mumbai 400052"
+    className="w-full"
+  />
+</motion.div>
+          </div>
+        </section>
+ {/* Specifications Section */}
+        <section className="py-16 md:py-20 bg-card">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
+                Specifications
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Quality in every detail
+              </p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {specifications.map((spec, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="bg-background p-6 rounded-xl border border-border"
+                >
+                  <h3 className="text-lg font-heading font-bold text-foreground mb-4">{spec.title}</h3>
+                  <ul className="space-y-2">
+                    {spec.details.map((detail, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+       
+        {/* Why Choose Us */}
+        <section className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-4">
+                    <div className="aspect-[3/4] rounded-2xl overflow-hidden">
+                      <img src={business2} alt="Modern Architecture" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                    <div className="aspect-square rounded-2xl overflow-hidden">
+                      <img src={busines} alt="Premium Facilities" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                  </div>
+                  <div className="space-y-4 pt-8">
+                    <div className="aspect-square rounded-2xl overflow-hidden">
+                      <img src={business4} alt="Business Hub" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                    <div className="aspect-[3/4] rounded-2xl overflow-hidden">
+                      <img src={business5} alt="Strategic Location" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="order-1 lg:order-2">
+                <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Why Choose Us</span>
+                <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
+                  Built for <span className="text-primary">Success</span>
+                </h2>
+                <p className="text-muted-foreground mb-8 leading-relaxed">
+                  With over three decades of experience in Mumbai's real estate landscape, 
+                  Lalani Group delivers projects that stand the test of time. Our commitment 
+                  to quality, transparency, and customer satisfaction sets us apart.
+                </p>
+
+                <div className="space-y-6">
+                  {[
+                    { title: "35+ Years Legacy", desc: "Trusted builder with proven track record" },
+                    { title: "RERA Compliant", desc: "Complete transparency and legal compliance" },
+                    { title: "Prime Locations", desc: "Strategic sites with excellent connectivity" },
+                    { title: "Quality Construction", desc: "Premium materials and modern techniques" },
+                  ].map((item, index) => (
+                    <div key={index} className="flex gap-4 p-4 bg-card rounded-xl border border-border hover:border-primary/30 transition-colors">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <span className="text-primary font-bold">0{index + 1}</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
+                        <p className="text-sm text-muted-foreground">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+    
+      {/* Space Configurations */}
         <section className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -547,287 +893,10 @@ const LalaniBusinessPark = () => {
           </div>
         </section>
 
-        {/* Why Choose Us */}
-        <section className="py-16 md:py-24 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-4">
-                    <div className="aspect-[3/4] rounded-2xl overflow-hidden">
-                      <img src={business2} alt="Modern Architecture" className="w-full h-full object-cover" loading="lazy" />
-                    </div>
-                    <div className="aspect-square rounded-2xl overflow-hidden">
-                      <img src={busines} alt="Premium Facilities" className="w-full h-full object-cover" loading="lazy" />
-                    </div>
-                  </div>
-                  <div className="space-y-4 pt-8">
-                    <div className="aspect-square rounded-2xl overflow-hidden">
-                      <img src={business4} alt="Business Hub" className="w-full h-full object-cover" loading="lazy" />
-                    </div>
-                    <div className="aspect-[3/4] rounded-2xl overflow-hidden">
-                      <img src={business5} alt="Strategic Location" className="w-full h-full object-cover" loading="lazy" />
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-              <div className="order-1 lg:order-2">
-                <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Why Choose Us</span>
-                <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
-                  Built for <span className="text-primary">Success</span>
-                </h2>
-                <p className="text-muted-foreground mb-8 leading-relaxed">
-                  With over three decades of experience in Mumbai's real estate landscape, 
-                  Lalani Group delivers projects that stand the test of time. Our commitment 
-                  to quality, transparency, and customer satisfaction sets us apart.
-                </p>
+    
 
-                <div className="space-y-6">
-                  {[
-                    { title: "35+ Years Legacy", desc: "Trusted builder with proven track record" },
-                    { title: "RERA Compliant", desc: "Complete transparency and legal compliance" },
-                    { title: "Prime Locations", desc: "Strategic sites with excellent connectivity" },
-                    { title: "Quality Construction", desc: "Premium materials and modern techniques" },
-                  ].map((item, index) => (
-                    <div key={index} className="flex gap-4 p-4 bg-card rounded-xl border border-border hover:border-primary/30 transition-colors">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                        <span className="text-primary font-bold">0{index + 1}</span>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
-                        <p className="text-sm text-muted-foreground">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Amenities Section */}
-        <section className="py-16 md:py-20 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12"
-            >
-              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
-                World-Class Amenities
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Experience a workspace designed for success with premium facilities and modern infrastructure.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {amenities.map((amenity, index) => (
-                <div
-                  key={index}
-                  className="flex items-start gap-4 p-6 bg-card rounded-xl border border-border hover:border-primary/50 hover:shadow-lg transition-all group gsap-card"
-                >
-                  <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                    <amenity.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">{amenity.title}</h3>
-                    <p className="text-sm text-muted-foreground">{amenity.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Gallery Section - Unique Layout */}
-        <section id="content" className="py-16 md:py-24 bg-card overflow-hidden">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Visual Tour</span>
-              <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-4">
-                Project <span className="text-primary">Gallery</span>
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Experience the premium quality and modern design
-              </p>
-            </div>
-
-            {/* Unique Masonry-style Grid */}
-            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-              {galleryImages.map((image, index) => (
-                <div
-                  key={index}
-                  className="break-inside-avoid gsap-card"
-                >
-                  <div 
-                    className={`group relative overflow-hidden rounded-2xl cursor-pointer ${
-                      index === 0 ? 'aspect-square' : index === 2 ? 'aspect-[4/5]' : 'aspect-[4/3]'
-                    }`}
-                    onClick={() => openLightbox(index)}
-                  >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                    
-                    {/* Content on hover */}
-                    <div className="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Star className="w-4 h-4 text-primary" />
-                        <span className="text-primary text-xs font-medium uppercase tracking-wider">Featured</span>
-                      </div>
-                      <h3 className="text-white text-lg font-semibold">{image.alt}</h3>
-                    </div>
-
-                    {/* Corner accent */}
-                    <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <ChevronRight className="w-4 h-4 text-white" />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Quick Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
-              {[
-                { value: "Khar West", label: "Prime Location" },
-                { value: "24/7", label: "Security" },
-                { value: "100%", label: "Power Backup" },
-                { value: "RERA", label: "Approved" },
-              ].map((stat, index) => (
-                <div key={index} className="text-center p-4 bg-background rounded-xl border border-border hover:border-primary/30 transition-colors">
-                  <p className="text-xl md:text-2xl font-bold text-primary">{stat.value}</p>
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Connectivity Section */}
-        <section className="py-16 md:py-20 bg-card">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 1, y: 0 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
-                Prime Location & Connectivity
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Strategically located for easy access to major business hubs
-              </p>
-            </motion.div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {connectivityItems.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 1, y: 0 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="flex items-center gap-4 p-4 bg-background rounded-xl border border-border hover:border-primary/50 transition-all"
-                >
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <item.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-foreground">{item.name}</p>
-                    <p className="text-xs text-primary font-semibold">{item.distance}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Google Map Section */}
-        <section className="py-16 md:py-20 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 1, y: 0 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
-                Location
-              </h2>
-              <p className="text-lg text-muted-foreground">
-  Lalani Business Park, Khar West, Mumbai, Maharashtra 400052
-
-              </p>
-            </motion.div>
-
-          <motion.div
-  initial={{ opacity: 1, y: 0 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  className="w-full rounded-2xl overflow-hidden border border-border shadow-lg"
->
-  <iframe
-    src="https://www.google.com/maps?q=Lalani+Business+Park,+Khar+West,+Mumbai,+Maharashtra+400052&output=embed"
-    width="100%"
-    height="450"
-    style={{ border: 0 }}
-    allowFullScreen
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-    title="Lalani Business Park - Khar West, Mumbai 400052"
-    className="w-full"
-  />
-</motion.div>
-          </div>
-        </section>
-
-        {/* Specifications Section */}
-        <section className="py-16 md:py-20 bg-card">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 1, y: 0 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
-                Specifications
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Quality in every detail
-              </p>
-            </motion.div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {specifications.map((spec, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 1, y: 0 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="bg-background p-6 rounded-xl border border-border"
-                >
-                  <h3 className="text-lg font-heading font-bold text-foreground mb-4">{spec.title}</h3>
-                  <ul className="space-y-2">
-                    {spec.details.map((detail, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                        <span className="text-sm text-muted-foreground">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
+       
         {/* Contact Section */}
         <section className="py-16 md:py-20 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -990,66 +1059,7 @@ const LalaniBusinessPark = () => {
           </div>
         </section>
 
-        {/* Space Configurations / Pricing Section */}
-        <section className="py-16 md:py-20 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-              <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">Space Configurations</p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-3">Floor Plans & Pricing</h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-primary to-gold-light mx-auto mb-4 rounded-full" />
-              <p className="text-muted-foreground">Flexible spaces from 425 – 1,654 sq.ft · Avg. ₹38.1K/sq.ft</p>
-            </motion.div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {floorPlanConfigs.map((config, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                  className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-xl transition-all group"
-                >
-                  {/* Floor Plan Image */}
-                  <div className="relative h-[220px] sm:h-[240px] bg-white overflow-hidden cursor-pointer"
-                    onClick={() => { setLightboxIndex(i); setLightboxOpen(false); window.open(config.image, '_blank'); }}>
-                    <img
-                      src={config.image}
-                      alt={`${config.type} Floor Plan`}
-                      className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 flex items-center justify-center transition-all">
-                      <span className="opacity-0 group-hover:opacity-100 bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1 shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
-                        View Full Plan
-                      </span>
-                    </div>
-                    <div className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full">
-                      {config.type}
-                    </div>
-                  </div>
-                  {/* Info */}
-                  <div className="p-5">
-                    <div className="flex items-center justify-between mb-3">
-                      <div>
-                        <p className="text-xs text-muted-foreground">{config.label}</p>
-                        <p className="text-xl font-bold text-foreground mt-0.5">{config.size}</p>
-                      </div>
-                      <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full whitespace-nowrap">{config.price}</span>
-                    </div>
-                    <ul className="space-y-1.5 mb-4">
-                      {config.features.map((f, fi) => (
-                        <li key={fi} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                    <button onClick={() => setBrochurePopupOpen(true)}
-                      className="w-full py-2.5 rounded-xl border border-primary text-primary text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-all">
-                      Enquire Now
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
+      
         {/* RERA Section */}
         <section className="py-16 md:py-20 bg-card">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">

@@ -18,10 +18,10 @@ import { trackEvent } from "@/lib/tracking";
 // Import images
 import goodwillLogo from "@/assets/lalanigoodwill/image.png";
 import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
-import carsoule1 from "@/assets/lalanigoodwill/carsoule1.webp";
-import carsoule2 from "@/assets/lalanigoodwill/carsoule2.webp";
-import carsoule3 from "@/assets/lalanigoodwill/carsoule3.webp";
-import carsoule4 from "@/assets/lalanigoodwill/carsoule4.webp";
+import carsoule1 from "@/assets/lalanigoodwill/con1.jpeg";
+import carsoule2 from "@/assets/lalanigoodwill/con2.jpeg";
+import carsoule3 from "@/assets/lalanigoodwill/con3.jpeg";
+import carsoule4 from "@/assets/lalanigoodwill/con4.jpeg";
 import lalaniimg from "@/assets/lalanigoodwill/lalaniimg.webp";
 import image1 from "@/assets/lalanigoodwill/image7.png";
 import image2 from "@/assets/lalanigoodwill/image2.png";

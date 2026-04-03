@@ -47,11 +47,9 @@ import valKitchen2 from "@/assets/valentine/val_kitchen2.jpg";
 import brochurePDF from "@/assets/valentine/E-Brochure-Velentine-Apartment-1-Wing-D-7-4-21-1.pdf";
 
 const heroSlides = [
-  { image: valHero, alt: "Velentine Apartment" },
   { image: elevation1, alt: "Building Elevation" },
   
-  { image: valClubhouse, alt: "Club House" },
-  { image: multipurpose, alt: "Multi-Purpose Hall" },
+ 
 ];
 
 const floorPlans1BHK = [
