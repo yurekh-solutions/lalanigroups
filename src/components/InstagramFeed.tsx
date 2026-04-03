@@ -41,8 +41,8 @@ export default function InstagramFeed() {
             {/* Glow Effect */}
             <div className="absolute -inset-1 bg-gradient-to-r from-primary via-gold-light to-primary rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition-all duration-300"></div>
             
-            {/* Card */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-card backdrop-blur-sm">
+            {/* Card - NO box shadow */}
+            <div className="relative rounded-3xl overflow-hidden border-2 border-primary/20 bg-card">
               <iframe
                 src="https://www.instagram.com/lalanigroup/embed"
                 width="100%"
@@ -69,14 +69,11 @@ export default function InstagramFeed() {
             href="https://www.instagram.com/lalanigroup/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative w-full sm:w-64 h-14 flex items-center justify-center gap-2 px-8 sm:px-10 py-3.5 sm:py-4 bg-gradient-to-r from-primary to-gold-light text-primary-foreground rounded-full font-bold text-base sm:text-lg shadow-depth-2 hover:shadow-glow-gold hover:scale-105 transition-all duration-300 overflow-hidden"
+            className="group relative w-full sm:w-64 h-14 flex items-center justify-center gap-3 px-6 sm:px-8 bg-gradient-to-r from-primary to-gold-light text-primary-foreground rounded-full font-bold text-base sm:text-lg hover:scale-105 transition-all duration-300 overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-gold-light to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div className="relative flex items-center gap-2">
-              <Instagram className="w-5 h-5 sm:w-6 sm:h-6" />
-              <span>Visit @lalanigroup</span>
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-            </div>
+            <Instagram className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+            <span className="whitespace-nowrap">Visit @lalanigroup</span>
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
           </a>
           
           <motion.a
