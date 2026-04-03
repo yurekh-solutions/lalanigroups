@@ -31,12 +31,26 @@ import bhk613sqft3d from "@/assets/valentine/2bhk613sqft3d.webp";
 
 // Additional Images
 import floorplanWebp from "@/assets/valentine/floorplanning.webp";
+// New Gallery / Hero Images
+import valHero from "@/assets/valentine/val_hero.jpg";
+import valExterior from "@/assets/valentine/val_exterior.jpg";
+import valClubhouse from "@/assets/valentine/val_clubhouse.jpg";
+import valLiving from "@/assets/valentine/val_living.jpg";
+import valDining from "@/assets/valentine/val_dining.jpg";
+import valDining2 from "@/assets/valentine/val_dining2.jpg";
+import valBedroom from "@/assets/valentine/val_bedroom.jpg";
+import valBedroom2 from "@/assets/valentine/val_bedroom2.jpg";
+import valBedroom3 from "@/assets/valentine/val_bedroom3.jpg";
+import valKitchen from "@/assets/valentine/val_kitchen.jpg";
+import valKitchen2 from "@/assets/valentine/val_kitchen2.jpg";
 // Brochure PDF
 import brochurePDF from "@/assets/valentine/E-Brochure-Velentine-Apartment-1-Wing-D-7-4-21-1.pdf";
 
 const heroSlides = [
+  { image: valHero, alt: "Velentine Apartment" },
   { image: elevation1, alt: "Building Elevation" },
-  { image: lobby, alt: "Elegant Lobby" },
+  
+  { image: valClubhouse, alt: "Club House" },
   { image: multipurpose, alt: "Multi-Purpose Hall" },
 ];
 
@@ -239,6 +253,23 @@ const VelentineApartment = () => {
           </AnimatePresence>
           
           {/* Hero Content - Minimal */}
+         
+          
+          {/* Hero Carousel Navigation - Dots */}
+         
+          
+          {/* Scroll Indicator */}
+          
+        </section>
+
+        {/* Project Info Section */}
+        <section id="overview" className="bg-background">
+          {/* Overview Hero Banner with bg cover */}
+          <div className="relative py-20 md:py-28 overflow-hidden">
+            <div className="absolute inset-0">
+              <img src={lobby} alt="Velentine Apartment Overview" className="w-full h-full object-cover" loading="lazy" />
+              <div className="absolute inset-0 bg-black/65" />
+            </div>
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
             <motion.span 
               initial={{ opacity: 0, y: 20 }}
@@ -286,7 +317,7 @@ const VelentineApartment = () => {
             </motion.div>
             
             <motion.a 
-              href="#overview"
+              href="#overview-content"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1 }}
@@ -295,28 +326,10 @@ const VelentineApartment = () => {
               Explore More
             </motion.a>
           </div>
-          
-          {/* Hero Carousel Navigation - Dots */}
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
-            {heroSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setHeroCurrent(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  heroCurrent === index
-                    ? 'w-10 h-2.5 bg-[#c9a962]'
-                    : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'
-                }`}
-              />
-            ))}
           </div>
-          
-          {/* Scroll Indicator */}
-          
-        </section>
 
-        {/* Project Info Section */}
-        <section id="overview" className="py-16 md:py-24 bg-background">
+          {/* Overview Content */}
+          <div id="overview-content" className="py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto text-center mb-12">
               <motion.span 
@@ -448,6 +461,7 @@ const VelentineApartment = () => {
               </div>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Lifestyle & Amenities Showcase */}
@@ -493,19 +507,19 @@ const VelentineApartment = () => {
                 >
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-4">
-                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(lobby, "Elegant Lobby")}>
-                        <img src={lobby} alt="Elegant Lobby" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
+                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(valClubhouse, "Club House")}>
+                        <img src={valClubhouse} alt="Club House" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
                       </div>
                       <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(multipurpose, "Multi-Purpose Hall")}>
                         <img src={multipurpose} alt="Multi-Purpose Hall" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
                       </div>
                     </div>
                     <div className="space-y-4 pt-8">
-                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(elevation1, "Building Elevation")}>
-                        <img src={elevation1} alt="Building Elevation" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
+                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(valExterior, "Exterior View")}>
+                        <img src={valExterior} alt="Exterior View" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
                       </div>
-                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(floorplanWebp, "Floor Planning")}>
-                        <img src={floorplanWebp} alt="Floor Planning" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
+                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(lobby, "Entrance Lobby")}>
+                        <img src={lobby} alt="Entrance Lobby" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
                       </div>
                     </div>
                   </div>
@@ -613,6 +627,50 @@ const VelentineApartment = () => {
                   <p className="text-sm text-muted-foreground">Ready to Move</p>
                 </motion.div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Interior Gallery Section */}
+        <section className="py-16 md:py-20 bg-card">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+              <p className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-2">Photo Gallery</p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-3">
+                Interior <span className="text-[#c9a962]">Glimpse</span>
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-[#c9a962] to-[#e8c97a] mx-auto mb-4 rounded-full" />
+              <p className="text-muted-foreground">Step inside and experience luxury living at Velentine Apartment</p>
+            </motion.div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+              {[
+                { src: valLiving, label: "Living Room" },
+                { src: valDining, label: "Dining Area" },
+                { src: valBedroom, label: "Master Bedroom" },
+                { src: valKitchen, label: "Kitchen" },
+                { src: valDining2, label: "Dining View 2" },
+                { src: valBedroom2, label: "Bedroom View 2" },
+                { src: valBedroom3, label: "Bedroom View 3" },
+                { src: valKitchen2, label: "Kitchen View 2" },
+                { src: valClubhouse, label: "Club House" },
+                { src: valExterior, label: "Exterior" },
+                { src: lobby, label: "Entrance Lobby" },
+                { src: multipurpose, label: "Multi-Purpose Hall" },
+              ].map((img, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }}
+                  className="group cursor-pointer rounded-xl overflow-hidden border border-border hover:border-[#c9a962]/50 hover:shadow-xl transition-all relative"
+                  onClick={() => openLightbox(img.src, img.label)}
+                >
+                  <div className="h-[160px] sm:h-[180px] md:h-[200px] overflow-hidden bg-muted">
+                    <img src={img.src} alt={img.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 flex items-end justify-center pb-3 transition-all">
+                    <span className="opacity-0 group-hover:opacity-100 bg-[#c9a962] text-black text-xs font-bold px-3 py-1 rounded-full transition-all">
+                      {img.label}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -1001,58 +1059,64 @@ const VelentineApartment = () => {
             
             {/* Google Map Embed */}
             <div className="max-w-5xl mx-auto">
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="aspect-video rounded-xl md:rounded-2xl overflow-hidden border border-border shadow-xl"
-              >
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.1234567890123!2d72.85678901234567!3d19.234567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDE0JzA0LjQiTiA3MsKwNTEnMjQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Velentine Apartment Location"
-                />
-              </motion.div>
-              
-              {/* Location Details */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mt-8 mb-12">
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/30 hover:shadow-md transition-all"
+              <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-8">
+                {/* Address Info */}
+                <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
+                  className="flex flex-col justify-center p-6 md:p-8 bg-card rounded-xl border border-border"
                 >
-                  <p className="font-bold text-foreground mb-1 text-sm md:text-base">Malad Railway Station</p>
-                  <p className="text-[#c9a962] text-sm md:text-base mb-2">10 Minutes</p>
-                  <p className="text-xs text-muted-foreground">Western Railway Line</p>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
+                      <MapPin className="w-5 h-5 text-[#c9a962]" />
+                    </div>
+                    <h3 className="font-bold text-foreground text-lg">Project Address</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                    Valentine Apartment, A2,<br />
+                    Riddhi Gardens, Malad East,<br />
+                    Mumbai, Maharashtra 400097
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <span className="w-2 h-2 bg-[#c9a962] rounded-full shrink-0"></span>
+                      <span>10 min from Malad Railway Station</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <span className="w-2 h-2 bg-[#c9a962] rounded-full shrink-0"></span>
+                      <span>Near Oberoi Mall (1.7 km)</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <span className="w-2 h-2 bg-[#c9a962] rounded-full shrink-0"></span>
+                      <span>Western Express Highway (1.75 km)</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <span className="w-2 h-2 bg-[#c9a962] rounded-full shrink-0"></span>
+                      <span>Close to Aarey Colony Green Zone</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <span className="w-2 h-2 bg-[#c9a962] rounded-full shrink-0"></span>
+                      <span>Filmcity Studio (1.5 km)</span>
+                    </div>
+                  </div>
+                  <a href="https://maps.google.com/?q=Valentine+Apartment,+A2,+Riddhi+Gardens,+Malad+East,+Mumbai,+Maharashtra+400097" target="_blank" rel="noopener noreferrer"
+                    className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-[#c9a962] text-black rounded-lg font-semibold text-sm hover:bg-[#d4b876] transition-all"
+                  >
+                    <MapPin className="w-4 h-4" /> Get Directions
+                  </a>
                 </motion.div>
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/30 hover:shadow-md transition-all"
+                {/* Map */}
+                <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
+                  className="rounded-xl md:rounded-2xl overflow-hidden border border-border shadow-xl h-[300px] md:h-auto min-h-[320px]"
                 >
-                  <p className="font-bold text-foreground mb-1 text-sm md:text-base">Oberoi Mall</p>
-                  <p className="text-[#c9a962] text-sm md:text-base mb-2">1.7 km</p>
-                  <p className="text-xs text-muted-foreground">Shopping & Entertainment</p>
-                </motion.div>
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                  className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/30 hover:shadow-md transition-all"
-                >
-                  <p className="font-bold text-foreground mb-1 text-sm md:text-base">Western Express Highway</p>
-                  <p className="text-[#c9a962] text-sm md:text-base mb-2">1.75 km</p>
-                  <p className="text-xs text-muted-foreground">Major Connectivity</p>
+                  <iframe
+                    src="https://www.google.com/maps?q=Valentine+Apartment,+A2,+Riddhi+Gardens,+Malad+East,+Mumbai,+Maharashtra+400097&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Velentine Apartment Location"
+                  />
                 </motion.div>
               </div>
               

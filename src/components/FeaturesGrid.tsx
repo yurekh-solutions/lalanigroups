@@ -9,7 +9,7 @@ const features = [
   },
   {
     icon: Award,
-    title: "40 Years Legacy",
+    title: "40+ Years Legacy",
     description: "Four decades of excellence in construction"
   },
   {
