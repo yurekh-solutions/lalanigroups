@@ -86,6 +86,8 @@ export interface Project {
   lat?: number;
   lng?: number;
   address?: string; // Exact building address for Google Maps
+  digitourUrl?: string; // Digitour virtual tour URL
+  constructionImages?: string[]; // Construction update images
 }
 
 export const projects: Project[] = [
@@ -183,7 +185,9 @@ export const projects: Project[] = [
     ],
     lat: 19.10655,
     lng: 72.86659,
-    address: "Goodwill C.H.S Ltd, Opp. Janakalyan Bank, J B Nagar, Andheri East, Mumbai-400059"
+    address: "Goodwill C.H.S Ltd, Opp. Janakalyan Bank, J B Nagar, Andheri East, Mumbai-400059",
+    digitourUrl: "https://digitour.housing.com/digiport/Lalani_Group",
+    constructionImages: [mainElevation, busines3]
   },
 
   // VELENTINE APARTMENT

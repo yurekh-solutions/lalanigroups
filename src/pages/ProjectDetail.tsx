@@ -291,7 +291,7 @@ const ProjectDetail = () => {
             <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
               {/* Left Column - Main Content */}
               <div className="lg:col-span-2 space-y-12">
-                {/* Overview */}
+                {/* Project Overview */}
                 <motion.div
                   initial={{ opacity: 1 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -304,6 +304,50 @@ const ProjectDetail = () => {
                     {project.description}
                   </p>
                 </motion.div>
+
+                {/* Construction Update & Digitour */}
+                {(project.constructionImages || project.digitourUrl) && (
+                  <motion.div
+                    initial={{ opacity: 1 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.1 }}
+                  >
+                    <h2 className="text-2xl md:text-3xl font-heading font-bold mb-6 gradient-gold-text">
+                      Steady Progress, Strong Foundations!
+                    </h2>
+                    
+                    {/* Tabs */}
+                    <div className="flex gap-3 mb-8">
+                      {project.constructionImages && project.constructionImages.length > 0 && (
+                        <button className="px-6 py-3 bg-gold-light text-black font-bold rounded-lg hover:scale-105 transition-transform">
+                          Construction Update
+                        </button>
+                      )}
+                      {project.digitourUrl && (
+                        <a
+                          href={project.digitourUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-3 bg-gray-700 text-white font-bold rounded-lg hover:bg-gray-600 hover:scale-105 transition-all flex items-center gap-2"
+                        >
+                          Digitour
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
+                    </div>
+
+                    {/* Construction Images Carousel */}
+                    {project.constructionImages && project.constructionImages.length > 0 && (
+                      <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-primary/20">
+                        <img
+                          src={project.constructionImages[0]}
+                          alt="Construction Update"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                  </motion.div>
+                )}
 
                 {/* Highlights */}
                 <motion.div
