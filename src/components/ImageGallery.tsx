@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import LazyImage from "./LazyImage";
 
 // Local project images
 import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
@@ -76,10 +77,11 @@ const ImageGallery = () => {
                 className="relative group cursor-pointer overflow-hidden rounded-xl aspect-square"
                 onClick={() => setSelectedImage(index)}
               >
-                <img
+                <LazyImage
                   src={image.src}
                   alt={image.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  containerClassName="w-full h-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 left-0 right-0 p-4">
