@@ -432,6 +432,8 @@ export const projects: Project[] = [
       { name: "Ryan International School", distance: "10 min" },
       { name: "Wockhardt Hospital", distance: "12 min" }
     ],
+    lat: 19.1345,
+    lng: 72.8212,
     address: "Lalani Grandeur, Film City Road, Goregaon East, Mumbai, Maharashtra 400065"
   },
 
@@ -641,6 +643,8 @@ export const projects: Project[] = [
     ],
     floorPlan: heritageFloorPlan,
     floorPlanTitle: "Floor Plans",
+    lat: 19.1634,
+    lng: 72.8045,
     address: "Heritage Park, S.V. Road, Jogeshwari West, Mumbai, Maharashtra 400102"
   },
 
@@ -772,6 +776,8 @@ export const projects: Project[] = [
       { name: "Lonavala", distance: "45 min" },
       { name: "Imagicaa Theme Park", distance: "25 min" }
     ],
+    lat: 19.2456,
+    lng: 73.3234,
     address: "Lalani Dream Residency, Near Kondivade Village, Karjat, Maharashtra 410201"
   },
 
@@ -825,6 +831,8 @@ export const projects: Project[] = [
       { name: "Bandstand", distance: "10 min" },
       { name: "International Airport", distance: "20 min" }
     ],
+    lat: 19.0596,
+    lng: 72.8295,
     address: "Royal Manor, 17th Road, Bandra West, Mumbai, Maharashtra 400050"
   },
 

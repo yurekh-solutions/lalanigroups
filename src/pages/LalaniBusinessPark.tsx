@@ -674,7 +674,7 @@ const LalaniBusinessPark = () => {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Lalani Business Park Location"
+                title="Lalani Business Park - Khar West, Mumbai 400052"
                 className="w-full"
               />
             </motion.div>
