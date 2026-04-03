@@ -168,6 +168,9 @@ const Footer = () => {
                   <a href="mailto:sales@lalanigroup.in" className="font-body text-sm text-muted-foreground hover:text-primary">
                     sales@lalanigroup.in
                   </a>
+                    <a href="mailto:sales1@lalanigroup.in" className="font-body text-sm text-muted-foreground hover:text-primary">
+                    sales1@lalanigroup.in
+                  </a>
                 </div>
               </motion.div>
             </div>

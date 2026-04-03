@@ -84,55 +84,92 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Full-Screen Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden bg-[#1a1f2e] mx-4 mt-2 rounded-2xl overflow-hidden shadow-lg"
-          >
-            <div className="p-6">
-              <ul className="flex flex-col gap-2">
-                {navLinks.map((link, index) => (
-                  <motion.li 
-                    key={link.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    <Link
-                      to={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`block px-4 py-3 rounded-xl text-base font-medium transition-all ${
-                        location.pathname === link.href
-                          ? "text-[#c9a962] bg-white/5"
-                          : "text-white/80 hover:text-white hover:bg-white/5"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.li>
-                ))}
-                <motion.li 
-                  className="mt-4"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+            {/* Slide-in Panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 260 }}
+              className="fixed top-0 right-0 bottom-0 z-50 w-[85vw] max-w-sm bg-[#1a1f2e] shadow-2xl flex flex-col lg:hidden"
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
+                <Link to="/" onClick={() => setIsOpen(false)}>
+                  <img src={logo} alt="Lalani Group" className="h-10 w-auto object-contain" />
+                </Link>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/10 hover:bg-white/20 transition-all"
                 >
-                  <a
-                    href="tel:02267280000"
-                    className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#d4b876] text-black font-semibold text-sm"
-                  >
-                    <Phone className="w-4 h-4" />
-                    022-6728 0000
-                  </a>
-                </motion.li>
-              </ul>
-            </div>
-          </motion.div>
+                  <X className="w-5 h-5 text-white" />
+                </button>
+              </div>
+
+              {/* Nav Links */}
+              <div className="px-6 py-6">
+                <ul className="flex flex-col gap-1">
+                  {navLinks.map((link, index) => (
+                    <motion.li
+                      key={link.href}
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.06, type: "spring", stiffness: 300 }}
+                    >
+                      <Link
+                        to={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`flex items-center px-4 py-4 rounded-xl text-base font-medium transition-all ${
+                          location.pathname === link.href
+                            ? "text-[#c9a962] bg-white/8 border border-[#c9a962]/30"
+                            : "text-white/80 hover:text-white hover:bg-white/5"
+                        }`}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Phone CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 }}
+                className="mt-auto px-6 py-6 border-t border-white/10 flex flex-col gap-3"
+              >
+                <a
+                  href="tel:02267280000"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#d4b876] hover:bg-[#c9a962] text-black font-semibold text-sm transition-all"
+                >
+                  <Phone className="w-4 h-4" />
+                  022-6728 0000
+                </a>
+                <a
+                  href="tel:+919322642370"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#d4b876] hover:bg-[#c9a962] text-black font-semibold text-sm transition-all"
+                >
+                  <Phone className="w-4 h-4" />
+                  +91 93226 42370
+                </a>
+              </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>

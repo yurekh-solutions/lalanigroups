@@ -174,6 +174,15 @@ const ContactSection = () => {
                     <a href="mailto:info@lalanigroup.in" className="font-body text-primary text-sm hover:text-gold-light">
                       info@lalanigroup.in
                     </a>
+                                        <p className="font-body font-semibold text-foreground text-sm">
+
+                     <a href="mailto:sales@lalanigroup.in" className="font-body text-primary text-sm hover:text-gold-light">
+                    sales@lalanigroup.in
+                  </a>
+                  </p>
+                    <a href="mailto:sales1@lalanigroup.in" className="font-body text-primary text-sm hover:text-gold-light">
+                    sales1@lalanigroup.in
+                  </a>
                   </div>
                 </div>
               </div>
