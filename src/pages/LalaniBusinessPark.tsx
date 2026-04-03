@@ -23,6 +23,7 @@ gsap.registerPlugin(ScrollTrigger);
 import businessParkLogo from "@/assets/lalanibusinespark/busineesparklogo.png";
 import business2 from "@/assets/lalanibusinespark/business2.png";
 import busines from "@/assets/lalanibusinespark/busines.png";
+import businesspark from "@/assets/lalanibusinespark/businesspark.png";
 import busines3 from "@/assets/lalanibusinespark/busines3.png";
 import business1 from "@/assets/lalanibusinespark/business1.png";
 import business4 from "@/assets/lalanibusinespark/business4.png";
@@ -36,6 +37,9 @@ import project3 from "@/assets/project-3.jpg";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import aboutBg from "@/assets/about-bg.jpg";
+import floorplan1 from "@/assets/lalanibusinespark/floorplan1.png";
+import floorplan2 from "@/assets/lalanibusinespark/floorplan2.png";
+import floorplan3 from "@/assets/lalanibusinespark/floorplan3.png";
 
 // Gallery images
 const galleryImages = [
@@ -83,6 +87,68 @@ const connectivityItems = [
   { icon: Building, name: "Bandra Station", distance: "10 min" },
   { icon: ShoppingBag, name: "Hill Road", distance: "5 min" },
   { icon: Building, name: "Western Express Highway", distance: "10 min" },
+];
+
+const floorPlanConfigs = [
+  {
+    type: "Retail / Shop Units",
+    size: "425 sq.ft",
+    price: "Price on Request",
+    image: floorplan1,
+    label: "Ground Floor – Shop Layout",
+    features: ["4 Shop Units (SHOP-1 to SHOP-4)", "Kitchen Provision", "Entrance Lobby", "Basement Parking Access"],
+  },
+  {
+    type: "Standard Office",
+    size: "586 – 602 sq.ft",
+    price: "Price on Request",
+    image: floorplan2,
+    label: "Mid Floors – Dual Office Layout",
+    features: ["Office 01: R.C.A. = 586 sq.ft", "Office 02: R.C.A. = 602 sq.ft", "Part Terrace Open to Sky", "2 Lifts + Lift Lobby"],
+  },
+  {
+    type: "Premium Suite",
+    size: "1,431 sq.ft",
+    price: "Price on Request",
+    image: floorplan3,
+    label: "Top Floors – Large Office Layout",
+    features: ["Single Large Office Unit", "R.C.A. = 1,431.07 sq.ft", "Dedicated Toilet", "Chajja / Open Area"],
+  },
+];
+
+const faqData = [
+  {
+    q: "What is the RERA number for Lalani Business Park?",
+    a: "Lalani Business Park is registered under MahaRERA with registration number P51800033063. You can verify it at maharera.maharashtra.gov.in.",
+  },
+  {
+    q: "What are the available office sizes at Lalani Business Park?",
+    a: "Lalani Business Park offers flexible commercial spaces ranging from 425 sq.ft to 1,654 sq.ft, catering to startups, SMEs, and large enterprises.",
+  },
+  {
+    q: "Where is Lalani Business Park located?",
+    a: "Lalani Business Park is located in Khar West, Mumbai – one of the most premium and well-connected business locations, situated at 34th Road, Khar West, Mumbai – 400052.",
+  },
+  {
+    q: "What is the possession status of Lalani Business Park?",
+    a: "Lalani Business Park was launched in February 2022 with scheduled possession from March 2024. Please contact our sales team for the latest updates.",
+  },
+  {
+    q: "What amenities are available at Lalani Business Park?",
+    a: "The project offers 24/7 security with CCTV, high-speed elevators, 100% power backup, basement parking, conference rooms, cafeteria, high-speed internet provision, and complete fire safety systems.",
+  },
+  {
+    q: "Is Lalani Business Park RERA approved?",
+    a: "Yes, Lalani Business Park is RERA registered under MahaRERA with number P51800033063. The project ensures complete transparency and compliance with real estate regulations.",
+  },
+  {
+    q: "How can I download the brochure for Lalani Business Park?",
+    a: "You can download the brochure by clicking the 'Download Brochure' button on this page. Simply fill in your details and the brochure will be sent to you.",
+  },
+  {
+    q: "What is the total number of units in Lalani Business Park?",
+    a: "Lalani Business Park has a total of 34 commercial units across its development, offering diverse office configurations to suit different business needs.",
+  },
 ];
 
 const specifications = [
@@ -136,6 +202,14 @@ const LalaniBusinessPark = () => {
   });
   const [formLoading, setFormLoading] = useState(false);
   const [formSent, setFormSent] = useState(false);
+  const [brochurePopupOpen, setBrochurePopupOpen] = useState(false);
+  const [brochureForm, setBrochureForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+  const [brochureFormLoading, setBrochureFormLoading] = useState(false);
+  const [faqOpen, setFaqOpen] = useState<number | null>(null);
   
   const heroRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -198,6 +272,42 @@ const LalaniBusinessPark = () => {
     }
   };
 
+  const handleBrochureDownload = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBrochureFormLoading(true);
+    try {
+      await trackEvent("form", "/lalani-business-park", {
+        type: "brochure_download",
+        name: brochureForm.name,
+        email: brochureForm.email,
+        phone: brochureForm.phone,
+        project: "Lalani Business Park",
+      });
+      
+      setBrochurePopupOpen(false);
+      
+      const link = document.createElement('a');
+      link.href = brochurePdf;
+      link.download = "Lalani-Business-Park-Brochure.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      const whatsappText = `Hi, I downloaded the Lalani Business Park Brochure.%0A%0A*My Details:*%0AName: ${brochureForm.name}%0AEmail: ${brochureForm.email}%0APhone: ${brochureForm.phone}%0A%0APlease share more details about the project.`;
+      window.open(`https://wa.me/919322642370?text=${whatsappText}`, "_blank");
+      
+      setBrochureForm({
+        name: "",
+        email: "",
+        phone: "",
+      });
+    } catch (err) {
+      console.error("Error tracking brochure download:", err);
+    } finally {
+      setBrochureFormLoading(false);
+    }
+  };
+
   return (
     <>
       <SEO
@@ -212,17 +322,19 @@ const LalaniBusinessPark = () => {
       <main className="min-h-screen bg-background">
         {/* Hero Section with Logo */}
         <section ref={heroRef} className="relative min-h-[90vh] md:min-h-screen overflow-hidden flex items-center">
-          <div className="absolute inset-0">
+         
+ <div className="absolute inset-0">
             <img
-              src={project2}
+              src={businesspark}
               alt="Lalani Business Park"
               className="w-full h-full object-cover hero-bg scale-110"
               loading="eager"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
           </div>
+         
+        </section>
 
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+ <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
             {/* Centered Logo */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -259,9 +371,8 @@ const LalaniBusinessPark = () => {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
-                  href={brochurePdf}
-                  download="Lalani-Business-Park-Brochure.pdf"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-gold-light text-primary-foreground rounded-full font-semibold hover:shadow-xl hover:shadow-primary/30 transition-all hover:scale-105"
+                  onClick={() => setBrochurePopupOpen(true)}
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-gold-light text-primary-foreground rounded-full font-semibold hover:shadow-xl hover:shadow-primary/30 transition-all hover:scale-105 cursor-pointer"
                 >
                   <Download className="w-5 h-5" />
                   Download Brochure
@@ -275,27 +386,20 @@ const LalaniBusinessPark = () => {
               </div>
             </motion.div>
           </div>
-
-          {/* Scroll Indicator */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-          >
-            <span className="text-white/60 text-xs tracking-wider uppercase">Scroll</span>
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
-            >
-              <ArrowDown className="w-5 h-5 text-primary" />
-            </motion.div>
-          </motion.div>
-        </section>
-
+         
         {/* Project Hallmarks */}
-        <section className="py-16 md:py-20 bg-card">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative py-16 md:py-20 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img
+              src={busines}
+              alt="Project Hallmarks Background"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/70" />
+          </div>
+          
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
                 Project Hallmarks
@@ -309,10 +413,10 @@ const LalaniBusinessPark = () => {
               {projectHallmarks.map((item, index) => (
                 <div
                   key={index}
-                  className="flex flex-col items-center p-4 md:p-6 bg-background rounded-xl border border-border hover:border-primary/50 transition-all group gsap-card"
+                  className="flex flex-col items-center p-4 md:p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:border-primary/50 transition-all group gsap-card"
                 >
                   <item.icon className="w-8 h-8 md:w-10 md:h-10 text-primary mb-3 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm md:text-base text-center text-foreground font-medium">
+                  <span className="text-sm md:text-base text-center text-white font-medium">
                     {item.text}
                   </span>
                 </div>
@@ -360,7 +464,7 @@ const LalaniBusinessPark = () => {
               <div className="relative gsap-card">
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border">
                   <img
-                    src={business2}
+                    src={businesspark}
                     alt="Lalani Business Park Exterior"
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -656,28 +760,29 @@ const LalaniBusinessPark = () => {
                 Location
               </h2>
               <p className="text-lg text-muted-foreground">
-                Khar West, Mumbai
+  Lalani Business Park, Khar West, Mumbai, Maharashtra 400052
+
               </p>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 1, y: 0 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="w-full rounded-2xl overflow-hidden border border-border shadow-lg"
-            >
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7539258285247!2d72.8324!3d19.0719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9b5a3b3b3b3%3A0x3b3b3b3b3b3b3b3b!2sKhar%20West%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1640000000000!5m2!1sen!2sin"
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Lalani Business Park - Khar West, Mumbai 400052"
-                className="w-full"
-              />
-            </motion.div>
+          <motion.div
+  initial={{ opacity: 1, y: 0 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  className="w-full rounded-2xl overflow-hidden border border-border shadow-lg"
+>
+  <iframe
+    src="https://www.google.com/maps?q=Lalani+Business+Park,+Khar+West,+Mumbai,+Maharashtra+400052&output=embed"
+    width="100%"
+    height="450"
+    style={{ border: 0 }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="Lalani Business Park - Khar West, Mumbai 400052"
+    className="w-full"
+  />
+</motion.div>
           </div>
         </section>
 
@@ -874,9 +979,8 @@ const LalaniBusinessPark = () => {
                 </div>
 
                 <a
-                  href={brochurePdf}
-                  download="Lalani-Business-Park-Brochure.pdf"
-                  className="flex items-center justify-center gap-2 w-full py-4 bg-card border border-border rounded-xl hover:border-primary/50 transition-all group"
+                  onClick={() => setBrochurePopupOpen(true)}
+                  className="flex items-center justify-center gap-2 w-full py-4 bg-card border border-border rounded-xl hover:border-primary/50 transition-all group cursor-pointer"
                 >
                   <Download className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
                   <span className="font-medium text-foreground">Download Brochure</span>
@@ -886,9 +990,149 @@ const LalaniBusinessPark = () => {
           </div>
         </section>
 
+        {/* Space Configurations / Pricing Section */}
+        <section className="py-16 md:py-20 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+              <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">Space Configurations</p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-3">Floor Plans & Pricing</h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-primary to-gold-light mx-auto mb-4 rounded-full" />
+              <p className="text-muted-foreground">Flexible spaces from 425 – 1,654 sq.ft · Avg. ₹38.1K/sq.ft</p>
+            </motion.div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {floorPlanConfigs.map((config, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                  className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-xl transition-all group"
+                >
+                  {/* Floor Plan Image */}
+                  <div className="relative h-[220px] sm:h-[240px] bg-white overflow-hidden cursor-pointer"
+                    onClick={() => { setLightboxIndex(i); setLightboxOpen(false); window.open(config.image, '_blank'); }}>
+                    <img
+                      src={config.image}
+                      alt={`${config.type} Floor Plan`}
+                      className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 flex items-center justify-center transition-all">
+                      <span className="opacity-0 group-hover:opacity-100 bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1 shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+                        View Full Plan
+                      </span>
+                    </div>
+                    <div className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full">
+                      {config.type}
+                    </div>
+                  </div>
+                  {/* Info */}
+                  <div className="p-5">
+                    <div className="flex items-center justify-between mb-3">
+                      <div>
+                        <p className="text-xs text-muted-foreground">{config.label}</p>
+                        <p className="text-xl font-bold text-foreground mt-0.5">{config.size}</p>
+                      </div>
+                      <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full whitespace-nowrap">{config.price}</span>
+                    </div>
+                    <ul className="space-y-1.5 mb-4">
+                      {config.features.map((f, fi) => (
+                        <li key={fi} className="flex items-start gap-2 text-sm text-muted-foreground">
+                          <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <button onClick={() => setBrochurePopupOpen(true)}
+                      className="w-full py-2.5 rounded-xl border border-primary text-primary text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-all">
+                      Enquire Now
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* RERA Section */}
+        <section className="py-16 md:py-20 bg-card">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
+              <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">Transparency & Trust</p>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-3">RERA Registration</h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-primary to-gold-light mx-auto rounded-full" />
+            </motion.div>
+            <div className="max-w-3xl mx-auto">
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                className="bg-background border border-border rounded-2xl p-6 md:p-10 flex flex-col md:flex-row items-center gap-8 shadow-lg">
+                {/* QR Code */}
+                <div className="flex-shrink-0 text-center">
+                  <div className="bg-white p-4 rounded-xl border border-border shadow-md inline-block">
+                    <img
+                      src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maharera.maharashtra.gov.in/`}
+                      alt="RERA QR Code - Lalani Business Park"
+                      className="w-36 h-36"
+                    />
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-2">Scan to verify</p>
+                </div>
+                {/* Details */}
+                <div className="flex-1 text-center md:text-left">
+                  <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
+                    <CheckCircle className="w-6 h-6 text-green-500" />
+                    <span className="text-lg font-bold text-foreground">MahaRERA Registered</span>
+                  </div>
+                  <div className="bg-primary/5 border border-primary/20 rounded-xl px-5 py-4 mb-4">
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">RERA Number</p>
+                    <p className="text-2xl font-bold text-primary tracking-widest">P51800033063</p>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Lalani Business Park is registered under the Maharashtra Real Estate Regulatory Authority (MahaRERA), ensuring complete transparency and accountability in its development.
+                  </p>
+                  <a href="https://maharera.maharashtra.gov.in" target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-gold-light text-primary-foreground rounded-full font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all">
+                    <Shield className="w-4 h-4" />
+                    Verify on maharera.maharashtra.gov.in
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 md:py-20 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+              <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">Got Questions?</p>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-3">Frequently Asked Questions</h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-primary to-gold-light mx-auto rounded-full" />
+            </motion.div>
+            <div className="max-w-3xl mx-auto space-y-3">
+              {faqData.map((faq, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
+                  className="bg-card border border-border rounded-xl overflow-hidden hover:border-primary/30 transition-colors">
+                  <button
+                    onClick={() => setFaqOpen(faqOpen === i ? null : i)}
+                    className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
+                  >
+                    <span className="font-semibold text-foreground text-sm sm:text-base">{faq.q}</span>
+                    <span className={`flex-shrink-0 w-7 h-7 rounded-full border border-primary/30 flex items-center justify-center text-primary transition-transform duration-300 ${faqOpen === i ? 'rotate-180 bg-primary text-primary-foreground' : ''}`}>
+                      <ArrowDown className="w-4 h-4" />
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {faqOpen === i && (
+                      <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25 }}
+                        className="overflow-hidden border-t border-border">
+                        <p className="px-5 py-4 text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Footer Info */}
-        <section className="py-8 bg-card border-t border-border">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="py-8 bg-card border-t border-border">          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p className="text-xs text-muted-foreground">
               MahaRERA No: P51800033063 available on{" "}
               <a
@@ -948,6 +1192,92 @@ const LalaniBusinessPark = () => {
           </div>
         </div>
       )}
+
+      {/* Brochure Download Popup */}
+      <AnimatePresence>
+        {brochurePopupOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+            onClick={() => setBrochurePopupOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-card border border-border rounded-2xl p-6 md:p-8 max-w-md w-full shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold text-foreground">Download Brochure</h3>
+                <button
+                  onClick={() => setBrochurePopupOpen(false)}
+                  className="p-1 hover:bg-muted rounded-lg transition-colors"
+                >
+                  <X className="w-5 h-5 text-muted-foreground" />
+                </button>
+              </div>
+
+              <p className="text-muted-foreground text-sm mb-6">
+                Get detailed information about Lalani Business Park. Fill in your details to download the brochure.
+              </p>
+
+              <form onSubmit={handleBrochureDownload} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Full Name *</label>
+                  <input
+                    type="text"
+                    required
+                    value={brochureForm.name}
+                    onChange={(e) => setBrochureForm({ ...brochureForm, name: e.target.value })}
+                    className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all text-foreground"
+                    placeholder="Your name"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Email Address *</label>
+                  <input
+                    type="email"
+                    required
+                    value={brochureForm.email}
+                    onChange={(e) => setBrochureForm({ ...brochureForm, email: e.target.value })}
+                    className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all text-foreground"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Phone Number *</label>
+                  <input
+                    type="tel"
+                    required
+                    value={brochureForm.phone}
+                    onChange={(e) => setBrochureForm({ ...brochureForm, phone: e.target.value })}
+                    className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all text-foreground"
+                    placeholder="+91 00000 00000"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={brochureFormLoading}
+                  className="w-full px-6 py-3 bg-gradient-to-r from-primary to-gold-light text-primary-foreground rounded-full font-semibold hover:shadow-xl hover:shadow-primary/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  <Download className="w-4 h-4" />
+                  {brochureFormLoading ? "Processing..." : "Download Brochure"}
+                </button>
+              </form>
+
+              <p className="text-xs text-muted-foreground text-center mt-4">
+                We'll also send you updates via WhatsApp
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

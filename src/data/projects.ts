@@ -102,7 +102,7 @@ export const projects: Project[] = [
     status: "Ongoing",
     category: "ongoing",
     price: "",
-    possession: "December 2025",
+    possession: "December 2028",
     image: mainElevation,
     images: [mainElevation, busines3],
     description: "Lalani Goodwill is a premium residential project offering meticulously designed 1BHK, 2BHK & 3BHK apartments in the heart of Andheri East. With modern amenities and strategic location near J.B. Nagar metro station, it offers the perfect blend of luxury and convenience for Mumbai's urban lifestyle.",

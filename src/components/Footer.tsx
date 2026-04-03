@@ -22,7 +22,6 @@ const Footer = () => {
     { label: "Velentine Apartment", path: "/projects/velentine-apartment", location: "Malad East" },
     { label: "Lalani Grandeur", path: "/projects/lalani-grandeur", location: "Goregaon East" },
     { label: "Dream Residency", path: "/projects/dream-residency", location: "Karjat" },
-    { label: "Corporate Plaza", path: "/projects/lalani-corporate-plaza", location: "BKC" },
   ];
 
   return (

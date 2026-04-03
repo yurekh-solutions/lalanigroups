@@ -167,16 +167,7 @@ const Contact = () => {
         </motion.a>
 
         {/* NEW: Directions Button */}
-        <motion.a
-          href="https://www.google.com/maps/dir/?api=1&destination=LALANI+GROUP,+3R7P+QMJ,+Khar+West,+Mumbai"
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-blue-500 text-white font-semibold text-sm sm:text-base shadow-depth-2 hover:bg-blue-600 transition-all"
-        >
-          📍 Get Directions
-        </motion.a>
+        
 
       </div>
     </div>
