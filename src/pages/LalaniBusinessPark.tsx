@@ -37,18 +37,22 @@ import project3 from "@/assets/project-3.jpg";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import aboutBg from "@/assets/about-bg.jpg";
+import lalaniaura from "@/assets/lalanibusinespark/lalaniaura2.png"
 import floorplan1 from "@/assets/lalanibusinespark/floorplan1.png";
 import floorplan2 from "@/assets/lalanibusinespark/floorplan2.png";
 import floorplan3 from "@/assets/lalanibusinespark/floorplan3.png";
-
+import vision from "@/assets/valentine/vision.webp";
+import residency from "@/assets/lalanibusinespark/residency.png"
 // Gallery images
 const galleryImages = [
-  { src: business2, alt: "Lalani Business Park Exterior" },
-  { src: busines, alt: "Corporate Office Space" },
-  { src: quantum1, alt: "Premium Office Interior" },
-  { src: business1, alt: "Modern Building Architecture" },
-  { src: business4, alt: "Commercial Complex" },
-  { src: business5, alt: "Business Hub" },
+  { src: vision},
+  { src: quantum1},
+    { src: busines },
+
+  { src: residency},
+    { src: lalaniaura },
+
+  { src: business5},
 ];
 
 const projectHallmarks = [
@@ -762,7 +766,7 @@ const LalaniBusinessPark = () => {
 
        
         {/* Why Choose Us */}
-        <section className="py-16 md:py-24 bg-background">
+        {/* <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
@@ -818,11 +822,11 @@ const LalaniBusinessPark = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
     
       {/* Space Configurations */}
-        <section className="py-16 md:py-24 bg-card">
+        {/* <section className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Flexible Options</span>
@@ -891,7 +895,7 @@ const LalaniBusinessPark = () => {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
 
     

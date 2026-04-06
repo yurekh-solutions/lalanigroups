@@ -1,5 +1,8 @@
-import { useState, useEffect } from "react";
-import { MapPin, Home, Clock, X, Phone, Mail, Download, CheckCircle, Building2, User, FileText } from "lucide-react";
+﻿import { useState, useEffect } from "react";
+import { 
+  MapPin, Home, Clock, X, Phone, Mail, Download, CheckCircle, Building2, User, FileText,
+  ChevronLeft, ChevronRight, Train, Plane, ShoppingBag, GraduationCap, Building, Dumbbell, Shield, Trees, Zap, Droplets
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -46,10 +49,35 @@ import valKitchen2 from "@/assets/valentine/val_kitchen2.jpg";
 // Brochure PDF
 import brochurePDF from "@/assets/valentine/E-Brochure-Velentine-Apartment-1-Wing-D-7-4-21-1.pdf";
 
-const heroSlides = [
-  { image: elevation1, alt: "Building Elevation" },
-  
- 
+// Project Hallmarks
+const projectHallmarks = [
+  { icon: Home, text: "1 & 2 BHK Apartments" },
+  { icon: CheckCircle, text: "Ready Possession - OC Received" },
+  { icon: Building2, text: "Wing D Premium Tower" },
+  { icon: MapPin, text: "Prime Location in Malad East" },
+  { icon: Clock, text: "Immediate Move-in Ready" },
+  { icon: Shield, text: "MahaRERA Approved" },
+  { icon: Dumbbell, text: "Modern Amenities" },
+  { icon: Building2, text: "Designer Entrance Lobby" },
+];
+
+// Connectivity Items
+const connectivityItems = [
+  { icon: Train, name: "Malad Railway Station", distance: "10 min" },
+  { icon: Train, name: "Western Express Highway", distance: "5 min" },
+  { icon: ShoppingBag, name: "Oberoi Mall", distance: "1.7 km" },
+  { icon: ShoppingBag, name: "Infiniti Mall", distance: "2 km" },
+  { icon: Plane, name: "International Airport", distance: "30 min" },
+  { icon: Building, name: "Aarey Colony Green Zone", distance: "2 km" },
+  { icon: GraduationCap, name: "Ryan International School", distance: "5 min" },
+  { icon: Building, name: "Hospitals & Healthcare", distance: "5 min" },
+];
+
+const constructionImages = [
+  elevation1,
+  lobby,
+  multipurpose,
+  valClubhouse,
 ];
 
 const floorPlans1BHK = [
@@ -59,14 +87,14 @@ const floorPlans1BHK = [
   { src: bhk3873d, title: "1 BHK - 387 sq.ft", type: "3D View" },
   { src: bhk3d, title: "1 BHK", type: "3D View" },
   { src: bhk4002d, title: "1 BHK - 400 sq.ft", type: "2D View" },
-  { src: bhk4003d, title: "1 BHK - 400 sq.ft", type: "3D View" },
+  
 ];
 
 const floorPlans2BHK = [
   { src: bhk592sqft2d, title: "2 BHK - 592 sq.ft", type: "2D View" },
   { src: bhk592sqft3d, title: "2 BHK - 592 sq.ft", type: "3D View" },
   { src: bhk613sqft2d, title: "2 BHK - 613 sq.ft", type: "2D View" },
-  { src: bhk613sqft3d, title: "2 BHK - 613 sq.ft", type: "3D View" },
+
 ];
 
 const amenities = [
@@ -93,6 +121,7 @@ const highlights = [
   { title: "Close to reputed schools & hospitals", description: "Ryan International, Podar School, and quality healthcare nearby" },
   { title: "Excellent connectivity to Western Express Highway", description: "Quick access to all parts of Mumbai" },
   { title: "Aarey Colony Proximity", description: "Mumbai's green lung just minutes away for fresh air" },
+  { title: "Premium Quality Construction", description: "Built with finest materials and superior craftsmanship" },
 ];
 
 const VelentineApartment = () => {
@@ -108,6 +137,10 @@ const VelentineApartment = () => {
   });
   const [formLoading, setFormLoading] = useState(false);
   const [formSent, setFormSent] = useState(false);
+  const [activeTab, setActiveTab] = useState('construction');
+  const [constructionIndex, setConstructionIndex] = useState(0);
+  const [lightboxForConstruction, setLightboxForConstruction] = useState(false);
+  const [lightboxConstructionIndex, setLightboxConstructionIndex] = useState(0);
   
   // Brochure Download Popup State
   const [brochurePopupOpen, setBrochurePopupOpen] = useState(false);
@@ -118,13 +151,14 @@ const VelentineApartment = () => {
   });
   const [brochureFormLoading, setBrochureFormLoading] = useState(false);
 
-  // Auto-advance hero carousel
+  // Auto-advance construction carousel
   useEffect(() => {
+    if (activeTab !== 'construction') return;
     const timer = setInterval(() => {
-      setHeroCurrent((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
+      setConstructionIndex((prev) => (prev + 1) % constructionImages.length);
+    }, 3000);
     return () => clearInterval(timer);
-  }, []);
+  }, [activeTab, constructionImages.length]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -193,14 +227,14 @@ const VelentineApartment = () => {
     }
   };
 
-  // Hero carousel section navigation
-  const heroSlideLinks = ["#overview", "#amenities", "#amenities"];
+  // Hero carousel section navigation - Removed
+  // heroSlideLinks functionality no longer needed with new layout
 
   return (
     <>
       <SEO
         title="Velentine Apartment | Ready to Move 1BHK & 2BHK Flats in Malad East Mumbai"
-        description="Velentine Apartment Wing D - Ready possession 1BHK & 2BHK flats in Malad East, Mumbai. OC Received. Immediate move-in. Near Malad Station & Western Express Highway. Starting from ₹75 Lakhs."
+        description="Velentine Apartment Wing D - Ready possession 1BHK & 2BHK flats in Malad East, Mumbai. OC Received. Immediate move-in. Near Malad Station & Western Express Highway. Starting from â‚¹75 Lakhs."
         keywords="Velentine Apartment, ready flats Malad, 1BHK Malad East, 2BHK Malad, ready possession Mumbai, OC received flats, affordable flats Malad, Lalani Group Malad, residential property Malad East, ready to move apartments Mumbai"
         canonicalUrl="/velentine-apartment"
         structuredData={{
@@ -218,418 +252,344 @@ const VelentineApartment = () => {
           },
           "numberOfRooms": "1-2",
           "occupancy": "Ready to Move",
-          "priceRange": "₹75 Lakhs - ₹1.05 Crore"
+          "priceRange": "â‚¹75 Lakhs - â‚¹1.05 Crore"
         }}
       />
       <Navbar />
       <main className="min-h-screen bg-background">
-        
-        {/* Hero Section - Clean with Images Only */}
-        <section className="relative h-screen max-h-[900px] overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.a
-              key={heroCurrent}
-              href={heroSlideLinks[heroCurrent]}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.2 }}
-              className="absolute inset-0 cursor-pointer"
-            >
-              <img 
-                src={heroSlides[heroCurrent].image} 
-                alt={heroSlides[heroCurrent].alt}
-                className="w-full h-full object-cover" 
-                loading="eager" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
-              {/* Click indicator */}
-              <div className="absolute bottom-32 left-1/2 -translate-x-1/2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm border border-white/30 flex items-center gap-2 opacity-0 hover:opacity-100 transition-opacity">
-                <span>Click to view {heroSlides[heroCurrent].alt}</span>
-              </div>
-            </motion.a>
-          </AnimatePresence>
-          
-          {/* Hero Content - Minimal */}
-         
-          
-          {/* Hero Carousel Navigation - Dots */}
-         
-          
-          {/* Scroll Indicator */}
-          
+        {/* Hero Section with Building Image */}
+        <section className="relative min-h-[80vh] md:min-h-screen overflow-hidden flex items-center">
+          <div className="absolute inset-0">
+            <img
+              src={elevation1}
+              alt="Valentine Apartment"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </section>
 
-        {/* Project Info Section */}
-        <section id="overview" className="bg-background">
-          {/* Overview Hero Banner with bg cover */}
-          <div className="relative py-20 md:py-28 overflow-hidden">
-            <div className="absolute inset-0">
-              <img src={lobby} alt="Velentine Apartment Overview" className="w-full h-full object-cover" loading="lazy" />
-              <div className="absolute inset-0 bg-black/65" />
-            </div>
-          <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
-            <motion.span 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="inline-block px-5 py-2 bg-green-500/30 backdrop-blur-sm rounded-full text-green-300 text-sm font-medium mb-6 border border-green-500/30"
-            >
-              Ready Possession - OC Received
-            </motion.span>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-bold mb-4 tracking-tight"
-            >
-              Velentine Apartment
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="text-xl sm:text-2xl text-white/90 font-light mb-10"
-            >
-              Welcome to Your New Home
-            </motion.p>
-            
-            {/* Info Pills */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
-              className="flex flex-wrap items-center justify-center gap-4 mb-12"
-            >
-              <span className="flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm rounded-full text-sm border border-white/20">
-                <MapPin className="w-4 h-4 text-[#c9a962]" /> Malad East, Mumbai
-              </span>
-              <span className="flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm rounded-full text-sm border border-white/20">
-                <Home className="w-4 h-4 text-[#c9a962]" /> Residential Project
-              </span>
-              <span className="flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm rounded-full text-sm border border-white/20">
-                <Clock className="w-4 h-4 text-green-400" /> Ready to Move
-              </span>
-            </motion.div>
-            
-            <motion.a 
-              href="#overview-content"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1 }}
-              className="inline-flex items-center gap-2 px-10 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/40 text-white rounded-full font-semibold hover:bg-white/20 transition-all text-lg"
-            >
-              Explore More
-            </motion.a>
-          </div>
-          </div>
-
-          {/* Overview Content */}
-          <div id="overview-content" className="py-16 md:py-24">
+        {/* Logo & Title Section */}
+        <section className="py-12 md:py-16 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-5xl mx-auto text-center mb-12">
-              <motion.span 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-4 block"
-              >
-                Project Overview
-              </motion.span>
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-tight"
-              >
-                Your New Home is <span className="text-[#c9a962]">Ready</span>
-              </motion.h2>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-6"
-              >
-                Velentine Apartment 1 – Wing D is a supreme embodiment of a sprawling lifestyle and resplendent features. 
-                It is the perfect fusion of contemporary architecture, ideal location, elegant spaces and carefully curated luxury amenities. 
-                The 1 & 2 BHK exquisite apartments showcase the most thoughtful design, stylish appointments, finest quality finishing 
-                and best brands to provide an unparalleled experience in luxury living.
-              </motion.p>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto"
-              >
-                From its magnificent designer entrance lobby, high-speed elevators silently whisk you up to your luxurious abodes. 
-                Inside, every square inch is designed to build in functionality and create an aesthetic appeal at every turn. 
-                Your every element is conceived to help you live a life of inhabited luxury with premium vitrified flooring, 
-                modular kitchens, and top-quality sanitary fittings from renowned brands.
-              </motion.p>
+            {/* Logo */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex justify-center mb-6"
+            >
+              <div className="px-4 py-3 sm:px-6 sm:py-4 rounded-2xl bg-gradient-to-br from-yellow-900/30 via-yellow-500/20 to-white/10 backdrop-blur-xl shadow-xl border border-white/20">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold gradient-gold-text text-center">Valentine Apartment</h1>
+              </div>
+            </motion.div>
+
+            {/* Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-center text-white max-w-3xl mx-auto"
+            >
+              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
+                Your New Home is Ready
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground">
+                Ready possession 1BHK & 2BHK apartments in Malad East. OC Received, immediate move-in ready. 
+                Near Malad Railway Station, Oberoi Mall & Western Express Highway. Experience luxury living in the heart of Mumbai.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Project Hallmarks Section */}
+        <section className="relative py-16 md:py-24 overflow-hidden">
+          <div className="absolute inset-0">
+            <img
+              src={lobby}
+              alt="Valentine Apartment Background"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/70" />
+          </div>
+          
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+                Project Hallmarks
+              </h2>
+              <p className="text-lg text-white/80 max-w-2xl mx-auto">
+                Discover what makes Valentine Apartment your ideal home
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {projectHallmarks.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="flex flex-col items-center p-4 md:p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:border-primary/50 transition-all group"
+                >
+                  <item.icon className="w-8 h-8 md:w-10 md:h-10 text-primary mb-3 group-hover:scale-110 transition-transform" />
+                  <span className="text-sm md:text-base text-center text-white font-medium">
+                    {item.text}
+                  </span>
+                </motion.div>
+              ))}
             </div>
-            
-            {/* Key Highlights Grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto mb-12">
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/40 hover:shadow-lg transition-all duration-300"
+          </div>
+        </section>
+
+     
+
+        {/* Construction Updates & Digitour Section */}
+        <section className="py-12 md:py-16 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-8"
+            >
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-primary mb-3">
+                Project Progress
+              </h2>
+            </motion.div>
+
+            {/* Tabs */}
+            <div className="flex justify-center gap-0 mb-8">
+              <button
+                onClick={() => setActiveTab('construction')}
+                className={`px-6 py-3 md:px-8 md:py-4 text-sm md:text-base font-medium transition-all ${
+                  activeTab === 'construction'
+                    ? 'bg-primary text-white'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                }`}
               >
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-[#c9a962]/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Home className="w-6 h-6 md:w-7 md:h-7 text-[#c9a962]" />
-                </div>
-                <p className="font-bold text-foreground text-sm md:text-base">1BHK & 2BHK</p>
-                <p className="text-xs md:text-sm text-muted-foreground mt-1">Spacious Units</p>
+                Project Photos
+              </button>
+              <button
+                onClick={() => setActiveTab('digitour')}
+                className={`px-6 py-3 md:px-8 md:py-4 text-sm md:text-base font-medium transition-all ${
+                  activeTab === 'digitour'
+                    ? 'bg-primary text-white'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                }`}
+              >
+                Virtual Tour
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="max-w-6xl mx-auto">
+              <AnimatePresence mode="wait">
+                {activeTab === 'construction' ? (
+                  <motion.div
+                    key="construction"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {/* Mobile carousel */}
+                    <div className="block sm:hidden rounded-xl overflow-hidden">
+                      <motion.div className="flex" animate={{ x: `-${constructionIndex * 100}%` }} transition={{ duration: 0.4, ease: 'easeInOut' }}>
+                        {constructionImages.map((img, i) => (
+                          <div key={i} className="flex-shrink-0 w-full h-[250px] cursor-pointer relative group" onClick={() => { setLightboxConstructionIndex(i); setLightboxForConstruction(true); }}>
+                            <img src={img} alt={`Project ${i + 1}`} className="w-full h-full object-cover" />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 flex items-center justify-center transition-all">
+                              <span className="opacity-0 group-hover:opacity-100 bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+                                View
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </motion.div>
+                    </div>
+                    <div className="flex sm:hidden justify-center gap-2 mt-3">
+                      {constructionImages.map((_, i) => (
+                        <button key={i} onClick={() => setConstructionIndex(i)} className={`h-2 rounded-full transition-all ${i === constructionIndex ? 'bg-primary w-6' : 'bg-border w-2'}`} />
+                      ))}
+                    </div>
+
+                    {/* Desktop: grid */}
+                    <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                      {constructionImages.map((img, i) => (
+                        <div key={i} className="group cursor-pointer rounded-xl overflow-hidden relative" style={{ height: '250px' }} onClick={() => { setLightboxConstructionIndex(i); setLightboxForConstruction(true); }}>
+                          <img src={img} alt={`Project ${i + 1}`} className="w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 flex items-center justify-center transition-all">
+                            <span className="opacity-0 group-hover:opacity-100 bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+                              View
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="digitour"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="max-w-4xl mx-auto text-center"
+                  >
+                    <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border-2 border-primary/30 bg-card group">
+                      <img
+                        src={elevation1}
+                        alt="Valentine Apartment Virtual Tour"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      {/* Overlay with CTA */}
+                      <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center gap-4">
+                        <div className="text-white text-center px-4">
+                          <h3 className="text-2xl md:text-3xl font-bold mb-2">Virtual Tour Coming Soon</h3>
+                          <p className="text-white/80 text-sm md:text-base mb-6">Explore Valentine Apartment in immersive detail</p>
+                          <a
+                            href="#contact"
+                            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-gold-light text-black font-bold rounded-full text-lg hover:scale-105 transition-transform shadow-xl"
+                          >
+                            <span>Enquire Now</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-4">*Coming Soon. Contact us to schedule a site visit.</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+        </section>
+
+       
+        {/* Project Overview with Image Carousel */}
+        <section id="overview-content" className="py-16 md:py-24 bg-background">
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Two Column Layout: Content Left, Carousel Right */}
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16">
+              {/* Left: Content */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <span className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-4 block">
+                  Project Overview
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">
+                  Your New Home is <span className="text-[#c9a962]">Ready</span>
+                </h2>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+                  Velentine Apartment 1 – Wing D is a supreme embodiment of a sprawling lifestyle and resplendent features. 
+                  It is the perfect fusion of contemporary architecture, ideal location, elegant spaces and carefully curated luxury amenities.
+                </p>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+                  The 1 & 2 BHK exquisite apartments showcase the most thoughtful design, stylish appointments, finest quality finishing 
+                  and best brands to provide an unparalleled experience in luxury living.
+                </p>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  From its magnificent designer entrance lobby, high-speed elevators silently whisk you up to your luxurious abodes. 
+                  Inside, every square inch is designed to build in functionality and create an aesthetic appeal at every turn.
+                </p>
               </motion.div>
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+
+              {/* Right: Image Carousel */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/40 hover:shadow-lg transition-all duration-300"
+                transition={{ duration: 0.6 }}
+                className="relative"
               >
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-[#c9a962]/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <MapPin className="w-6 h-6 md:w-7 md:h-7 text-[#c9a962]" />
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                  <motion.div 
+                    className="flex"
+                    animate={{ x: `-${heroCurrent * 100}%` }}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  >
+                    <img src={valLiving} alt="Living Room" className="w-full h-[400px] md:h-[500px] object-cover flex-shrink-0" />
+                    <img src={valDining} alt="Dining Area" className="w-full h-[400px] md:h-[500px] object-cover flex-shrink-0" />
+                    <img src={valBedroom} alt="Bedroom" className="w-full h-[400px] md:h-[500px] object-cover flex-shrink-0" />
+                    <img src={valKitchen} alt="Kitchen" className="w-full h-[400px] md:h-[500px] object-cover flex-shrink-0" />
+                  </motion.div>
+                  
+                  {/* Navigation Arrows */}
+                  <button
+                    onClick={() => setHeroCurrent((prev) => (prev === 0 ? 3 : prev - 1))}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all z-10"
+                  >
+                    <ChevronLeft className="w-6 h-6 text-gray-800" />
+                  </button>
+                  <button
+                    onClick={() => setHeroCurrent((prev) => (prev === 3 ? 0 : prev + 1))}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all z-10"
+                  >
+                    <ChevronRight className="w-6 h-6 text-gray-800" />
+                  </button>
+                  
+                  {/* Dots Indicator */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                    {[0, 1, 2, 3].map((index) => (
+                      <button
+                        key={index}
+                        onClick={() => setHeroCurrent(index)}
+                        className={`h-2 rounded-full transition-all ${
+                          index === heroCurrent ? 'bg-white w-8' : 'bg-white/50 w-2'
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
-                <p className="font-bold text-foreground text-sm md:text-base">Malad East</p>
-                <p className="text-xs md:text-sm text-muted-foreground mt-1">Prime Location</p>
-              </motion.div>
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/40 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <CheckCircle className="w-6 h-6 md:w-7 md:h-7 text-green-500" />
-                </div>
-                <p className="font-bold text-foreground text-sm md:text-base">OC Received</p>
-                <p className="text-xs md:text-sm text-muted-foreground mt-1">Ready to Move</p>
-              </motion.div>
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-                className="text-center p-5 md:p-6 bg-card rounded-xl border border-border hover:border-[#c9a962]/40 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-[#c9a962]/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Building2 className="w-6 h-6 md:w-7 md:h-7 text-[#c9a962]" />
-                </div>
-                <p className="font-bold text-foreground text-sm md:text-base">Wing D</p>
-                <p className="text-xs md:text-sm text-muted-foreground mt-1">Premium Tower</p>
               </motion.div>
             </div>
-            
-            {/* Highlights List */}
-            <div className="max-w-4xl mx-auto">
+
+            {/* Project Highlights - 3 Cards Per Row */}
+            <div className="max-w-7xl mx-auto">
               <motion.h3 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-2xl md:text-3xl font-heading font-bold text-center mb-8"
+                className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-center mb-10"
               >
                 Project Highlights
               </motion.h3>
-              <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {highlights.map((item, index) => (
                   <motion.div 
                     key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.05 }}
-                    className="flex items-start gap-3 p-4 bg-card rounded-xl border border-border hover:border-[#c9a962]/30 hover:shadow-md transition-all duration-300"
+                    className="flex flex-col items-start gap-3 p-5 bg-card rounded-2xl border border-border hover:border-[#c9a962]/50 hover:shadow-xl transition-all duration-300"
                   >
-                    <CheckCircle className="w-5 h-5 text-[#c9a962] shrink-0 mt-1" />
+                    <div className="p-3 bg-[#c9a962]/10 rounded-xl">
+                      <CheckCircle className="w-6 h-6 text-[#c9a962]" />
+                    </div>
                     <div>
-                      <h4 className="text-foreground text-sm md:text-base font-semibold mb-1">{item.title}</h4>
-                      <p className="text-xs md:text-sm text-muted-foreground">{item.description}</p>
+                      <h4 className="text-foreground text-base md:text-lg font-bold mb-2">{item.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>
                   </motion.div>
                 ))}
               </div>
             </div>
           </div>
-          </div>
         </section>
-
-        {/* Lifestyle & Amenities Showcase */}
-        <section className="py-16 md:py-24 bg-card">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-              <div className="text-center mb-12">
-                <motion.span 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-4 block"
-                >
-                  Lifestyle & Amenities
-                </motion.span>
-                <motion.h2 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4 leading-tight"
-                >
-                  Premium <span className="text-[#c9a962]">Living Experience</span>
-                </motion.h2>
-                <motion.p 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto"
-                >
-                  Discover a world of comfort, convenience and luxury with our thoughtfully designed amenities
-                </motion.p>
-              </div>
-
-              <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center mb-12">
-                {/* Left Side - Image Gallery Grid */}
-                <motion.div 
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="order-2 lg:order-1"
-                >
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-4">
-                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(valClubhouse, "Club House")}>
-                        <img src={valClubhouse} alt="Club House" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
-                      </div>
-                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(multipurpose, "Multi-Purpose Hall")}>
-                        <img src={multipurpose} alt="Multi-Purpose Hall" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
-                      </div>
-                    </div>
-                    <div className="space-y-4 pt-8">
-                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(valExterior, "Exterior View")}>
-                        <img src={valExterior} alt="Exterior View" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
-                      </div>
-                      <div className="rounded-xl overflow-hidden border border-border shadow-lg group cursor-pointer" onClick={() => openLightbox(lobby, "Entrance Lobby")}>
-                        <img src={lobby} alt="Entrance Lobby" className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-                
-                {/* Right Side - Features */}
-                <motion.div 
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="order-1 lg:order-2"
-                >
-                  <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">
-                    World-Class <span className="text-[#c9a962]">Features</span>
-                  </h3>
-                  
-                  {/* Feature List */}
-                  <div className="space-y-4 mb-8">
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
-                        <Home className="w-5 h-5 text-[#c9a962]" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-1">Spacious Residences</h4>
-                        <p className="text-sm text-muted-foreground">Well-ventilated 1BHK & 2BHK apartments with modern finishes</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
-                        <Building2 className="w-5 h-5 text-[#c9a962]" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-1">Designer Entrance Lobby</h4>
-                        <p className="text-sm text-muted-foreground">Grand lobby with premium flooring and elegant lighting</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
-                        <CheckCircle className="w-5 h-5 text-[#c9a962]" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-1">Multi-Purpose Hall</h4>
-                        <p className="text-sm text-muted-foreground">Spacious venue for celebrations and community events</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 bg-[#c9a962]/10 rounded-lg flex items-center justify-center shrink-0">
-                        <MapPin className="w-5 h-5 text-[#c9a962]" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-1">Prime Location</h4>
-                        <p className="text-sm text-muted-foreground">Close to malls, schools, hospitals and major highways</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <a 
-                    href="#amenities"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-[#c9a962] text-black rounded-lg font-bold hover:bg-[#d4b876] transition-all hover:shadow-lg"
-                  >
-                    Explore All Amenities
-                  </a>
-                </motion.div>
-              </div>
-
-              {/* Quick Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12 pt-12 border-t border-border">
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="text-center"
-                >
-                  <div className="text-3xl md:text-4xl font-bold text-[#c9a962] mb-2">100+</div>
-                  <p className="text-sm text-muted-foreground">Happy Families</p>
-                </motion.div>
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  className="text-center"
-                >
-                  <div className="text-3xl md:text-4xl font-bold text-[#c9a962] mb-2">12+</div>
-                  <p className="text-sm text-muted-foreground">Premium Amenities</p>
-                </motion.div>
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="text-center"
-                >
-                  <div className="text-3xl md:text-4xl font-bold text-[#c9a962] mb-2">OC</div>
-                  <p className="text-sm text-muted-foreground">Received</p>
-                </motion.div>
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                  className="text-center"
-                >
-                  <div className="text-3xl md:text-4xl font-bold text-[#c9a962] mb-2">100%</div>
-                  <p className="text-sm text-muted-foreground">Ready to Move</p>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Interior Gallery Section */}
         <section className="py-16 md:py-20 bg-card">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
@@ -642,18 +602,15 @@ const VelentineApartment = () => {
             </motion.div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
               {[
-                { src: valLiving, label: "Living Room" },
                 { src: valDining, label: "Dining Area" },
                 { src: valBedroom, label: "Master Bedroom" },
                 { src: valKitchen, label: "Kitchen" },
                 { src: valDining2, label: "Dining View 2" },
-                { src: valBedroom2, label: "Bedroom View 2" },
                 { src: valBedroom3, label: "Bedroom View 3" },
                 { src: valKitchen2, label: "Kitchen View 2" },
                 { src: valClubhouse, label: "Club House" },
                 { src: valExterior, label: "Exterior" },
-                { src: lobby, label: "Entrance Lobby" },
-                { src: multipurpose, label: "Multi-Purpose Hall" },
+
               ].map((img, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }}
                   className="group cursor-pointer rounded-xl overflow-hidden border border-border hover:border-[#c9a962]/50 hover:shadow-xl transition-all relative"
@@ -893,134 +850,47 @@ const VelentineApartment = () => {
           </div>
         </section>
 
-        {/* Amenities Section */}
-        <section id="amenities" className="py-16 md:py-24 bg-card">
+
+
+        {/* Connectivity Section */}
+        <section className="py-16 md:py-20 bg-card">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <motion.span 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-4 block"
-              >
-                Amenities & Specifications
-              </motion.span>
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4 leading-tight"
-              >
-                Modern <span className="text-[#c9a962]">Amenities</span>
-              </motion.h2>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto"
-              >
-                Welcome to an extraordinary world of fine living where aesthetics, design excellence and practical functionality 
-                are combined to create the most perfect ambience for a luxury lifestyle.
-              </motion.p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 max-w-6xl mx-auto mb-16">
-              {amenities.map((amenity, index) => (
-                <motion.div 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
+                Connectivity
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Perfectly connected to everything that matters
+              </p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {connectivityItems.map((item, index) => (
+                <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="flex items-start gap-3 p-5 md:p-6 bg-background rounded-xl border border-border hover:border-[#c9a962]/40 hover:shadow-lg transition-all duration-300"
+                  className="flex items-center gap-4 p-4 bg-background rounded-xl border border-border hover:border-primary/50 transition-all"
                 >
-                  <CheckCircle className="w-5 h-5 text-[#c9a962] shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="text-foreground text-sm md:text-base font-semibold mb-1">{amenity.name}</h4>
-                    <p className="text-xs md:text-sm text-muted-foreground">{amenity.description}</p>
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <item.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-foreground">{item.name}</p>
+                    <p className="text-xs text-primary font-semibold">{item.distance}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
-            
-            {/* Specifications */}
-            <div className="max-w-6xl mx-auto">
-              <motion.h3 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-2xl md:text-3xl font-heading font-bold text-center mb-8"
-              >
-                Premium Specifications
-              </motion.h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                <motion.div 
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="p-6 bg-background rounded-xl border border-border"
-                >
-                  <h4 className="font-bold text-foreground mb-4 text-lg">Interior Features</h4>
-                  <ul className="space-y-3 text-sm text-muted-foreground">
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
-                      <span><strong className="text-foreground">Flooring:</strong> Premium vitrified tiles in all rooms</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
-                      <span><strong className="text-foreground">Kitchen:</strong> Modular kitchen with granite counter top</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
-                      <span><strong className="text-foreground">Bathroom:</strong> Premium sanitary fittings from reputed brands</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
-                      <span><strong className="text-foreground">Doors:</strong> Hardwood frame with flush doors</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
-                      <span><strong className="text-foreground">Windows:</strong> Powder coated aluminum sliding windows</span>
-                    </li>
-                  </ul>
-                </motion.div>
-                
-                <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="p-6 bg-background rounded-xl border border-border"
-                >
-                  <h4 className="font-bold text-foreground mb-4 text-lg">Electrical & Plumbing</h4>
-                  <ul className="space-y-3 text-sm text-muted-foreground">
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
-                      <span><strong className="text-foreground">Wiring:</strong> Concealed copper wiring with modular switches</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
-                      <span><strong className="text-foreground">AC Provision:</strong> Split AC provision in all bedrooms</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
-                      <span><strong className="text-foreground">Geyser:</strong> Electrical geyser in all bathrooms</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
-                      <span><strong className="text-foreground">Internet:</strong> Broadband internet point in living room</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-[#c9a962] shrink-0 mt-0.5" />
-                      <span><strong className="text-foreground">Security:</strong> Video door phone & intercom system</span>
-                    </li>
-                  </ul>
-                </motion.div>
-              </div>
-            </div>
           </div>
         </section>
-
         {/* Location Section */}
         <section id="location" className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -1184,7 +1054,8 @@ const VelentineApartment = () => {
           </div>
         </section>
 
-        {/* Brochure Download Section */}
+
+                {/* Brochure Download Section */}
         <section className="py-16 md:py-24 bg-gradient-to-br from-[#c9a962]/10 via-card to-[#c9a962]/5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
@@ -1429,12 +1300,14 @@ const VelentineApartment = () => {
         </section>
       </main>
 
+
+
       <Footer />
       <WhatsAppButton />
       <BackToTopButton />
       <LeadCapturePopup />
 
-      {/* Brochure Download Lead Capture Popup */}
+      {/* Brochure Download Popup */}
       <AnimatePresence>
         {brochurePopupOpen && (
           <motion.div
@@ -1541,7 +1414,7 @@ const VelentineApartment = () => {
         )}
       </AnimatePresence>
 
-      {/* Lightbox */}
+      {/* Lightbox for General Images */}
       {lightboxOpen && (
         <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4" onClick={() => setLightboxOpen(false)}>
           <button
