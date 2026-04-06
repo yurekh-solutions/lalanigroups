@@ -45,14 +45,12 @@ import vision from "@/assets/valentine/vision.webp";
 import residency from "@/assets/lalanibusinespark/residency.png"
 // Gallery images
 const galleryImages = [
-  { src: vision},
-  { src: quantum1},
-    { src: busines },
-
-  { src: residency},
-    { src: lalaniaura },
-
-  { src: business5},
+  { src: vision, alt: "Vision Image" },
+  { src: quantum1, alt: "Quantum Project" },
+  { src: busines, alt: "Business Park" },
+  { src: residency, alt: "Residency" },
+  { src: lalaniaura, alt: "Lalani Aura" },
+  { src: business5, alt: "Business Space" },
 ];
 
 const projectHallmarks = [
@@ -324,26 +322,39 @@ const LalaniBusinessPark = () => {
       <Navbar />
       
       <main className="min-h-screen bg-background">
-        {/* Hero Section with Logo */}
-        <section ref={heroRef} className="relative min-h-[90vh] md:min-h-screen overflow-hidden flex items-center">
+        {/* Hero Section with Centered Title */}
+        <section ref={heroRef} className="relative min-h-[90vh] md:min-h-screen overflow-hidden flex items-center justify-center">
          
- <div className="absolute inset-0">
+          <div className="absolute inset-0">
             {/* Mobile Image */}
             <img
               src={busines}
               alt="Lalani Business Park Mobile"
-              className="w-full h-full object-cover hero-bg scale-110 md:hidden"
+              className="w-full h-full object-cover md:hidden"
               loading="eager"
             />
             {/* Desktop Image */}
             <img
               src={businesspark}
               alt="Lalani Business Park Desktop"
-              className="w-full h-full object-cover hero-bg scale-110 hidden md:block"
+              className="w-full h-full object-cover hidden md:block"
               loading="eager"
             />
+            {/* Gradient Overlays */}
           </div>
-         
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative z-10 text-center px-4"
+          >
+            <div className="inline-block px-6 sm:px-10 md:px-16 py-4 sm:py-6 md:py-8 rounded-3xl bg-gradient-to-r from-gray-200/40 via-white-600/30 to-white-500/20 backdrop-blur-lg shadow-2xl ">
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-100 tracking-wide drop-shadow-lg">
+                Lalani Business Park
+              </h1>
+            </div>
+          </motion.div>
         </section>
 
  <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">

@@ -257,8 +257,8 @@ const VelentineApartment = () => {
       />
       <Navbar />
       <main className="min-h-screen bg-background">
-        {/* Hero Section with Building Image */}
-        <section className="relative min-h-[80vh] md:min-h-screen overflow-hidden flex items-center">
+        {/* Hero Section with Building Image and Centered Title */}
+        <section className="relative min-h-[80vh] md:min-h-screen overflow-hidden flex items-center justify-center">
           <div className="absolute inset-0">
             <img
               src={elevation1}
@@ -266,10 +266,24 @@ const VelentineApartment = () => {
               className="w-full h-full object-cover"
             />
           </div>
+          
+          {/* Centered Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative z-10 text-center px-4"
+          >
+            <div className="inline-block px-6 sm:px-10 md:px-16 py-4 sm:py-6 md:py-8 rounded-3xl bg-gradient-to-br fromwhite-900/40 via-yellow-600/30 to-yellow-500/20 backdrop-blur-lg shadow-2xl ">
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-100 tracking-wide drop-shadow-lg">
+                Valentine Apartment
+              </h1>
+            </div>
+          </motion.div>
         </section>
 
-        {/* Logo & Title Section */}
-        <section className="py-12 md:py-16 bg-background">
+        {/* Logo & Title Section - Hidden since title is now in hero */}
+        <section className="py-12 md:py-16 bg-background hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             {/* Logo */}
             <motion.div
@@ -474,119 +488,102 @@ const VelentineApartment = () => {
         </section>
 
        
-        {/* Project Overview with Image Carousel */}
-        <section id="overview-content" className="py-16 md:py-24 bg-background">
-
+        {/* Project Overview - About Section */}
+        <section id="overview-content" className="py-16 md:py-20 bg-card">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Two Column Layout: Content Left, Carousel Right */}
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16">
-              {/* Left: Content */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
               >
-                <span className="text-[#c9a962] text-sm font-semibold tracking-widest uppercase mb-4 block">
-                  Project Overview
-                </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">
-                  Your New Home is <span className="text-[#c9a962]">Ready</span>
+                <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">About The Project</span>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
+                  Your New Home is <span className="text-primary">Ready</span>
                 </h2>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+                <p className="text-muted-foreground mb-4 leading-relaxed">
                   Velentine Apartment 1 – Wing D is a supreme embodiment of a sprawling lifestyle and resplendent features. 
                   It is the perfect fusion of contemporary architecture, ideal location, elegant spaces and carefully curated luxury amenities.
                 </p>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+                <p className="text-muted-foreground mb-6 leading-relaxed">
                   The 1 & 2 BHK exquisite apartments showcase the most thoughtful design, stylish appointments, finest quality finishing 
-                  and best brands to provide an unparalleled experience in luxury living.
+                  and best brands to provide an unparalleled experience in luxury living. From its magnificent designer entrance lobby, 
+                  high-speed elevators silently whisk you up to your luxurious abodes.
                 </p>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  From its magnificent designer entrance lobby, high-speed elevators silently whisk you up to your luxurious abodes. 
-                  Inside, every square inch is designed to build in functionality and create an aesthetic appeal at every turn.
-                </p>
-              </motion.div>
-
-              {/* Right: Image Carousel */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="relative"
-              >
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                  <motion.div 
-                    className="flex"
-                    animate={{ x: `-${heroCurrent * 100}%` }}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  >
-                    <img src={valLiving} alt="Living Room" className="w-full h-[400px] md:h-[500px] object-cover flex-shrink-0" />
-                    <img src={valDining} alt="Dining Area" className="w-full h-[400px] md:h-[500px] object-cover flex-shrink-0" />
-                    <img src={valBedroom} alt="Bedroom" className="w-full h-[400px] md:h-[500px] object-cover flex-shrink-0" />
-                    <img src={valKitchen} alt="Kitchen" className="w-full h-[400px] md:h-[500px] object-cover flex-shrink-0" />
-                  </motion.div>
-                  
-                  {/* Navigation Arrows */}
-                  <button
-                    onClick={() => setHeroCurrent((prev) => (prev === 0 ? 3 : prev - 1))}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all z-10"
-                  >
-                    <ChevronLeft className="w-6 h-6 text-gray-800" />
-                  </button>
-                  <button
-                    onClick={() => setHeroCurrent((prev) => (prev === 3 ? 0 : prev + 1))}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all z-10"
-                  >
-                    <ChevronRight className="w-6 h-6 text-gray-800" />
-                  </button>
-                  
-                  {/* Dots Indicator */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                    {[0, 1, 2, 3].map((index) => (
-                      <button
-                        key={index}
-                        onClick={() => setHeroCurrent(index)}
-                        className={`h-2 rounded-full transition-all ${
-                          index === heroCurrent ? 'bg-white w-8' : 'bg-white/50 w-2'
-                        }`}
-                      />
-                    ))}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-background p-4 rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-primary">1 & 2</p>
+                    <p className="text-sm text-muted-foreground">BHK Options</p>
+                  </div>
+                  <div className="bg-background p-4 rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-primary">OC</p>
+                    <p className="text-sm text-muted-foreground">Received</p>
+                  </div>
+                  <div className="bg-background p-4 rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-primary">Wing D</p>
+                    <p className="text-sm text-muted-foreground">Premium Tower</p>
+                  </div>
+                  <div className="bg-background p-4 rounded-xl border border-border">
+                    <p className="text-2xl font-bold text-primary">RERA</p>
+                    <p className="text-sm text-muted-foreground">Approved</p>
                   </div>
                 </div>
               </motion.div>
-            </div>
-
-            {/* Project Highlights - 3 Cards Per Row */}
-            <div className="max-w-7xl mx-auto">
-              <motion.h3 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-center mb-10"
+                className="relative"
               >
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border">
+                  <img
+                    src={elevation1}
+                    alt="Valentine Apartment Main Elevation"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Project Highlights Section */}
+        <section className="py-16 md:py-20 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <span className="text-primary text-sm font-medium tracking-wider uppercase mb-2 block">Why Choose Us</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold gradient-gold-text mb-4">
                 Project Highlights
-              </motion.h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {highlights.map((item, index) => (
-                  <motion.div 
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    className="flex flex-col items-start gap-3 p-5 bg-card rounded-2xl border border-border hover:border-[#c9a962]/50 hover:shadow-xl transition-all duration-300"
-                  >
-                    <div className="p-3 bg-[#c9a962]/10 rounded-xl">
-                      <CheckCircle className="w-6 h-6 text-[#c9a962]" />
-                    </div>
-                    <div>
-                      <h4 className="text-foreground text-base md:text-lg font-bold mb-2">{item.title}</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Discover what makes Valentine Apartment your ideal home in Malad East
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {highlights.map((item, index) => (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="flex items-start gap-4 p-6 bg-card rounded-xl border border-border hover:border-primary/50 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="p-2 bg-primary/10 rounded-lg shrink-0">
+                    <CheckCircle className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="text-foreground text-base font-semibold mb-1">{item.title}</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>

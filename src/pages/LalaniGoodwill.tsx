@@ -268,18 +268,30 @@ const LalaniGoodwill = () => {
       <Navbar />
       
       <main className="min-h-screen bg-background">
-        {/* Hero Section with Logo */}
-        <section className="relative min-h-[80vh] md:min-h-screen overflow-hidden flex items-center">
+        {/* Hero Section with Centered Title */}
+        <section className="relative min-h-[80vh] md:min-h-screen overflow-hidden flex items-center justify-center">
           <div className="absolute inset-0">
             <img
               src={mainElevation}
               alt="Lalani Goodwill"
               className="w-full h-full object-cover"
             />
-            {/* <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/20 to-black/20" /> */}
+            {/* Gradient Overlays */}
           </div>
 
-          
+          {/* Centered Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative z-10 text-center px-4"
+          >
+            <div className="inline-block px-6 sm:px-10 md:px-16 py-4 sm:py-6 md:py-8 rounded-3xl bg-gradient-to-br from-white-900/40 via-yellow-600/30 to-yellow-500/20 backdrop-blur-lg shadow-2xl ">
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-100 tracking-wide drop-shadow-lg">
+                Lalani Goodwill
+              </h1>
+            </div>
+          </motion.div>
         </section>
 <section className="py-12 md:py-16 bg-background">
   <div className="container mx-auto px-4 sm:px-6 lg:px-8">
