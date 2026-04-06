@@ -16,6 +16,7 @@ import SEO from "@/components/SEO";
 import { trackEvent } from "@/lib/tracking";
 
 // Import images
+import herogoodwill from "@/assets/valentine/herogoodwill.webp"
 import goodwillLogo from "@/assets/lalanigoodwill/image.png";
 import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
 import carsoule1 from "@/assets/lalanigoodwill/con1.jpeg";
@@ -274,9 +275,11 @@ const LalaniGoodwill = () => {
             <img
               src={mainElevation}
               alt="Lalani Goodwill"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
             {/* Gradient Overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent" />
           </div>
 
           {/* Centered Title */}
@@ -286,13 +289,13 @@ const LalaniGoodwill = () => {
             transition={{ duration: 0.8 }}
             className="relative z-10 text-center px-4"
           >
-            <div className="inline-block px-6 sm:px-10 md:px-16 py-4 sm:py-6 md:py-8 rounded-3xl bg-gradient-to-br from-white-900/40 via-yellow-600/30 to-yellow-500/20 backdrop-blur-lg shadow-2xl ">
+            <div className="inline-block px-6 sm:px-10 md:px-16 py-4 sm:py-6 md:py-8 rounded-3xl bg-gradient-to-br from-yellow-900/40 via-yellow-600/30 to-yellow-500/20 backdrop-blur-lg shadow-2xl border border-yellow-400/30">
               <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-100 tracking-wide drop-shadow-lg">
                 Lalani Goodwill
               </h1>
             </div>
           </motion.div>
-        </section>
+        </section> 
 <section className="py-12 md:py-16 bg-background">
   <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -341,7 +344,7 @@ const LalaniGoodwill = () => {
             <img
               src={lalaniimg}
               alt="Lalani Goodwill Background"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
             <div className="absolute inset-0 bg-black/70" />
           </div>
@@ -436,7 +439,7 @@ const LalaniGoodwill = () => {
                       <motion.div className="flex" animate={{ x: `-${constructionIndex * 100}%` }} transition={{ duration: 0.4, ease: 'easeInOut' }}>
                         {constructionImages.map((img, i) => (
                           <div key={i} className="flex-shrink-0 w-full h-[250px] cursor-pointer relative group" onClick={() => { setConstructionLightboxIndex(i); setConstructionLightboxOpen(true); }}>
-                            <img src={img} alt={`Construction ${i + 1}`} className="w-full h-full object-cover" />
+                            <img src={img} alt={`Construction ${i + 1}`} className="w-full h-full object-contain" />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 flex items-center justify-center transition-all">
                               <span className="opacity-0 group-hover:opacity-100 bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
@@ -457,7 +460,7 @@ const LalaniGoodwill = () => {
                     <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                       {constructionImages.map((img, i) => (
                         <div key={i} className="group cursor-pointer rounded-xl overflow-hidden relative" style={{ height: '250px' }} onClick={() => { setConstructionLightboxIndex(i); setConstructionLightboxOpen(true); }}>
-                          <img src={img} alt={`Construction ${i + 1}`} className="w-full h-full object-cover" />
+                          <img src={img} alt={`Construction ${i + 1}`} className="w-full h-full object-contain" />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 flex items-center justify-center transition-all">
                             <span className="opacity-0 group-hover:opacity-100 bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1">
                               <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
@@ -481,7 +484,7 @@ const LalaniGoodwill = () => {
                       <img
                         src={mainElevation}
                         alt="Lalani Goodwill Digitour"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-contain group-hover:scale-100 transition-transform duration-500"
                         loading="lazy"
                       />
                       {/* Overlay with CTA */}
@@ -583,7 +586,7 @@ const LalaniGoodwill = () => {
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                   />
                 </motion.div>
               ))}
@@ -955,7 +958,7 @@ const LalaniGoodwill = () => {
                   <img
                     src={mainElevation}
                     alt="Lalani Goodwill Main Elevation"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
               

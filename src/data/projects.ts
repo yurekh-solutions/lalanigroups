@@ -12,7 +12,8 @@ import goodwillImage from "@/assets/lalanigoodwill/image.png";
 import busines3 from "@/assets/lalanibusinespark/busines3.png";
 
 // Lalani Business Park Images
-import busines from "@/assets/lalanibusinespark/busines.png";
+import busines from "@/assets/lalanibusinespark/businesspark.png";
+
 import business1 from "@/assets/lalanibusinespark/business1.png";
 import business2 from "@/assets/lalanibusinespark/business2.png";
 import business4 from "@/assets/lalanibusinespark/business4.png";
@@ -185,10 +186,76 @@ export const projects: Project[] = [
     lng: 72.86659,
     address: "Goodwill C.H.S Ltd, Opp. Janakalyan Bank, J B Nagar, Andheri East, Mumbai-400059"
   },
+    // LALANI BUSINESS PARK (Commercial)
+  {
+    id: 2,
+    slug: "lalani-business-park",
+    name: "Lalani Business Park",
+    location: "Khar (W)",
+    area: "Khar West",
+    rera: "",
+    type: "Commercial Spaces",
+    status: "Ongoing",
+    category: "ongoing",
+    price: "",
+    possession: "March 2026",
+    image: busines,
+    images: [busines, business1],
+    description: "Lalani Business Park is a premium commercial development in the heart of Khar West. Offering state-of-the-art office spaces with modern infrastructure, this project is ideal for businesses looking for a prestigious address in Mumbai's prime business district.",
+    highlights: [
+      "MahaRERA Approved - P51800033063",
+      "Prime commercial location in Khar",
+      "Close to Khar Railway Station",
+      "Modern office spaces",
+      "High-speed elevators",
+      "Ample parking space",
+      "24/7 power backup",
+      "Central air conditioning provision"
+    ],
+    amenities: [
+      "High-Speed Elevators",
+      "24/7 Security",
+      "CCTV Surveillance",
+      "Basement Parking",
+      "Power Backup",
+      "Fire Fighting Systems",
+      "Modern Lobby",
+      "Cafeteria",
+      "Conference Rooms",
+      "High-Speed Internet Ready"
+    ],
+    specifications: [
+      {
+        title: "Office Spaces",
+        details: [
+          "Flexible floor plans",
+          "False ceiling ready",
+          "Provision for AC",
+          "Ample natural light"
+        ]
+      }
+    ],
+    configuration: [
+      {
+        type: "Office Space",
+        area: "500-2000 sq.ft",
+        price: "₹1.2 Cr onwards"
+      }
+    ],
+    nearbyLocations: [
+      { name: "Khar Railway Station", distance: "5 min" },
+      { name: "Linking Road", distance: "3 min" },
+      { name: "Bandra-Kurla Complex", distance: "15 min" },
+      { name: "International Airport", distance: "20 min" }
+    ],
+    lat: 19.068066,
+    lng: 72.8320477,
+    address: "Lalani Business Park, 14th Road, Khar West, Mumbai, Maharashtra 400052"
+  },
 
   // VELENTINE APARTMENT
   {
-    id: 2,
+    id: 3,
     slug: "velentine-apartment",
     name: "Velentine Apartment 1 - Wing D",
     location: "Malad (E)",
@@ -302,7 +369,7 @@ export const projects: Project[] = [
 
   // LALANI GRANDEUR
   {
-    id: 3,
+    id: 4,
     slug: "lalani-grandeur",
     name: "Lalani Grandeur",
     location: "Goregaon (E)",
@@ -437,72 +504,7 @@ export const projects: Project[] = [
     address: "Lalani Grandeur, Film City Road, Goregaon East, Mumbai, Maharashtra 400065"
   },
 
-  // LALANI BUSINESS PARK (Commercial)
-  {
-    id: 4,
-    slug: "lalani-business-park",
-    name: "Lalani Business Park",
-    location: "Khar (W)",
-    area: "Khar West",
-    rera: "",
-    type: "Commercial Spaces",
-    status: "Ongoing",
-    category: "ongoing",
-    price: "",
-    possession: "March 2026",
-    image: busines,
-    images: [busines, business1],
-    description: "Lalani Business Park is a premium commercial development in the heart of Khar West. Offering state-of-the-art office spaces with modern infrastructure, this project is ideal for businesses looking for a prestigious address in Mumbai's prime business district.",
-    highlights: [
-      "MahaRERA Approved - P51800033063",
-      "Prime commercial location in Khar",
-      "Close to Khar Railway Station",
-      "Modern office spaces",
-      "High-speed elevators",
-      "Ample parking space",
-      "24/7 power backup",
-      "Central air conditioning provision"
-    ],
-    amenities: [
-      "High-Speed Elevators",
-      "24/7 Security",
-      "CCTV Surveillance",
-      "Basement Parking",
-      "Power Backup",
-      "Fire Fighting Systems",
-      "Modern Lobby",
-      "Cafeteria",
-      "Conference Rooms",
-      "High-Speed Internet Ready"
-    ],
-    specifications: [
-      {
-        title: "Office Spaces",
-        details: [
-          "Flexible floor plans",
-          "False ceiling ready",
-          "Provision for AC",
-          "Ample natural light"
-        ]
-      }
-    ],
-    configuration: [
-      {
-        type: "Office Space",
-        area: "500-2000 sq.ft",
-        price: "₹1.2 Cr onwards"
-      }
-    ],
-    nearbyLocations: [
-      { name: "Khar Railway Station", distance: "5 min" },
-      { name: "Linking Road", distance: "3 min" },
-      { name: "Bandra-Kurla Complex", distance: "15 min" },
-      { name: "International Airport", distance: "20 min" }
-    ],
-    lat: 19.068066,
-    lng: 72.8320477,
-    address: "Lalani Business Park, 14th Road, Khar West, Mumbai, Maharashtra 400052"
-  },
+
 
   // LALANI HERITAGE PARK (Residential)
   {

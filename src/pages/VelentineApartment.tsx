@@ -263,23 +263,12 @@ const VelentineApartment = () => {
             <img
               src={elevation1}
               alt="Valentine Apartment"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
           
           {/* Centered Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative z-10 text-center px-4"
-          >
-            <div className="inline-block px-6 sm:px-10 md:px-16 py-4 sm:py-6 md:py-8 rounded-3xl bg-gradient-to-br fromwhite-900/40 via-yellow-600/30 to-yellow-500/20 backdrop-blur-lg shadow-2xl ">
-              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-100 tracking-wide drop-shadow-lg">
-                Valentine Apartment
-              </h1>
-            </div>
-          </motion.div>
+        
         </section>
 
         {/* Logo & Title Section - Hidden since title is now in hero */}
@@ -320,7 +309,7 @@ const VelentineApartment = () => {
             <img
               src={lobby}
               alt="Valentine Apartment Background"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
             <div className="absolute inset-0 bg-black/70" />
           </div>

@@ -45,12 +45,14 @@ import vision from "@/assets/valentine/vision.webp";
 import residency from "@/assets/lalanibusinespark/residency.png"
 // Gallery images
 const galleryImages = [
-  { src: vision, alt: "Vision Image" },
-  { src: quantum1, alt: "Quantum Project" },
-  { src: busines, alt: "Business Park" },
-  { src: residency, alt: "Residency" },
-  { src: lalaniaura, alt: "Lalani Aura" },
-  { src: business5, alt: "Business Space" },
+  { src: vision},
+  { src: quantum1},
+    { src: busines },
+
+  { src: residency},
+    { src: lalaniaura },
+
+  { src: business5},
 ];
 
 const projectHallmarks = [
@@ -330,31 +332,20 @@ const LalaniBusinessPark = () => {
             <img
               src={busines}
               alt="Lalani Business Park Mobile"
-              className="w-full h-full object-cover md:hidden"
+              className="w-full h-full object-contain md:hidden"
               loading="eager"
             />
             {/* Desktop Image */}
             <img
               src={businesspark}
               alt="Lalani Business Park Desktop"
-              className="w-full h-full object-cover hidden md:block"
+              className="w-full h-full object-contain hidden md:block"
               loading="eager"
             />
             {/* Gradient Overlays */}
           </div>
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative z-10 text-center px-4"
-          >
-            <div className="inline-block px-6 sm:px-10 md:px-16 py-4 sm:py-6 md:py-8 rounded-3xl bg-gradient-to-r from-gray-200/40 via-white-600/30 to-white-500/20 backdrop-blur-lg shadow-2xl ">
-              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-100 tracking-wide drop-shadow-lg">
-                Lalani Business Park
-              </h1>
-            </div>
-          </motion.div>
+          
         </section>
 
  <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
@@ -417,7 +408,7 @@ const LalaniBusinessPark = () => {
             <img
               src={busines}
               alt="Project Hallmarks Background"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
             <div className="absolute inset-0 bg-black/70" />
           </div>
@@ -557,7 +548,7 @@ const LalaniBusinessPark = () => {
                     <img
                       src={image.src}
                       alt={image.alt}
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                      className="w-full h-full object-contain transition-all duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
