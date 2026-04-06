@@ -332,14 +332,14 @@ const LalaniBusinessPark = () => {
             <img
               src={busines}
               alt="Lalani Business Park Mobile"
-              className="w-full h-full object-contain md:hidden"
+              className="w-full h-full object-cover md:hidden"
               loading="eager"
             />
             {/* Desktop Image */}
             <img
               src={businesspark}
               alt="Lalani Business Park Desktop"
-              className="w-full h-full object-contain hidden md:block"
+              className="w-full h-full object-cover hidden md:block"
               loading="eager"
             />
             {/* Gradient Overlays */}
@@ -408,7 +408,7 @@ const LalaniBusinessPark = () => {
             <img
               src={busines}
               alt="Project Hallmarks Background"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/70" />
           </div>
@@ -548,7 +548,7 @@ const LalaniBusinessPark = () => {
                     <img
                       src={image.src}
                       alt={image.alt}
-                      className="w-full h-full object-contain transition-all duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />

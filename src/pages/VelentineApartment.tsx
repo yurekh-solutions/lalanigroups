@@ -263,7 +263,7 @@ const VelentineApartment = () => {
             <img
               src={elevation1}
               alt="Valentine Apartment"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-cover"
             />
           </div>
           
@@ -309,7 +309,7 @@ const VelentineApartment = () => {
             <img
               src={lobby}
               alt="Valentine Apartment Background"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/70" />
           </div>
