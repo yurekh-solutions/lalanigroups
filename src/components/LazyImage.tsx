@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface LazyImageProps {
   src: string;
@@ -14,75 +13,42 @@ export const LazyImage: React.FC<LazyImageProps> = ({
   className = "w-full h-full object-cover",
   containerClassName = "",
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const handleLoad = () => setIsLoading(false);
+  const handleLoad = () => setIsLoaded(true);
   const handleError = () => {
-    setIsLoading(false);
     setHasError(true);
   };
 
   return (
-    <div className={`relative overflow-hidden bg-background/50 ${containerClassName}`}>
-      {/* Loading Spinner Overlay */}
-      <AnimatePresence>
-        {isLoading && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="absolute inset-0 z-20 flex items-center justify-center bg-background/80 backdrop-blur-sm"
-          >
-            {/* Spinner Container */}
-            <div className="flex flex-col items-center gap-3">
-              {/* Main Spinner */}
-              <div className="relative w-10 h-10">
-                {/* Outer Ring */}
-                <motion.div
-                  className="absolute inset-0 rounded-full border-3 border-transparent border-t-[#c9a962] border-r-[#c9a962]"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                />
-                {/* Inner Ring */}
-                <motion.div
-                  className="absolute inset-1 rounded-full border-2 border-transparent border-b-primary/40"
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                />
-              </div>
-              {/* Loading Text */}
-              <motion.p
-                animate={{ opacity: [0.6, 1, 0.6] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="text-xs font-medium text-muted-foreground"
-              >
-                Loading...
-              </motion.p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div className={`relative overflow-hidden ${containerClassName}`}>
+      {/* Subtle skeleton while loading */}
+      {!isLoaded && !hasError && (
+        <div 
+          className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-700 animate-pulse"
+          aria-hidden="true"
+        />
+      )}
 
-      {/* Image */}
+      {/* Image with fade-in when loaded */}
       {!hasError && (
-        <motion.img
+        <img
           src={src}
           alt={alt}
-          className={className}
+          className={`${className} transition-opacity duration-500 ${
+            isLoaded ? "opacity-100" : "opacity-0"
+          }`}
           onLoad={handleLoad}
           onError={handleError}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isLoading ? 0 : 1 }}
-          transition={{ duration: 0.4 }}
           loading="lazy"
         />
       )}
 
       {/* Error State */}
       {hasError && (
-        <div className={`flex items-center justify-center bg-background/70 text-muted-foreground text-xs ${className}`}>
-          <span>⚠️ Failed to load image</span>
+        <div className={`flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-400 text-xs ${className}`}>
+          <span>Image unavailable</span>
         </div>
       )}
     </div>
