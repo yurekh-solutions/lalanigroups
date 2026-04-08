@@ -19,27 +19,13 @@ import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Phone, MapPin, Building2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Show loader on mount
-    const timer = setTimeout(() => setIsLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Show loader on page refresh
-  useEffect(() => {
-    const handleBeforeUnload = () => setIsLoading(true);
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, []);
+  // No local loader needed - handled by App.tsx PageLoader globally
 
   return (
     <>
-      {isLoading && <LogoLoader />}
       <SEO
         title="Lalani Group - Real Estate Developers Mumbai | Buy 1BHK 2BHK 3BHK Flats | MahaRERA Approved"
         description="Lalani Group – Mumbai's trusted real estate builders since 1985. Buy 1BHK, 2BHK, 3BHK apartments in Andheri East, Malad East, Khar West, Jogeshwari, Goregaon, BKC. 40+ projects delivered. 4000+ happy families. MahaRERA approved. Ready possession & under construction flats. Call 022-6728 0000!"
