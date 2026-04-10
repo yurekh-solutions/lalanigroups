@@ -7,15 +7,7 @@ import mainElevation from "@/assets/lalanigoodwill/1 Main Elevation.jpg";
 import busines from "@/assets/lalanibusinespark/busines.png";
 import businesspark from "@/assets/lalanibusinespark/businesspark.png";
 const slides = [
-  {
-    image: mainElevation,
-    title: "Lalani Goodwill",
-    titleHighlight: "Andheri East",
-    subtitle: "Thoughtfully designed 1, 2 & 3 BHK residences in Andheri East",
-    location: "Andheri East, Mumbai",
-    tag: "Residential",
-    route: "/lalani-goodwill"
-  },
+  
   
   {
     image: busines,
@@ -26,6 +18,15 @@ const slides = [
     location: "Khar West, Mumbai",
     tag: "Commercial",
     route: "/lalani-business-park"
+  },
+  {
+    image: mainElevation,
+    title: "Lalani Goodwill",
+    titleHighlight: "Andheri East",
+    subtitle: "Thoughtfully designed 1, 2 & 3 BHK residences in Andheri East",
+    location: "Andheri East, Mumbai",
+    tag: "Residential",
+    route: "/lalani-goodwill"
   },
   {
     image: valetanie,
