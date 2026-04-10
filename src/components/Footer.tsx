@@ -18,10 +18,11 @@ const Footer = () => {
   const projectLinks = [
     { label: "Lalani Goodwill", path: "/lalani-goodwill", location: "Andheri East" },
     { label: "Lalani Business Park", path: "/lalani-business-park", location: "Khar West" },
-    { label: "Heritage Park", path: "/projects/lalani-heritage-park", location: "Jogeshwari West" },
     { label: "Velentine Apartment", path: "/projects/velentine-apartment", location: "Malad East" },
     { label: "Lalani Grandeur", path: "/projects/lalani-grandeur", location: "Goregaon East" },
     { label: "Dream Residency", path: "/projects/dream-residency", location: "Karjat" },
+        { label: "Heritage Park", path: "/projects/lalani-heritage-park", location: "Jogeshwari West" },
+
   ];
 
   return (
