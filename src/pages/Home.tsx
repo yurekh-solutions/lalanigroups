@@ -86,9 +86,8 @@ const Home = () => {
         {/* Buying Process */}
         <BuyingProcess />
 
-        {/* Features Grid */}
-        <FeaturesGrid />
-
+        {/* Features Grid - Removed to avoid duplicate Why Choose Us */}
+        {/* <FeaturesGrid /> */}
        
 
         {/* Testimonials Section */}
