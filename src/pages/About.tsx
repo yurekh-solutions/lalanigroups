@@ -429,6 +429,8 @@ const About = () => {
                         alt={project.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
+                        fetchPriority={index < 3 ? "high" : "low"}
+                        decoding="async"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';

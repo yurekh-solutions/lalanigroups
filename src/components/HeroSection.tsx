@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Play, Building2, MapPin, Home } from "lucide-react";
@@ -9,6 +9,16 @@ import businesspark from "@/assets/lalanibusinespark/businesspark.png";
 const slides = [
   
   
+  
+  {
+    image: mainElevation,
+    title: "Lalani Goodwill",
+    titleHighlight: "Andheri East",
+    subtitle: "Thoughtfully designed 1, 2 & 3 BHK residences in Andheri East",
+    location: "Andheri East, Mumbai",
+    tag: "Residential",
+    route: "/lalani-goodwill"
+  },
   {
     image: busines,
     desktopImage: businesspark,
@@ -18,15 +28,6 @@ const slides = [
     location: "Khar West, Mumbai",
     tag: "Commercial",
     route: "/lalani-business-park"
-  },
-  {
-    image: mainElevation,
-    title: "Lalani Goodwill",
-    titleHighlight: "Andheri East",
-    subtitle: "Thoughtfully designed 1, 2 & 3 BHK residences in Andheri East",
-    location: "Andheri East, Mumbai",
-    tag: "Residential",
-    route: "/lalani-goodwill"
   },
   {
     image: valetanie,
@@ -135,7 +136,46 @@ const floatingVariants = {
 
 const HeroSection = () => {
   const [current, setCurrent] = useState(0);
+  const [preloadedImages, setPreloadedImages] = useState<Set<string>>(new Set());
   const navigate = useNavigate();
+  const preloadRef = useRef<HTMLImageElement[]>([]);
+
+  // Preload all slide images on mount
+  useEffect(() => {
+    slides.forEach((slide) => {
+      const img = new Image();
+      img.src = slide.image as string;
+      if (slide.desktopImage) {
+        const desktopImg = new Image();
+        desktopImg.src = slide.desktopImage as string;
+        preloadRef.current.push(desktopImg);
+      }
+      preloadRef.current.push(img);
+    });
+    
+    // Mark first image as loaded immediately
+    setPreloadedImages(new Set([slides[0].image as string]));
+  }, []);
+
+  // Preload next slide image when current changes
+  useEffect(() => {
+    const nextIndex = (current + 1) % slides.length;
+    const nextSlide = slides[nextIndex];
+    const nextImage = nextSlide.image as string;
+    
+    if (!preloadedImages.has(nextImage)) {
+      const img = new Image();
+      img.onload = () => {
+        setPreloadedImages(prev => new Set(prev).add(nextImage));
+      };
+      img.src = nextImage;
+      
+      if (nextSlide.desktopImage) {
+        const desktopImg = new Image();
+        desktopImg.src = nextSlide.desktopImage as string;
+      }
+    }
+  }, [current]);
 
   const next = useCallback(() => setCurrent((p) => (p + 1) % slides.length), []);
 
@@ -168,7 +208,8 @@ const HeroSection = () => {
                 src={slides[current].image}
                 alt={`${slides[current].title} ${slides[current].titleHighlight} - Lalani Group Mumbai`}
                 className="w-full h-full object-cover"
-                loading="eager"
+                loading={current === 0 ? "eager" : "lazy"}
+                fetchPriority={current === 0 ? "high" : "auto"}
               />
             </picture>
           ) : (
@@ -176,7 +217,8 @@ const HeroSection = () => {
               src={slides[current].image}
               alt={`${slides[current].title} ${slides[current].titleHighlight} - Lalani Group Mumbai`}
               className="w-full h-full object-cover"
-              loading="eager"
+              loading={current === 0 ? "eager" : "lazy"}
+              fetchPriority={current === 0 ? "high" : "auto"}
             />
           )}
           
